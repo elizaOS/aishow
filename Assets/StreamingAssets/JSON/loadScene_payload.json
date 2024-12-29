@@ -1,0 +1,37 @@
+{
+	"show":
+	{
+		"actors": {
+			"joe": {
+				"name": "Pmairca",
+				"vrm": "vrm_url_here.vrm",
+				"voice": "Microsoft Sam"
+			},
+			"sally": {
+				"name": "ai16z",
+				"vrm": "vrm_url_here.vrm",
+				"voice": "Microft Jane"
+			}
+		},
+		"locations": {
+			"news_studio": {
+				"name": "News Broadcast",
+				"description": "A live news broacast stage featuring 2 anchors sitting behind a news desk, unless there is something crazy happening.",
+				"slots": {
+					"anchor_seat": "The left seat on the news stage, where the anchor sits.",
+					"coanchor_seat": "The right seat on the news stage, where the co-anchor sits.",
+					"wandering_00": "(rare) Wandering around behind the anchor desk, such as a technician fixing something."
+				}
+			}
+		}
+	},
+	"scene": {
+		"location": "Apartment",
+		"in": "fade",
+		"out": "fade",
+		"cast": {
+			"anchor_seat": "Pmairca",
+			"coanchor_seat": "ai16z"
+		}
+	}
+}

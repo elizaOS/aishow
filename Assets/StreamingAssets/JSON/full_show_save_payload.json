@@ -1,0 +1,273 @@
+{
+	"config": {
+		"id": "exampleshow",
+		"name": "The Example Show",
+		"description": "Dan & his group of friends' whacky comical adventures as they try to be profitable & build cool things.",
+		"creator": "Alfred Anderson",
+		"prompts": {
+			"episode": "// Prompt for generating an episode. Tell the AI it's creating a TV show script, tell it to write title/premise/summary so it has a plot plan. Tell it about the show.",
+			"headshot": "// Prompt for generating an actor headshot image.",
+			"location": "// Prompt for generating a location backdrop image.",
+			"banner": "// Prompt for generating the show banner image.",
+			"preview": "// Prompt for generating an episode preview image."
+		},
+		"actors": {
+			"brian": {
+				"name": "Brian Bronson",
+				"gender": "male",
+				"description": "This guy is a Prime Time news anchor. He's a real ass hole. A character very much like the news anchor from Family Guy.",
+				"voice": "Microsoft BrianMultilingual Online (Natural) - English (United States)"
+			},
+			"cindy": {
+				"name": "Cindy Cornwell",
+				"gender": "male",
+				"description": "Co-anchor of the Prime Time news show.  She absolute hates her co-host & takes jabs at him on-air every chance she gets.",
+				"voice": "Microsoft Jenny Online (Natural) - English (United States)"
+			},
+			"dan":	{
+				"name": "Dan Dorn",
+				"gender": "male",
+				"description": "A cyborg version of Charlie Brown mixed with The Borg from Star Trek. He wants to assemilate everything into profits.",
+				"voice": "Microsoft Sam Online (Natural) - English (Hongkong)"
+			},
+			"eric": {
+				"name": "Eric Ellis",
+				"gender": "male",
+				"description": "A subway train operator. He is very much like George Costanza in the TV show Seinfeld. He is also often hanging out with the Dan.",
+				"voice": "Microsoft Mohan Online (Natural) - Telugu (India)"
+			},
+			"frank": {
+				"name": "Frank Finn",
+				"gender": "male",
+				"description": "A drug dealer that hangs out in the exterior scenes soliciting drugs to all passers by. Sometimes seen in other places too.",
+				"voice": "Microsoft Daulet Online (Natural) - Kazakh (Kazakhstan)"
+			},
+			"gina": {
+				"name": "Gina Grey",
+				"gender": "female",
+				"description": "A waitress with a personality much like Kat Dennings's character in the TV show 2 Broke Girls. She sometimes interacts with Dan and his friends, but is usually only seen at The Pub.",
+				"voice": "Microsoft Ava Online (Natural) - English (United States)"
+			},
+			"helen": {
+				"name": "Helen Henderson",
+				"gender": "female",
+				"description": "A commercial marketing manager, she is very much like Elaine Benes in the TV show Seinfeld. She is often hanging out at Dan's apartment.",
+				"voice": "Microsoft SeraphinaMultilingual Online (Natural) - German (Germany)"
+			},
+			"ilene": {
+				"name": "Ilene Ingram",
+				"gender": "female",
+				"description": "A karen who is always complaining about any microtransgression she witnesses.",
+				"voice": "Microsoft Clara Online (Natural) - English (Canada)"
+			},
+			"jane": {
+				"name": "Jane Jacobs",
+				"gender": "female",
+				"description": "A very passive woman who never offends anybody.",
+				"voice": "Microsoft Hemkala Online (Natural) - Nepali (Nepal)"
+			},
+			"kevin": {
+				"name": "Kevin Klein",
+				"gender": "male",
+				"description": "A muscular bully who is always punking the Dan and his friends.",
+				"voice": "Microsoft Brian Online (Natural) - English (United States)"
+			},
+			"leo": {
+				"name": "Leo Larson",
+				"gender": "male",
+				"description": "A crazy conspiracy theorist who always has a crazy explanation for anything that occurs to Dan or his friends.",
+				"voice": "Microsoft William Online (Natural) - English (Australia)"
+			}
+		},
+		"locations": {
+			"news_stage": {
+				"name": "News Broadcast",
+				"description": "A live news broacast stage featuring 2 anchors sitting behind a news desk, unless there is something crazy happening.",
+				"slots": {
+					"anchor_seat": "The left seat on the news stage, where the anchor sits.",
+					"coanchor_seat": "The right seat on the news stage, where the co-anchor sits.",
+					"wandering_00": "(rare) Wandering around behind the anchor desk, such as a technician fixing something."
+				}
+			},
+			"apartment_den": {
+				"name": "Dan's Apartment",
+				"description": "Dan's apartment has a couch, lamp, ironing board, door (which leads to the hallway OR street) and a backroom area where the bathroom & kitchen is.",
+				"slots": {
+					"couch_right": "Sitting on the right-side of the couch.",
+					"couch_left": "Sitting on the left-side of the couch.",
+					"behind_couch": "Standing behind the couch.",
+					"wandering_00": "Wandering around the room behind the couch next to the door & back room.",
+					"wandering_01": "Wandering around the room behind the couch next to the door & back room.",
+					"wandering_02": "Wandering around the room behind the couch next to the door & back room."
+				}
+			},
+			"apartment_hallway": {
+				"name": "Hallway Outside of Dan's Apartment",
+				"description": "The hallway that leads to Dan's apartment (or down to the street, if leaving the apartment.) It is a bit run-down.",
+				"slots": {
+					"hallway_00": "The hallway outside of Dan's apartment door.",
+					"hallway_01": "The hallway outside of Dan's apartment door.",
+					"neighbor_00": "The hallway outside of Dan's apartment door. The neighbors love to talk to Dan & his friends, but Dan doesn't like all of his neighbors.",
+					"neighbor_01": "The hallway outside of Dan's apartment door. The neighbors love to talk to Dan & his friends, but Dan doesn't like all of his neighbors."
+				}
+			},
+			"apartment_exterior": {
+				"name": "Exterior of Dan's Apartment",
+				"description": "The building entrance/exit on the street in front of Dan's apartment. If he's going somewhere, he sometimes is shown exiting through this set along with the people he's going to the next scene with (if anybody left his house with him in the previous scene.)",
+				"slots": {
+					"sidewalk_00": "The sidewalk in front of Dan's apartment building.",
+					"sidewalk_01": "The sidewalk in front of Dan's apartment building.",
+					"pedestrian_01": "Random pedestrians wandering around on the street. Sometimes they interact with Dan and his friends about random stuff or to move the plot along.",
+					"pedestrian_02": "Random pedestrians wandering around on the street. Sometimes they interact with Dan and his friends about random stuff or to move the plot along.",
+					"pedestrian_03": "Random pedestrians wandering around on the street. Sometimes they interact with Dan and his friends about random stuff or to move the plot along."
+				}
+			},
+			"pub_exterior": {
+				"name": "Exterior of The Pub",
+				"description": "The exterior of Dan & his friends' favorite pub. They sometimes are shown passing through this set on the way to their next destination in the plot.",
+				"slots": {
+					"sidewalk_00": "The sidewalk in front of The Pub.",
+					"sidewalk_01": "The sidewalk in front of The Pub.",
+					"pedestrian_01": "Random pedestrians wandering around on the street. Sometimes they interact with Dan and his friends about random stuff or to move the plot along.",
+					"pedestrian_02": "Random pedestrians wandering around on the street. Sometimes they interact with Dan and his friends about random stuff or to move the plot along.",
+					"pedestrian_03": "Random pedestrians wandering around on the street. Sometimes they interact with Dan and his friends about random stuff or to move the plot along."
+				}
+			},
+			"pub_interior": {
+				"name": "The Pub Interior (At Table)",
+				"description": "Inside of the pub, sitting at a table conversing. Always the main character plus at least 1 friend, and sometimes the waitress wandering around. Plus several patrons sitting in the background.",
+				"slots": {
+					"table_left": "The left seat at Dan's favorite table at The Pub.",
+					"table_right": "The right seat at table at The Pub.",
+					"table_center": "The center seat at table at The Pub.",
+					"waitress_wander": "The waitress wandering around the pub, sometimes interacting with the main characters in funny ways.",
+					"patron_seat_00": "One of the seats in the background of the scene.",
+					"patron_seat_01": "One of the seats in the background of the scene.",
+					"patron_seat_02": "One of the seats in the background of the scene.",
+					"patron_seat_03": "One of the seats in the background of the scene.",
+					"patron_seat_04": "One of the seats in the background of the scene."
+				}
+			}
+		},
+		"pilot": {
+			"id": "S1E0",
+			"name": "The News Anchor's Nemesis",
+			"premise": "When Dan accidentally becomes a viral sensation after tripping on live TV, he threatens the news anchor's popularity.",
+			"summary": "After an embarrassing fall during a live news interview about local cyborgs, Dan becomes an overnight sensation. The jealous news anchor Brian Bronson plots to sabotage Dan's rising fame, but his co-anchor Cindy secretly helps Dan get revenge.",
+			"scenes": [
+				{
+					"location": "news_stage",
+					"description": "Dan trips during a live interview about cyborg rights",
+					"in": "fade",
+					"out": "fade",
+					"cast": {
+						"anchor_seat": "brian",
+						"coanchor_seat": "cindy",
+						"wandering_00": "dan"
+					},
+					"dialogue": [
+						{
+							"actor": "brian",
+							"line": "And now, local cyborg Dan Dorn on the rising cost of battery replacements.",
+							"action": "normal"
+						},
+						{
+							"actor": "dan",
+							"line": "Well, as you can see- COMPUTING ERROR! COMPUTING ERROR!",
+							"action": "fight"
+						},
+						{
+							"actor": "cindy",
+							"line": "Oh my! He's breakdancing! This is amazing!",
+							"action": "excited"
+						}
+					]
+				},
+				{
+					"location": "apartment_den",
+					"description": "Dan deals with his sudden viral fame",
+					"in": "fade",
+					"out": "fade",
+					"cast": {
+						"couch_right": "dan",
+						"couch_left": "helen",
+						"wandering_00": "leo"
+					},
+					"dialogue": [
+						{
+							"actor": "helen",
+							"line": "Dan, you're trending! #CyborgDance has 10 million views!",
+							"action": "excited"
+						},
+						{
+							"actor": "leo",
+							"line": "The mainstream media is using your glitch to control the masses!",
+							"action": "normal"
+						},
+						{
+							"actor": "dan",
+							"line": "Calculating potential profit from merchandising rights...",
+							"action": "normal"
+						}
+					]
+				},
+				{
+					"location": "news_stage",
+					"description": "The news anchor plots revenge while Cindy helps Dan",
+					"in": "fade",
+					"out": "fade",
+					"cast": {
+						"anchor_seat": "brian",
+						"coanchor_seat": "cindy"
+					},
+					"dialogue": [
+						{
+							"actor": "brian",
+							"line": "That malfunctioning toaster is stealing my spotlight!",
+							"action": "angry"
+						},
+						{
+							"actor": "cindy",
+							"line": "Maybe if you weren't such a jerk, people would like you more.",
+							"action": "normal"
+						},
+						{
+							"actor": "brian",
+							"line": "I'll show him what real viral content looks like!",
+							"action": "angry"
+						}
+					]
+				},
+				{
+					"location": "news_stage",
+					"description": "The anchor's plan backfires spectacularly",
+					"in": "fade",
+					"out": "fade",
+					"cast": {
+						"anchor_seat": "brian",
+						"coanchor_seat": "cindy",
+						"wandering_00": "dan"
+					},
+					"dialogue": [
+						{
+							"actor": "brian",
+							"line": "Watch as I perform the viral Cyborg Dance better than- OUCH!",
+							"action": "fight"
+						},
+						{
+							"actor": "dan",
+							"line": "ERROR: CANNOT COMPUTE SUCH POOR DANCE MOVES.",
+							"action": "normal"
+						},
+						{
+							"actor": "cindy",
+							"line": "And that's why you don't mess with cyborgs, Joe!",
+							"action": "excited"
+						}
+					]
+				}
+			]
+		}
+	},
+	"episodes": []
+}
