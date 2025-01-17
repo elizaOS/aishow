@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Podcast Show Runner</title>
+
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background: rgb(26, 26, 26);
+            color: #ccc;
+            font-family:  Arial;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            /*overflow: hidden;*/
+        }
+
+        .instructions {
+            padding: 2rem;
+            text-align: center;
+        }
+
+        #startButton {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        #startButton:hover {
+            background: #45a049;
+        }
+
+        tt {
+            background-color:  #444;
+            padding:  2px;
+            border-radius:  4px;
+            margin:  2px;
+            line-height:  2em;
+        }
+    </style>
+
+    <style>
+        .generation-slate {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            color: white;
+            font-size: 24px;
+            font-family: Arial, sans-serif;
+        }
+
+        .generation-slate.visible {
+            display: flex;
+        }
+    </style>
+
+    <script src="thirdparty/jszip.min.js"></script>
+    <script src="config.js"></script>
+    <script src="shmotime/ShmotimeEventEmitter.js"></script>
+    <script src="shmotime/Shmotime.js"></script>
+    <script type="module" src="aipodcast-streamer.js"></script>
+    <script src="aipodcast-runner.js"></script>
+    <script src="shmotime/ShmotimeGenerator.js"></script>
+    <script src="shmotime/ShmotimeSpeaker.js"></script>
+    <script src="shmotime/ShmotimeLoader.js"></script>
+</head>
+<body>
+    <div class="instructions" style="text-align: left; padding: 20px;">
+      <h1>AI Podcast Show Runner</h1>
+      <h2>Documentation in the readme.md.</h2>
+
+        <div style="padding: 10px">
+            <h2>Voice System</h2>
+            <select id="ttsMode">
+                <option value="browser">Browser TTS</option>
+                <option value="elevenlabs" selected>ElevenLabs</option>
+            </select>
+        </div>
+        <div style="padding: 10px;">
+            <h2>Save Generated Audio (ElevenLabs only)</h2>
+            <select id="saveGeneratedAudio">
+                <option value="yes" selected>Yes (downloads a ZIP after episode ends)</option>
+                <option value="no">No</option>
+            </select>
+            <p>Unzip "here" next to the show_runner.html file to make it available to the show runner. An episode's mp3s get downloaded when the episode finishes playing back.</p>
+        </div>
+        <div style="padding: 10px;">
+            <h2>Generate Or Replay</h2>
+            <select id="genOrReplay">
+                <option value="generate" selected>Generate today's episode</option>
+                <option value="replay">Replay last episode from show_config.json</option>
+            </select>
+            <p>When generating a new episode, the current version of the news aggregator at <tt>https://elizaos.github.io/data/daily/summary.json</tt> is automatically pulled into the prompt.</p>
+            <p>The episodes get saved into the show_config.json that gets auto-downloaded after a new episode is generated.</p>
+        </div>
+        <div style="padding: 10px">
+            <h2>Mode</h2>
+            <select id="debugMode">
+                <option value="no">Regular Mode (Run ALONG-SIDE Unity app.)</option>
+                <option value="yes">No Unity App Mode (prepareSceneComplete gets auto-fired.)</option>
+            </select>
+            <p>This is in case you want to test the show runner WITHOUT the Unity app.</p>
+        </div>
+        <button id="startButton" style="margin-top: 30px;">Start Show Runner Simulation</button>
+
+        
+    <div>
+        <h2>Voice Casting</h2>
+        This actor to voice mapping will automatically apply when the show is ran. Voice IDs come from your ElevenLabs account.<br />
+        <textarea style="width: 800px; height: 120px;" id="voiceMapping">{
+    "pepo": "PIx0FtBPXNpVzgTVfpYH",
+    "sparty": "QFbF1ji5Znc2PzerwcaH",
+    "eliza": "c0vk1lVZg53AttdoaYki",
+    "marc": "v8BnZUxdzXDlja6wr0Ou",
+    "shaw": "gYOKECHBoqupz2yMhZp1"
+}</textarea>
+    </div>
+
+    <div class="generation-slate">
+        <div>
+            <h2 style="text-align: center; color: #4CAF50;">Generating episode...</h2>
+            <div style="text-align: center; margin-top: 20px;">
+                <div class="spinner" style="border: 4px solid #f3f3f3; border-top: 4px solid #4CAF50; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; margin: 0 auto;"></div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+
+    <div>
+        <div>
+            <div class="shmotimeContainer" name="ShmotimeStage2D"></div>
+            <div class="shmotimeContainer" name="ShmotimeStage2DCaptions"></div>
+        </div>
+        <div class="shmotimeContainer" name="ShmotimeStatus"></div>
+        <div class="shmotimeContainer" name="ShmotimeControls"></div>
+    </div>
+
+    <script type="module">
+        import { ShmotimeStreamer } from './aipodcast-streamer.js';
+
+        document.getElementById('startButton').addEventListener('click', async () => {
+            // Hide instructions after clicking start
+            document.querySelector('.instructions').style.display = 'none';
+
+            // auto-apply voice mapping
+            let voiceMappingJSON = null;
+            try {
+                voiceMappingJSON = JSON.parse(document.querySelector('#voiceMapping').value);
+            } catch(err) { error(err); }
+
+            var existingVoiceMapping = JSON.parse(localStorage.actorVoiceMappings || {});
+            for( let x in voiceMappingJSON ) {
+                existingVoiceMapping[x] = voiceMappingJSON[x];
+            }
+            localStorage.setItem('actorVoiceMappings', JSON.stringify(existingVoiceMapping));
+
+            const shmotime = window.shmotime;
+            
+            // Initialize components
+            const components = {
+                loader: new ShmotimeLoader({}),
+                speaker: new ShmotimeSpeaker({
+                    voiceSystem: document.querySelector('#ttsMode').value,
+                    saveAudioCache: (document.querySelector('#saveGeneratedAudio').value == 'yes')
+                }),
+                generator: new ShmotimeGenerator({}),
+                runner: new ShmotimeRunner({}),
+                streamer: new ShmotimeStreamer({
+                    testMode: (document.querySelector('#debugMode').value == 'yes')
+                })
+            };
+
+            // Start shmotime
+            shmotime.start({
+                config: {},
+                components: components
+            });
+
+            // Initialize system and start show
+            shmotime.on('system:initialize', async () => {
+                console.log('System initialized & running.');
+
+                // Load the initial show data
+                const initialShowData = await shmotime.loader.loadShowFromJSON('show-config.json');
+                console.log('Initial show data loaded:', initialShowData);
+
+                initialShowData.config.pilot = {
+                  "id": "S1E0",
+                  "name": "The News Anchor's Nemesis",
+                  "premise": "When Dan accidentally becomes a viral sensation after tripping on live TV, he threatens the news anchor's popularity.",
+                  "summary": "After an embarrassing fall during a live news interview about local cyborgs, Dan becomes an overnight sensation. The jealous news anchor Brian Bronson plots to sabotage Dan's rising fame, but his co-anchor Cindy secretly helps Dan get revenge.",
+                  "scenes": [
+                    {
+                      "location": "news_stage",
+                      "description": "Dan trips during a live interview about cyborg rights",
+                      "in": "fade",
+                      "out": "fade",
+                      "cast": {
+                        "anchor_seat": "brian",
+                        "coanchor_seat": "cindy",
+                        "wandering_0": "dan"
+                      },
+                      "dialogue": [
+                        {
+                          "actor": "brian",
+                          "line": "And now, local cyborg Dan Dorn on the rising cost of battery replacements.",
+                          "action": "normal"
+                        },
+                        {
+                          "actor": "dan",
+                          "line": "Well, as you can see- COMPUTING ERROR! COMPUTING ERROR!",
+                          "action": "fight"
+                        },
+                        {
+                          "actor": "cindy",
+                          "line": "Oh my! He's breakdancing! This is amazing!",
+                          "action": "excited"
+                        }
+                      ]
+                    },
+                    {
+                      "location": "apartment_den",
+                      "description": "Dan deals with his sudden viral fame",
+                      "in": "fade",
+                      "out": "fade",
+                      "cast": {
+                        "couch_right": "dan",
+                        "couch_left": "helen",
+                        "wandering_0": "leo"
+                      },
+                      "dialogue": [
+                        {
+                          "actor": "helen",
+                          "line": "Dan, you're trending! #CyborgDance has 10 million views!",
+                          "action": "excited"
+                        },
+                        {
+                          "actor": "leo",
+                          "line": "The mainstream media is using your glitch to control the masses!",
+                          "action": "normal"
+                        },
+                        {
+                          "actor": "dan",
+                          "line": "Calculating potential profit from merchandising rights...",
+                          "action": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "location": "news_stage",
+                      "description": "The news anchor plots revenge while Cindy helps Dan",
+                      "in": "fade",
+                      "out": "fade",
+                      "cast": {
+                        "anchor_seat": "brian",
+                        "coanchor_seat": "cindy"
+                      },
+                      "dialogue": [
+                        {
+                          "actor": "brian",
+                          "line": "That malfunctioning toaster is stealing my spotlight!",
+                          "action": "angry"
+                        },
+                        {
+                          "actor": "cindy",
+                          "line": "Maybe if you weren't such a jerk, people would like you more.",
+                          "action": "normal"
+                        },
+                        {
+                          "actor": "brian",
+                          "line": "I'll show him what real viral content looks like!",
+                          "action": "angry"
+                        }
+                      ]
+                    },
+                    {
+                      "location": "news_stage",
+                      "description": "The anchor's plan backfires spectacularly",
+                      "in": "fade",
+                      "out": "fade",
+                      "cast": {
+                        "anchor_seat": "brian",
+                        "coanchor_seat": "cindy",
+                        "wandering_0": "dan"
+                      },
+                      "dialogue": [
+                        {
+                          "actor": "brian",
+                          "line": "Watch as I perform the viral Cyborg Dance better than- OUCH!",
+                          "action": "fight"
+                        },
+                        {
+                          "actor": "dan",
+                          "line": "ERROR: CANNOT COMPUTE SUCH POOR DANCE MOVES.",
+                          "action": "normal"
+                        },
+                        {
+                          "actor": "cindy",
+                          "line": "And that's why you don't mess with cyborgs, Joe!",
+                          "action": "excited"
+                        }
+                      ]
+                    }
+                  ]
+                };
+
+                let showData = initialShowData;
+                // Generate a new episode using the show's configuration
+                if( document.querySelector('#genOrReplay').value == 'generate' ) {
+
+                    // Show the generation slate before generating
+                    document.querySelector('.generation-slate').classList.add('visible');
+                    
+                    console.log('generating new episode...');
+                    const newEpisode = await shmotime.generator.generateEpisode({
+                        showConfig: initialShowData.config,
+                        episodes: initialShowData.episodes
+                    });
+                    console.log('New episode generated:', newEpisode);
+
+                    // Hide the generation slate after generation is complete
+                    document.querySelector('.generation-slate').classList.remove('visible');
+
+                    // Create modified show data with only the new episode
+                    showData = {
+                        ...initialShowData,
+                        episodes: [newEpisode] // Keep only the newly generated episode
+                    };
+                    console.log('Modified show data:', showData);
+                }
+                else {
+                    //console.log('loadin');
+                    //showData = await shmotime.loader.loadShowFromJSON('show-config.json');
+                    //console.log(showData);
+
+                    if( showData.episodes && showData.episodes.length > 0 ) {
+                        console.log('culling to most recent episode only..');
+
+                        // Hide the generation slate after generation is complete
+                        //document.querySelector('.generation-slate').classList.remove('visible');
+
+                        // Create modified show data with only the new episode
+                        const lastEpisode = showData.episodes[showData.episodes.length - 1];
+
+                        showData = {
+                            ...showData,
+                            episodes: [lastEpisode] // Keep only the most recent episode to replay
+                        };
+                        console.log('Modified show data:', showData);
+                    }
+                }
+
+                const runner = shmotime.runner;
+
+                await runner.loadShow(showData);
+                await runner.play();
+
+                runner.on('prepareScene', (sceneInfo) => {
+                    runner.emit('prepareSceneComplete');
+                });
+
+                runner.on('speak', (speakInfo) => {
+                    runner.emit('speakComplete');
+                });
+            });
+
+            // Request wake lock
+            try {
+                await navigator.wakeLock.request('screen');
+                console.log('Screen Wake Lock activated');
+            } catch (err) {
+                console.error(`Wake Lock error: ${err.name}, ${err.message}`);
+            }
+        });
+    </script>
+    <div style="padding: 40px;">
+        <button style="padding:  8px;" onclick="outputFirebase();">Output Firebase Server State To Console</button>
+        <button style="padding:  8px;" onclick="clearDatabase();">CLEAR/RESET the Firebase Server</button>
+    </div>
+    <script>
+        const firebaseURL = window.firebaseUrl;
+
+        // Function to clear the database
+        function clearDatabase() {
+          fetch(firebaseURL, {
+            method: 'DELETE', // DELETE method removes all data
+          })
+            .then((response) => {
+              if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+              }
+              console.log('Database cleared successfully.');
+            })
+            .catch((error) => {
+              console.error('Error clearing database:', error);
+            });
+        }
+
+        function outputFirebase() {
+            // Fetch the entire database contents
+            fetch(firebaseURL)
+              .then((response) => {
+                if (!response.ok) {
+                  throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                return response.json();
+              })
+              .then((data) => {
+                console.log('Firebase Database Contents:', data);
+              })
+              .catch((error) => {
+                console.error('Error fetching data:', error);
+              });
+          }
+    </script>
+</body>
+</html>

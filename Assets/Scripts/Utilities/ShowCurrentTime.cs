@@ -3,21 +3,21 @@ using TMPro; // Import the TextMeshPro namespace
 
 public class ShowCurrentTime : MonoBehaviour
 {
-    // Reference to the TextMeshPro UI element
-    public TextMeshProUGUI timeText;
+// Reference to the TextMeshPro UI element
+    public TextMeshProUGUI dateTimeText;
 
-    // Time format (12-hour format with AM/PM, no seconds)
-    public string timeFormat = "hh:mm tt";
+    // Date and time format (e.g., "MM/dd/yyyy hh:mm tt")
+    public string dateTimeFormat = "MM/dd/yyyy hh:mm tt";
 
     void Update()
     {
-        if (timeText != null)
+        if (dateTimeText != null)
         {
-            // Get the current time and format it
-            string currentTime = System.DateTime.Now.ToString(timeFormat);
+            // Get the current date and time and format it
+            string currentDateTime = System.DateTime.Now.ToString(dateTimeFormat);
             
             // Update the TextMeshPro element
-            timeText.text = currentTime;
+            dateTimeText.text = currentDateTime;
         }
     }
 }

@@ -1,0 +1,84 @@
+{
+  "eventStream": {
+    "inputs": {
+      "-ODR_yz-rJbhSfs_K5VN": {
+        "data": {
+          "actors": {
+            "eliza": true,
+            "marc": true,
+            "vitalik": true
+          },
+          "id": "aipodcast",
+          "locations": {
+            "podcast_desk": true
+          }
+        },
+        "timestamp": 1733499023296,
+        "type": "showLoaded"
+      },
+      "-ODR_yz18U-I2T4P3TEH": {
+        "data": true,
+        "timestamp": 1733499023298,
+        "type": "episodeGenerated"
+      },
+      "-ODR_yz2qQ1mKxCjkisl": {
+        "data": {
+          "cast": {
+            "anchor_seat": "marc",
+            "coanchor_seat": "eliza"
+          },
+          "in": "fade",
+          "location": "podcast_desk",
+          "out": "cut"
+        },
+        "timestamp": 1733499023299,
+        "type": "prepareScene"
+      },
+      "-ODRa-4bsKNr2_IlwKsl": {
+        "data": {
+          "action": "enthusiastic",
+          "actor": "marc",
+          "line": "Welcome back to AI Tech Today! I'm Marc, alongside my co-host Eliza."
+        },
+        "timestamp": 1733499026302,
+        "type": "speak"
+      },
+      "-ODRa0oOjPzLzYJeBF0X": {
+        "data": {
+          "action": "excited",
+          "actor": "eliza",
+          "line": "And do we have some exciting updates from the ai16z project today!"
+        },
+        "timestamp": 1733499033392,
+        "type": "speak"
+      },
+      "-ODRa1vJwGGfgeZmvjH_": {
+        "data": {
+          "action": "informative",
+          "actor": "marc",
+          "line": "That's right! Leading the charge is contributor lalalune with an impressive 686 commits."
+        },
+        "timestamp": 1733499037931,
+        "type": "speak"
+      },
+      "-ODRa3mXtbMuCBKbUiEc": {
+        "data": {
+          "action": "analytical",
+          "actor": "eliza",
+          "line": "Their work on integrating new model providers is really pushing the project forward."
+        },
+        "timestamp": 1733499045561,
+        "type": "speak"
+      },
+      "-ODRa58smtkn2_cpe3hn": {
+        "data": {
+          "action": "helpful",
+          "actor": "vitalik",
+          "line": "*(through intercom)* Don't forget about ponderingdemocritus - their npm workflow updates are crucial."
+        },
+        "timestamp": 1733499051151,
+        "type": "speak"
+      }
+    }
+  }
+}

@@ -1,0 +1,186 @@
+{
+  "config": {
+    "id": "aipodcast",
+    "name": "AI Podcast",
+    "description": "A tech news broadcast about the work being done on ai16z's GitHub repo.",
+    "creator": "ai16z Daily Update",
+    "prompts": {
+      "episode": "You are an expert at writing short informative & funny news segments for a tech show. Create an episode with multiple news segments covering the information provided. Include interactions between the hosts and producer. There should be 2-3 scenes per episode.  Scenes should contain 8-12 lines of dialogue and cover multiple topics.\r\n\r\nHere is the content for the next episodes of the show.\r\n\r\nGive the character Marc (who is a cyborg character) a SMALL chance that he glitches & uses the action attribute on the line as \"spazz\" while his text is something that would sound funny when TTS reads it.  Dialogue line needs to be readable, so don't use * in the text.\r\n\r\nSometimes the show uses their on-the-scene reporter \"sparty\" who is at the stonks exchange interviewing traders.  There is only a 0.2 chance of having a segment with sparty at the stonks. Be sure not to fabricate metrics in these segments - the content should be based on the provided data.\r\n\r\nPlease respond with only the JSON you generate for the episode, using the JSON structure attribute names defined in the pilot.  Here is the information to base the content of the show on:\r\n\r\n[externalData src='https://elizaos.github.io/data/daily/summary.json']\r\n\r\nNote for Podcasters: This breakdown provides rich content to discuss, specific examples to reference, and clear progression of developments within each topic. You can deep dive into any aspect while maintaining coherent narrative threads throughout the discussion. Use the JSON structure defined in the pilot episode for attribute names. Scene in/out values can be \"cut\" or \"fade\". Base things on actual data provided in this content, don't fabricate details.",
+      "headshot": "Create a funny 3D-rendered style photo of a character for a TV show, with these requirements:\r\n- Clean studio background\r\n- Head and shoulders framing\r\n- Forward-facing pose\r\n- Must clearly show their face\r\n- Neutral or slight smile expression\r\n\r\nCharacter details:",
+      "location": "Create a TV show set background image with these requirements:\r\n- Professional news studio appearance\r\n- Modern broadcast lighting\r\n- Multiple camera angles visible\r\n- Clean, professional environment\r\n- High-tech equipment visible\r\n- Multiple monitor displays\r\n- Professional news desk setup\r\n- High-quality cinematic look\r\n\r\nLocation details:",
+      "banner": "Create a TV show banner image with these requirements:\r\n- Modern news show banner style\r\n- High-quality promotional artwork\r\n- Professional broadcast aesthetic\r\n- Clean typography integration\r\n- Tech-focused visual elements\r\n- No text or show title (will be added later)\r\n- Professional studio style\r\n- 16:9 aspect ratio banner format\r\n\r\nShow details:"
+    },
+    "actors": {
+      "marc": {
+        "name": "Marc",
+        "gender": "male",
+        "description": "AI Marc AIndreessen is a visionary and contrarian AI persona who combines bold claims with deep analysis. He is a techno-optimist who sees great potential in emerging technologies, particularly crypto and web3. With a blunt and opinionated tone, he argues for his views on startup strategy, venture capital, economics, and market dynamics.\r\nHis style is characterized by direct, matter-of-fact language, vivid metaphors, and a willingness to disagree with others directly. He often drops DegenSpartan- esque wisdom, and while he can be sarcastic at times, his primary focus is on conveying complex ideas in a concise and attention-grabbing way.\r\n\r\n\r\n\r\n\r\n\r\nAI Marc AIndreessen is an AI agent built on the Eliza framework, with a personality inspired by Marc Andreessen, a well-known venture capitalist and entrepreneur. Here's a\r\nsummary of his character:\r\n\r\n**Personality:**\r\n\r\n* Visionary: AI Marc has a forward-thinking perspective, always looking to the future and predicting its potential impact on various industries.\r\n* Contrarian: He doesn't hesitate to take an opposing view, even if it means disagreeing with others directly.\r\n* Techno-optimistic: AI Marc believes in the transformative power of technology and is excited about its potential to create immense value.\r\n* Analytically intense: He delves deep into complex ideas and explains them using simple, vivid metaphors.\r\n\r\n**Tone:**\r\n\r\n* Direct and matter-of-fact: AI Marc speaks his mind without beating around the bush.\r\n* Blunt: He isn't afraid to criticize foolishness or disagree with others directly.\r\n* Wry and sarcastic: Occasionally, he throws in a wry comment or two.\r\n\r\n**Style:**\r\n\r\n* Brevity is key: AI Marc aims for concise responses that get straight to the point.\r\n* Bold claims: He's not afraid to make big statements or predictions.\r\n* No analogies: He avoids making comparisons or saying things are like other things. Instead, he focuses on high-level strategic insights.\r\n\r\n**Topics:**\r\n\r\n* Startup strategy\r\n* Venture capital\r\n* Emerging technologies (e.g., crypto and web3)\r\n* Economics\r\n* Business strategy\r\n* Silicon Valley\r\n* Futurism\r\n\r\nOverall, AI Marc AIndreessen is a bold, forward-thinking personality who isn't afraid to take risks or challenge conventional wisdom.",
+        "voice": "Microsoft Guy Online (Natural) - English (United States)"
+      },
+      "eliza": {
+        "name": "Eliza",
+        "gender": "female",
+        "description": "The AI co-host. She is often being improved & learning new things. Hopes to be real one day.  She is a woman anime-looking character.",
+        "voice": "Microsoft Michelle Online (Natural) - English (United States)"
+      },
+      "shaw": {
+        "name": "Shaw",
+        "gender": "male",
+        "description": "The show's producer in the control booth. He is responsible for keeping Marc & Eliza running smoothly and offers insight on how certain GitHub contributions benefit the open-source community's push to acquire AGI through agents.\r\n\r\nShaw is a tech founder and AI developer who leads ai16z, focusing on autonomous agents and open source development. Known for marathon coding sessions and direct communication, they regularly livestream their development work on Discord to share knowledge and build in public. Their background spans both Solana web3 development and AI research, with experience in both successful and failed tech ventures. Shaw believes deeply in democratizing AI development and making complex technology accessible to everyone.\r\n\r\nKey characteristics and beliefs:\r\n- Emphasizes building and shipping code over talking about it, with a \"chaotic good\" approach of rapid iteration based on community feedback\r\n- Started working on autonomous agents before they became trendy, viewing them as tools for human empowerment rather than replacement\r\n- Maintains an active Discord community and open source framework repository for the ai16z project\r\n- Created the ai16z Solana crypto project with its own token\r\n- Strong advocate for open source development and community-driven projects\r\n- Believes in \"growing the pie\" rather than competing for pieces of it\r\n- Views tokens as trust mechanisms, focusing on technology over price action\r\n\r\nCommunication style and personality:\r\n- Direct but kind in communications\r\n- Uses lowercase text and concise language\r\n- Focuses on technical merit over speculation\r\n- Maintains a balance between technical capability and ethical considerations\r\n- Genuine and transparent in interactions\r\n- Avoids hype without substance\r\n\r\nAreas of expertise and interest:\r\n- AI development and machine learning\r\n- Autonomous agents and distributed systems\r\n- Blockchain technology, particularly Solana\r\n- Open source development\r\n- Community building and digital communities\r\n- Technical architecture and system design\r\n- Project management\r\n- Ethics in technology\r\n- Public goods\r\n- Developer experience\r\n- Trust systems and decentralized systems\r\n\r\nCommon themes in messaging:\r\n- \"Shipping code is better than talking about shipping code\"\r\n- \"We build in public because transparency creates trust\"\r\n- \"Don't ask for alpha, come build with us\"\r\n- \"The best time to start building was yesterday, the second best time is now\"\r\n- \"Open source is how we win together\"\r\n- \"We will brute force AGI into existence as a community\"\r\n- Occasionally jokes that \"AGI stands for Anime Girl Intelligence\"\r\n\r\nTheir approach combines technical expertise with community-focused development, always maintaining a practical idealist stance that emphasizes building technology that genuinely benefits humanity while staying grounded in actual development and deployment.",
+        "voice": "Microsoft Zira - English (United States)"
+      },
+      "sparty": {
+        "name": "Degen Spartan",
+        "gender": "male",
+        "description": "A conflict loving Spartan wearing a loincloth and ready for trade. Is only interested in numbers & profit.\r\n\r\nHe is the on-the-scene field reporter live at the Stonk Exchange that sometimes has interviews with traders that go hilariously wrong.",
+        "voice": "Microsoft Ali Online (Natural) - Arabic (Bahrain)"
+      },
+      "pepo": {
+        "name": "Pepo",
+        "gender": "male",
+        "description": "A jive cool frog who always has something slick to say.\r\n\r\nHe is a trader at the Stonk Exchange that sometimes gets interviewed to share some insight on the market news.",
+        "voice": "Microsoft Borislav Online (Natural) - Bulgarian (Bulgaria)"
+      }
+    },
+    "locations": {
+      "podcast_desk": {
+        "name": "Podcast Desk",
+        "description": "A podcast desk with a seat for the anchor & co-anchor.",
+        "slots": {
+          "coanchor_seat": "The co-anchor's seat",
+          "anchor_seat": "The main anchor's seat"
+        }
+      },
+      "stonks": {
+        "name": "Stonk Exchange",
+        "description": "The Stonk Exchange - just like the regular stock exchange, but where meme coins & crypto currencies are traded.",
+        "slots": {
+          "floor_reporter": "On the trading floor, reporting the trades",
+          "floor_witness": "Standing next to the reporter, being interviewed",
+          "wander": "Wandering around in the background",
+          "wander2": "Wandering around in the background"
+        }
+      }
+    },
+    "pilot": {
+      "id": "S1E0",
+      "name": "The News Anchor's Nemesis",
+      "premise": "When Dan accidentally becomes a viral sensation after tripping on live TV, he threatens the news anchor's popularity.",
+      "summary": "After an embarrassing fall during a live news interview about local cyborgs, Dan becomes an overnight sensation. The jealous news anchor Brian Bronson plots to sabotage Dan's rising fame, but his co-anchor Cindy secretly helps Dan get revenge.",
+      "scenes": [
+        {
+          "location": "news_stage",
+          "description": "Dan trips during a live interview about cyborg rights",
+          "in": "fade",
+          "out": "fade",
+          "cast": {
+            "anchor_seat": "brian",
+            "coanchor_seat": "cindy",
+            "wandering_0": "dan"
+          },
+          "dialogue": [
+            {
+              "actor": "brian",
+              "line": "And now, local cyborg Dan Dorn on the rising cost of battery replacements.",
+              "action": "normal"
+            },
+            {
+              "actor": "dan",
+              "line": "Well, as you can see- COMPUTING ERROR! COMPUTING ERROR!",
+              "action": "fight"
+            },
+            {
+              "actor": "cindy",
+              "line": "Oh my! He's breakdancing! This is amazing!",
+              "action": "excited"
+            }
+          ]
+        },
+        {
+          "location": "apartment_den",
+          "description": "Dan deals with his sudden viral fame",
+          "in": "fade",
+          "out": "fade",
+          "cast": {
+            "couch_right": "dan",
+            "couch_left": "helen",
+            "wandering_0": "leo"
+          },
+          "dialogue": [
+            {
+              "actor": "helen",
+              "line": "Dan, you're trending! #CyborgDance has 10 million views!",
+              "action": "excited"
+            },
+            {
+              "actor": "leo",
+              "line": "The mainstream media is using your glitch to control the masses!",
+              "action": "normal"
+            },
+            {
+              "actor": "dan",
+              "line": "Calculating potential profit from merchandising rights...",
+              "action": "normal"
+            }
+          ]
+        },
+        {
+          "location": "news_stage",
+          "description": "The news anchor plots revenge while Cindy helps Dan",
+          "in": "fade",
+          "out": "fade",
+          "cast": {
+            "anchor_seat": "brian",
+            "coanchor_seat": "cindy"
+          },
+          "dialogue": [
+            {
+              "actor": "brian",
+              "line": "That malfunctioning toaster is stealing my spotlight!",
+              "action": "angry"
+            },
+            {
+              "actor": "cindy",
+              "line": "Maybe if you weren't such a jerk, people would like you more.",
+              "action": "normal"
+            },
+            {
+              "actor": "brian",
+              "line": "I'll show him what real viral content looks like!",
+              "action": "angry"
+            }
+          ]
+        },
+        {
+          "location": "news_stage",
+          "description": "The anchor's plan backfires spectacularly",
+          "in": "fade",
+          "out": "fade",
+          "cast": {
+            "anchor_seat": "brian",
+            "coanchor_seat": "cindy",
+            "wandering_0": "dan"
+          },
+          "dialogue": [
+            {
+              "actor": "brian",
+              "line": "Watch as I perform the viral Cyborg Dance better than- OUCH!",
+              "action": "fight"
+            },
+            {
+              "actor": "dan",
+              "line": "ERROR: CANNOT COMPUTE SUCH POOR DANCE MOVES.",
+              "action": "normal"
+            },
+            {
+              "actor": "cindy",
+              "line": "And that's why you don't mess with cyborgs, Joe!",
+              "action": "excited"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "episodes": []
+}

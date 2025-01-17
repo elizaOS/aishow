@@ -1,15 +1,12 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Video;
-using UnityEngine.UI;
 using System;
 
 [Serializable]
 public class IntroStep
 {
     public GameObject stepObject;
-    public bool useFadeIn = true;
-    public bool useFadeOut = true;
 }
 
 public class IntroSequenceManager : MonoBehaviour
@@ -17,8 +14,6 @@ public class IntroSequenceManager : MonoBehaviour
     public IntroStep[] introSteps;
     private int currentStepIndex = 0;
     private static IntroSequenceManager instance;
-    public Image fadeOverlay;
-    public bool useFade = true; // Global fade toggle remains as failsafe
     public bool isEnabled = true; // Enables or disables the intro sequence
 
     private void Awake()
@@ -33,25 +28,6 @@ public class IntroSequenceManager : MonoBehaviour
 
         instance = this;
 
-        // Set fade overlay to be on top of everything
-        if (fadeOverlay != null)
-        {
-            Canvas fadeCanvas = fadeOverlay.GetComponent<Canvas>();
-            if (fadeCanvas != null)
-            {
-                fadeCanvas.sortingOrder = 999;
-            }
-            else
-            {
-                Canvas parentCanvas = fadeOverlay.GetComponentInParent<Canvas>();
-                if (parentCanvas != null)
-                {
-                    parentCanvas.sortingOrder = 999;
-                }
-            }
-            fadeOverlay.raycastTarget = false;
-        }
-
         foreach (var step in introSteps)
         {
             if (step?.stepObject != null)
@@ -59,41 +35,11 @@ public class IntroSequenceManager : MonoBehaviour
                 step.stepObject.SetActive(false);
             }
         }
-
-        // Start with black screen
-        SetFadeOverlayAlpha(1f);
     }
 
-    private void SetFadeOverlayAlpha(float alpha)
+    public void StartTestIntroSequence()
     {
-        if (fadeOverlay != null)
-        {
-            Color color = fadeOverlay.color;
-            color.a = alpha;
-            fadeOverlay.color = color;
-        }
-    }
-
-    private IEnumerator FadeOverlay(float targetAlpha, float duration)
-    {
-        if (fadeOverlay == null || !useFade)
-        {
-            Debug.LogWarning("Fade overlay is missing or disabled. Skipping fade.");
-            yield break;
-        }
-
-        float startAlpha = fadeOverlay.color.a;
-        float time = 0f;
-
-        while (time < duration)
-        {
-            time += Time.deltaTime;
-            float newAlpha = Mathf.Lerp(startAlpha, targetAlpha, time / duration);
-            SetFadeOverlayAlpha(newAlpha);
-            yield return null;
-        }
-
-        SetFadeOverlayAlpha(targetAlpha); // Ensure final alpha is set
+        StartCoroutine(StartIntroSequence());
     }
 
     public IEnumerator StartIntroSequence()
@@ -108,8 +54,6 @@ public class IntroSequenceManager : MonoBehaviour
         if (introSteps.Length > 0)
         {
             currentStepIndex = 0;
-            SetFadeOverlayAlpha(1f);
-            yield return new WaitForSeconds(0.1f);
             yield return StartCoroutine(PlayIntroSequence());
         }
         else
@@ -133,100 +77,125 @@ public class IntroSequenceManager : MonoBehaviour
 
             Debug.Log($"Starting step {currentStepIndex}: {currentStep.stepObject.name}");
 
-            // Fade to black if needed for this step
-            if (useFade && currentStep.useFadeOut)
-            {
-                yield return StartCoroutine(FadeOverlay(1f, 0.2f));
-            }
+            // Activate the current step
+            currentStep.stepObject.SetActive(true);
 
-            // Deactivate previous step while black
+            // Wait for 2 frames to ensure the new step is fully rendered before deactivating the previous step
+           
+
+            // Deactivate the previous step
             if (currentStepIndex > 0 && introSteps[currentStepIndex - 1]?.stepObject != null)
             {
+              
                 introSteps[currentStepIndex - 1].stepObject.SetActive(false);
             }
 
-            // Activate current step
-            currentStep.stepObject.SetActive(true);
-            yield return null;
-
-            // Handle video preparation if needed
-            VideoPlayer videoPlayer = currentStep.stepObject.GetComponent<VideoPlayer>();
-            if (videoPlayer != null && !videoPlayer.isPrepared)
-            {
-                yield return new WaitUntil(() => videoPlayer.isPrepared);
-            }
-
-            // Fade in to show content if needed for this step
-            if (useFade && currentStep.useFadeIn)
-            {
-                yield return StartCoroutine(FadeOverlay(0f, 0.2f));
-            }
-
-            bool isStepCompleted = false;
-
-            // Animation handling
+            // Check for Animator component and play animation if present
             Animator animator = currentStep.stepObject.GetComponent<Animator>();
-            if (animator != null)
+            if (animator != null && animator.runtimeAnimatorController != null)
             {
-                isStepCompleted = true;
-                yield return StartCoroutine(WaitForAnimation(animator));
+                float animationLength = GetAnimationClipLength(animator);
+                if (animationLength > 0)
+                {
+                    animator.Play(0); // Play the default animation state
+                    yield return new WaitForSeconds(animationLength);
+                }
+                else
+                {
+                    Debug.LogWarning($"Animator on {currentStep.stepObject.name} has no valid animation clip.");
+                    yield return new WaitForSeconds(3f); // Default wait time
+                }
             }
-
-            // Video handling
-            if (videoPlayer != null)
+            else
             {
-                isStepCompleted = true;
-                videoPlayer.Play();
-                yield return new WaitUntil(() => !videoPlayer.isPlaying);
-            }
+                // Check for VideoPlayer and play video if present
+                VideoPlayer videoPlayer = currentStep.stepObject.GetComponent<VideoPlayer>();
+                if (videoPlayer != null)
+                {
+                    // Clear the RenderTexture to avoid displaying stale frames
+                    if (videoPlayer.targetTexture != null)
+                    {
+                        RenderTexture renderTexture = videoPlayer.targetTexture;
+                        RenderTexture.active = renderTexture;
+                        GL.Clear(true, true, Color.black);
+                        RenderTexture.active = null;
+                    }
 
-            // Fallback logic for steps without animations or videos
-            if (!isStepCompleted)
-            {
-                Debug.LogWarning($"No animation or video detected for step {currentStepIndex}. Defaulting to 3-second wait.");
-                yield return new WaitForSeconds(3f);
+                    // Reset and prepare the video
+                    videoPlayer.Stop();
+                    videoPlayer.frame = 0;
+                    videoPlayer.Prepare();
+                    yield return new WaitUntil(() => videoPlayer.isPrepared);
+
+                    // Play the video and wait for the first frame to update
+                    videoPlayer.Play();
+                    yield return new WaitUntil(() => videoPlayer.frame > 0);
+
+                    // Wait for the video to finish playing
+                    yield return new WaitUntil(() => !videoPlayer.isPlaying);
+
+                    // Cleanup video player
+                    videoPlayer.Stop();
+                    videoPlayer.frame = 0;
+                    videoPlayer.targetTexture.Release();
+                }
+                else
+                {
+                    Debug.LogWarning($"No video or animation detected for step {currentStepIndex}. Defaulting to 3-second wait.");
+                    yield return new WaitForSeconds(3f);
+                }
             }
 
             Debug.Log($"Step {currentStepIndex} completed.");
             currentStepIndex++;
         }
 
-        // Final fade in to transparent
-        if (useFade)
-        {
-            Debug.Log("Fading overlay to transparent...");
-            yield return StartCoroutine(FadeOverlay(0f, 0.2f));
-            SetFadeOverlayAlpha(0f); // Ensure final alpha is set
-        }
-
         OnSequenceComplete();
     }
 
-    private IEnumerator WaitForAnimation(Animator animator)
+
+    private float GetAnimationClipLength(Animator animator)
     {
-        AnimatorStateInfo animationStateInfo = animator.GetCurrentAnimatorStateInfo(0);
-        float clipLength = animationStateInfo.length;
-
-        Debug.Log($"Animation length is {clipLength} seconds. Waiting for it to finish.");
-
-        float elapsed = 0f;
-        float timeout = clipLength + 1f; // Add a small buffer for safety
-
-        while ((animator.IsInTransition(0) || animationStateInfo.normalizedTime < 1.0f) && elapsed < timeout)
+        // Get the runtime animator controller
+        RuntimeAnimatorController controller = animator.runtimeAnimatorController;
+        if (controller == null || controller.animationClips.Length == 0)
         {
-            yield return null;
-            elapsed += Time.deltaTime;
-            animationStateInfo = animator.GetCurrentAnimatorStateInfo(0);
+            return 0f;
         }
 
-        if (elapsed >= timeout)
-        {
-            Debug.LogWarning("Timeout reached while waiting for animation. Continuing...");
-        }
+        // Return the length of the first animation clip
+        return controller.animationClips[0].length;
     }
 
     private void OnSequenceComplete()
     {
         Debug.Log("Intro sequence completed.");
+
+        // Deactivate the last step if it exists
+        if (introSteps.Length > 0 && introSteps[currentStepIndex - 1]?.stepObject != null)
+        {
+            introSteps[currentStepIndex - 1].stepObject.SetActive(false);
+        }
+
+        // Reset VideoPlayers in all steps
+        foreach (var step in introSteps)
+        {
+            if (step?.stepObject != null)
+            {
+                VideoPlayer videoPlayer = step.stepObject.GetComponent<VideoPlayer>();
+                if (videoPlayer != null)
+                {
+                    videoPlayer.Stop();
+                    videoPlayer.frame = 0;
+                    if (videoPlayer.targetTexture != null)
+                    {
+                        videoPlayer.targetTexture.Release();
+                    }
+                }
+            }
+        }
+
+        // Optionally, disable the intro sequence after completion
+        isEnabled = false;
     }
 }

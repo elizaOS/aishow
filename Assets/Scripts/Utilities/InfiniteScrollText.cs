@@ -138,10 +138,9 @@ public class InfiniteScrollText : MonoBehaviour
     // This method allows changing the text in the inspector and reinitializing
     private void OnValidate()
     {
-        // Only update if in play mode and text is assigned
-        if (Application.isPlaying && tickerText != null)
+        if (Application.isPlaying && tickerText != null && !string.IsNullOrEmpty(tickerMessage))
         {
-            try 
+            try
             {
                 UpdateText(tickerMessage);
             }
@@ -151,4 +150,5 @@ public class InfiniteScrollText : MonoBehaviour
             }
         }
     }
+
 }

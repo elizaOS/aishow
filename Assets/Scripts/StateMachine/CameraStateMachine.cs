@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
+using System; // Add this for StringComparison
 
 public class CameraStateMachine : MonoBehaviour
 {
@@ -9,6 +10,9 @@ public class CameraStateMachine : MonoBehaviour
 
     public Camera defaultCamera;  // Default fallback camera
     private Dictionary<string, Camera> actorCameras = new Dictionary<string, Camera>();
+
+    [Range(0f, 1f)]
+    public float chance = 0.3f; // Chance to select a B-shot (default: 30%)
 
     private void Awake()
     {
@@ -105,37 +109,56 @@ public class CameraStateMachine : MonoBehaviour
 
     private void HandleSpeakerChange(Transform speakerTransform)
     {
-        // Log all registered actor cameras for debugging
-        //foreach (var actor in actorCameras)
-        //{
-            //Debug.Log($"Registered Actor: {actor.Key}, Camera: {actor.Value.name}");
-        //}
-
-        // Try to find the matching actor camera by checking all registered cameras
         Camera matchingCamera = null;
         string matchedActorName = null;
+        List<Camera> bShots = null;
 
+        // Find the matching actor and their B-shots
         foreach (var actor in actorCameras)
         {
-            if (speakerTransform.name.Contains(actor.Key))
+            if (string.Equals(speakerTransform.name, actor.Key, StringComparison.OrdinalIgnoreCase))
             {
-                matchingCamera = actor.Value;
+                matchingCamera = actor.Value; // Actor's primary camera
                 matchedActorName = actor.Key;
+
+                ActorCamera actorCameraComponent = matchingCamera.GetComponent<ActorCamera>();
+                if (actorCameraComponent != null)
+                {
+                    bShots = actorCameraComponent.bShots; // Get B-shots for this actor
+                }
                 break;
             }
         }
 
+        // Attempt to switch to a B-shot
+        if (bShots != null && bShots.Count > 0 && UnityEngine.Random.value < chance)
+        {
+            int randomIndex = UnityEngine.Random.Range(0, bShots.Count);
+            Camera bShotCamera = bShots[randomIndex];
+
+            if (bShotCamera != null)
+            {
+                //Debug.Log($"Switching to B-shot {bShotCamera.name} for actor {matchedActorName}.");
+                SwitchToCamera(bShotCamera);
+                return;
+            }
+        }
+
+        // Fallback to the actor's primary camera if available
         if (matchingCamera != null)
         {
-            //Debug.Log($"Matched actor camera for {speakerTransform.name}: {matchedActorName}");
+            //Debug.Log($"No B-shots available. Switching to primary camera {matchingCamera.name} for actor {matchedActorName}.");
             SwitchToCamera(matchingCamera);
         }
         else
         {
-            //Debug.LogWarning($"No matching actor camera found for {speakerTransform.name}. Switching to default camera.");
+            // Final fallback to default camera
+            Debug.LogWarning($"No matching actor camera found for {speakerTransform.name}. Switching to default camera.");
             SwitchToCamera(defaultCamera);
         }
     }
+
+
 
     private void HandleClearSpeaker()
     {
@@ -174,10 +197,10 @@ public class CameraStateMachine : MonoBehaviour
             camera.gameObject.SetActive(true);
         }
 
-        // Disable all other cameras
+        // Disable all other cameras except those tagged with "IgnoreCameras"
         foreach (var cam in actorCameras.Values)
         {
-            if (cam != camera && cam.gameObject.activeSelf)
+            if (cam != camera && cam.gameObject.activeSelf && !cam.CompareTag("IgnoreCameras"))
             {
                 cam.gameObject.SetActive(false);
             }
@@ -201,21 +224,23 @@ public class CameraStateMachine : MonoBehaviour
     {
         Camera[] allCameras = FindObjectsOfType<Camera>(true);
 
-        foreach (Camera camera in allCameras)
-        {
-            if (camera != defaultCamera) // Skip the default camera
+            foreach (Camera camera in allCameras)
             {
-                ActorCamera actorCameraComponent = camera.GetComponent<ActorCamera>();
-                if (actorCameraComponent != null && !string.IsNullOrEmpty(actorCameraComponent.actorName))
+                if (camera != defaultCamera) // Skip the default camera
                 {
-                    RegisterActorCamera(actorCameraComponent.actorName, camera);
-                }
-                else
-                {
-                    //Debug.LogWarning($"No ActorCamera component or actorName found on camera {camera.name}");
+                    ActorCamera actorCameraComponent = camera.GetComponent<ActorCamera>();
+                    if (actorCameraComponent != null && !string.IsNullOrEmpty(actorCameraComponent.actorName))
+                    {
+                        RegisterActorCamera(actorCameraComponent.actorName, camera);
+
+                        // Log B-shots for debugging
+                        //if (actorCameraComponent.bShots != null && actorCameraComponent.bShots.Count > 0)
+                        //{
+                        //    Debug.Log($"Actor {actorCameraComponent.actorName} has {actorCameraComponent.bShots.Count} B-shots.");
+                        //}
+                    }
                 }
             }
-        }
 
         // Activate the default camera
         if (defaultCamera != null)

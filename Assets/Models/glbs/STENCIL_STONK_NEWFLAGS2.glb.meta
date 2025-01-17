@@ -1,0 +1,287 @@
+fileFormatVersion: 2
+guid: c537512553b0b034db73e0a2e2d0f42c
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: BAKEIT_Baked
+    second: {fileID: 2100000, guid: 9bc2a4124029b5e45b7e9c279b221b3d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: CABLEWIRES-READY_Baked
+    second: {fileID: 2100000, guid: bf0103f4145c67c42bcedf2fd90a41bc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: CEILING_READY_Baked
+    second: {fileID: 2100000, guid: 9ffbc0b7b7ef50f47b94ef27795f5fc6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: CHAIR_2ready_Baked
+    second: {fileID: 2100000, guid: 155101ebcb3b22249803a198c5841d82, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: CHAIR_ready_Baked
+    second: {fileID: 2100000, guid: 6b2668e5feee18047b17561b7831c713, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: EMICEILING
+    second: {fileID: 2100000, guid: 17019fc8a4e05294892b0ec52d2aefdf, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: EMI_LAMPS
+    second: {fileID: 2100000, guid: 53a8209749c06884aab5d3c271b50924, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: FLAGS_READY_Baked
+    second: {fileID: 2100000, guid: ded55c83222efce488c6ae79a31a7210, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: FLOOR2_Baked
+    second: {fileID: 2100000, guid: c6449b2a42cf9d6449533a2dd9016347, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: FLOOR_Baked
+    second: {fileID: 2100000, guid: f7dc02d5eb2ec9f48bf483e83b404c47, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Glass
+    second: {fileID: 2100000, guid: da75212b1f599704b88d4390b80bbdd8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: HOLZ_READY_Baked
+    second: {fileID: 2100000, guid: 77ba0ac2e535b6f4f856aafe1702ea73, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: INNERTOP_READY_Baked
+    second: {fileID: 2100000, guid: 4b2ecd8356fabf64fad14b73dbb0cc33, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.001
+    second: {fileID: 2100000, guid: 0a3704260cbd69e4ab1fc0ddf76e8a0d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: OLDWALLWINDOWS_1-READY_Baked
+    second: {fileID: 2100000, guid: 85466504fd4f9c0488a9b58811f8d5b4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: OLDWALLWINDOWS_2-READY_Baked
+    second: {fileID: 2100000, guid: 273fd8918e10d5f4fb83b78c5e7dbfa1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: PLENTY_READY_Baked
+    second: {fileID: 2100000, guid: 1e8b10fe1b72e9e4b88578d32067355b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: RESTOSFESTOS_READY.001_Baked
+    second: {fileID: 2100000, guid: 3f92e18549170a942a8fe19f9a3db46d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: RESTOSFESTOS_READY_Baked
+    second: {fileID: 2100000, guid: 86ebf579c41ee5f4084b407a5f05394f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ROUND_DESK-READY.001_Baked
+    second: {fileID: 2100000, guid: 2f0784264f7470047a2e8224ed54430c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ROUND_DESK-READY_Baked
+    second: {fileID: 2100000, guid: 8560c05343f62a94ba13fda4572f347f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: TEILEOVAL_READY_Baked
+    second: {fileID: 2100000, guid: 19b3986380f248648abb853eca4a5100, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WALLS_READY_Baked
+    second: {fileID: 2100000, guid: 5003bce2d4051844aadc245aa22d9a4f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WOODENWINDOWS_READY_Baked
+    second: {fileID: 2100000, guid: 8fabb3c4dfc173a4296903037ae1abf7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: black
+    second: {fileID: 2100000, guid: 4f2caaaa997fd4f42a0a61a6f12839b7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: boothbottom
+    second: {fileID: 2100000, guid: 86f1ab80825cab8418a6536f7745f808, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: logo_uvscroll_1_0.125_0.125_0.125
+    second: {fileID: 2100000, guid: 55c7efa2a1fb7224ca02374e6b785a46, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: standard_opaque.003
+    second: {fileID: 2100000, guid: b87d825323031654199eb4c59f9e880d, type: 2}
+  - first:
+      type: UnityEngine:Texture
+      assembly: UnityEngine.CoreModule
+      name: 4SCROLL
+    second: {fileID: 2800000, guid: adedae7621be13245adc58c7bc84185f, type: 3}
+  - first:
+      type: UnityEngine:Texture
+      assembly: UnityEngine.CoreModule
+      name: 4SCROLL__UNIGLTF__DUPLICATED__2
+    second: {fileID: 2800000, guid: 61b48e141c583db458eb0e236a91ffbc, type: 3}
+  - first:
+      type: UnityEngine:Texture
+      assembly: UnityEngine.CoreModule
+      name: BAKEIT_Bake1_PBR_Diffuse
+    second: {fileID: 2800000, guid: 2cc3992a2310dd049a56704b169d0df5, type: 3}
+  - first:
+      type: UnityEngine:Texture
+      assembly: UnityEngine.CoreModule
+      name: BAKEIT_Bake1_PBR_Diffuse__UNIGLTF__DUPLICATED__2
+    second: {fileID: 2800000, guid: d8d79102264170649aed76d55b1be3f6, type: 3}
+  - first:
+      type: UnityEngine:Texture
+      assembly: UnityEngine.CoreModule
+      name: BG
+    second: {fileID: 2800000, guid: afde90a7fc716eb469f405b6fe51837a, type: 3}
+  - first:
+      type: UnityEngine:Texture
+      assembly: UnityEngine.CoreModule
+      name: BG__UNIGLTF__DUPLICATED__2
+    second: {fileID: 2800000, guid: 4209a80fe7c893a4389ca5a0531af92c, type: 3}
+  - first:
+      type: UnityEngine:Texture
+      assembly: UnityEngine.CoreModule
+      name: CABLEWIRES-READY_Bake1_CyclesBake_COMBINED
+    second: {fileID: 2800000, guid: c2f4bbac25d3e6f4480c3131ea39dafa, type: 3}
+  - first:
+      type: UnityEngine:Texture
+      assembly: UnityEngine.CoreModule
+      name: CEILING_READY_Bake1_CyclesBake_COMBINED
+    second: {fileID: 2800000, guid: b02b3f71cf16171408a91cf973c70a18, type: 3}
+  - first:
+      type: UnityEngine:Texture
+      assembly: UnityEngine.CoreModule
+      name: CHAIR_2ready_Bake1_CyclesBake_COMBINED
+    second: {fileID: 2800000, guid: 950f51e908532694e98ce531f6f49983, type: 3}
+  - first:
+      type: UnityEngine:Texture
+      assembly: UnityEngine.CoreModule
+      name: CHAIR_ready_Bake1_CyclesBake_COMBINED
+    second: {fileID: 2800000, guid: 7ea72ea89f1bb07458dddc6ed43abd7a, type: 3}
+  - first:
+      type: UnityEngine:Texture
+      assembly: UnityEngine.CoreModule
+      name: FLAGS-NEW_Bake1_CyclesBake_COMBINED
+    second: {fileID: 2800000, guid: 75487e9a925bee041a1500b5377bccef, type: 3}
+  - first:
+      type: UnityEngine:Texture
+      assembly: UnityEngine.CoreModule
+      name: FLOOR2_Bake1_CyclesBake_COMBINED
+    second: {fileID: 2800000, guid: c879a1b125b6f6548a97b8e599eaa4e7, type: 3}
+  - first:
+      type: UnityEngine:Texture
+      assembly: UnityEngine.CoreModule
+      name: FLOOR_Bake1_CyclesBake_COMBINED
+    second: {fileID: 2800000, guid: 2200150b81a9a4843b8404a2b963a21c, type: 3}
+  - first:
+      type: UnityEngine:Texture
+      assembly: UnityEngine.CoreModule
+      name: HOLZ_READY_Bake1_CyclesBake_COMBINED
+    second: {fileID: 2800000, guid: 75767ee362094834c87d607c8191ede9, type: 3}
+  - first:
+      type: UnityEngine:Texture
+      assembly: UnityEngine.CoreModule
+      name: INNERTOP_READY_Bake1_CyclesBake_COMBINED
+    second: {fileID: 2800000, guid: 1e62554d0081a9c45bc007cc3118dd83, type: 3}
+  - first:
+      type: UnityEngine:Texture
+      assembly: UnityEngine.CoreModule
+      name: I_PublicArea_1005_WallA_Co_0001
+    second: {fileID: 2800000, guid: dde5d8d5dd58dad43a53f7aa589f4cfb, type: 3}
+  - first:
+      type: UnityEngine:Texture
+      assembly: UnityEngine.CoreModule
+      name: OLDWALLWINDOWS_1-READY_Bake1_CyclesBake_COMBINED
+    second: {fileID: 2800000, guid: 0c70272c84e519d45909bb0c52560ec1, type: 3}
+  - first:
+      type: UnityEngine:Texture
+      assembly: UnityEngine.CoreModule
+      name: OLDWALLWINDOWS_2-READY_Bake1_CyclesBake_COMBINED
+    second: {fileID: 2800000, guid: b537be9d032d5544bbd5523d3cc84776, type: 3}
+  - first:
+      type: UnityEngine:Texture
+      assembly: UnityEngine.CoreModule
+      name: PLENTY_READY_Bake1_CyclesBake_COMBINED
+    second: {fileID: 2800000, guid: d1276c6c55652c241b87d532f1f78cdf, type: 3}
+  - first:
+      type: UnityEngine:Texture
+      assembly: UnityEngine.CoreModule
+      name: RESTOSFESTOS_READY
+    second: {fileID: 2800000, guid: 6ed420ce1c45f6741b4eaad6b8aa23a9, type: 3}
+  - first:
+      type: UnityEngine:Texture
+      assembly: UnityEngine.CoreModule
+      name: RESTOSFESTOS_READY_Bake1_CyclesBake_COMBINED
+    second: {fileID: 2800000, guid: 9382d54c43752ac4babea1de6410a643, type: 3}
+  - first:
+      type: UnityEngine:Texture
+      assembly: UnityEngine.CoreModule
+      name: ROUND_DESK-READY
+    second: {fileID: 2800000, guid: 5666bb6f6dcdf964c9047ff93699ccb0, type: 3}
+  - first:
+      type: UnityEngine:Texture
+      assembly: UnityEngine.CoreModule
+      name: ROUND_DESK-READY_Bake1_CyclesBake_COMBINED
+    second: {fileID: 2800000, guid: 644597ca76d68644d94e5644ba597822, type: 3}
+  - first:
+      type: UnityEngine:Texture
+      assembly: UnityEngine.CoreModule
+      name: TEILEOVAL_READY_Bake1_CyclesBake_COMBINED
+    second: {fileID: 2800000, guid: e8a367dd38c8dd847ab51916afdd0b3e, type: 3}
+  - first:
+      type: UnityEngine:Texture
+      assembly: UnityEngine.CoreModule
+      name: WALLS_READY_Bake1_CyclesBake_COMBINED
+    second: {fileID: 2800000, guid: a51b65ca343396a46a8f1eeaba18c64a, type: 3}
+  - first:
+      type: UnityEngine:Texture
+      assembly: UnityEngine.CoreModule
+      name: WOODENWINDOWS_READY_Bake1_CyclesBake_COMBINED
+    second: {fileID: 2800000, guid: 261e41fdb1ee55a4899ab50c6766d070, type: 3}
+  - first:
+      type: UnityEngine:Texture
+      assembly: UnityEngine.CoreModule
+      name: standard_opaque
+    second: {fileID: 2800000, guid: ede601b3d19fa50478d22fcc4f8fec78, type: 3}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: cc45016b844e7624dae3aec10fb443ea, type: 3}
+  reverseAxis: 0
+  renderPipeline: 0

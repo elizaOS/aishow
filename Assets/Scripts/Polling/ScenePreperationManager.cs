@@ -44,11 +44,29 @@ public class ScenePreparationManager : MonoBehaviour
 
     public void HandlePrepareScene(string sceneName)
     {
-        //Debug.Log($"Preparing scene: {sceneName}");
+        // Check if the scene is already loaded
+        if (SceneManager.GetActiveScene().name == sceneName)
+        {
+            Debug.Log($"Scene '{sceneName}' is already loaded. Playing intro sequence and skipping scene load.");
 
-        // Attempt to load the scene by its name
+            // Play the intro sequence, then send the event
+            StartCoroutine(PlayIntroAndSendEvent(sceneName));
+            return;
+        }
+
+        // Otherwise, proceed with the normal scene preparation process
         StartCoroutine(PrepareAndSendEvent(sceneName));
     }
+
+    private IEnumerator PlayIntroAndSendEvent(string sceneName)
+    {
+        // Play the intro sequence
+        yield return StartCoroutine(introSequenceManagerRef.StartIntroSequence());
+
+        // Once the intro sequence is complete, send the event
+        WritePrepareSceneCompleteEvent(sceneName);
+    }
+
 
     private IEnumerator PrepareAndSendEvent(string sceneName)
     {
