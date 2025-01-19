@@ -1,0 +1,47 @@
+fileFormatVersion: 2
+guid: f8ca71563af453a4fae5eafd807e02e2
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Cyborg
+    second: {fileID: 2100000, guid: 6543ff090ad8d45488d24dc7637cf718, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ShawAi
+    second: {fileID: 2100000, guid: 2bb966e0cfafcb247927199721806743, type: 2}
+  - first:
+      type: UnityEngine:Texture
+      assembly: UnityEngine.CoreModule
+      name: ShawAIBase01
+    second: {fileID: 2800000, guid: 61c377ac0f56f754c87004ad54fb5882, type: 3}
+  - first:
+      type: UnityEngine:Texture
+      assembly: UnityEngine.CoreModule
+      name: ShawAIBaseColor01
+    second: {fileID: 2800000, guid: ec1c4c50dbd970c44b6bfac5da656c96, type: 3}
+  - first:
+      type: UnityEngine:Texture
+      assembly: UnityEngine.CoreModule
+      name: ShawAIEmissive
+    second: {fileID: 2800000, guid: 8aa1627e00bb1884d92a47031cf81bf7, type: 3}
+  - first:
+      type: UnityEngine:Texture
+      assembly: UnityEngine.CoreModule
+      name: ShawAItxt_Cyborg_MaskMap.standard
+    second: {fileID: 2800000, guid: 7cbfa225ccf5e90439d71ef1b9aaa6ad, type: 3}
+  - first:
+      type: UnityEngine:Texture
+      assembly: UnityEngine.CoreModule
+      name: ShawAItxt_Cyborg_Normal.normal
+    second: {fileID: 2800000, guid: a9eb1eb88362fe44f9fb1f69e0ec94d3, type: 3}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: f66ead3390398f443aa127b741826ad9, type: 3}
+  MigrateToVrm1: 1
+  RenderPipeline: 0
