@@ -1,0 +1,57 @@
+fileFormatVersion: 2
+guid: 118ed211c657e65459deb060a21d8899
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Black
+    second: {fileID: 2100000, guid: 1137dbc7c96472b4eaef73429312d08c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fabric
+    second: {fileID: 2100000, guid: 213e228c0a430c842a59641ef3eca7fc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.006
+    second: {fileID: 2100000, guid: 0a6264eb38400ce4a8f52cc18725cc19, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Metallic_Dark_Grey
+    second: {fileID: 2100000, guid: a81a7003b68a38f4ba400f91f804f4ab, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall
+    second: {fileID: 2100000, guid: 4e8e578b34ecb84419880879c85a4f29, type: 2}
+  - first:
+      type: UnityEngine:Texture
+      assembly: UnityEngine.CoreModule
+      name: 002512x512
+    second: {fileID: 2800000, guid: 4ba6d3b02028b9b4e90b79c25eaad980, type: 3}
+  - first:
+      type: UnityEngine:Texture
+      assembly: UnityEngine.CoreModule
+      name: Image_1.standard
+    second: {fileID: 2800000, guid: e4b9bd9292ffa8647a783daf555ff1af, type: 3}
+  - first:
+      type: UnityEngine:Texture
+      assembly: UnityEngine.CoreModule
+      name: QXW2
+    second: {fileID: 2800000, guid: 43ccf70ca23c3984b857d7482b66f1d6, type: 3}
+  - first:
+      type: UnityEngine:Texture
+      assembly: UnityEngine.CoreModule
+      name: QXW2_NORM.normal
+    second: {fileID: 2800000, guid: 589581e1f9d051c48aaac11af5d4496d, type: 3}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: cc45016b844e7624dae3aec10fb443ea, type: 3}
+  reverseAxis: 0
+  renderPipeline: 0
