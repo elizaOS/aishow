@@ -131,6 +131,36 @@ public class EventProcessor : MonoBehaviour
                 Debug.Log($"Actor '{actor}' is performing action 'laugh'. Laughing.");
                 TriggerLaughEffect(actorGameObject); // Trigger glitch for the specific actor
                 break;
+            
+            case "amused":
+                Debug.Log($"Actor '{actor}' is performing action 'amused'.");
+                ///TriggerLaughEffect(actorGameObject); // Trigger glitch for the specific actor
+                break;
+
+            case "professional":
+                Debug.Log($"Actor '{actor}' is performing action 'professional'. ");
+                //TriggerLaughEffect(actorGameObject); // Trigger glitch for the specific actor
+                break;
+
+            case "shouting":
+                Debug.Log($"Actor '{actor}' is performing action 'professional'. ");
+                //TriggerLaughEffect(actorGameObject); // Trigger glitch for the specific actor
+                break;
+
+            case "cool":
+                Debug.Log($"Actor '{actor}' is performing action 'cool'. ");
+                //TriggerLaughEffect(actorGameObject); // Trigger glitch for the specific actor
+                break;
+
+            case "smooth":
+                Debug.Log($"Actor '{actor}' is performing action 'smooth'. ");
+                //TriggerLaughEffect(actorGameObject); // Trigger glitch for the specific actor
+                break;
+
+            case "confident":
+                Debug.Log($"Actor '{actor}' is performing action 'smooth'. ");
+                //TriggerLaughEffect(actorGameObject); // Trigger glitch for the specific actor
+                break;
 
             case "normal":
                 Debug.Log($"Actor '{actor}' is performing action 'normal'. Doing nothing.");

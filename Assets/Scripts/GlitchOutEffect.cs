@@ -47,12 +47,12 @@ public class GlitchOutEffect : MonoBehaviour
         originalSwaySpeed = lookAtLogic.swaySpeed;
         originalSwayLeftRight = lookAtLogic.swayLeftRight; // Save the original swayLeftRight
 
-        particleController = FindObjectOfType<ParticleSystemController>();
+        particleController = GetComponentInChildren<ParticleSystemController>(true);
         
         // Ensure that the ParticleSystemController is set (can be attached via inspector)
         if (particleController == null)
         {
-            Debug.LogWarning("ParticleSystemController is not assigned. Particle bursts will not trigger.");
+            //Debug.LogWarning("ParticleSystemController is not assigned. Particle bursts will not trigger.");
         }
     }
 

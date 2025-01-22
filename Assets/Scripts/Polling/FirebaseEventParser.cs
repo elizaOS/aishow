@@ -28,7 +28,7 @@ public class FirebaseEventParser
         }
         catch (Exception ex)
         {
-            Debug.LogError($"Error parsing Firebase events: {ex.Message}");
+            Debug.Log($"Error parsing Firebase events: {ex.Message}");
         }
 
         return parsedEvents;

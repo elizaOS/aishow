@@ -112,7 +112,7 @@ public class ScenePreparationManager : MonoBehaviour
         }
         else
         {
-            Debug.LogError($"Scene '{sceneName}' not found in the build settings.");
+            Debug.Log($"Scene '{sceneName}' not found in the build settings.");
         }
     }
 

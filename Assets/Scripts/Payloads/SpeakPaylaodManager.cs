@@ -11,181 +11,100 @@ public class SpeakPayloadManager : MonoBehaviour
     public DialogueManager dialogueManager;
     public EventManager eventManager;
 
-    private float lastSpeakEventTime = -1f; // Track the last time a speak event was received
-    private float clearDelay = 20f; // Delay before clearing the speaker
-    private bool isClearing = false; // Prevent multiple coroutines from running simultaneously
+    private float lastSpeakEventTime = -1f;
+    private float clearDelay = 20f;
+    private bool isClearing = false;
 
     [Header("UI Components")]
-    public GameObject uiContainer; // Assign your UI container GameObject in the Inspector
+    public GameObject uiContainer;
 
-    
-    
     private void Awake()
     {
         if (Instance != null && Instance != this)
         {
-            // Destroy duplicate instance
             Destroy(this.gameObject);
             return;
         }
         Instance = this;
-
-        // Initialize managers
         actorManager = new ActorManager();
         dialogueManager = FindObjectOfType<DialogueManager>();
         eventManager = new EventManager();
-
-        // Ensure the UI container is initially hidden
-        if (uiContainer != null)
-        {
-            uiContainer.SetActive(false); // Hide UI container at start
-        }
+        uiContainer?.SetActive(false);
     }
 
-    public void Reinitialize()
+    public void Reinitialize() => actorManager = new ActorManager();
+
+    public void ClearState() => (actorManager, eventManager) = (null, null);
+
+    public void HandleSpeakPayload(string json)
     {
-        actorManager = new ActorManager();
-        eventManager = new EventManager();
-    }
+        if (string.IsNullOrEmpty(json)) { Debug.LogError("Received empty or null JSON string."); return; }
 
-    public void ClearState()
-    {
-        actorManager = null;
-        eventManager = null;
-    }
-
-
-public void HandleSpeakPayload(string json)
-{
-    try
-    {
-        //Debug.Log("Received speak payload: " + json);
-
-        if (string.IsNullOrEmpty(json))
+        try
         {
-            Debug.LogError("Received empty or null JSON string.");
-            return;
-        }
+            JObject payload = JObject.Parse(json);
+            actorManager.RegisterActorsFromCameras();
 
-        JObject payload = JObject.Parse(json);
+            string actorName = payload["dialogue"]?["actor"]?.ToString();
+            string dialogueLine = payload["dialogue"]?["line"]?.ToString();
+            string action = payload["dialogue"]?["action"]?.ToString() ?? "normal";
 
-        // Register actors from ActorCamera components before processing (if needed)
-        actorManager.RegisterActorsFromCameras();
+            if (string.IsNullOrEmpty(actorName) || string.IsNullOrEmpty(dialogueLine)) return;
 
-        // Handle dialogue
-        string actorName = payload["dialogue"]?["actor"]?.ToString();
-        string dialogueLine = payload["dialogue"]?["line"]?.ToString();
-        string action = payload["dialogue"]?["action"]?.ToString() ?? "normal";
-
-        if (!string.IsNullOrEmpty(actorName) && !string.IsNullOrEmpty(dialogueLine))
-        {
-            // Find the actor by name
             GameObject actorObject = GameObject.Find(actorName);
-
-            // Stop mouth movement for the current speaker before switching
-            var currentSpeaker = eventManager.GetCurrentSpeaker();
-            if (currentSpeaker != null && currentSpeaker.gameObject != actorObject)
-            {
-                var currentMouthMovement = currentSpeaker.GetComponentInChildren<RandomMouthMovement>();
-                if (currentMouthMovement != null)
-                {
-                    currentMouthMovement.StopRandomMouthMovement();
-                }
-            }
+            HandleSpeakerChange(actorObject);
 
             if (actorObject != null)
             {
-                // Locate the RandomMouthMovement component in children
-                var mouthMovement = actorObject.GetComponentInChildren<RandomMouthMovement>();
-                if (mouthMovement != null)
-                {
-                    // Trigger the mouth movement event
-                    mouthMovement.StartRandomMouthMovement();
-                }
-                else
-                {
-                    Debug.LogWarning($"RandomMouthMovement not found on actor {actorName} or its children.");
-                }
-
-                // Trigger the leaning motion with random values for lean amount and duration
-                var lookAtLogic = actorObject.GetComponent<LookAtLogic>();
-                if (lookAtLogic != null)
-                {
-                    float randomLeanAmount = UnityEngine.Random.Range(0.2f, 0.8f);   // Random lean amount between 0.2 and 0.8 (adjust as needed)
-                    float randomDuration = UnityEngine.Random.Range(0.5f, 1.5f);      // Random duration between 0.5 and 1.5 seconds (adjust as needed)
-
-                    lookAtLogic.TriggerSpeakingLean(randomLeanAmount, randomDuration);
-                }
-
-                // Show the UI container if it's not already active
-                if (uiContainer != null && !uiContainer.activeSelf)
-                {
-                    uiContainer.SetActive(true);
-                }
-
-                // Display the dialogue
+                TriggerMouthMovement(actorObject);
+                TriggerSpeakingLean(actorObject);
+                uiContainer?.SetActive(true);
                 dialogueManager.DisplayDialogue(actorObject, dialogueLine, action);
-
-                // Trigger the speaker change event
                 eventManager.InvokeSpeakerChange(actorObject.transform);
-
-                // Reset the clear timer whenever a new speak event occurs
                 lastSpeakEventTime = Time.time;
-
-                // Deactivate AutoCam if active
                 AutoCam.Instance?.DeactivateAutoCam();
-
-                // Start the coroutine to clear the speaker after the delay
-                if (!isClearing)
-                {
-                    StartCoroutine(ClearSpeakerWithDelay());
-                }
+                if (!isClearing) StartCoroutine(ClearSpeakerWithDelay());
             }
-            else
-            {
-                Debug.LogWarning($"Actor {actorName} not found in the scene.");
-            }
+            else Debug.LogWarning($"Actor {actorName} not found in the scene.");
         }
-    }
-    catch (Exception ex)
-    {
-        Debug.LogError($"Error processing speak payload: {ex.Message}");
-    }
-}
-
-private System.Collections.IEnumerator ClearSpeakerWithDelay()
-{
-    isClearing = true;
-    while (Time.time - lastSpeakEventTime < clearDelay)
-    {
-        yield return null;
+        catch (Exception ex) { Debug.LogError($"Error processing speak payload: {ex.Message}"); }
     }
 
-    // If no new speak events occurred during the delay, clear the speaker
-    var currentSpeaker = eventManager.GetCurrentSpeaker();
-    if (currentSpeaker != null)
+    private void HandleSpeakerChange(GameObject actorObject)
     {
-        var mouthMovement = currentSpeaker.GetComponentInChildren<RandomMouthMovement>();
-        if (mouthMovement != null)
+        var currentSpeaker = eventManager.GetCurrentSpeaker();
+        if (currentSpeaker != null && currentSpeaker.gameObject != actorObject)
         {
-            mouthMovement.StopRandomMouthMovement();
+            currentSpeaker.GetComponentInChildren<RandomMouthMovement>()?.StopRandomMouthMovement();
         }
     }
 
-    eventManager.InvokeClearSpeaker();
-
-    // Hide the UI container
-    if (uiContainer != null && uiContainer.activeSelf)
+    private void TriggerMouthMovement(GameObject actorObject)
     {
-        uiContainer.SetActive(false);
+        var mouthMovement = actorObject.GetComponentInChildren<RandomMouthMovement>();
+        if (mouthMovement != null) mouthMovement.StartRandomMouthMovement();
+        else Debug.LogWarning($"RandomMouthMovement not found on actor {actorObject.name} or its children.");
     }
 
-    // Activate AutoCam for fallback shots
-    AutoCam.Instance?.ActivateAutoCam();
+    private void TriggerSpeakingLean(GameObject actorObject)
+    {
+        var lookAtLogic = actorObject.GetComponent<LookAtLogic>();
+        if (lookAtLogic != null)
+        {
+            lookAtLogic.TriggerSpeakingLean(UnityEngine.Random.Range(0.2f, 0.8f), UnityEngine.Random.Range(0.5f, 1.5f));
+        }
+    }
 
-    isClearing = false;
-}
+    private System.Collections.IEnumerator ClearSpeakerWithDelay()
+    {
+        isClearing = true;
+        while (Time.time - lastSpeakEventTime < clearDelay) yield return null;
 
-
-
+        var currentSpeaker = eventManager.GetCurrentSpeaker();
+        currentSpeaker?.GetComponentInChildren<RandomMouthMovement>()?.StopRandomMouthMovement();
+        eventManager.InvokeClearSpeaker();
+        uiContainer?.SetActive(false);
+        AutoCam.Instance?.ActivateAutoCam();
+        isClearing = false;
+    }
 }
