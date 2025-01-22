@@ -40980,7 +40980,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   introSteps:
   - stepObject: {fileID: 1827976025}
-  isEnabled: 1
+  isEnabled: 0
 --- !u!4 &2078494795
 Transform:
   m_ObjectHideFlags: 0
