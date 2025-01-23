@@ -7,6 +7,7 @@ public class OrbitCam : MonoBehaviour
     public float orbitSpeed = 2f;  // Speed at which the camera orbits
     public float orbitHeight = 5f;  // The height of the camera relative to the pivot
     public bool enableOrbit = true;  // Toggle the orbit movement in the inspector
+    public bool allowPitch = true;  // Toggle to enable or disable the pitch (vertical movement)
 
     private float currentAngle = 0f;  // Current angle around the orbit (from -70 to +70 for 140 degrees)
     private float targetAngle = 0f;  // Target angle to smoothly move towards
@@ -46,8 +47,11 @@ public class OrbitCam : MonoBehaviour
         // Calculate the new camera position based on the angle
         float angleInRadians = currentAngle * Mathf.Deg2Rad;
 
+        // If allowPitch is disabled, set the vertical offset (Y-axis) to zero
+        float verticalOffset = allowPitch ? offset.y : 0f;
+
         // Update the camera's position relative to the orbit pivot (around the Y-axis)
-        Vector3 position = new Vector3(Mathf.Sin(angleInRadians) * offset.magnitude, offset.y, Mathf.Cos(angleInRadians) * offset.magnitude);
+        Vector3 position = new Vector3(Mathf.Sin(angleInRadians) * offset.magnitude, verticalOffset, Mathf.Cos(angleInRadians) * offset.magnitude);
 
         // Update the camera's position
         transform.position = orbitPivot.position + position;
