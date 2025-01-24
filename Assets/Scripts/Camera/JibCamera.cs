@@ -27,7 +27,7 @@ public class JibCamera : MonoBehaviour
     private float zoomTimer = 0f; // Timer for managing zoom cooldown
     private float timeToNextZoom; // Time before the next zoom event
 
-    private void Start()
+    private void Awake()
     {
         rb = GetComponent<Rigidbody>();
         cam = GetComponent<Camera>();
@@ -35,13 +35,42 @@ public class JibCamera : MonoBehaviour
         {
             cam.fieldOfView = defaultFOV;
         }
+    }
 
+    private void Start()
+    {
+        InitializeCameraTarget();
+    }
+
+    private void OnEnable()
+    {
+        InitializeCameraTarget();
+    }
+
+    private void InitializeCameraTarget()
+    {
         if (targets.Length > 0)
         {
-            currentTarget = targets[Random.Range(0, targets.Length)];
+            // Select initial target if not already set
+            if (currentTarget == null)
+            {
+                currentTarget = targets[Random.Range(0, targets.Length)];
+            }
+            
+            // Calculate and set initial rotation
+            if (currentTarget != null)
+            {
+                Vector3 directionToTarget = currentTarget.position - transform.position;
+                desiredRotation = Quaternion.LookRotation(directionToTarget);
+                
+                // Ensure smooth initial rotation
+                transform.rotation = desiredRotation;
+            }
+
+            // Reset timers
+            timeToSwitchTarget = Random.Range(switchTargetTimeMin, switchTargetTimeMax);
+            timeToNextZoom = Random.Range(zoomCooldownMin, zoomCooldownMax);
         }
-        timeToSwitchTarget = Random.Range(switchTargetTimeMin, switchTargetTimeMax);
-        timeToNextZoom = Random.Range(zoomCooldownMin, zoomCooldownMax);
     }
 
     private void Update()
