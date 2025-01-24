@@ -67,9 +67,13 @@ public class JibCamera : MonoBehaviour
                 transform.rotation = desiredRotation;
             }
 
-            // Reset timers
-            timeToSwitchTarget = Random.Range(switchTargetTimeMin, switchTargetTimeMax);
+            // Reset zoom-related variables
+            isZooming = false;
+            zoomTimer = 0f;
             timeToNextZoom = Random.Range(zoomCooldownMin, zoomCooldownMax);
+
+            // Reset target switching and other timers
+            timeToSwitchTarget = Random.Range(switchTargetTimeMin, switchTargetTimeMax);
         }
     }
 
