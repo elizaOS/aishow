@@ -40,7 +40,8 @@ Build AI-powered virtual production app in Unity powered by dynamic scripts gene
 
 ## Screenshots
 
-![image](https://hackmd.io/_uploads/Byj-Aoqm1e.png)
+![Unity_yNCachdOqO](https://github.com/user-attachments/assets/064db9f9-fe6f-4fb7-b50f-4cc1f69fb8ef)
+
 
 ### Technical Goals
 
