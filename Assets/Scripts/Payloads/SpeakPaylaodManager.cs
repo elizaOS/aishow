@@ -15,6 +15,9 @@ public class SpeakPayloadManager : MonoBehaviour
     private float clearDelay = 20f; // Delay in seconds before clearing the speaker and dialogue.
     private bool isClearing = false; // Flag indicating whether the speaker is currently being cleared.
 
+    public TextureLoader textureLoader; // Reference to the TextureLoader script
+
+
     [Header("UI Components")]
     public GameObject uiContainer; // Reference to the UI container that displays dialogue
 
@@ -31,6 +34,7 @@ public class SpeakPayloadManager : MonoBehaviour
         dialogueManager = FindObjectOfType<DialogueManager>(); // Finds the DialogueManager in the scene.
         eventManager = new EventManager(); // Initializes the EventManager.
         uiContainer?.SetActive(false); // Hides the UI container initially (using null-conditional operator).
+        
     }
 
     public void Reinitialize() => actorManager = new ActorManager(); // Reinitializes the ActorManager.
@@ -39,42 +43,78 @@ public class SpeakPayloadManager : MonoBehaviour
 
     public void HandleSpeakPayload(string json)
     {
-        if (string.IsNullOrEmpty(json)) { Debug.LogError("Received empty or null JSON string."); return; } // Checks if the received JSON string is empty or null.
+        if (string.IsNullOrEmpty(json)) 
+        {
+            Debug.LogError("Received empty or null JSON string.");
+            return; 
+        }
 
         try
         {
-            JObject payload = JObject.Parse(json); // Parses the JSON payload into a JObject for easier handling.
+            JObject payload = JObject.Parse(json);
 
-            actorManager.RegisterActorsFromCameras(); // Registers actors from camera data (assumed to be part of the ActorManager).
+            actorManager.RegisterActorsFromCameras();
 
-            // Extracts the actor's name, dialogue line, and action from the JSON payload.
             string actorName = payload["dialogue"]?["actor"]?.ToString();
-            string dialogueLine = payload["dialogue"]?["line"]?.ToString();
-            string action = payload["dialogue"]?["action"]?.ToString() ?? "normal"; // Defaults action to "normal" if not provided.
+            string dialogueLine = payload["dialogue"]?["line"]?.ToString(); // For "tv", this is the texture URL
+            string action = payload["dialogue"]?["action"]?.ToString() ?? "normal";
 
-            if (string.IsNullOrEmpty(actorName) || string.IsNullOrEmpty(dialogueLine)) return; // If actor name or dialogue line is missing, return early.
+            if (string.IsNullOrEmpty(actorName)) return;
 
-            GameObject actorObject = GameObject.Find(actorName); // Finds the actor GameObject by its name in the scene.
-            HandleSpeakerChange(actorObject); // Changes the current speaker if necessary.
+            // Special case for "tv"
+            if (actorName == "tv")
+            {
+                if (string.IsNullOrEmpty(dialogueLine))
+                {
+                    Debug.LogWarning("Texture URL (dialogue line) is missing for 'tv' actor.");
+                    return;
+                }
+
+                // Assuming a reference to the TextureLoader is already available
+                if (textureLoader != null)
+                {
+                    textureLoader.textureURL = dialogueLine; // Use dialogueLine as the texture URL
+                    textureLoader.LoadEmissiveTexture();
+                    Debug.Log($"Updated TV actor with texture URL: {dialogueLine}");
+                }
+                else
+                {
+                    Debug.LogError("TextureLoader reference is not assigned.");
+                }
+
+                return; // Exit early since this is a special event for 'tv'
+            }
+
+            // Normal processing for other actors
+            if (string.IsNullOrEmpty(dialogueLine)) return;
+
+            GameObject actorObject = GameObject.Find(actorName);
+            HandleSpeakerChange(actorObject);
 
             if (actorObject != null)
             {
-                // Triggers the mouth movement and speaking lean animations on the actor.
                 TriggerMouthMovement(actorObject);
                 TriggerSpeakingLean(actorObject);
 
-                uiContainer?.SetActive(true); // Makes the UI container active, displaying the dialogue UI.
-                dialogueManager.DisplayDialogue(actorObject, dialogueLine, action);// Displays the dialogue using the DialogueManager.
-                eventManager.InvokeSpeakerChange(actorObject.transform);// Invokes speaker change event to notify the system.
-                lastSpeakEventTime = Time.time;// Sets the timestamp of the last speak event.
+                uiContainer?.SetActive(true);
+                dialogueManager.DisplayDialogue(actorObject, dialogueLine, action);
+                eventManager.InvokeSpeakerChange(actorObject.transform);
+                lastSpeakEventTime = Time.time;
 
-                AutoCam.Instance?.DeactivateAutoCam(); // Deactivates automatic camera control if AutoCam is active.
-                if (!isClearing) StartCoroutine(ClearSpeakerWithDelay()); // Starts the coroutine to clear the speaker after a delay if not already clearing.
+                AutoCam.Instance?.DeactivateAutoCam();
+                if (!isClearing) StartCoroutine(ClearSpeakerWithDelay());
             }
-            else Debug.LogWarning($"Actor {actorName} not found in the scene."); // Warns if the actor was not found.
+            else 
+            {
+                Debug.LogWarning($"Actor {actorName} not found in the scene.");
+            }
         }
-        catch (Exception ex) { Debug.LogError($"Error processing speak payload: {ex.Message}"); } // Catches any errors during the payload processing and logs the error message.
+        catch (Exception ex) 
+        {
+            Debug.LogError($"Error processing speak payload: {ex.Message}");
+        }
     }
+
 
     private void HandleSpeakerChange(GameObject actorObject)
     {
