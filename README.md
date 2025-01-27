@@ -20,6 +20,21 @@ Build AI-powered virtual production app in Unity powered by dynamic scripts gene
   - uniVRM VRM 1.0 - https://github.com/vrm-c/UniVRM/releases/tag/v0.128.0
   - Sithlords Showrunner Framework for generating JSON https://hackmd.io/@smsithlord/Hk7NOUrmke
 
+## Framework 
+- The 3D visualization framework uses **Unity** for rendering.
+- Sithlords AI showrunner framework runs on **client-side JavaScript** in a web browser. https://hackmd.io/@smsithlord/Hk7NOUrmke
+  - It sends **async calls** to handle:
+    - **Scene loading:** Includes location, list of actors, and named spawn points.
+      - The stage responds with a `loadSceneComplete` event once finished.
+    - **Dialogue lines:** Specifies the actor speaking and their line.
+      - A TTS system speaks the line and fires a `speakComplete` event after finishing.
+      -  **ElevenLabs** for voices
+
+## Screenshots
+
+![Unity_yNCachdOqO](https://github.com/user-attachments/assets/064db9f9-fe6f-4fb7-b50f-4cc1f69fb8ef)
+
+
 ## Unity Objectives
 - [X] Create Unity Streaming App Base Project (Unity 2022.3.53f1) 
 - [X] Import uniVRM, test VRMs
@@ -36,50 +51,22 @@ Build AI-powered virtual production app in Unity powered by dynamic scripts gene
 - [X] Collect 3d World Assets, Props
 - [X] Collect VRM Avatars
 - [X] Develop an MVP / Demo for the 24/7 livestream.
-- [ ] Create documentation for all of the code and API usage examples
 - [X] Define personalities for each character.
 - [X] Generate scripts via SMSithlords tooling
 - [X] Decide on themes or key areas of interaction for characters.
 - [X] Each character needs a unique backstory and voice for meaningful interaction with AI scripts. Embedding this locally seems optimal.
 - [X] Scripts and episodes can be pre-generated for smoother pipelines.
 - [X] Added Media Texture Loading thru "speak" event
-
+- [X] Unity for scene control due to VRM animation support.
+- [X] Utilize OBS for recording videos
+- [X] Use (Elevenlabs) for TTS
+- [X] VRM animation in Unity to achieve lipsync 
+- [X] Animated character expressions.
+- [ ] Hook Eliza agents to the system for interactive conversational capabilities.
       
 - Live episodes remain a stretch goal.
 
-## Screenshots
-
-![Unity_yNCachdOqO](https://github.com/user-attachments/assets/064db9f9-fe6f-4fb7-b50f-4cc1f69fb8ef)
 
 
-### Technical Goals
 
-- Unity for scene control due to VRM animation support.
-- Utilize OBS for recording videos
-- Use (Elevenlabs) for TTS
-- VRM animation in Unity to achieve quality lipsync and character expressions.
-
-## Framework 
-- The 3D visualization framework uses **Unity** for rendering.
-- Sithlords AI showrunner framework runs on **client-side JavaScript** in a web browser. https://hackmd.io/@smsithlord/Hk7NOUrmke
-  - It sends **async calls** to handle:
-    - **Scene loading:** Includes location, list of actors, and named spawn points.
-      - Actors can spawn randomly if no spawn location is specified.
-      - The stage responds with a `loadSceneComplete` event once finished.
-    - **Dialogue lines:** Specifies the actor speaking and their line.
-      - A TTS system speaks the line and fires a `speakComplete` event after finishing.
-
-### TTS (Text-to-Speech) Integration
-- **ElevenLabs**
-
----
-
-#### Wishlist
-- Enable human interjections during live streams to enhance humor and prevent infinite AI loops.
-- Hook Eliza agents to the system for interactive conversational capabilities.
-- Develop a "Director Mode" where humans can influence live scenes.
-- Dynamic Voting System - Replace chatbot-like real-time interactivity with a voting system for scene choices. This scales better and simplifies viewer engagement.
-- Build an `AgentState();` function:
-- Monitor and manage the state of AI agents.
-- Allow toggling between AI-driven and human-driven interactions.
 
