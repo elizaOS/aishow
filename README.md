@@ -28,35 +28,6 @@ Build AI-powered virtual production app in Unity powered by dynamic scripts gene
 ## Screenshots
 
 ![Unity_yNCachdOqO](https://github.com/user-attachments/assets/064db9f9-fe6f-4fb7-b50f-4cc1f69fb8ef)
-
-## Unity Objectives
-- [X] Create Unity Streaming App Base Project (Unity 2022.3.53f1) 
-- [X] Import uniVRM, test VRMs
-- [X] Define 3–4 character personalities and create placeholder models for testing core interactions and scripts.
-- [X] Generate scripts and episodes in advance to ensure smoother pipelines. Live episodes can remain a Phase 2 or 3 stretch goal.
-- [X] Setup Basic Idle Animations
-- [X] Setup Camera Switching, and `LookAtLogic`
-- [X] Setup PayloadManger (Parsing JSON from web endpoint into useful functions)
-- [X] Start with simple text-based interactions.
-- [X] Create Event Listeners and Calls to process the payload
-- [X] Test JSON-based script generation and camera cuts in Unity.
-- [X] Create StateManagers for Cameras, and Dialog
-- [X] Create UI to see text parsed from payload and debugging
-- [X] Collect 3d World Assets, Props
-- [X] Collect VRM Avatars
-- [X] Develop an MVP / Demo for the 24/7 livestream.
-- [X] Define personalities for each character.
-- [X] Generate scripts via SMSithlords tooling
-- [X] Decide on themes or key areas of interaction for characters.
-- [X] Each character needs a unique backstory and voice for meaningful interaction with AI scripts. Embedding this locally seems optimal.
-- [X] Scripts and episodes can be pre-generated for smoother pipelines.
-- [X] Added Media Texture Loading thru "speak" event
-- [X] Unity for scene control due to VRM animation support.
-- [X] Utilize OBS for recording videos
-- [X] Use (Elevenlabs) for TTS
-- [X] VRM animation in Unity to achieve lipsync 
-- [X] Animated character expressions.
-- [ ] Hook Eliza agents to the system for interactive conversational capabilities.
       
 - Live episodes remain a stretch goal.
 
