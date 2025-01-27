@@ -6,10 +6,6 @@ Build AI-powered virtual production app in Unity powered by dynamic scripts gene
 ![image](https://github.com/user-attachments/assets/7adcc2b0-9957-4467-811b-0861fff04158)
 
 
-![image](https://hackmd.io/_uploads/By0Ounc71x.png)
-
-`Unity 2022.3.53f1`
-
 ## Project Overview
 
 ## References
@@ -66,7 +62,9 @@ Build AI-powered virtual production app in Unity powered by dynamic scripts gene
       
 - Live episodes remain a stretch goal.
 
+![image](https://hackmd.io/_uploads/By0Ounc71x.png)
 
+`Unity 2022.3.53f1`
 
 
 
