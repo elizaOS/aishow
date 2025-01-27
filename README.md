@@ -37,6 +37,15 @@ Build AI-powered virtual production app in Unity powered by dynamic scripts gene
 - [X] Collect VRM Avatars
 - [X] Develop an MVP / Demo for the 24/7 livestream.
 - [ ] Create documentation for all of the code and API usage examples
+- [X] Define personalities for each character.
+- [X] Generate scripts via SMSithlords tooling
+- [X] Decide on themes or key areas of interaction for characters.
+- [X] Each character needs a unique backstory and voice for meaningful interaction with AI scripts. Embedding this locally seems optimal.
+- [X] Scripts and episodes can be pre-generated for smoother pipelines.
+- [X] Added Media Texture Loading thru "speak" event
+
+      
+- Live episodes remain a stretch goal.
 
 ## Screenshots
 
@@ -62,15 +71,6 @@ Build AI-powered virtual production app in Unity powered by dynamic scripts gene
 
 ### TTS (Text-to-Speech) Integration
 - **ElevenLabs**
-
-### AI Characters & Scripts / Writers Room
-- Define personalities for each character.
-- Use JSON to organize scripts, scene setups, and character interactions.
-- Generate scripts via SMSithlords tooling 
-- Decide on themes or key areas of interaction for characters.
-- Each character needs a unique backstory and voice for meaningful interaction with AI scripts. Embedding this locally seems optimal.
-- Scripts and episodes can be pre-generated for smoother pipelines.
-- Live episodes remain a stretch goal.
 
 ---
 
