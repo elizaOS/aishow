@@ -36,18 +36,7 @@ public class SpeakPayloadManager : MonoBehaviour
         dialogueManager = FindObjectOfType<DialogueManager>(); // Finds the DialogueManager in the scene.
         eventManager = new EventManager(); // Initializes the EventManager.
         uiContainer?.SetActive(false); // Hides the UI container initially (using null-conditional operator).
-        Renderer[] renderers = mediaTvReference?.GetComponentsInChildren<Renderer>();
-        if (renderers != null && renderers.Length > 0)
-        {
-            foreach (Renderer renderer in renderers)
-            {
-                renderer.enabled = false; // Disable each Renderer in the hierarchy
-            }
-        }
-        else
-        {
-            Debug.LogWarning("No Renderers found on mediaTvReference or its children!");
-        }
+        //SetRenderersEnabled(mediaTvReference, false);  // To enable
 
         
     }
@@ -81,15 +70,14 @@ public class SpeakPayloadManager : MonoBehaviour
             {
                 if (string.IsNullOrEmpty(dialogueLine))
                 {
-                    mediaTvReference?.SetActive(false);
-                    Debug.LogWarning("Texture URL (dialogue line) is missing for 'tv' actor. hide TV");
+                    SetRenderersEnabled(mediaTvReference, false); // To disable
                     return;
                 }
 
                 // Assuming a reference to the TextureLoader is already available
                 if (textureLoader != null)
                 {
-                    mediaTvReference?.SetActive(true);
+                    SetRenderersEnabled(mediaTvReference, true);  // To enable
                     textureLoader.textureURL = dialogueLine; // Use dialogueLine as the texture URL
                     textureLoader.LoadEmissiveTexture();
                     Debug.Log($"Updated TV actor with texture URL: {dialogueLine}");
@@ -178,5 +166,21 @@ public class SpeakPayloadManager : MonoBehaviour
         AutoCam.Instance?.ActivateAutoCam(); // Reactivates automatic camera control if AutoCam is available.
 
         isClearing = false; // Resets the clearing flag to false.
+    }
+
+    private void SetRenderersEnabled(GameObject target, bool isEnabled) // this is to turn on and off the media tv
+    {
+        MeshRenderer[] renderers = target?.GetComponentsInChildren<MeshRenderer>();
+        if (renderers != null && renderers.Length > 0)
+        {
+            foreach (MeshRenderer renderer in renderers)
+            {
+                renderer.enabled = isEnabled;
+            }
+        }
+        else
+        {
+            Debug.LogWarning($"No Renderers found on {target?.name} or its children!");
+        }
     }
 }

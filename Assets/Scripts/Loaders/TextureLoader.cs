@@ -9,6 +9,13 @@ public class TextureLoader : MonoBehaviour
     public Renderer targetRenderer; // Reference to the renderer of the object
     public string textureURL;       // URL for the texture to load
 
+    public GameObject mediaTvReference; // Reference to the TV in the news room 
+
+
+    public void Awake(){
+        SetRenderersEnabled(mediaTvReference, false);  // To enable
+    }
+
     // Public method to load the texture into the Emission channel
     public void LoadEmissiveTexture()
     {
@@ -50,6 +57,22 @@ public class TextureLoader : MonoBehaviour
                     Debug.LogWarning("Target Renderer or Material is not assigned.");
                 }
             }
+        }
+    }
+
+        private void SetRenderersEnabled(GameObject target, bool isEnabled) // this is to turn on and off the media tv
+    {
+        MeshRenderer[] renderers = target?.GetComponentsInChildren<MeshRenderer>();
+        if (renderers != null && renderers.Length > 0)
+        {
+            foreach (MeshRenderer renderer in renderers)
+            {
+                renderer.enabled = isEnabled;
+            }
+        }
+        else
+        {
+            Debug.LogWarning($"No Renderers found on {target?.name} or its children!");
         }
     }
 }
