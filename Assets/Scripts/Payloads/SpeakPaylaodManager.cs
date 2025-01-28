@@ -16,6 +16,8 @@ public class SpeakPayloadManager : MonoBehaviour
     private bool isClearing = false; // Flag indicating whether the speaker is currently being cleared.
 
     public TextureLoader textureLoader; // Reference to the TextureLoader script
+    public GameObject mediaTvReference; // Reference to the TV in the news room 
+
 
 
     [Header("UI Components")]
@@ -34,6 +36,19 @@ public class SpeakPayloadManager : MonoBehaviour
         dialogueManager = FindObjectOfType<DialogueManager>(); // Finds the DialogueManager in the scene.
         eventManager = new EventManager(); // Initializes the EventManager.
         uiContainer?.SetActive(false); // Hides the UI container initially (using null-conditional operator).
+        Renderer[] renderers = mediaTvReference?.GetComponentsInChildren<Renderer>();
+        if (renderers != null && renderers.Length > 0)
+        {
+            foreach (Renderer renderer in renderers)
+            {
+                renderer.enabled = false; // Disable each Renderer in the hierarchy
+            }
+        }
+        else
+        {
+            Debug.LogWarning("No Renderers found on mediaTvReference or its children!");
+        }
+
         
     }
 
@@ -66,13 +81,15 @@ public class SpeakPayloadManager : MonoBehaviour
             {
                 if (string.IsNullOrEmpty(dialogueLine))
                 {
-                    Debug.LogWarning("Texture URL (dialogue line) is missing for 'tv' actor.");
+                    mediaTvReference?.SetActive(false);
+                    Debug.LogWarning("Texture URL (dialogue line) is missing for 'tv' actor. hide TV");
                     return;
                 }
 
                 // Assuming a reference to the TextureLoader is already available
                 if (textureLoader != null)
                 {
+                    mediaTvReference?.SetActive(true);
                     textureLoader.textureURL = dialogueLine; // Use dialogueLine as the texture URL
                     textureLoader.LoadEmissiveTexture();
                     Debug.Log($"Updated TV actor with texture URL: {dialogueLine}");
