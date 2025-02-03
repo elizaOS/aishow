@@ -14685,6 +14685,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rigs: []
   transitionSpeed: 1
+--- !u!114 &644491084
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 644491048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cf0f2caea48cad44ae1afc1ad3e1f8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mouthMeshRenderer: {fileID: 1076633511}
+  smileBlendShapeIndex: 32
+  mouthOpenBlendShapeIndex: 33
+  browUpBlendShapeIndex: 8
+  blendShapeIntensity: 100
+  animationSpeed: 0.5
+  HappyDuration: 3
+  animator: {fileID: 644491072}
+  HappyAnimationLayerIndex: 6
+  maxAnimationLayerWeight: 1
+  blendSpeed: 0.2
 --- !u!4 &648575248 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -5794154554952783673, guid: b20155e66be41cd408e7ed6ed9be29f3, type: 3}
@@ -25314,7 +25337,7 @@ PrefabInstance:
       objectReference: {fileID: 9100000, guid: 2825572d3a7d5aa498090352475db13a, type: 2}
     - target: {fileID: 5159078012444724336, guid: 483c94f933fd3fd458d529253d241e24, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 16.01
+      value: 16.096197
       objectReference: {fileID: 0}
     - target: {fileID: 5159078012444724336, guid: 483c94f933fd3fd458d529253d241e24, type: 3}
       propertyPath: m_LocalPosition.y
@@ -25322,11 +25345,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5159078012444724336, guid: 483c94f933fd3fd458d529253d241e24, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -133.072
+      value: -133.01924
       objectReference: {fileID: 0}
     - target: {fileID: 5159078012444724336, guid: 483c94f933fd3fd458d529253d241e24, type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.13840863
+      value: -0.013695245
       objectReference: {fileID: 0}
     - target: {fileID: 5159078012444724336, guid: 483c94f933fd3fd458d529253d241e24, type: 3}
       propertyPath: m_LocalRotation.x
@@ -25334,7 +25357,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5159078012444724336, guid: 483c94f933fd3fd458d529253d241e24, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.9903753
+      value: -0.99990624
       objectReference: {fileID: 0}
     - target: {fileID: 5159078012444724336, guid: 483c94f933fd3fd458d529253d241e24, type: 3}
       propertyPath: m_LocalRotation.z
@@ -25346,7 +25369,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5159078012444724336, guid: 483c94f933fd3fd458d529253d241e24, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -195.912
+      value: -181.569
       objectReference: {fileID: 0}
     - target: {fileID: 5159078012444724336, guid: 483c94f933fd3fd458d529253d241e24, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -25395,6 +25418,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -1728013695380148634, guid: 483c94f933fd3fd458d529253d241e24, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1290419862}
+    - targetCorrespondingSourceObject: {fileID: -1728013695380148634, guid: 483c94f933fd3fd458d529253d241e24, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1290419866}
     - targetCorrespondingSourceObject: {fileID: 7146093304296209568, guid: 483c94f933fd3fd458d529253d241e24, type: 3}
       insertIndex: -1
       addedObject: {fileID: 305950578}
@@ -29770,6 +29796,51 @@ MonoBehaviour:
   - {fileID: 1282080477}
   - {fileID: 108948141}
   - {fileID: 2048288139}
+--- !u!114 &1290419866
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1290419843}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1c540b08daa16645968fbdb0afa2713, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 1290419853}
+  ikWeight: 1
+  headBone: {fileID: 108948141}
+  spineBone: {fileID: 1804038132}
+  lookAtTarget: {fileID: 722469070}
+  recoveryTime: 1
+  maxBendAngle: 45
+  impactMultiplier: 1
+  minimumForceThreshold: 5
+  recoveryCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!4 &1290543078 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1090571806644490440, guid: 75357ff4268ef5949bc19f9e9d70db09, type: 3}
@@ -40690,14 +40761,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mouthMeshRenderer: {fileID: 622271879}
-  smileBlendShapeIndex: 18
+  smileBlendShapeIndex: 19
   mouthOpenBlendShapeIndex: 19
-  browUpBlendShapeIndex: 22
+  browUpBlendShapeIndex: 19
   blendShapeIntensity: 100
   animationSpeed: 0.5
   HappyDuration: 3
   animator: {fileID: 1879341370}
-  HappyAnimationLayerIndex: 1
+  HappyAnimationLayerIndex: 2
   maxAnimationLayerWeight: 1
   blendSpeed: 0.2
 --- !u!114 &1879341377
@@ -55150,6 +55221,9 @@ PrefabInstance:
       addedObject: {fileID: 644491078}
     - targetCorrespondingSourceObject: {fileID: -1728013695380148634, guid: 0d1c1517cc82197478ca53e21335a6c3, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 644491084}
+    - targetCorrespondingSourceObject: {fileID: -1728013695380148634, guid: 0d1c1517cc82197478ca53e21335a6c3, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 644491081}
     - targetCorrespondingSourceObject: {fileID: -4732165671218428268, guid: 0d1c1517cc82197478ca53e21335a6c3, type: 3}
       insertIndex: -1
@@ -60146,7 +60220,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -12.909973, y: -9.03}
+  m_AnchoredPosition: {x: -12.909912, y: -9.03}
   m_SizeDelta: {x: 79.3, y: 41.5}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &8396297760626815223
