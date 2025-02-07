@@ -68,11 +68,11 @@ public class SpeakPayloadManager : MonoBehaviour
             // Special case for "tv"
             if (actorName == "tv")
             {
-                if (string.IsNullOrEmpty(dialogueLine))
-                {
-                    SetRenderersEnabled(mediaTvReference, false); // To disable
-                    return;
-                }
+                    if (string.IsNullOrEmpty(dialogueLine) || dialogueLine.Equals("none", StringComparison.OrdinalIgnoreCase))
+                    {
+                        SetRenderersEnabled(mediaTvReference, false); // To disable
+                        return;
+                    }
 
                 // Assuming a reference to the TextureLoader is already available
                 if (textureLoader != null)
