@@ -124,8 +124,6 @@ The AIShow blends AI innovation with community-driven engagement via video conte
 ## Links  
 - [Project Repository](https://github.com/elizaOS/aishow)  
 
-- Live episodes remain a stretch goal.
-
 ![image](https://hackmd.io/_uploads/By0Ounc71x.png)
 
 `Unity 2022.3.53f1`
