@@ -86,7 +86,9 @@ The AI Show benefits the DAO by:
 - Creating opportunities for user-generated content and contributions.
 - Automation of gathering summaries and updates from the ElizaOS and bringing them to the wider audience through the news show.  
 - Strengthening community bonds through shared interactive experiences.
-- Build social media with rich 3d content and video.  
+- Build social media with rich 3d content and video.
+
+![image](https://github.com/user-attachments/assets/e460b3b3-4cef-4488-8bd2-364dea51fc70)
 
 ## Changelog
 Active development for the last two months, but In the last 2 weeks, we hit some milestones:
