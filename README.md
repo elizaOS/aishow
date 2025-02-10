@@ -61,6 +61,9 @@ public void ProcessEvent(EventData eventData)
 ## Screenshots
 
 ![Unity_yNCachdOqO](https://github.com/user-attachments/assets/064db9f9-fe6f-4fb7-b50f-4cc1f69fb8ef)
+
+![image](https://github.com/user-attachments/assets/9e63f3d1-c45a-4efc-acfa-46abedf8e2d9)
+
       
 ## Overview  
 The **AI Show** is an interactive experience designed to engage DAO members through immersive AI-driven content. This project leverages Unity to create 3d video content that enhances community engagement and provides real value to participants in the form of automated and streamlined production. SO far the MVP works well, and here is a breakdown of current and future goals:  
