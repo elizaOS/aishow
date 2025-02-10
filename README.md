@@ -58,6 +58,9 @@ public void ProcessEvent(EventData eventData)
     }
 ```
 
+## WIki
+- Started a WIKI https://github.com/elizaOS/aishow/wiki to go over the details of the system, and give examples of how things work.
+
 ## Screenshots
 
 ![image](https://github.com/user-attachments/assets/342849c1-fbeb-4d72-b4bf-d2a7c537033b)
