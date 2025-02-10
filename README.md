@@ -75,7 +75,9 @@ The purpose of this project is to:
 - Creative ways to update the DAO and community with news, and content to grow awareness of the projects we are working on and contributions.  
 - Showcase AI capabilities for 3d show production techniques.  
 - Encourage community participation and discussion around AI technologies.  
-- Foster collaboration and innovation within the DAO ecosystem.  
+- Foster collaboration and innovation within the DAO ecosystem.
+
+![image](https://github.com/user-attachments/assets/8e5d01fc-18b5-466b-8c9c-0da2925d6b7b)
 
 ## Value Proposition  
 The AI Show benefits the DAO by:  
