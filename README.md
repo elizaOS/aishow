@@ -99,6 +99,8 @@ Active development for the last two months, but In the last 2 weeks, we hit some
 - Added mediaTV, which takes an image URL and loads it onto the TV when the actor is labeled "tv"
 - Added Oculus Lip Sync package and tested the mic to map visemes (works), awaiting to do TTS inside Unity using an Audio Source to feed the Lip Sync
 
+![image](https://github.com/user-attachments/assets/629373a3-412c-4f0f-8392-8a115a90b3a0)
+
 ## Things we can improve
 - The audio currently comes from the web browser, and to get the visemes working properly we need to design a system where the eleven labs audio gets fed into Unity, and then the show runs and processes the audio through an audio source. This will make the mouths more realistic but will require some refactoring and updating to the system flow.
 - The JSON aggregator can be improved, as sometimes it is working, and other times it fails. Currently https://github.com/bozp-pzob/ai-news/blob/main/json/daily.json is the source we are pulling from to generate scripts. 
