@@ -62,6 +62,68 @@ public void ProcessEvent(EventData eventData)
 
 ![Unity_yNCachdOqO](https://github.com/user-attachments/assets/064db9f9-fe6f-4fb7-b50f-4cc1f69fb8ef)
       
+## Overview  
+The **AI Show** is an interactive experience designed to engage DAO members through immersive AI-driven content. This project leverages Unity to create 3d video content that enhances community engagement and provides real value to participants in the form of automated and streamlined production. SO far the MVP works well, and here is a breakdown of current and future goals:  
+
+## Purpose  
+The purpose of this project is to:  
+- Provide engaging content for DAO members.
+- Creative ways to update the DAO and community with news, and content to grow awareness of the projects we are working on and contributions.  
+- Showcase AI capabilities for 3d show production techniques.  
+- Encourage community participation and discussion around AI technologies.  
+- Foster collaboration and innovation within the DAO ecosystem.  
+
+## Value Proposition  
+The AI Show benefits the DAO by:  
+- Enhancing member engagement through interactive storytelling and video content.  
+- Showcasing cutting-edge AI applications within a virtual environment instead of just chatbots and 2d interfaces.  
+- Creating opportunities for user-generated content and contributions.
+- Automation of gathering summaries and updates from the ElizaOS and bringing them to the wider audience through the news show.  
+- Strengthening community bonds through shared interactive experiences.
+- Build social media with rich 3d content and video.  
+
+## Changelog
+Active development for the last two months, but In the last 2 weeks, we hit some milestones:
+- Been producing an episode per day for almost a month, missing only a few days when aggregator was down (devs are working on update to aggrogator)
+- Added happy, sad, emotions to visemes 
+- Added lazer eyes and props that can spawn based on actions 
+- Added rigs and animations to all characters, and mapped them to actions
+- Added IK to all characters so that feet stay on ground, and hands can be placed
+- Added IK override to disable IK for animations that don't need it 
+- Added mediaTV, which takes an image URL and loads it onto the TV when the actor is labeled "tv"
+- Added Oculus Lip Sync package and tested the mic to map visemes (works), awaiting to do TTS inside Unity using an Audio Source to feed the Lip Sync
+
+## Things we can improve
+- The audio currently comes from the web browser, and to get the visemes working properly we need to design a system where the eleven labs audio gets fed into Unity, and then the show runs and processes the audio through an audio source. This will make the mouths more realistic but will require some refactoring and updating to the system flow.
+- The JSON aggregator can be improved, as sometimes it is working, and other times it fails. Currently https://github.com/bozp-pzob/ai-news/blob/main/json/daily.json is the source we are pulling from to generate scripts. 
+- Perhaps we can have the prompts updated to deliver more of the updates or longer episodes that can be edited down. As of now the ShowRunner scripts use AI to pick, and summarize these updates. Not all of them are considered. 
+- Look into adding "news interviews" or a way to include a new guest
+- Can improve the approach to "curated" updates, where we have media, and certain specific topics to discuss, and how to update the showrunner to accomplish that.
+- We can port the entire project to Unity HDRP to get better reflections and lighting
+- Get feedback from DAO for more feature requests
+- Can integrate Eliza into the show writing AI pipeline.
+- Can run a special prompt and `show-config` to go over how the entire system works from the AI perspective as a demo (using the tech)
+- Reach the core audience better by defining the audience and where to publish to. Currently we publish to youtube, but the community and DAO are not seeing the videos unless we tweet them.
+
+## Next Steps  
+1. **Content Development** – Finalize the core content pipeline for JSON updates from github for the AINEWS 
+2. **Technical Implementation** – Keep upgrading and testing the codebase to be more efficient and scalable
+3. **User Testing & Feedback** – We've uploaded almost 30 news shows to youtube, and the feedback has been good. Looking to get more feedback from DAO members
+4. **Iteration** – Refine based on user feedback. With the aggregator to be perfected so we can make news shows everyday. 
+5. **Issue Tracking** - https://github.com/elizaOS/aishow/issues we have completed a large number of goals, but there remains technical issues to be worked on there.
+6. **Timeline** - Decide the timeline of these projects, and frequency.
+
+## Challenges  
+- **Technical Complexity** – Make a demo of how the Unity project works.
+- **Scalability** – Refactor code to be more scalable, and modularize code sections to be more reusable on different show formats.
+- **Recruitment** of possibly more Unity devs for Animations, Refactoring, or advanced features to increase iteration and development time.  
+
+## Conclusion  
+The AIShow blends AI innovation with community-driven engagement via video content. By leveraging Automation of github updates to a Unity pipeline, it aims to create video production that strengthens the DAO ecosystem while demonstrating the power of interactive AI.  
+
+## Links  
+- [Project Repository](https://github.com/elizaOS/aishow)  
+
 - Live episodes remain a stretch goal.
 
 ![image](https://hackmd.io/_uploads/By0Ounc71x.png)
