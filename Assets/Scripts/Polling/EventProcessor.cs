@@ -6,13 +6,25 @@ using System.Linq; // For LINQ methods
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 
+// Ensure that a ScenePreparationManager is available on this GameObject
+[RequireComponent(typeof(ScenePreparationManager))]
 public class EventProcessor : MonoBehaviour
 {
     private ScenePreparationManager scenePreparationManager;
     
     private void Awake()
     {
+        // Attempt to get the ScenePreparationManager on the same GameObject
         scenePreparationManager = GetComponent<ScenePreparationManager>();
+        // Fallback to finding it in the scene if not attached
+        if (scenePreparationManager == null)
+        {
+            scenePreparationManager = FindObjectOfType<ScenePreparationManager>();
+            if (scenePreparationManager == null)
+            {
+                Debug.LogError("ScenePreparationManager not found! The EventProcessor won't function properly.");
+            }
+        }
     }
 
     public void ProcessEvent(EventData eventData)
