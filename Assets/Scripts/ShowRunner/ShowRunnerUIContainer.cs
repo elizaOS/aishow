@@ -27,12 +27,12 @@ namespace ShowRunner
 
         private void Awake()
         {
-            Debug.Log("ShowRunnerUIContainer Awake called");
+            //Debug.Log("ShowRunnerUIContainer Awake called");
             
             // Check for status text component
             if (statusText == null)
             {
-                Debug.LogWarning("Status text component is not assigned in the Inspector. Trying to find it...");
+                //Debug.LogWarning("Status text component is not assigned in the Inspector. Trying to find it...");
                 
                 // Try to find it in children first
                 statusText = GetComponentInChildren<TextMeshProUGUI>();
@@ -46,7 +46,7 @@ namespace ShowRunner
                         if (text.name.Contains("Status") || text.name.Contains("status"))
                         {
                             statusText = text;
-                            Debug.Log("Found status text component in scene: " + statusText.name);
+                            //Debug.Log("Found status text component in scene: " + statusText.name);
                             break;
                         }
                     }
@@ -54,16 +54,16 @@ namespace ShowRunner
                 
                 if (statusText != null)
                 {
-                    Debug.Log("Found status text component: " + statusText.name);
+                    //Debug.Log("Found status text component: " + statusText.name);
                 }
                 else
                 {
-                    Debug.LogError("Could not find status text component. Please assign it manually.");
+                    //Debug.LogError("Could not find status text component. Please assign it manually.");
                 }
             }
             else
             {
-                Debug.Log("Status text component is assigned: " + statusText.name);
+                //Debug.Log("Status text component is assigned: " + statusText.name);
             }
             
             // Check for other UI components
@@ -89,7 +89,7 @@ namespace ShowRunner
                     if (button.name.Contains("Next"))
                     {
                         nextButton = button;
-                        Debug.Log("Found next button in children: " + nextButton.name);
+                        //Debug.Log("Found next button in children: " + nextButton.name);
                         break;
                     }
                 }
@@ -103,7 +103,7 @@ namespace ShowRunner
                     if (button.name.Contains("Play"))
                     {
                         playButton = button;
-                        Debug.Log("Found play button in children: " + playButton.name);
+                        //Debug.Log("Found play button in children: " + playButton.name);
                         break;
                     }
                 }
@@ -117,7 +117,7 @@ namespace ShowRunner
                     if (button.name.Contains("Pause"))
                     {
                         pauseButton = button;
-                        Debug.Log("Found pause button in children: " + pauseButton.name);
+                        //Debug.Log("Found pause button in children: " + pauseButton.name);
                         break;
                     }
                 }
@@ -132,12 +132,12 @@ namespace ShowRunner
                 }
                 else
                 {
-                    Debug.Log("Found ShowRunner: " + showRunner.name);
+                    //Debug.Log("Found ShowRunner: " + showRunner.name);
                 }
             }
             else
             {
-                Debug.Log("ShowRunner is assigned: " + showRunner.name);
+                //Debug.Log("ShowRunner is assigned: " + showRunner.name);
             }
 
             if (uiController == null)
@@ -149,12 +149,12 @@ namespace ShowRunner
                 }
                 else
                 {
-                    Debug.Log("Found ShowRunnerUI in children: " + uiController.name);
+                    //Debug.Log("Found ShowRunnerUI in children: " + uiController.name);
                 }
             }
             else
             {
-                Debug.Log("ShowRunnerUI is assigned: " + uiController.name);
+                //Debug.Log("ShowRunnerUI is assigned: " + uiController.name);
             }
         }
 
@@ -187,7 +187,7 @@ namespace ShowRunner
         {
             if (statusText == null)
             {
-                Debug.LogWarning("Status text component is null in OnEnable. Trying to find it...");
+                //Debug.LogWarning("Status text component is null in OnEnable. Trying to find it...");
                 
                 // Try to find it in children
                 statusText = GetComponentInChildren<TextMeshProUGUI>();
@@ -201,7 +201,7 @@ namespace ShowRunner
                         if (text.name.Contains("Status") || text.name.Contains("status"))
                         {
                             statusText = text;
-                            Debug.Log("Found status text component in scene: " + statusText.name);
+                            //Debug.Log("Found status text component in scene: " + statusText.name);
                             break;
                         }
                     }
@@ -209,11 +209,11 @@ namespace ShowRunner
                 
                 if (statusText != null)
                 {
-                    Debug.Log("Found status text component: " + statusText.name);
+                    //Debug.Log("Found status text component: " + statusText.name);
                 }
                 else
                 {
-                    Debug.LogError("Could not find status text component. Please assign it manually.");
+                    //Debug.LogError("Could not find status text component. Please assign it manually.");
                 }
             }
         }
@@ -249,16 +249,16 @@ namespace ShowRunner
 
         public void UpdateStatusText(string message)
         {
-            Debug.Log($"UpdateStatusText called with message: '{message}'");
+            //Debug.Log($"UpdateStatusText called with message: '{message}'");
             
             if (statusText == null)
             {
-                Debug.LogError("Status text component is null! Please assign it in the Inspector.");
+                //Debug.LogError("Status text component is null! Please assign it in the Inspector.");
                 return;
             }
             
             statusText.text = message;
-            Debug.Log($"Status text updated to: '{message}'");
+            //Debug.Log($"Status text updated to: '{message}'");
         }
 
         public void PopulateEpisodeDropdown(System.Collections.Generic.List<string> episodeTitles)

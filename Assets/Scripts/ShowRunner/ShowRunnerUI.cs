@@ -21,23 +21,23 @@ namespace ShowRunner
         
         private void Awake()
         {
-            Debug.Log("ShowRunnerUI Awake called");
+            //Debug.Log("ShowRunnerUI Awake called");
             
             if (showRunner == null)
             {
                 showRunner = FindObjectOfType<ShowRunner>();
                 if (showRunner == null)
                 {
-                    Debug.LogError("ShowRunner not found! The UI won't function properly.");
+                    //Debug.LogError("ShowRunner not found! The UI won't function properly.");
                 }
                 else
                 {
-                    Debug.Log("Found ShowRunner: " + showRunner.name);
+                    //Debug.Log("Found ShowRunner: " + showRunner.name);
                 }
             }
             else
             {
-                Debug.Log("ShowRunner is assigned: " + showRunner.name);
+                //Debug.Log("ShowRunner is assigned: " + showRunner.name);
             }
 
             if (uiContainer == null)
@@ -51,22 +51,22 @@ namespace ShowRunner
                     uiContainer = FindObjectOfType<ShowRunnerUIContainer>();
                     if (uiContainer != null)
                     {
-                        Debug.Log("Found ShowRunnerUIContainer in scene: " + uiContainer.name);
+                        //Debug.Log("Found ShowRunnerUIContainer in scene: " + uiContainer.name);
                     }
                 }
                 
                 if (uiContainer == null)
                 {
-                    Debug.LogError("ShowRunnerUIContainer not found! The UI won't function properly.");
+                    //Debug.LogError("ShowRunnerUIContainer not found! The UI won't function properly.");
                 }
                 else
                 {
-                    Debug.Log("Found ShowRunnerUIContainer: " + uiContainer.name);
+                    //Debug.Log("Found ShowRunnerUIContainer: " + uiContainer.name);
                 }
             }
             else
             {
-                Debug.Log("ShowRunnerUIContainer is assigned: " + uiContainer.name);
+                //Debug.Log("ShowRunnerUIContainer is assigned: " + uiContainer.name);
             }
         }
 
@@ -123,33 +123,33 @@ namespace ShowRunner
         public void LoadSelectedEpisode()
         {
             int selectedIndex = uiContainer.GetSelectedEpisodeIndex();
-            Debug.Log($"LoadSelectedEpisode: Selected index is {selectedIndex}");
+            //Debug.Log($"LoadSelectedEpisode: Selected index is {selectedIndex}");
             
             if (selectedIndex >= 0)
             {
                 // First update the status to show we're loading
                 UpdateStatusText("Loading episode...");
-                Debug.Log("LoadSelectedEpisode: Status updated to 'Loading episode...'");
+                //Debug.Log("LoadSelectedEpisode: Status updated to 'Loading episode...'");
                 
                 // Select the episode in the ShowRunner
                 showRunner.SelectEpisode(selectedIndex);
-                Debug.Log($"LoadSelectedEpisode: Episode selected at index {selectedIndex}");
+                //Debug.Log($"LoadSelectedEpisode: Episode selected at index {selectedIndex}");
                 
                 // Get the episode title directly from the ShowRunner
                 string episodeTitle = showRunner.GetCurrentEpisodeTitle();
-                Debug.Log($"LoadSelectedEpisode: Retrieved episode title from ShowRunner: '{episodeTitle}'");
+                //Debug.Log($"LoadSelectedEpisode: Retrieved episode title from ShowRunner: '{episodeTitle}'");
                 
                 // Update the status with the loaded episode title
                 UpdateStatusText($"Episode loaded: {episodeTitle}");
-                Debug.Log($"LoadSelectedEpisode: Status updated to 'Episode loaded: {episodeTitle}'");
+                //Debug.Log($"LoadSelectedEpisode: Status updated to 'Episode loaded: {episodeTitle}'");
                 
                 // Enable the playback controls after episode is loaded
                 uiContainer.SetPlaybackControlsInteractable(true);
-                Debug.Log("LoadSelectedEpisode: Playback controls enabled");
+                //Debug.Log("LoadSelectedEpisode: Playback controls enabled");
             }
             else
             {
-                Debug.LogWarning("LoadSelectedEpisode: Invalid episode index selected");
+                //Debug.LogWarning("LoadSelectedEpisode: Invalid episode index selected");
                 UpdateStatusText("Please select a valid episode");
             }
         }
@@ -208,24 +208,24 @@ namespace ShowRunner
         /// </summary>
         private void UpdateStatusText(string message)
         {
-            Debug.Log($"ShowRunnerUI.UpdateStatusText called with message: '{message}'");
+            //Debug.Log($"ShowRunnerUI.UpdateStatusText called with message: '{message}'");
             
             if (uiContainer == null)
             {
-                Debug.LogError("UI Container reference is null! Trying to find it again...");
+                //Debug.LogError("UI Container reference is null! Trying to find it again...");
                 uiContainer = GetComponentInParent<ShowRunnerUIContainer>();
                 
                 if (uiContainer == null)
                 {
-                    Debug.LogError("Could not find UI Container. Status text will not be updated: " + message);
+                    //Debug.LogError("Could not find UI Container. Status text will not be updated: " + message);
                     return;
                 }
                 
-                Debug.Log("Found UI Container: " + uiContainer.name);
+                //Debug.Log("Found UI Container: " + uiContainer.name);
             }
             
             uiContainer.UpdateStatusText(message);
-            Debug.Log($"Status text update requested: '{message}'");
+            //Debug.Log($"Status text update requested: '{message}'");
         }
     }
 } 
