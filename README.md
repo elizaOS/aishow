@@ -3,6 +3,8 @@
 ## Overview
 The ShowRunner system is a Unity-based framework for managing interactive shows, episodes, and scenes. It provides a robust architecture for loading, playing, and controlling show content with a user-friendly interface.
 
+News source = https://gm3.github.io/news-browser/
+
 ## Core Components
 
 ### 1. ShowRunner
