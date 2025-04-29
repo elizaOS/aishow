@@ -1,0 +1,287 @@
+using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
+
+namespace ShowRunner
+{
+    public class ShowRunnerUIContainer : MonoBehaviour
+    {
+        [Header("UI Canvas")]
+        [SerializeField] private Canvas mainCanvas;
+
+        [Header("UI Elements")]
+        [SerializeField] private TMP_Dropdown episodeDropdown;
+        [SerializeField] private Button loadButton;
+        [SerializeField] private Button nextButton;
+        [SerializeField] private Button playButton;
+        [SerializeField] private Button pauseButton;
+        [SerializeField] private TextMeshProUGUI statusText;
+
+        [Header("References")]
+        [SerializeField] private ShowRunner showRunner;
+        [SerializeField] private ShowRunnerUI uiController;
+
+        [Header("Settings")]
+        [SerializeField] private KeyCode toggleKey = KeyCode.BackQuote; // ` key
+        [SerializeField] private bool uiVisibleOnStart = true;
+
+        private void Awake()
+        {
+            Debug.Log("ShowRunnerUIContainer Awake called");
+            
+            // Check for status text component
+            if (statusText == null)
+            {
+                Debug.LogWarning("Status text component is not assigned in the Inspector. Trying to find it...");
+                
+                // Try to find it in children first
+                statusText = GetComponentInChildren<TextMeshProUGUI>();
+                
+                // If not found in children, try to find it in the scene
+                if (statusText == null)
+                {
+                    TextMeshProUGUI[] allTexts = FindObjectsOfType<TextMeshProUGUI>();
+                    foreach (TextMeshProUGUI text in allTexts)
+                    {
+                        if (text.name.Contains("Status") || text.name.Contains("status"))
+                        {
+                            statusText = text;
+                            Debug.Log("Found status text component in scene: " + statusText.name);
+                            break;
+                        }
+                    }
+                }
+                
+                if (statusText != null)
+                {
+                    Debug.Log("Found status text component: " + statusText.name);
+                }
+                else
+                {
+                    Debug.LogError("Could not find status text component. Please assign it manually.");
+                }
+            }
+            else
+            {
+                Debug.Log("Status text component is assigned: " + statusText.name);
+            }
+            
+            // Check for other UI components
+            if (episodeDropdown == null)
+            {
+                episodeDropdown = GetComponentInChildren<TMP_Dropdown>();
+                if (episodeDropdown != null)
+                    Debug.Log("Found episode dropdown in children: " + episodeDropdown.name);
+            }
+            
+            if (loadButton == null)
+            {
+                loadButton = GetComponentInChildren<Button>();
+                if (loadButton != null)
+                    Debug.Log("Found load button in children: " + loadButton.name);
+            }
+            
+            if (nextButton == null)
+            {
+                Button[] buttons = GetComponentsInChildren<Button>();
+                foreach (Button button in buttons)
+                {
+                    if (button.name.Contains("Next"))
+                    {
+                        nextButton = button;
+                        Debug.Log("Found next button in children: " + nextButton.name);
+                        break;
+                    }
+                }
+            }
+            
+            if (playButton == null)
+            {
+                Button[] buttons = GetComponentsInChildren<Button>();
+                foreach (Button button in buttons)
+                {
+                    if (button.name.Contains("Play"))
+                    {
+                        playButton = button;
+                        Debug.Log("Found play button in children: " + playButton.name);
+                        break;
+                    }
+                }
+            }
+            
+            if (pauseButton == null)
+            {
+                Button[] buttons = GetComponentsInChildren<Button>();
+                foreach (Button button in buttons)
+                {
+                    if (button.name.Contains("Pause"))
+                    {
+                        pauseButton = button;
+                        Debug.Log("Found pause button in children: " + pauseButton.name);
+                        break;
+                    }
+                }
+            }
+            
+            if (showRunner == null)
+            {
+                showRunner = FindObjectOfType<ShowRunner>();
+                if (showRunner == null)
+                {
+                    Debug.LogError("ShowRunner not found! The UI won't function properly.");
+                }
+                else
+                {
+                    Debug.Log("Found ShowRunner: " + showRunner.name);
+                }
+            }
+            else
+            {
+                Debug.Log("ShowRunner is assigned: " + showRunner.name);
+            }
+
+            if (uiController == null)
+            {
+                uiController = GetComponentInChildren<ShowRunnerUI>();
+                if (uiController == null)
+                {
+                    Debug.LogError("ShowRunnerUI not found! The UI won't function properly.");
+                }
+                else
+                {
+                    Debug.Log("Found ShowRunnerUI in children: " + uiController.name);
+                }
+            }
+            else
+            {
+                Debug.Log("ShowRunnerUI is assigned: " + uiController.name);
+            }
+        }
+
+        private void Start()
+        {
+            // Initialize UI state
+            SetUIVisible(uiVisibleOnStart);
+            SetUIInteractable(true); // Make UI interactable by default
+            UpdateStatusText("Ready to load show data");
+        }
+
+        private void Update()
+        {
+            // Toggle UI visibility with the toggle key
+            if (Input.GetKeyDown(toggleKey))
+            {
+                bool newVisibility = !mainCanvas.enabled;
+                SetUIVisible(newVisibility);
+                Debug.Log($"UI visibility toggled: {(newVisibility ? "Visible" : "Hidden")}");
+            }
+        }
+
+        private void OnEnable()
+        {
+            // Ensure status text is found when the component is enabled
+            EnsureStatusTextComponent();
+        }
+        
+        private void EnsureStatusTextComponent()
+        {
+            if (statusText == null)
+            {
+                Debug.LogWarning("Status text component is null in OnEnable. Trying to find it...");
+                
+                // Try to find it in children
+                statusText = GetComponentInChildren<TextMeshProUGUI>();
+                
+                // If not found in children, try to find it in the scene
+                if (statusText == null)
+                {
+                    TextMeshProUGUI[] allTexts = FindObjectsOfType<TextMeshProUGUI>();
+                    foreach (TextMeshProUGUI text in allTexts)
+                    {
+                        if (text.name.Contains("Status") || text.name.Contains("status"))
+                        {
+                            statusText = text;
+                            Debug.Log("Found status text component in scene: " + statusText.name);
+                            break;
+                        }
+                    }
+                }
+                
+                if (statusText != null)
+                {
+                    Debug.Log("Found status text component: " + statusText.name);
+                }
+                else
+                {
+                    Debug.LogError("Could not find status text component. Please assign it manually.");
+                }
+            }
+        }
+
+        public void SetUIVisible(bool visible)
+        {
+            if (mainCanvas != null)
+            {
+                mainCanvas.enabled = visible;
+            }
+        }
+
+        public void SetUIInteractable(bool interactable)
+        {
+            if (loadButton != null) loadButton.interactable = interactable;
+            if (nextButton != null) nextButton.interactable = false; // Always starts disabled
+            if (playButton != null) playButton.interactable = false; // Always starts disabled
+            if (pauseButton != null) pauseButton.interactable = false; // Always starts disabled
+            if (episodeDropdown != null) episodeDropdown.interactable = interactable;
+        }
+
+        public void SetPlaybackControlsInteractable(bool interactable)
+        {
+            if (nextButton != null) nextButton.interactable = interactable;
+            if (playButton != null) playButton.interactable = interactable;
+        }
+
+        public void SetAutoPlayControls(bool isAutoPlaying)
+        {
+            if (playButton != null) playButton.interactable = !isAutoPlaying;
+            if (pauseButton != null) pauseButton.interactable = isAutoPlaying;
+        }
+
+        public void UpdateStatusText(string message)
+        {
+            Debug.Log($"UpdateStatusText called with message: '{message}'");
+            
+            if (statusText == null)
+            {
+                Debug.LogError("Status text component is null! Please assign it in the Inspector.");
+                return;
+            }
+            
+            statusText.text = message;
+            Debug.Log($"Status text updated to: '{message}'");
+        }
+
+        public void PopulateEpisodeDropdown(System.Collections.Generic.List<string> episodeTitles)
+        {
+            if (episodeDropdown != null && episodeTitles != null && episodeTitles.Count > 0)
+            {
+                episodeDropdown.ClearOptions();
+                episodeDropdown.AddOptions(episodeTitles);
+                episodeDropdown.value = 0;
+            }
+        }
+
+        public int GetSelectedEpisodeIndex()
+        {
+            return episodeDropdown != null ? episodeDropdown.value : -1;
+        }
+
+        // Getters for UI components that need to be accessed by ShowRunnerUI
+        public TMP_Dropdown GetEpisodeDropdown() => episodeDropdown;
+        public Button GetLoadButton() => loadButton;
+        public Button GetNextButton() => nextButton;
+        public Button GetPlayButton() => playButton;
+        public Button GetPauseButton() => pauseButton;
+        public TextMeshProUGUI GetStatusText() => statusText;
+    }
+} 

@@ -59,7 +59,7 @@ namespace ShowRunner
                 yield break;
             }
 
-            AddValidationMessage($"Validating show: {showData.Config.Name}");
+            AddValidationMessage($"Validating show: {showData.Config.name}");
             AddValidationMessage($"Found {showData.Episodes.Count} episodes");
 
             yield return StartCoroutine(ValidateAudioFiles());
@@ -102,39 +102,39 @@ namespace ShowRunner
             
             foreach (var episode in showData.Episodes)
             {
-                AddValidationMessage($"Checking episode: {episode.Id} - {episode.Title}");
+                AddValidationMessage($"Checking episode: {episode.id} - {episode.name}");
                 
                 // Check if episode folder exists under Resources
-                string episodeFolder = Path.Combine(Application.dataPath, "Resources", episodesRootPath, episode.Id);
+                string episodeFolder = Path.Combine(Application.dataPath, "Resources", episodesRootPath, episode.id);
                 string audioFolder = Path.Combine(episodeFolder, "audio");
                 
                 if (!Directory.Exists(episodeFolder))
                 {
                     AddValidationMessage($"Episode folder not found in Resources: {episodeFolder}");
-                    missingAudioFiles.Add($"{episode.Id} (folder missing)");
+                    missingAudioFiles.Add($"{episode.id} (folder missing)");
                     continue;
                 }
                 
                 if (!Directory.Exists(audioFolder))
                 {
                     AddValidationMessage($"Audio folder not found in Resources: {audioFolder}");
-                    missingAudioFiles.Add($"{episode.Id}/audio (folder missing)");
+                    missingAudioFiles.Add($"{episode.id}/audio (folder missing)");
                     continue;
                 }
                 
                 // Check each audio file
-                for (int sceneIndex = 0; sceneIndex < episode.Scenes.Count; sceneIndex++)
+                for (int sceneIndex = 0; sceneIndex < episode.scenes.Count; sceneIndex++)
                 {
-                    var scene = episode.Scenes[sceneIndex];
+                    var scene = episode.scenes[sceneIndex];
                     
-                    for (int dialogueIndex = 0; dialogueIndex < scene.Dialogue.Count; dialogueIndex++)
+                    for (int dialogueIndex = 0; dialogueIndex < scene.dialogue.Count; dialogueIndex++)
                     {
                         // Construct the audio file path
-                        string audioFileName = $"{episode.Id}_{sceneIndex + 1}_{dialogueIndex + 1}.mp3";
+                        string audioFileName = $"{episode.id}_{sceneIndex + 1}_{dialogueIndex + 1}.mp3";
                         string audioFilePath = Path.Combine(audioFolder, audioFileName);
                         
                         // Try Resources folder first
-                        string resourcePath = $"{episodesRootPath}/{episode.Id}/audio/{audioFileName}".Replace(".mp3", "");
+                        string resourcePath = $"{episodesRootPath}/{episode.id}/audio/{audioFileName}".Replace(".mp3", "");
                         AudioClip resourceClip = Resources.Load<AudioClip>(resourcePath);
                         
                         if (resourceClip == null && !File.Exists(audioFilePath))
@@ -184,11 +184,11 @@ namespace ShowRunner
             foreach (var episode in showData.Episodes)
             {
                 // Create episode directory if needed
-                string episodeFolder = Path.Combine(Application.dataPath, episodesRootPath, episode.Id);
+                string episodeFolder = Path.Combine(Application.dataPath, episodesRootPath, episode.id);
                 if (!Directory.Exists(episodeFolder))
                 {
                     Directory.CreateDirectory(episodeFolder);
-                    AddValidationMessage($"Created episode directory: {episode.Id}");
+                    AddValidationMessage($"Created episode directory: {episode.id}");
                 }
                 
                 // Create audio subdirectory if needed
@@ -196,17 +196,17 @@ namespace ShowRunner
                 if (!Directory.Exists(audioFolder))
                 {
                     Directory.CreateDirectory(audioFolder);
-                    AddValidationMessage($"Created audio directory: {episode.Id}/audio");
+                    AddValidationMessage($"Created audio directory: {episode.id}/audio");
                 }
                 
                 // Create placeholder audio files
-                for (int sceneIndex = 0; sceneIndex < episode.Scenes.Count; sceneIndex++)
+                for (int sceneIndex = 0; sceneIndex < episode.scenes.Count; sceneIndex++)
                 {
-                    var scene = episode.Scenes[sceneIndex];
+                    var scene = episode.scenes[sceneIndex];
                     
-                    for (int dialogueIndex = 0; dialogueIndex < scene.Dialogue.Count; dialogueIndex++)
+                    for (int dialogueIndex = 0; dialogueIndex < scene.dialogue.Count; dialogueIndex++)
                     {
-                        string audioFileName = $"{episode.Id}_{sceneIndex + 1}_{dialogueIndex + 1}.mp3";
+                        string audioFileName = $"{episode.id}_{sceneIndex + 1}_{dialogueIndex + 1}.mp3";
                         string audioFilePath = Path.Combine(audioFolder, audioFileName);
                         
                         if (!File.Exists(audioFilePath))

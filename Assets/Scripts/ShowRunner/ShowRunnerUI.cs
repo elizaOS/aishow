@@ -1,22 +1,19 @@
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
 namespace ShowRunner
 {
+    /// <summary>
+    /// Manages the user interface for the ShowRunner system.
+    /// Handles UI interactions, state updates, and user input processing.
+    /// </summary>
     public class ShowRunnerUI : MonoBehaviour
     {
-        [Header("UI References")]
-        [SerializeField] private TMP_Dropdown episodeDropdown;
-        [SerializeField] private Button loadButton;
-        [SerializeField] private Button nextButton;
-        [SerializeField] private Button playButton;
-        [SerializeField] private Button pauseButton;
-        [SerializeField] private TextMeshProUGUI statusText;
-
+        /// <summary>Reference to the main ShowRunner instance</summary>
         [Header("Components")]
         [SerializeField] private ShowRunner showRunner;
+        [SerializeField] private ShowRunnerUIContainer uiContainer;
 
         private bool autoPlay = false;
         private bool isPlaying = false;
@@ -24,6 +21,8 @@ namespace ShowRunner
         
         private void Awake()
         {
+            Debug.Log("ShowRunnerUI Awake called");
+            
             if (showRunner == null)
             {
                 showRunner = FindObjectOfType<ShowRunner>();
@@ -31,16 +30,60 @@ namespace ShowRunner
                 {
                     Debug.LogError("ShowRunner not found! The UI won't function properly.");
                 }
+                else
+                {
+                    Debug.Log("Found ShowRunner: " + showRunner.name);
+                }
+            }
+            else
+            {
+                Debug.Log("ShowRunner is assigned: " + showRunner.name);
+            }
+
+            if (uiContainer == null)
+            {
+                // First try to find it in parent
+                uiContainer = GetComponentInParent<ShowRunnerUIContainer>();
+                
+                // If not found in parent, try to find it in the scene
+                if (uiContainer == null)
+                {
+                    uiContainer = FindObjectOfType<ShowRunnerUIContainer>();
+                    if (uiContainer != null)
+                    {
+                        Debug.Log("Found ShowRunnerUIContainer in scene: " + uiContainer.name);
+                    }
+                }
+                
+                if (uiContainer == null)
+                {
+                    Debug.LogError("ShowRunnerUIContainer not found! The UI won't function properly.");
+                }
+                else
+                {
+                    Debug.Log("Found ShowRunnerUIContainer: " + uiContainer.name);
+                }
+            }
+            else
+            {
+                Debug.Log("ShowRunnerUIContainer is assigned: " + uiContainer.name);
             }
         }
 
+        /// <summary>
+        /// Initializes the UI components and sets up event listeners.
+        /// </summary>
         private void Start()
         {
             // Set up event listeners
-            if (loadButton != null) loadButton.onClick.AddListener(LoadSelectedEpisode);
-            if (nextButton != null) nextButton.onClick.AddListener(NextStep);
-            if (playButton != null) playButton.onClick.AddListener(StartAutoPlay);
-            if (pauseButton != null) pauseButton.onClick.AddListener(StopAutoPlay);
+            if (uiContainer.GetLoadButton() != null) 
+                uiContainer.GetLoadButton().onClick.AddListener(LoadSelectedEpisode);
+            if (uiContainer.GetNextButton() != null) 
+                uiContainer.GetNextButton().onClick.AddListener(NextStep);
+            if (uiContainer.GetPlayButton() != null) 
+                uiContainer.GetPlayButton().onClick.AddListener(StartAutoPlay);
+            if (uiContainer.GetPauseButton() != null) 
+                uiContainer.GetPauseButton().onClick.AddListener(StopAutoPlay);
             
             // Load show data to ensure episodes are available
             showRunner.LoadShowData();
@@ -68,44 +111,63 @@ namespace ShowRunner
 
         private void InitializeEpisodeDropdown()
         {
-            if (episodeDropdown != null)
-            {
-                // Get episode titles from ShowRunner
-                List<string> episodeTitles = showRunner.GetEpisodeTitles();
-                
-                if (episodeTitles.Count > 0)
-                {
-                    episodeDropdown.ClearOptions();
-                    episodeDropdown.AddOptions(episodeTitles);
-                    episodeDropdown.value = 0;
-                }
-                else
-                {
-                    Debug.LogWarning("No episodes available in the show data");
-                }
-            }
+            // Get episode titles from ShowRunner
+            var episodeTitles = showRunner.GetEpisodeTitles();
+            uiContainer.PopulateEpisodeDropdown(episodeTitles);
         }
 
+        /// <summary>
+        /// Handles the episode selection from the dropdown.
+        /// Updates UI state and triggers episode loading.
+        /// </summary>
         public void LoadSelectedEpisode()
         {
-            if (episodeDropdown != null)
+            int selectedIndex = uiContainer.GetSelectedEpisodeIndex();
+            Debug.Log($"LoadSelectedEpisode: Selected index is {selectedIndex}");
+            
+            if (selectedIndex >= 0)
             {
-                int selectedIndex = episodeDropdown.value;
-                showRunner.SelectEpisode(selectedIndex);
-                UpdateStatusText($"Episode loaded: {showRunner.GetCurrentEpisodeTitle()}");
+                // First update the status to show we're loading
+                UpdateStatusText("Loading episode...");
+                Debug.Log("LoadSelectedEpisode: Status updated to 'Loading episode...'");
                 
-                // Enable the next button after episode is loaded
-                if (nextButton != null) nextButton.interactable = true;
-                if (playButton != null) playButton.interactable = true;
+                // Select the episode in the ShowRunner
+                showRunner.SelectEpisode(selectedIndex);
+                Debug.Log($"LoadSelectedEpisode: Episode selected at index {selectedIndex}");
+                
+                // Get the episode title directly from the ShowRunner
+                string episodeTitle = showRunner.GetCurrentEpisodeTitle();
+                Debug.Log($"LoadSelectedEpisode: Retrieved episode title from ShowRunner: '{episodeTitle}'");
+                
+                // Update the status with the loaded episode title
+                UpdateStatusText($"Episode loaded: {episodeTitle}");
+                Debug.Log($"LoadSelectedEpisode: Status updated to 'Episode loaded: {episodeTitle}'");
+                
+                // Enable the playback controls after episode is loaded
+                uiContainer.SetPlaybackControlsInteractable(true);
+                Debug.Log("LoadSelectedEpisode: Playback controls enabled");
+            }
+            else
+            {
+                Debug.LogWarning("LoadSelectedEpisode: Invalid episode index selected");
+                UpdateStatusText("Please select a valid episode");
             }
         }
 
+        /// <summary>
+        /// Advances to the next scene or dialogue entry.
+        /// Updates UI state based on playback mode.
+        /// </summary>
         public void NextStep()
         {
             showRunner.NextStep();
             UpdateStatusText("Advancing to next step...");
         }
 
+        /// <summary>
+        /// Toggles between play and pause states.
+        /// Updates UI elements and ShowRunner state.
+        /// </summary>
         public void StartAutoPlay()
         {
             autoPlay = true;
@@ -115,10 +177,13 @@ namespace ShowRunner
             showRunner.SetManualMode(false);
             
             // Update button states
-            if (playButton != null) playButton.interactable = false;
-            if (pauseButton != null) pauseButton.interactable = true;
+            uiContainer.SetAutoPlayControls(true);
         }
 
+        /// <summary>
+        /// Toggles between play and pause states.
+        /// Updates UI elements and ShowRunner state.
+        /// </summary>
         public void StopAutoPlay()
         {
             autoPlay = false;
@@ -127,16 +192,7 @@ namespace ShowRunner
             showRunner.SetManualMode(true);
             
             // Update button states
-            if (playButton != null) playButton.interactable = true;
-            if (pauseButton != null) pauseButton.interactable = false;
-        }
-
-        private void UpdateStatusText(string message)
-        {
-            if (statusText != null)
-            {
-                statusText.text = message;
-            }
+            uiContainer.SetAutoPlayControls(false);
         }
 
         // Example method to refresh data if show data is reloaded
@@ -145,6 +201,31 @@ namespace ShowRunner
             showRunner.LoadShowData();
             InitializeEpisodeDropdown();
             UpdateStatusText("Show data refreshed");
+        }
+
+        /// <summary>
+        /// Updates UI elements based on the current show state.
+        /// </summary>
+        private void UpdateStatusText(string message)
+        {
+            Debug.Log($"ShowRunnerUI.UpdateStatusText called with message: '{message}'");
+            
+            if (uiContainer == null)
+            {
+                Debug.LogError("UI Container reference is null! Trying to find it again...");
+                uiContainer = GetComponentInParent<ShowRunnerUIContainer>();
+                
+                if (uiContainer == null)
+                {
+                    Debug.LogError("Could not find UI Container. Status text will not be updated: " + message);
+                    return;
+                }
+                
+                Debug.Log("Found UI Container: " + uiContainer.name);
+            }
+            
+            uiContainer.UpdateStatusText(message);
+            Debug.Log($"Status text update requested: '{message}'");
         }
     }
 } 

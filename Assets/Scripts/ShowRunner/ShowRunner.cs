@@ -7,6 +7,10 @@ using Newtonsoft.Json;
 
 namespace ShowRunner
 {
+    /// <summary>
+    /// Core controller class for managing show playback, scene preparation, and event processing.
+    /// This class orchestrates the entire show experience, from loading episodes to managing scene transitions.
+    /// </summary>
     public class ShowRunner : MonoBehaviour
     {
         [Header("Configuration")]
@@ -67,20 +71,36 @@ namespace ShowRunner
             PreloadAudio();
         }
 
+        /// <summary>
+        /// Loads show data from JSON files in the Resources/Episodes directory.
+        /// Populates the episode dropdown with available episodes.
+        /// </summary>
         public void LoadShowData()
         {
             try
             {
+                Debug.Log("LoadShowData: Starting to load show data");
+                
                 // Load JSON file from Resources folder
                 // Build resource path and normalize separators to forward slashes
                 string rawPath = Path.Combine(episodesRootPath, showFileName);
                 string resourcePath = rawPath.Replace(Path.DirectorySeparatorChar, '/').Replace(".json", "");
+                Debug.Log($"LoadShowData: Looking for JSON at resource path: {resourcePath}");
+                
                 TextAsset jsonAsset = Resources.Load<TextAsset>(resourcePath);
                 
                 if (jsonAsset != null)
                 {
+                    Debug.Log($"LoadShowData: Found JSON asset: {jsonAsset.name}, size: {jsonAsset.text.Length} bytes");
                     showData = JsonConvert.DeserializeObject<ShowData>(jsonAsset.text);
-                    Debug.Log($"Show data loaded successfully: {showData.Config.Name} with {showData.Episodes.Count} episodes");
+                    Debug.Log($"Show data loaded successfully: {showData.Config.name} with {showData.Episodes.Count} episodes");
+                    
+                    // Log episode details
+                    for (int i = 0; i < showData.Episodes.Count; i++)
+                    {
+                        var episode = showData.Episodes[i];
+                        Debug.Log($"Episode {i}: id = '{episode.id}', name = '{episode.name}', scenes = {episode.scenes?.Count ?? 0}");
+                    }
                 }
                 else
                 {
@@ -88,11 +108,21 @@ namespace ShowRunner
                     string absolutePath = Path.Combine(Application.dataPath, "Resources", episodesRootPath, showFileName);
                     // Normalize path separators to forward slashes for consistency
                     absolutePath = absolutePath.Replace(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar);
+                    Debug.Log($"LoadShowData: Looking for JSON at absolute path: {absolutePath}");
+                    
                     if (File.Exists(absolutePath))
                     {
                         string jsonContent = File.ReadAllText(absolutePath);
+                        Debug.Log($"LoadShowData: Found JSON file: {absolutePath}, size: {jsonContent.Length} bytes");
                         showData = JsonConvert.DeserializeObject<ShowData>(jsonContent);
-                        Debug.Log($"Show data loaded from file system: {showData.Config.Name} with {showData.Episodes.Count} episodes");
+                        Debug.Log($"Show data loaded from file system: {showData.Config.name} with {showData.Episodes.Count} episodes");
+                        
+                        // Log episode details
+                        for (int i = 0; i < showData.Episodes.Count; i++)
+                        {
+                            var episode = showData.Episodes[i];
+                            Debug.Log($"Episode {i}: id = '{episode.id}', name = '{episode.name}', scenes = {episode.scenes?.Count ?? 0}");
+                        }
                     }
                     else
                     {
@@ -103,6 +133,7 @@ namespace ShowRunner
             catch (Exception ex)
             {
                 Debug.LogError($"Error loading show data: {ex.Message}");
+                Debug.LogError($"Stack trace: {ex.StackTrace}");
             }
         }
 
@@ -122,10 +153,10 @@ namespace ShowRunner
             // Count total files first
             foreach (var episode in showData.Episodes)
             {
-                for (int sceneIndex = 0; sceneIndex < episode.Scenes.Count; sceneIndex++)
+                for (int sceneIndex = 0; sceneIndex < episode.scenes.Count; sceneIndex++)
                 {
-                    var scene = episode.Scenes[sceneIndex];
-                    totalFiles += scene.Dialogue.Count;
+                    var scene = episode.scenes[sceneIndex];
+                    totalFiles += scene.dialogue.Count;
                 }
             }
 
@@ -134,28 +165,28 @@ namespace ShowRunner
             // Now preload the files
             foreach (var episode in showData.Episodes)
             {
-                for (int sceneIndex = 0; sceneIndex < episode.Scenes.Count; sceneIndex++)
+                for (int sceneIndex = 0; sceneIndex < episode.scenes.Count; sceneIndex++)
                 {
-                    var scene = episode.Scenes[sceneIndex];
+                    var scene = episode.scenes[sceneIndex];
                     
-                    for (int dialogueIndex = 0; dialogueIndex < scene.Dialogue.Count; dialogueIndex++)
+                    for (int dialogueIndex = 0; dialogueIndex < scene.dialogue.Count; dialogueIndex++)
                     {
                         // Construct the audio file path and key
-                        string audioFileName = $"{episode.Id}_{sceneIndex + 1}_{dialogueIndex + 1}.mp3";
-                        string audioKey = $"{episode.Id}_{sceneIndex + 1}_{dialogueIndex + 1}";
+                        string audioFileName = $"{episode.id}_{sceneIndex + 1}_{dialogueIndex + 1}.mp3";
+                        string audioKey = $"{episode.id}_{sceneIndex + 1}_{dialogueIndex + 1}";
                         
                         // Try loading from Resources first
-                        string resourcePath = $"{episodesRootPath}/{episode.Id}/audio/{audioFileName}".Replace(".mp3", "");
+                        string resourcePath = $"{episodesRootPath}/{episode.id}/audio/{audioFileName}".Replace(".mp3", "");
                         AudioClip clip = Resources.Load<AudioClip>(resourcePath);
                         
                         if (clip == null)
                         {
                             // Try loading directly from Resources folder on disk if not in Resources.Load
-                            string filePath = Path.Combine(Application.dataPath, "Resources", episodesRootPath, episode.Id, "audio", audioFileName);
+                            string filePath = Path.Combine(Application.dataPath, "Resources", episodesRootPath, episode.id, "audio", audioFileName);
                             if (File.Exists(filePath))
                             {
                                 // Use Unity's audio loading API for files in Assets folder
-                                string assetPath = $"Assets/Resources/{episodesRootPath}/{episode.Id}/audio/{audioFileName}";
+                                string assetPath = $"Assets/Resources/{episodesRootPath}/{episode.id}/audio/{audioFileName}";
                                 #if UNITY_EDITOR
                                 clip = UnityEditor.AssetDatabase.LoadAssetAtPath<AudioClip>(assetPath);
                                 #endif
@@ -184,19 +215,51 @@ namespace ShowRunner
             Debug.Log($"Audio preload complete. Loaded {loadedFiles}/{totalFiles} files.");
         }
 
-        public void SelectEpisode(int episodeIndex)
+        /// <summary>
+        /// Handles the selection of an episode from the dropdown.
+        /// Updates UI state and prepares for episode playback.
+        /// </summary>
+        /// <param name="index">Index of the selected episode in the dropdown</param>
+        public void SelectEpisode(int index)
         {
-            if (showData != null && showData.Episodes != null && episodeIndex >= 0 && episodeIndex < showData.Episodes.Count)
+            Debug.Log($"SelectEpisode: Selecting episode at index {index}");
+            
+            if (showData != null && showData.Episodes != null)
             {
-                currentEpisode = showData.Episodes[episodeIndex];
-                currentSceneIndex = -1;
-                currentDialogueIndex = -1;
-                playbackState = "init";
-                Debug.Log($"Selected episode: {currentEpisode.Title} (ID: {currentEpisode.Id})");
+                Debug.Log($"SelectEpisode: Show data has {showData.Episodes.Count} episodes");
+                
+                if (index >= 0 && index < showData.Episodes.Count)
+                {
+                    currentEpisode = showData.Episodes[index];
+                    currentSceneIndex = -1;
+                    currentDialogueIndex = -1;
+                    playbackState = "init";
+                    
+                    Debug.Log($"SelectEpisode: Selected episode: id = '{currentEpisode.id}', name = '{currentEpisode.name}'");
+                    
+                    // Verify the episode data
+                    if (string.IsNullOrEmpty(currentEpisode.name))
+                    {
+                        Debug.LogWarning($"SelectEpisode: Episode at index {index} has an empty name");
+                    }
+                    
+                    if (currentEpisode.scenes == null || currentEpisode.scenes.Count == 0)
+                    {
+                        Debug.LogWarning($"SelectEpisode: Episode at index {index} has no scenes");
+                    }
+                    else
+                    {
+                        Debug.Log($"SelectEpisode: Episode has {currentEpisode.scenes.Count} scenes");
+                    }
+                }
+                else
+                {
+                    Debug.LogError($"SelectEpisode: Invalid episode index: {index}. Valid range: 0-{showData.Episodes.Count - 1}");
+                }
             }
             else
             {
-                Debug.LogError($"Invalid episode index: {episodeIndex}");
+                Debug.LogError("SelectEpisode: Show data is null or has no episodes. Call LoadShowData() first.");
             }
         }
 
@@ -217,16 +280,16 @@ namespace ShowRunner
 
                 case "episode-loaded":
                     currentSceneIndex++;
-                    if (currentSceneIndex < currentEpisode.Scenes.Count)
+                    if (currentSceneIndex < currentEpisode.scenes.Count)
                     {
-                        var scene = currentEpisode.Scenes[currentSceneIndex];
-                        Debug.Log($"Loading scene {currentSceneIndex + 1}: {scene.Location}");
+                        var scene = currentEpisode.scenes[currentSceneIndex];
+                        Debug.Log($"Loading scene {currentSceneIndex + 1}: {scene.location}");
                         
                         // Create a prepareScene event
                         EventData sceneEvent = new EventData
                         {
                             type = "prepareScene",
-                            location = scene.Location,
+                            location = scene.location,
                             timestamp = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds()
                         };
                         
@@ -243,23 +306,23 @@ namespace ShowRunner
 
                 case "scene-loaded":
                     currentDialogueIndex++;
-                    var currentScene = currentEpisode.Scenes[currentSceneIndex];
+                    var currentScene = currentEpisode.scenes[currentSceneIndex];
                     
-                    if (currentDialogueIndex < currentScene.Dialogue.Count)
+                    if (currentDialogueIndex < currentScene.dialogue.Count)
                     {
-                        var dialogue = currentScene.Dialogue[currentDialogueIndex];
-                        Debug.Log($"{dialogue.Actor}: \"{dialogue.Line}\"");
+                        var dialogue = currentScene.dialogue[currentDialogueIndex];
+                        Debug.Log($"{dialogue.actor}: \"{dialogue.line}\"");
                         
                         // Create a speak event
                         EventData speakEvent = new EventData
                         {
                             type = "speak",
-                            actor = dialogue.Actor,
-                            line = dialogue.Line,
-                            action = dialogue.Action ?? "normal",
+                            actor = dialogue.actor,
+                            line = dialogue.line,
+                            action = dialogue.action ?? "normal",
                             timestamp = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds(),
                             // Add episode ID and scene/dialogue numbers for reference
-                            episode = currentEpisode.Id,
+                            episode = currentEpisode.id,
                             additionalData = $"scene:{currentSceneIndex + 1},dialogue:{currentDialogueIndex + 1}"
                         };
                         
@@ -349,7 +412,7 @@ namespace ShowRunner
         private IEnumerator PlayDialogueAudio(EventData speakEvent)
         {
             // Get the audio clip key
-            string audioKey = $"{currentEpisode.Id}_{currentSceneIndex + 1}_{currentDialogueIndex + 1}";
+            string audioKey = $"{currentEpisode.id}_{currentSceneIndex + 1}_{currentDialogueIndex + 1}";
             AudioClip dialogueClip = null;
             
             // Try to get from cache first
@@ -360,17 +423,17 @@ namespace ShowRunner
             else
             {
                 // Try loading from Resources 
-                string resourcePath = $"{episodesRootPath}/{currentEpisode.Id}/audio/{currentEpisode.Id}_{currentSceneIndex + 1}_{currentDialogueIndex + 1}".Replace(".mp3", "");
+                string resourcePath = $"{episodesRootPath}/{currentEpisode.id}/audio/{currentEpisode.id}_{currentSceneIndex + 1}_{currentDialogueIndex + 1}".Replace(".mp3", "");
                 dialogueClip = Resources.Load<AudioClip>(resourcePath);
                 
                 if (dialogueClip == null)
                 {
                     // Try loading from disk Resources folder if not in Resources.Load
-                    string filePath = Path.Combine(Application.dataPath, "Resources", episodesRootPath, currentEpisode.Id, "audio", $"{currentEpisode.Id}_{currentSceneIndex + 1}_{currentDialogueIndex + 1}.mp3");
+                    string filePath = Path.Combine(Application.dataPath, "Resources", episodesRootPath, currentEpisode.id, "audio", $"{currentEpisode.id}_{currentSceneIndex + 1}_{currentDialogueIndex + 1}.mp3");
                     if (File.Exists(filePath))
                     {
                         // Use Unity's audio loading API for files in Assets folder
-                        string assetPath = $"Assets/Resources/{episodesRootPath}/{currentEpisode.Id}/audio/{currentEpisode.Id}_{currentSceneIndex + 1}_{currentDialogueIndex + 1}.mp3";
+                        string assetPath = $"Assets/Resources/{episodesRootPath}/{currentEpisode.id}/audio/{currentEpisode.id}_{currentSceneIndex + 1}_{currentDialogueIndex + 1}.mp3";
                         #if UNITY_EDITOR
                         dialogueClip = UnityEditor.AssetDatabase.LoadAssetAtPath<AudioClip>(assetPath);
                         #endif
@@ -424,7 +487,25 @@ namespace ShowRunner
         // Utility functions for UI
         public string GetCurrentEpisodeTitle()
         {
-            return currentEpisode?.Title ?? "No Episode Selected";
+            Debug.Log("GetCurrentEpisodeTitle called");
+            
+            if (currentEpisode == null)
+            {
+                Debug.LogWarning("GetCurrentEpisodeTitle: currentEpisode is null");
+                return "No Episode Selected";
+            }
+            
+            Debug.Log($"GetCurrentEpisodeTitle: currentEpisode.id = '{currentEpisode.id}'");
+            Debug.Log($"GetCurrentEpisodeTitle: currentEpisode.name = '{currentEpisode.name}'");
+            
+            if (string.IsNullOrEmpty(currentEpisode.name))
+            {
+                Debug.LogWarning("GetCurrentEpisodeTitle: currentEpisode.name is null or empty, using id instead");
+                return currentEpisode.id;
+            }
+            
+            Debug.Log($"GetCurrentEpisodeTitle: Returning name '{currentEpisode.name}' for episode id {currentEpisode.id}");
+            return currentEpisode.name;
         }
         
         public int GetTotalEpisodeCount()
@@ -439,7 +520,8 @@ namespace ShowRunner
             {
                 foreach (var episode in showData.Episodes)
                 {
-                    titles.Add($"{episode.Id}: {episode.Title}");
+                    string name = string.IsNullOrEmpty(episode.name) ? episode.id : episode.name;
+                    titles.Add($"{episode.id}: {name}");
                 }
             }
             return titles;
@@ -470,6 +552,28 @@ namespace ShowRunner
         public void SetManualMode(bool manual)
         {
             manualMode = manual;
+        }
+
+        /// <summary>
+        /// Creates and sends a scene preparation event to the EventProcessor.
+        /// This triggers the scene loading and preparation process.
+        /// </summary>
+        /// <param name="sceneName">Name of the scene to prepare</param>
+        private void PrepareScene(string sceneName)
+        {
+            // ... existing code ...
+        }
+
+        /// <summary>
+        /// Creates and sends a speak event to the EventProcessor.
+        /// This triggers character dialogue and animations.
+        /// </summary>
+        /// <param name="actor">Name of the speaking character</param>
+        /// <param name="line">Dialogue line to speak</param>
+        /// <param name="action">Action to perform while speaking</param>
+        private void SendSpeakEvent(string actor, string line, string action)
+        {
+            // ... existing code ...
         }
     }
 } 
