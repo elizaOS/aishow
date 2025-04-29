@@ -201,19 +201,11 @@ https://www.youtube.com/watch?v=eLJt2i02mkI&t=2s
 
 ## Framework 
 - The 3D visualization framework uses **Unity** for rendering.
-- Sithlords AI showrunner framework runs on **client-side JavaScript** in a web browser. https://hackmd.io/@smsithlord/Hk7NOUrmke
-  - It sends **async calls** to handle:
-    - **Scene loading:** Includes location, list of actors, and named spawn points.
-      - The stage responds with a `loadSceneComplete` event once finished.
-    - **Dialogue lines:** Specifies the actor speaking and their line.
-      - A TTS system speaks the line and fires a `speakComplete` event after finishing.
-      -  **ElevenLabs** for voices
+- Sithlords AI showrunner generats a show and handles TTS currently
      
 ## Implementation
 
-The project has been refactored to use a more efficient and modular architecture. The new ShowRunner system replaces the previous polling-based approach with a direct event-driven system.
-
-### New ShowRunner System
+### ShowRunner System
 
 The ShowRunner system is a Unity-based framework that manages interactive shows, episodes, and scenes with a user-friendly interface. Key components include:
 
@@ -226,7 +218,7 @@ For detailed technical documentation on the ShowRunner system, see [ShowRunner.m
 
 ### Event Processing
 
-The system now uses a direct event-driven approach instead of polling:
+The system now uses a direct event-driven approach
 
 ```csharp
 public void ProcessEvent(EventData eventData)
@@ -304,7 +296,6 @@ Active development for the last two months, but In the last 2 weeks, we hit some
 ![image](https://github.com/user-attachments/assets/629363a3-412c-4f0f-8392-8a115a90b3a0)
 
 ## Things we can improve
-- The audio currently comes from the web browser, and to get the visemes working properly we need to design a system where the eleven labs audio gets fed into Unity, and then the show runs and processes the audio through an audio source. This will make the mouths more realistic but will require some refactoring and updating to the system flow.
 - The JSON aggregator can be improved, as sometimes it is working, and other times it fails. Currently https://github.com/bozp-pzob/ai-news/blob/main/json/daily.json is the source we are pulling from to generate scripts. 
 - Perhaps we can have the prompts updated to deliver more of the updates or longer episodes that can be edited down. As of now the ShowRunner scripts use AI to pick, and summarize these updates. Not all of them are considered. 
 - Look into adding "news interviews" or a way to include a new guest
@@ -312,7 +303,6 @@ Active development for the last two months, but In the last 2 weeks, we hit some
 - We can port the entire project to Unity HDRP to get better reflections and lighting
 - Get feedback from DAO for more feature requests
 - Can integrate Eliza into the show writing AI pipeline.
-- Can run a special prompt and `show-config` to go over how the entire system works from the AI perspective as a demo (using the tech)
 - Reach the core audience better by defining the audience and where to publish to. Currently we publish to youtube, but the community and DAO are not seeing the videos unless we tweet them.
 
 ## Next Steps  
@@ -324,7 +314,6 @@ Active development for the last two months, but In the last 2 weeks, we hit some
 6. **Timeline** - Decide the timeline of these projects, and frequency.
 
 ## Challenges  
-- **Technical Complexity** – Make a demo of how the Unity project works.
 - **Scalability** – Refactor code to be more scalable, and modularize code sections to be more reusable on different show formats.
 - **Recruitment** of possibly more Unity devs for Animations, Refactoring, or advanced features to increase iteration and development time.  
 
