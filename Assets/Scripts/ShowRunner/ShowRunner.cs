@@ -38,6 +38,9 @@ namespace ShowRunner
         [Tooltip("Assign each actor's AudioSource here to drive visemes.")]
         [SerializeField] private List<ActorAudioMapping> actorAudioMappings = new List<ActorAudioMapping>();
 
+        // Public static instance for Singleton pattern
+        public static ShowRunner Instance { get; private set; }
+
         // Dictionary to cache actor audio sources
         private Dictionary<string, AudioSource> actorAudioSources = new Dictionary<string, AudioSource>();
         
@@ -58,8 +61,20 @@ namespace ShowRunner
         // and ShowRunner has internally marked the episode as unloaded.
         public event Action OnLastDialogueComplete;
 
+        // Internal pause state (set by CommercialManager)
+        private bool isPaused = false;
+
         private void Awake()
         {
+            // Singleton pattern implementation
+            if (Instance != null && Instance != this)
+            {
+                Debug.LogWarning("Another instance of ShowRunner already exists. Destroying this one.");
+                Destroy(gameObject);
+                return;
+            }
+            Instance = this;
+
             if (defaultAudioSource == null)
             {
                 defaultAudioSource = gameObject.AddComponent<AudioSource>();
@@ -380,16 +395,16 @@ namespace ShowRunner
 
         public void NextStep()
         {
-            if (currentEpisode == null)
+            // Prevent advancing if paused or waiting for scene preparation
+            if (isPaused || waitingForScenePreparation)
             {
-                Debug.LogWarning("No episode selected. Please select an episode first.");
+                Debug.LogWarning($"NextStep called but ShowRunner is paused ({isPaused}) or waiting for scene prep ({waitingForScenePreparation}). Ignoring.");
                 return;
             }
 
-            // If waiting for scene preparation, don't proceed
-            if (waitingForScenePreparation)
+            if (currentEpisode == null)
             {
-                Debug.Log("Waiting for scene preparation to complete. Ignoring NextStep call.");
+                Debug.LogWarning("No episode selected. Please select an episode first.");
                 return;
             }
 
@@ -404,6 +419,20 @@ namespace ShowRunner
                     currentSceneIndex++;
                     if (currentSceneIndex < currentEpisode.scenes.Count)
                     {
+                        // --- Trigger Commercial Break Check ---
+                        // Check if commercials should play before preparing the next scene.
+                        // CommercialManager handles pausing/resuming the ShowRunner internally.
+                        if (CommercialManager.Instance != null)
+                        {
+                            CommercialManager.Instance.TriggerCommercialBreak();
+                        }
+                        else
+                        {
+                             Debug.LogWarning("CommercialManager instance not found. Cannot trigger commercial break check.");
+                        }
+                        // ---------------------------------------
+                        
+                        // Proceed with scene preparation
                         var scene = currentEpisode.scenes[currentSceneIndex];
                         Debug.Log($"Loading scene {currentSceneIndex + 1}: {scene.location}");
                         
@@ -576,6 +605,12 @@ namespace ShowRunner
         
         private IEnumerator PlayDialogueAudio(EventData speakEvent)
         {
+            // Wait indefinitely if paused
+            while (isPaused)
+            {
+                yield return null;
+            }
+            
             // Get the audio clip key
             string audioKey = $"{currentEpisode.id}_{currentSceneIndex + 1}_{currentDialogueIndex + 1}";
             AudioClip dialogueClip = null;
@@ -708,9 +743,15 @@ namespace ShowRunner
                 playbackState = "scene-loaded";
                 Debug.Log("ShowRunner state updated to 'scene-loaded' after scene preparation completed.");
                 
-                if (!manualMode)
+                // Now check if we should resume the ShowRunner
+                // Resume only if we were paused waiting for a commercial break AND that break is now finished
+                if (isPaused)
                 {
-                    NextStep();
+                     // Scene is ready and we weren't paused for commercials, proceed if auto-play
+                    if (!manualMode)
+                    {
+                        NextStep();
+                    }
                 }
             }
             else
@@ -776,6 +817,48 @@ namespace ShowRunner
         public string GetLoadedShowFileName()
         {
             return loadedShowFileName;
+        }
+
+        // --- Pause/Resume Functionality ---
+
+        /// <summary>
+        /// Pauses the ShowRunner's internal state progression.
+        /// Prevents NextStep() from advancing and causes waiting coroutines to halt.
+        /// Does NOT change Time.timeScale.
+        /// </summary>
+        public void PauseShow()
+        {
+            if (!isPaused)
+            {
+                isPaused = true;
+                // Time.timeScale = 0f; // REMOVED: Don't pause global time
+                // TODO: Consider pausing specific audio sources if necessary (e.g., background music)
+                Debug.Log("ShowRunner: Internal state PAUSED");
+            }
+            else
+            {
+                Debug.LogWarning("ShowRunner: PauseShow called but already paused.");
+            }
+        }
+
+        /// <summary>
+        /// Resumes the ShowRunner's internal state progression.
+        /// Allows NextStep() to advance and waiting coroutines to continue.
+        /// Does NOT change Time.timeScale.
+        /// </summary>
+        public void ResumeShow()
+        {
+            if (isPaused)
+            {
+                isPaused = false;
+                // Time.timeScale = 1f; // REMOVED: Don't resume global time
+                 // TODO: Consider resuming specific audio sources if necessary
+                Debug.Log("ShowRunner: Internal state RESUMED");
+            }
+             else
+            {
+                 Debug.LogWarning("ShowRunner: ResumeShow called but not paused.");
+            }
         }
     }
 } 
