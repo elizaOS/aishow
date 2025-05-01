@@ -51,6 +51,20 @@ Container class for UI elements and state management.
 - Coordinating UI updates
 - Managing UI visibility
 
+### 5. CommercialManager (New)
+Handles the playback of video commercials during scene transitions.
+
+**Key Responsibilities:**
+- Detecting scene changes via ShowRunner.
+- Pausing ShowRunner's internal state during playback.
+- Playing sequences of video clips (commercials).
+- Managing configurable commercial breaks (order, skipping).
+- Implementing a fade-to-black transition between commercials and the next scene.
+
+**Main Methods:**
+- `TriggerCommercialBreak()`: Called by ShowRunner to initiate a commercial check.
+- `SkipCurrentCommercials()`: Allows manually stopping the current break.
+
 ## Data Flow
 
 1. **Show Loading:**
@@ -60,7 +74,7 @@ Container class for UI elements and state management.
 
 2. **Episode Playback:**
    ```
-   User Selection -> ShowRunner -> Scene Preparation -> Dialogue Processing
+   User Selection -> ShowRunner -> [Commercial Check] -> Scene Preparation -> Dialogue Processing
    ```
 
 3. **Event Processing:**
@@ -170,6 +184,7 @@ Container class for UI elements and state management.
 1. **Potential Enhancements:**
    - Additional UI features
    - More event types
+   - Dedicated Outro Sequence manager (distinct from commercial transitions)
    - Enhanced error handling
    - Performance optimizations
 
@@ -294,6 +309,13 @@ Active development for the last two months, but In the last 2 weeks, we hit some
 - Added mediaTV, which takes an image URL and loads it onto the TV when the actor is labeled "tv"
 - Added Oculus Lip Sync package and tested the mic to map visemes (works), awaiting to do TTS inside Unity using an Audio Source to feed the Lip Sync
 - **Major Architecture Update**: Refactored the system to use a more efficient ShowRunner architecture, replacing the polling-based approach with a direct event-driven system for better performance and maintainability
+
+**Commercial & Transition System**: 
+  - Added `CommercialManager` to handle playing video commercials between scenes.
+  - Implemented pausing/resuming of `ShowRunner` state (not `Time.timeScale`) during breaks.
+  - Added configurable commercial breaks with looping and skipping options.
+  - Included a configurable fade-to-black screen (`CanvasGroup` based) with hold time between commercials and the next scene.
+  - Implemented cross-fade logic: Fade-to-black overlaps the end of the last commercial, `ShowRunner` resumes immediately after video ends to allow scene prep during fade/hold.
 
 ![image](https://github.com/user-attachments/assets/629363a3-412c-4f0f-8392-8a115a90b3a0)
 

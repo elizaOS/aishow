@@ -20,6 +20,8 @@ The central controller class that orchestrates the entire show experience.
 - `SelectEpisode(int index)`: Handles episode selection
 - `PrepareScene(string sceneName)`: Manages scene preparation
 - `SendSpeakEvent(string actor, string line, string action)`: Controls dialogue
+- `PauseShow()`: Pauses the ShowRunner's internal state machine (used by CommercialManager). Does NOT affect Time.timeScale.
+- `ResumeShow()`: Resumes the ShowRunner's internal state machine (used by CommercialManager).
 
 ### 2. ShowData
 Data structures for managing show content.
@@ -43,11 +45,8 @@ Manages the user interface and user interactions.
 ### 4. ShowRunnerUIContainer
 Container class for UI elements and state management.
 
-**Responsibilities:**
-- Managing UI element references
-- Handling UI state
-- Coordinating UI updates
-- Managing UI visibility
+### 5. CommercialManager (New)
+Handles playback of video commercials between scenes. Pauses/Resumes ShowRunner state.
 
 ## Data Flow
 
@@ -58,7 +57,7 @@ Container class for UI elements and state management.
 
 2. **Episode Playback:**
    ```
-   User Selection -> ShowRunner -> Scene Preparation -> Dialogue Processing
+   User Selection -> ShowRunner -> [Commercial Check & Pause] -> Scene Preparation -> [Commercial Fade Out & Resume] -> Dialogue Processing
    ```
 
 3. **Event Processing:**
@@ -78,7 +77,8 @@ Container class for UI elements and state management.
 2. **Components:**
    - `ScenePreparationManager`: Handles scene loading
    - `EventProcessor`: Processes scene events
-   - `IntroSequenceManager`: Manages transitions
+   - `IntroSequenceManager`: Manages intro transitions
+   - `CommercialManager`: Manages commercial transitions between scenes
 
 ## UI System
 
@@ -94,6 +94,7 @@ Container class for UI elements and state management.
    - Loading state
    - Playing state
    - Paused state
+   - Commercial Break state (ShowRunner internally paused)
 
 ## Event System
 
@@ -114,6 +115,7 @@ Container class for UI elements and state management.
    - UI Container
    - Event Processor
    - Scene Preparation Manager
+   - Commercial Manager (and associated UI/Video components)
 
 2. **JSON Structure:**
    ```json
