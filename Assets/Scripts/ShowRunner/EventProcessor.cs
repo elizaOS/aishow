@@ -7,19 +7,19 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 
 // Ensure that a ScenePreparationManager is available on this GameObject
-[RequireComponent(typeof(ScenePreparationManager))]
+[RequireComponent(typeof(ScenePreperationManager))]
 public class EventProcessor : MonoBehaviour
 {
-    private ScenePreparationManager scenePreparationManager;
+    private ScenePreperationManager scenePreparationManager;
     
     private void Awake()
     {
         // Attempt to get the ScenePreparationManager on the same GameObject
-        scenePreparationManager = GetComponent<ScenePreparationManager>();
+        scenePreparationManager = GetComponent<ScenePreperationManager>();
         // Fallback to finding it in the scene if not attached
         if (scenePreparationManager == null)
         {
-            scenePreparationManager = FindObjectOfType<ScenePreparationManager>();
+            scenePreparationManager = FindObjectOfType<ScenePreperationManager>();
             if (scenePreparationManager == null)
             {
                 Debug.LogError("ScenePreparationManager not found! The EventProcessor won't function properly.");
@@ -61,7 +61,11 @@ public class EventProcessor : MonoBehaviour
     private void HandlePrepareScene(EventData eventData)
     {
         Debug.Log($"Handling prepareScene event for location: {eventData.location}");
-        scenePreparationManager.RequestScenePreparation(eventData.location);
+        // Previously just requested preparation but nobody was listening to the event
+        // scenePreparationManager.RequestScenePreparation(eventData.location);
+        
+        // Directly call HandlePrepareScene to start the intro sequence and scene loading
+        scenePreparationManager.HandlePrepareScene(eventData.location);
     }
 
    private void HandleSpeak(EventData eventData)

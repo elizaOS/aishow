@@ -21,6 +21,7 @@ namespace ShowRunner
         [Header("References")]
         [SerializeField] private EventProcessor eventProcessor;
         [SerializeField] private AudioSource defaultAudioSource;
+        [SerializeField] private ScenePreperationManager scenePreparationManager;
 
         [Header("Playback Settings")]
         [SerializeField, Tooltip("If enabled, steps only when UI triggers NextStep; disable for full auto-play.")]
@@ -49,6 +50,10 @@ namespace ShowRunner
         private string playbackState = "init";
         private Dictionary<string, AudioClip> audioCache = new Dictionary<string, AudioClip>();
 
+        // State to track if we're waiting for scene preparation
+        private bool waitingForScenePreparation = false;
+        private string pendingSceneName = null;
+
         private void Awake()
         {
             if (defaultAudioSource == null)
@@ -62,6 +67,20 @@ namespace ShowRunner
                 if (eventProcessor == null)
                 {
                     Debug.LogError("EventProcessor not found! The ShowRunner won't function properly.");
+                }
+            }
+            
+            if (scenePreparationManager == null)
+            {
+                scenePreparationManager = FindObjectOfType<ScenePreperationManager>();
+                if (scenePreparationManager == null)
+                {
+                    Debug.LogError("ScenePreparationManager not found! The ShowRunner won't function properly.");
+                }
+                else
+                {
+                    // Subscribe to the scene preparation complete event
+                    scenePreparationManager.OnScenePreparationComplete += OnScenePreparationComplete;
                 }
             }
         }
@@ -358,6 +377,13 @@ namespace ShowRunner
                 return;
             }
 
+            // If waiting for scene preparation, don't proceed
+            if (waitingForScenePreparation)
+            {
+                Debug.Log("Waiting for scene preparation to complete. Ignoring NextStep call.");
+                return;
+            }
+
             switch (playbackState)
             {
                 case "init":
@@ -380,15 +406,26 @@ namespace ShowRunner
                             timestamp = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds()
                         };
                         
+                        // Set waiting state before processing the event
+                        waitingForScenePreparation = true;
+                        pendingSceneName = scene.location;
+                        playbackState = "scene-preparing";
+                        
                         eventProcessor.ProcessEvent(sceneEvent);
                         currentDialogueIndex = -1;
-                        playbackState = "scene-loaded";
+                        
+                        // Note: we'll transition to scene-loaded when OnScenePreparationComplete is called
                     }
                     else
                     {
                         Debug.Log("Episode completed");
                         playbackState = "episode-unloaded";
                     }
+                    break;
+
+                case "scene-preparing":
+                    // Still preparing scene - we'll be notified when it's done
+                    Debug.Log("Scene is still being prepared. Waiting...");
                     break;
 
                 case "scene-loaded":
@@ -642,9 +679,38 @@ namespace ShowRunner
             return showData;
         }
 
+        // Handle scene preparation complete event
+        private void OnScenePreparationComplete(string sceneName)
+        {
+            Debug.Log($"Scene preparation completed for: {sceneName}");
+            
+            // Only proceed if we were waiting for this scene
+            if (waitingForScenePreparation && sceneName == pendingSceneName)
+            {
+                waitingForScenePreparation = false;
+                pendingSceneName = null;
+                
+                // Transition to scene-loaded state now that preparation is complete
+                playbackState = "scene-loaded";
+                Debug.Log("ShowRunner state updated to 'scene-loaded' after scene preparation completed");
+                
+                // Auto-advance if not in manual stepping mode
+                if (!manualMode)
+                {
+                    NextStep();
+                }
+            }
+        }
+
         // Clear all actor audio sources when the component is destroyed
         private void OnDestroy()
         {
+            if (scenePreparationManager != null)
+            {
+                // Unsubscribe to prevent memory leaks
+                scenePreparationManager.OnScenePreparationComplete -= OnScenePreparationComplete;
+            }
+            
             foreach (var actorAudioSource in actorAudioSources.Values)
             {
                 if (actorAudioSource != null && actorAudioSource != defaultAudioSource)

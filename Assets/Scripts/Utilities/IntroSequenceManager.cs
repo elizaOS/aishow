@@ -142,7 +142,7 @@ public class IntroSequenceManager : MonoBehaviour
                 else
                 {
                     Debug.LogWarning($"No video or animation detected for step {currentStepIndex}. Defaulting to 3-second wait.");
-                    yield return new WaitForSeconds(3f);
+                    yield return new WaitForSeconds(5f);
                 }
             }
 

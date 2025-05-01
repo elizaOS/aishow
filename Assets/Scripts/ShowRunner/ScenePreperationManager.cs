@@ -3,12 +3,14 @@ using System.Collections;
 using UnityEngine.SceneManagement;
 using System;
 
-public class ScenePreparationManager : MonoBehaviour
+public class ScenePreperationManager : MonoBehaviour
 {
     public IntroSequenceManager introSequenceManagerRef;
 
     // Event to signal when a scene should be prepared
     public event Action<string> OnScenePrepareRequested;
+    // Event to signal when a scene preparation is complete
+    public event Action<string> OnScenePreparationComplete;
 
     private void Awake()
     {
@@ -35,31 +37,34 @@ public class ScenePreparationManager : MonoBehaviour
         // Check if the scene is already loaded
         if (SceneManager.GetActiveScene().name == sceneName)
         {
-            Debug.Log($"Scene '{sceneName}' is already loaded. Playing intro sequence.");
-            StartCoroutine(PlayIntroSequence(sceneName));
+            Debug.Log($"Scene '{sceneName}' is already loaded. Playing intro sequence only.");
+            StartCoroutine(PrepareSceneWithIntro(sceneName, false));
             return;
         }
 
         // Otherwise, proceed with the normal scene preparation process
-        StartCoroutine(PrepareScene(sceneName));
+        StartCoroutine(PrepareSceneWithIntro(sceneName, true));
     }
 
-    private IEnumerator PlayIntroSequence(string sceneName)
+    // Combined preparation method that handles both intro and scene loading in proper sequence
+    private IEnumerator PrepareSceneWithIntro(string sceneName, bool loadScene)
     {
-        // Play the intro sequence
+        Debug.Log($"Starting intro sequence for scene: {sceneName}");
+        
+        // First, play the intro sequence
         yield return StartCoroutine(introSequenceManagerRef.StartIntroSequence());
+        
         Debug.Log($"Intro sequence completed for scene: {sceneName}");
-    }
-
-    private IEnumerator PrepareScene(string sceneName)
-    {
-        // Play the intro sequence first
-        yield return StartCoroutine(introSequenceManagerRef.StartIntroSequence());
         
-        // Then load the scene
-        yield return StartCoroutine(LoadSceneAsync(sceneName));
+        // If we need to load a scene, do it after the intro
+        if (loadScene)
+        {
+            yield return StartCoroutine(LoadSceneAsync(sceneName));
+        }
         
+        // Signal that preparation is complete
         Debug.Log($"Scene preparation completed for: {sceneName}");
+        OnScenePreparationComplete?.Invoke(sceneName);
     }
 
     // Method to load a scene asynchronously and check when it is finished
