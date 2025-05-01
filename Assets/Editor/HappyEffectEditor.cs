@@ -1,5 +1,6 @@
 using UnityEditor;
 using UnityEngine;
+using ShowRunner;
 
 [CustomEditor(typeof(HappyEffect))]
 public class HappyEffectEditor : Editor
