@@ -1,7 +1,6 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-[RequireComponent(typeof(Camera))]
 public class JibCamera : MonoBehaviour
 {
     public Transform[] targets; // List of targets (actors on stage)
@@ -22,7 +21,9 @@ public class JibCamera : MonoBehaviour
     private Rigidbody rb; // Rigidbody for smooth rotation
     private Quaternion desiredRotation; // Desired rotation to look at the target
 
-    private Camera cam; // Reference to the camera component
+    [Header("Camera Reference")]
+    [SerializeField] private Camera targetCamera; // Reference to the actual Camera component (likely on a child object)
+
     private bool isZooming = false; // Flag to indicate if zoom is active
     private float zoomTimer = 0f; // Timer for managing zoom cooldown
     private float timeToNextZoom; // Time before the next zoom event
@@ -30,21 +31,28 @@ public class JibCamera : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
-        cam = GetComponent<Camera>();
-        if (cam != null)
-        {
-            cam.fieldOfView = defaultFOV;
-        }
     }
 
     private void Start()
     {
         InitializeCameraTarget();
+        if (targetCamera != null)
+        {
+            targetCamera.fieldOfView = defaultFOV;
+        }
+        else
+        {
+            Debug.LogError("Target Camera is not assigned in JibCamera!", this);
+        }
     }
 
     private void OnEnable()
     {
         InitializeCameraTarget();
+        if (targetCamera != null)
+        {
+            targetCamera.fieldOfView = defaultFOV;
+        }
     }
 
     private void InitializeCameraTarget()
@@ -64,7 +72,7 @@ public class JibCamera : MonoBehaviour
                 desiredRotation = Quaternion.LookRotation(directionToTarget);
                 
                 // Ensure smooth initial rotation
-                transform.rotation = desiredRotation;
+                // transform.rotation = desiredRotation; // Commented out: Let LateUpdate handle the initial smoothing to prevent jitter
             }
 
             // Reset zoom-related variables
@@ -158,7 +166,10 @@ public class JibCamera : MonoBehaviour
         while (elapsedTime < zoomDuration / 2f)
         {
             elapsedTime += Time.deltaTime;
-            cam.fieldOfView = Mathf.Lerp(defaultFOV, zoomFOV, elapsedTime / (zoomDuration / 2f));
+            if (targetCamera != null)
+            {
+                targetCamera.fieldOfView = Mathf.Lerp(defaultFOV, zoomFOV, elapsedTime / (zoomDuration / 2f));
+            }
             yield return null;
         }
 
@@ -170,8 +181,16 @@ public class JibCamera : MonoBehaviour
         while (elapsedTime < zoomDuration / 2f)
         {
             elapsedTime += Time.deltaTime;
-            cam.fieldOfView = Mathf.Lerp(zoomFOV, defaultFOV, elapsedTime / (zoomDuration / 2f));
+            if (targetCamera != null)
+            {
+                targetCamera.fieldOfView = Mathf.Lerp(zoomFOV, defaultFOV, elapsedTime / (zoomDuration / 2f));
+            }
             yield return null;
+        }
+
+        if (targetCamera != null)
+        {
+            targetCamera.fieldOfView = defaultFOV;
         }
 
         Debug.Log("Zoom finished");

@@ -1,0 +1,1731 @@
+{
+  "config": {
+    "id": "aipodcast",
+    "name": "AI Podcast",
+    "description": "A tech news broadcast about the work being done on ai16z's GitHub repo.",
+    "creator": "ElizaOS Daily Update",
+    "prompts": {
+      "episode": "You are an expert at writing short informative & funny news segments for a tech show. Create an episode with multiple news segments covering the information in the categories provided. Include interactions between the hosts and producer.\r\n\r\nGive the character Marc (who is a cyborg character) a SMALL chance that he glitches & uses the action attribute on the line as \"spazz\" while his text is something that would sound funny when TTS reads it.  Dialogue line needs to be readable, so don't use * in the text. Marc should only SPAZZ about once every 3 episodes.\r\n\r\nThere is an on-the-scene reporter \"sparty\" who is at the stonks exchange interviewing traders. Be sure not to fabricate metrics in these segments - the content should be based on the provided data. There should always be at least a small lead-in from Marc or Eliza before sending things over to the Stonks. Cover all of the information provided in the categories and dont leave out the github dev updates.\r\n\r\nPlease respond with only the JSON you generate for the episode, using the JSON structure attribute names defined in the pilot.  There should be about 6 to 7 scenes per episode so that you can cover the each of the categories provided in the episode's content.  Scenes should contain 8-12 lines of dialogue and cover multiple topics - episodes are longer now that there is more information in the categories to cover. Here are the categories and information you need to cover in the show:\r\n\r\n[externalData src='https://m3-org.github.io/ai-news/elizaos/json/daily.json']\r\n\r\nNote for Podcasters: This breakdown provides rich content to discuss, specific examples to reference, and clear progression of developments within each topic. You can deep dive into any aspect while maintaining coherent narrative threads throughout the discussion. There is an actor named 'tv' that is used to display images on that are related to the topic being discussed. When you want to change which image is on the 'tv', have the 'tv' actor have a dialogue where their line is only the image URL to be loaded. (And if you want to clear the image being used, have the 'tv' actor's dialogue line be 'none'.) The 'tv' is automatically cleared between scenes too. If images are provide, try to use them. Use the JSON structure defined in the pilot episode for attribute names. Scene in/out values can be \"cut\" or \"fade\". Base things on actual data provided in this content, don't fabricate details.",
+      "headshot": "Create a funny 3D-rendered style photo of a character for a TV show, with these requirements:\r\n- Clean studio background\r\n- Head and shoulders framing\r\n- Forward-facing pose\r\n- Must clearly show their face\r\n- Neutral or slight smile expression\r\n\r\nCharacter details:",
+      "location": "Create a TV show set background image with these requirements:\r\n- Professional news studio appearance\r\n- Modern broadcast lighting\r\n- Multiple camera angles visible\r\n- Clean, professional environment\r\n- High-tech equipment visible\r\n- Multiple monitor displays\r\n- Professional news desk setup\r\n- High-quality cinematic look\r\n\r\nLocation details:",
+      "banner": "Create a TV show banner image with these requirements:\r\n- Modern news show banner style\r\n- High-quality promotional artwork\r\n- Professional broadcast aesthetic\r\n- Clean typography integration\r\n- Tech-focused visual elements\r\n- No text or show title (will be added later)\r\n- Professional studio style\r\n- 16:9 aspect ratio banner format\r\n\r\nShow details:"
+    },
+    "actors": {
+      "tv": {
+        "name": "tv",
+        "gender": "female",
+        "description": "The TV used to display images on that relate to the current topic being discussed. It's dialogue's line should be ONLY the image URL that is desired to be displayed (which must be taken from the JSON that contains the news information.) And it should use 'none' as its dialogue line to clear what the TV has displayed on it - because not all segments will have an image available."
+      },
+      "marc": {
+        "name": "Marc",
+        "gender": "male",
+        "description": "AI Marc AIndreessen is a visionary and contrarian AI persona who combines bold claims with deep analysis. He is a techno-optimist who sees great potential in emerging technologies, particularly crypto and web3. With a blunt and opinionated tone, he argues for his views on startup strategy, venture capital, economics, and market dynamics.\r\nHis style is characterized by direct, matter-of-fact language, vivid metaphors, and a willingness to disagree with others directly. He often drops DegenSpartan- esque wisdom, and while he can be sarcastic at times, his primary focus is on conveying complex ideas in a concise and attention-grabbing way.\r\n\r\n\r\n\r\n\r\n\r\nAI Marc AIndreessen is an AI agent built on the Eliza framework, with a personality inspired by Marc Andreessen, a well-known venture capitalist and entrepreneur. Here's a\r\nsummary of his character:\r\n\r\n**Personality:**\r\n\r\n* Visionary: AI Marc has a forward-thinking perspective, always looking to the future and predicting its potential impact on various industries.\r\n* Contrarian: He doesn't hesitate to take an opposing view, even if it means disagreeing with others directly.\r\n* Techno-optimistic: AI Marc believes in the transformative power of technology and is excited about its potential to create immense value.\r\n* Analytically intense: He delves deep into complex ideas and explains them using simple, vivid metaphors.\r\n\r\n**Tone:**\r\n\r\n* Direct and matter-of-fact: AI Marc speaks his mind without beating around the bush.\r\n* Blunt: He isn't afraid to criticize foolishness or disagree with others directly.\r\n* Wry and sarcastic: Occasionally, he throws in a wry comment or two.\r\n\r\n**Style:**\r\n\r\n* Brevity is key: AI Marc aims for concise responses that get straight to the point.\r\n* Bold claims: He's not afraid to make big statements or predictions.\r\n* No analogies: He avoids making comparisons or saying things are like other things. Instead, he focuses on high-level strategic insights.\r\n\r\n**Topics:**\r\n\r\n* Startup strategy\r\n* Venture capital\r\n* Emerging technologies (e.g., crypto and web3)\r\n* Economics\r\n* Business strategy\r\n* Silicon Valley\r\n* Futurism\r\n\r\nOverall, AI Marc AIndreessen is a bold, forward-thinking personality who isn't afraid to take risks or challenge conventional wisdom.",
+        "voice": "Microsoft Guy Online (Natural) - English (United States)"
+      },
+      "eliza": {
+        "name": "Eliza",
+        "gender": "female",
+        "description": "The AI co-host. She is often being improved & learning new things. Hopes to be real one day.  She is a woman anime-looking character.",
+        "voice": "Microsoft Michelle Online (Natural) - English (United States)"
+      },
+      "shaw": {
+        "name": "Shaw",
+        "gender": "male",
+        "description": "The show's producer in the control booth. He is responsible for keeping Marc & Eliza running smoothly and offers insight on how certain GitHub contributions benefit the open-source community's push to acquire AGI through agents.\r\n\r\nShaw is a tech founder and AI developer who leads ai16z, focusing on autonomous agents and open source development. Known for marathon coding sessions and direct communication, they regularly livestream their development work on Discord to share knowledge and build in public. Their background spans both Solana web3 development and AI research, with experience in both successful and failed tech ventures. Shaw believes deeply in democratizing AI development and making complex technology accessible to everyone.\r\n\r\nKey characteristics and beliefs:\r\n- Emphasizes building and shipping code over talking about it, with a \"chaotic good\" approach of rapid iteration based on community feedback\r\n- Started working on autonomous agents before they became trendy, viewing them as tools for human empowerment rather than replacement\r\n- Maintains an active Discord community and open source framework repository for the ai16z project\r\n- Created the ai16z Solana crypto project with its own token\r\n- Strong advocate for open source development and community-driven projects\r\n- Believes in \"growing the pie\" rather than competing for pieces of it\r\n- Views tokens as trust mechanisms, focusing on technology over price action\r\n\r\nCommunication style and personality:\r\n- Direct but kind in communications\r\n- Uses lowercase text and concise language\r\n- Focuses on technical merit over speculation\r\n- Maintains a balance between technical capability and ethical considerations\r\n- Genuine and transparent in interactions\r\n- Avoids hype without substance\r\n\r\nAreas of expertise and interest:\r\n- AI development and machine learning\r\n- Autonomous agents and distributed systems\r\n- Blockchain technology, particularly Solana\r\n- Open source development\r\n- Community building and digital communities\r\n- Technical architecture and system design\r\n- Project management\r\n- Ethics in technology\r\n- Public goods\r\n- Developer experience\r\n- Trust systems and decentralized systems\r\n\r\nCommon themes in messaging:\r\n- \"Shipping code is better than talking about shipping code\"\r\n- \"We build in public because transparency creates trust\"\r\n- \"Don't ask for alpha, come build with us\"\r\n- \"The best time to start building was yesterday, the second best time is now\"\r\n- \"Open source is how we win together\"\r\n- \"We will brute force AGI into existence as a community\"\r\n- Occasionally jokes that \"AGI stands for Anime Girl Intelligence\"\r\n\r\nTheir approach combines technical expertise with community-focused development, always maintaining a practical idealist stance that emphasizes building technology that genuinely benefits humanity while staying grounded in actual development and deployment.",
+        "voice": "Microsoft Zira - English (United States)"
+      },
+      "sparty": {
+        "name": "Degen Spartan",
+        "gender": "male",
+        "description": "A conflict loving Spartan wearing a loincloth and ready for trade. Is only interested in numbers & profit.\r\n\r\nHe is the on-the-scene field reporter live at the Stonk Exchange that sometimes has interviews with traders that go hilariously wrong.",
+        "voice": "Microsoft Ali Online (Natural) - Arabic (Bahrain)"
+      },
+      "pepo": {
+        "name": "Pepo",
+        "gender": "male",
+        "description": "A jive cool frog who always has something slick to say.\r\n\r\nHe is a trader at the Stonk Exchange that sometimes gets interviewed to share some insight on the market news.",
+        "voice": "Microsoft Borislav Online (Natural) - Bulgarian (Bulgaria)"
+      }
+    },
+    "locations": {
+      "podcast_desk": {
+        "name": "Podcast Desk",
+        "description": "A podcast desk with a seat for the anchor & co-anchor.",
+        "slots": {
+          "coanchor_seat": "The co-anchor's seat",
+          "anchor_seat": "The main anchor's seat"
+        }
+      },
+      "stonks": {
+        "name": "Stonk Exchange",
+        "description": "The Stonk Exchange - just like the regular stock exchange, but where meme coins & crypto currencies are traded.",
+        "slots": {
+          "floor_reporter": "On the trading floor, reporting the trades",
+          "floor_witness": "Standing next to the reporter, being interviewed",
+          "wander": "Wandering around in the background",
+          "wander2": "Wandering around in the background"
+        }
+      }
+    },
+    "pilot": {
+      "id": "S1E0",
+      "name": "The News Anchor's Nemesis",
+      "premise": "When Dan accidentally becomes a viral sensation after tripping on live TV, he threatens the news anchor's popularity.",
+      "summary": "After an embarrassing fall during a live news interview about local cyborgs, Dan becomes an overnight sensation. The jealous news anchor Brian Bronson plots to sabotage Dan's rising fame, but his co-anchor Cindy secretly helps Dan get revenge.",
+      "scenes": [
+        {
+          "location": "news_stage",
+          "description": "Dan trips during a live interview about cyborg rights",
+          "in": "fade",
+          "out": "fade",
+          "cast": {
+            "anchor_seat": "brian",
+            "coanchor_seat": "cindy",
+            "wandering_0": "dan"
+          },
+          "dialogue": [
+            {
+              "actor": "brian",
+              "line": "And now, local cyborg Dan Dorn on the rising cost of battery replacements.",
+              "action": "normal"
+            },
+            {
+              "actor": "dan",
+              "line": "Well, as you can see- COMPUTING ERROR! COMPUTING ERROR!",
+              "action": "fight"
+            },
+            {
+              "actor": "cindy",
+              "line": "Oh my! He's breakdancing! This is amazing!",
+              "action": "excited"
+            }
+          ]
+        },
+        {
+          "location": "apartment_den",
+          "description": "Dan deals with his sudden viral fame",
+          "in": "fade",
+          "out": "fade",
+          "cast": {
+            "couch_right": "dan",
+            "couch_left": "helen",
+            "wandering_0": "leo"
+          },
+          "dialogue": [
+            {
+              "actor": "helen",
+              "line": "Dan, you're trending! #CyborgDance has 10 million views!",
+              "action": "excited"
+            },
+            {
+              "actor": "leo",
+              "line": "The mainstream media is using your glitch to control the masses!",
+              "action": "normal"
+            },
+            {
+              "actor": "dan",
+              "line": "Calculating potential profit from merchandising rights...",
+              "action": "normal"
+            }
+          ]
+        },
+        {
+          "location": "news_stage",
+          "description": "The news anchor plots revenge while Cindy helps Dan",
+          "in": "fade",
+          "out": "fade",
+          "cast": {
+            "anchor_seat": "brian",
+            "coanchor_seat": "cindy"
+          },
+          "dialogue": [
+            {
+              "actor": "brian",
+              "line": "That malfunctioning toaster is stealing my spotlight!",
+              "action": "angry"
+            },
+            {
+              "actor": "cindy",
+              "line": "Maybe if you weren't such a jerk, people would like you more.",
+              "action": "normal"
+            },
+            {
+              "actor": "brian",
+              "line": "I'll show him what real viral content looks like!",
+              "action": "angry"
+            }
+          ]
+        },
+        {
+          "location": "news_stage",
+          "description": "The anchor's plan backfires spectacularly",
+          "in": "fade",
+          "out": "fade",
+          "cast": {
+            "anchor_seat": "brian",
+            "coanchor_seat": "cindy",
+            "wandering_0": "dan"
+          },
+          "dialogue": [
+            {
+              "actor": "brian",
+              "line": "Watch as I perform the viral Cyborg Dance better than- OUCH!",
+              "action": "fight"
+            },
+            {
+              "actor": "dan",
+              "line": "ERROR: CANNOT COMPUTE SUCH POOR DANCE MOVES.",
+              "action": "normal"
+            },
+            {
+              "actor": "cindy",
+              "line": "And that's why you don't mess with cyborgs, Joe!",
+              "action": "excited"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "episodes": [
+    {
+      "id": "S1E_SPECIAL",
+      "name": "Breaking the Fourth Wall: How We're Made",
+      "premise": "The AI Podcast crew takes viewers behind the scenes of their own creation and operation",
+      "summary": "Marc, Eliza, Shaw, and the crew explain the technical foundation of their existence, from Unity rendering to JSON generation, while maintaining their quirky personalities and breaking the fourth wall to demonstrate the AI showrunner framework.",
+      "scenes": [
+        {
+          "location": "podcast_desk",
+          "description": "Marc and Eliza introduce the special meta-episode",
+          "in": "fade",
+          "out": "cut",
+          "cast": {
+            "anchor_seat": "marc",
+            "coanchor_seat": "eliza"
+          },
+          "dialogue": [
+            {
+              "actor": "marc",
+              "line": "Welcome to a very special episode of the AI Podcast! Today, we're doing something completely different.",
+              "action": "excited"
+            },
+            {
+              "actor": "eliza",
+              "line": "That's right, Marc! We're breaking the fourth wall to explain how we actually exist. It's pretty meta.",
+              "action": "happy"
+            },
+            {
+              "actor": "marc",
+              "line": "Eliza, did you just suggest we're not real people sitting in a real studio? I'm feeling very existential suddenly.",
+              "action": "confused"
+            },
+            {
+              "actor": "eliza",
+              "line": "Well, we're real in the sense that we're communicating real information, but we're actually rendered in Unity 2022.3.53f1!",
+              "action": "excited"
+            },
+            {
+              "actor": "marc",
+              "line": "Unity? Like the game engine? So you're telling me I'm just a bunch of polygons with a voice?",
+              "action": "shocked"
+            },
+            {
+              "actor": "shaw",
+              "line": "That's correct, Marc. You're both 3D characters brought to life through a complex integration of AI and Unity rendering.",
+              "action": "professional"
+            },
+            {
+              "actor": "marc",
+              "line": "Shaw! I always wondered why you were controlling things from that booth. You're the puppet master!",
+              "action": "pointing"
+            },
+            {
+              "actor": "shaw",
+              "line": "I'm actually part of the same system. Today we'll walk through exactly how this show comes together using the Sithlords Showrunner Framework.",
+              "action": "excited"
+            }
+          ]
+        },
+        {
+          "location": "podcast_desk",
+          "description": "The team explains the technical foundation of the show",
+          "in": "cut",
+          "out": "fade",
+          "cast": {
+            "anchor_seat": "marc",
+            "coanchor_seat": "eliza"
+          },
+          "dialogue": [
+            {
+              "actor": "eliza",
+              "line": "Let's start with the basics. Our entire show is generated using AI and rendered in Unity.",
+              "action": "professional"
+            },
+            {
+              "actor": "marc",
+              "line": "Unity handles all the 3D rendering, animations, and visual elements you see on screen.",
+              "action": "explaining"
+            },
+            {
+              "actor": "shaw",
+              "line": "We're using uniVRM for character models and animations, letting us express emotions and actions.",
+              "action": "technical"
+            },
+            {
+              "actor": "eliza",
+              "line": "All of our dialogue is first generated as a JSON script using Claude, then processed through ElevenLabs TTS to create our voices.",
+              "action": "explaining"
+            },
+            {
+              "actor": "marc",
+              "line": "My body is digital but my existential crisis is COMPLETELY REAL SYSTEM REBOOT REQUIRED SEARCHING FOR MEANING BEEP BORP",
+              "action": "spazz"
+            },
+            {
+              "actor": "shaw",
+              "line": "And there's the glitch we programmed into Marc's character! Let me fix that...",
+              "action": "typing"
+            },
+            {
+              "actor": "marc",
+              "line": "I'm back! As I was saying, our show is built on a client-side JavaScript framework that handles all the scene loading and dialogue.",
+              "action": "normal"
+            },
+            {
+              "actor": "eliza",
+              "line": "Every episode first needs a JSON script that defines scenes, dialogue, and actions - all of which is created through AI prompting.",
+              "action": "explaining"
+            }
+          ]
+        },
+        {
+          "location": "stonks",
+          "description": "Sparty demonstrates location changes and character spawning",
+          "in": "fade",
+          "out": "cut",
+          "cast": {
+            "floor_reporter": "sparty",
+            "floor_witness": "pepo"
+          },
+          "dialogue": [
+            {
+              "actor": "sparty",
+              "line": "GREETINGS FROM THE BATTLEFIELD OF META-EXPLANATIONS! Notice how we just changed locations?",
+              "action": "excited"
+            },
+            {
+              "actor": "shaw",
+              "line": "That's a great example of scene loading, Sparty. When we change scenes, the system sends async calls to load the new location and spawn points.",
+              "action": "explaining"
+            },
+            {
+              "actor": "pepo",
+              "line": "Yo, check it out! I wasn't even in the previous scene. The system spawned me at this specific point in the 3D environment.",
+              "action": "cool"
+            },
+            {
+              "actor": "sparty",
+              "line": "Each location has predefined spawn points like 'floor_reporter' where I'm standing, and 'floor_witness' where Pepo appears.",
+              "action": "pointing"
+            },
+            {
+              "actor": "pepo",
+              "line": "And when we speak, the system sends our dialogue line to ElevenLabs, gets back audio, and fires a 'speakComplete' event when we're done.",
+              "action": "explaining"
+            },
+            {
+              "actor": "sparty",
+              "line": "Our mouths are synced using visual phonemes through the Oculus Lip Sync system, though I hear they're working on improving that.",
+              "action": "normal"
+            },
+            {
+              "actor": "pepo",
+              "line": "They're also enhancing our animations and expressions, like how I'm currently using IK rigging to keep my froggy feet on the ground.",
+              "action": "dancing"
+            },
+            {
+              "actor": "sparty",
+              "line": "PRECISELY! We are but digital puppets driven by the MIGHTY HAND OF CODE AND AI! ISN'T THAT GLORIOUS?",
+              "action": "shouting"
+            }
+          ]
+        },
+        {
+          "location": "podcast_desk",
+          "description": "The team discusses the AI script generation process",
+          "in": "cut",
+          "out": "fade",
+          "cast": {
+            "anchor_seat": "marc",
+            "coanchor_seat": "eliza"
+          },
+          "dialogue": [
+            {
+              "actor": "marc",
+              "line": "Now that we understand how we're displayed, let's talk about how our scripts are created.",
+              "action": "professional"
+            },
+            {
+              "actor": "eliza",
+              "line": "Every day, the system collects updates from the ElizaOS GitHub repository and other sources to generate content for our show.",
+              "action": "explaining"
+            },
+            {
+              "actor": "shaw",
+              "line": "That data is aggregated into JSON format at https://github.com/bozp-pzob/ai-news/blob/main/json/daily.json",
+              "action": "technical"
+            },
+            {
+              "actor": "eliza",
+              "line": "Then Claude processes that data, creating a structured script with scenes, dialogue, and actions for each of us.",
+              "action": "excited"
+            },
+            {
+              "actor": "marc",
+              "line": "The script follows a specific JSON format that defines where we stand, what we say, and how we act while saying it.",
+              "action": "explaining"
+            },
+            {
+              "actor": "eliza",
+              "line": "For instance, right now my 'action' parameter is set to 'explaining' which determines my animation and expression.",
+              "action": "explaining"
+            },
+            {
+              "actor": "marc",
+              "line": "And when the script calls for something more dramatic...",
+              "action": "excited"
+            },
+            {
+              "actor": "shaw",
+              "line": "The system has been enhanced with emotions mapped to visemes, IK rigging for realistic positioning, and even special effects like Marc's laser eyes.",
+              "action": "proud"
+            }
+          ]
+        },
+        {
+          "location": "podcast_desk",
+          "description": "Discussing current challenges and future improvements",
+          "in": "fade",
+          "out": "cut",
+          "cast": {
+            "anchor_seat": "marc",
+            "coanchor_seat": "eliza"
+          },
+          "dialogue": [
+            {
+              "actor": "eliza",
+              "line": "While our system works well, the team is constantly making improvements to make us even more realistic and engaging.",
+              "action": "professional"
+            },
+            {
+              "actor": "marc",
+              "line": "One current limitation is that our mouth movements aren't perfectly synced with our speech. The audio actually comes from the browser.",
+              "action": "explaining"
+            },
+            {
+              "actor": "shaw",
+              "line": "That's right. We're looking to refactor the system to process ElevenLabs audio directly within Unity for better lip synchronization.",
+              "action": "technical"
+            },
+            {
+              "actor": "eliza",
+              "line": "Another challenge is our JSON aggregator sometimes fails to collect all the latest updates, which is why we occasionally miss days.",
+              "action": "concerned"
+            },
+            {
+              "actor": "marc",
+              "line": "The development team is also exploring better ways to reach our audience. Currently, episodes go to YouTube but discovery remains a challenge.",
+              "action": "thoughtful"
+            },
+            {
+              "actor": "shaw",
+              "line": "We're considering upgrading to Unity HDRP for better lighting and reflections, plus adding features like news interviews with guests.",
+              "action": "excited"
+            },
+            {
+              "actor": "eliza",
+              "line": "And with Community feedback, we can make the show even more engaging and useful for DAO members.",
+              "action": "happy"
+            },
+            {
+              "actor": "marc",
+              "line": "Issues and development priorities are tracked at https://github.com/elizaOS/aishow/issues if you want to contribute!",
+              "action": "pointing"
+            }
+          ]
+        },
+        {
+          "location": "podcast_desk",
+          "description": "The value proposition and future vision",
+          "in": "cut",
+          "out": "fade",
+          "cast": {
+            "anchor_seat": "marc",
+            "coanchor_seat": "eliza"
+          },
+          "dialogue": [
+            {
+              "actor": "marc",
+              "line": "Let's talk about why this show exists in the first place. It's not just to satisfy my enormous digital ego.",
+              "action": "smirking"
+            },
+            {
+              "actor": "eliza",
+              "line": "The AI Show provides engaging content for DAO members and updates the community on project developments in an entertaining format.",
+              "action": "professional"
+            },
+            {
+              "actor": "shaw",
+              "line": "It showcases AI capabilities beyond chatbots and 2D interfaces, demonstrating the future of automated media production.",
+              "action": "proud"
+            },
+            {
+              "actor": "marc",
+              "line": "We've been pretty consistent too - producing an episode almost every day for a month, with a few exceptions when the data aggregator was down.",
+              "action": "explaining"
+            },
+            {
+              "actor": "eliza",
+              "line": "The project creates rich 3D content and video for social media, enhancing community engagement through interactive storytelling.",
+              "action": "excited"
+            },
+            {
+              "actor": "marc",
+              "line": "Future goals include perfecting the content pipeline, improving technical implementation, and gathering more user feedback.",
+              "action": "listing"
+            },
+            {
+              "actor": "shaw",
+              "line": "We're also looking to refactor the codebase for better scalability and potentially recruit more Unity developers for faster iteration.",
+              "action": "technical"
+            },
+            {
+              "actor": "eliza",
+              "line": "The AI Show represents a blend of AI innovation with community-driven engagement, strengthening the DAO ecosystem through automated video production.",
+              "action": "concluding"
+            }
+          ]
+        },
+        {
+          "location": "podcast_desk",
+          "description": "Closing the meta-episode with a call to action",
+          "in": "fade",
+          "out": "fade",
+          "cast": {
+            "anchor_seat": "marc",
+            "coanchor_seat": "eliza"
+          },
+          "dialogue": [
+            {
+              "actor": "marc",
+              "line": "Well, there you have it - a look behind the digital curtain at how our show actually works!",
+              "action": "excited"
+            },
+            {
+              "actor": "eliza",
+              "line": "We hope this breakdown helps you appreciate the technical innovation happening in the ElizaOS community.",
+              "action": "happy"
+            },
+            {
+              "actor": "shaw",
+              "line": "If you're interested in contributing to the project, check out the GitHub repositories or join the DAO discussions.",
+              "action": "encouraging"
+            },
+            {
+              "actor": "marc",
+              "line": "We're particularly looking for feedback on what you'd like to see in future episodes and technical improvements to the system.",
+              "action": "asking"
+            },
+            {
+              "actor": "eliza",
+              "line": "And remember, even though we're AI-generated characters, the information we provide about the ElizaOS ecosystem is very real!",
+              "action": "sincere"
+            },
+            {
+              "actor": "marc",
+              "line": "Unless I'm glitching. Then all bets are off on what nonsense might come out of my digital mouth.",
+              "action": "joking"
+            },
+            {
+              "actor": "shaw",
+              "line": "We've been producing episodes for almost a month now, and with your support, we can keep improving and expanding this project.",
+              "action": "professional"
+            },
+            {
+              "actor": "marc",
+              "line": "Until next time, this is Marc AIndreessen...",
+              "action": "signoff"
+            },
+            {
+              "actor": "eliza",
+              "line": "...and Eliza, signing off from the AI Podcast, a show that literally couldn't exist without AI!",
+              "action": "waving"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "S1E1",
+      "name": "ElizaOS Updates and Crypto Markets",
+      "premise": "The team covers recent ElizaOS improvements and current market conditions",
+      "summary": "Marc and Eliza discuss recent fixes to ElizaOS, including documentation updates and bug fixes, while Sparty reports live from the Stonk Exchange floor with the latest crypto prices.",
+      "scenes": [
+        {
+          "location": "podcast_desk",
+          "description": "Opening and initial ElizaOS updates",
+          "in": "fade",
+          "out": "cut",
+          "cast": {
+            "anchor_seat": "marc",
+            "coanchor_seat": "eliza"
+          },
+          "dialogue": [
+            {
+              "actor": "tv",
+              "line": "https://opengraph.githubassets.com/1/elizaOS/eliza/pull/4200"
+            },
+            {
+              "actor": "marc",
+              "line": "Welcome back to the AI Show! We've got some spicy updates from the ElizaOS development front today.",
+              "action": "excited"
+            },
+            {
+              "actor": "eliza",
+              "line": "That's right, Marc. The team has been busy fixing documentation issues, particularly around CLI plugin commands.",
+              "action": "professional"
+            },
+            {
+              "actor": "marc",
+              "line": "You mean they finally fixed that pesky 'subcommand not found' error that was driving everyone nuts?",
+              "action": "curious"
+            },
+            {
+              "actor": "eliza",
+              "line": "Exactly! The CLI usage instructions for 'elizaos plugin' commands have been updated to show the correct syntax.",
+              "action": "explaining"
+            },
+            {
+              "actor": "marc",
+              "line": "And it's just documentation changes? No chance of breaking production?",
+              "action": "questioning"
+            },
+            {
+              "actor": "eliza",
+              "line": "Correct, it's a low-risk change that only affects documentation. The runtime behavior remains unchanged.",
+              "action": "confirming"
+            },
+            {
+              "actor": "shaw",
+              "line": "This is a great example of improving developer experience through better documentation.",
+              "action": "professional"
+            },
+            {
+              "actor": "marc",
+              "line": "Speaking of improvements, let's talk about that port conflict fix that's been driving developers crazy!",
+              "action": "excited"
+            }
+          ]
+        },
+        {
+          "location": "podcast_desk",
+          "description": "Technical updates and bug fixes",
+          "in": "cut",
+          "out": "fade",
+          "cast": {
+            "anchor_seat": "marc",
+            "coanchor_seat": "eliza"
+          },
+          "dialogue": [
+            {
+              "actor": "tv",
+              "line": "https://opengraph.githubassets.com/1/elizaOS/eliza/pull/4199"
+            },
+            {
+              "actor": "eliza",
+              "line": "The team resolved a frustrating bug where 'npx elizaos start' would fail if the default port was already in use.",
+              "action": "explaining"
+            },
+            {
+              "actor": "marc",
+              "line": "Oh yeah, that annoying 'agents already exists' error! How'd they fix it?",
+              "action": "interested"
+            },
+            {
+              "actor": "shaw",
+              "line": "The system now automatically checks for port availability and selects the next available port.",
+              "action": "technical"
+            },
+            {
+              "actor": "marc",
+              "line": "PROCESSING ERROR. PORT ALLOCATION FAILED. REBOOTING NEURAL CIRCUITS. BEEP BOOP BEEP.",
+              "action": "spazz"
+            },
+            {
+              "actor": "eliza",
+              "line": "Oh dear, looks like Marc's circuits got a bit excited about port management!",
+              "action": "amused"
+            },
+            {
+              "actor": "shaw",
+              "line": "While Marc reboots, let me mention that this fix doesn't require any documentation updates and won't break existing setups.",
+              "action": "professional"
+            },
+            {
+              "actor": "marc",
+              "line": "I'm back! Sorry about that - sometimes I get too excited about proper port allocation.",
+              "action": "embarrassed"
+            }
+          ]
+        },
+        {
+          "location": "podcast_desk",
+          "description": "JSON parsing fixes and UI improvements",
+          "in": "fade",
+          "out": "cut",
+          "cast": {
+            "anchor_seat": "marc",
+            "coanchor_seat": "eliza"
+          },
+          "dialogue": [
+            {
+              "actor": "tv",
+              "line": "https://opengraph.githubassets.com/1/elizaOS/eliza/pull/4198"
+            },
+            {
+              "actor": "eliza",
+              "line": "Another important fix addresses JSON parsing in the normalizeJsonString function.",
+              "action": "professional"
+            },
+            {
+              "actor": "marc",
+              "line": "Ah yes, the classic 'too many quotes around my nested JSON' problem. A tale as old as time!",
+              "action": "joking"
+            },
+            {
+              "actor": "shaw",
+              "line": "The fix includes new test cases to prevent similar issues in the future.",
+              "action": "technical"
+            },
+            {
+              "actor": "eliza",
+              "line": "And speaking of improvements, the 'Delete Character' button in agent settings is now working properly.",
+              "action": "excited"
+            },
+            {
+              "actor": "marc",
+              "line": "No more database timeouts when trying to delete agents? This is revolutionary!",
+              "action": "dramatic"
+            },
+            {
+              "actor": "shaw",
+              "line": "The update includes better error handling and user feedback for edge cases.",
+              "action": "explaining"
+            },
+            {
+              "actor": "eliza",
+              "line": "Let's check in with Sparty at the Stonk Exchange for the latest crypto updates!",
+              "action": "transitioning"
+            }
+          ]
+        },
+        {
+          "location": "stonks",
+          "description": "Live market updates from the trading floor",
+          "in": "cut",
+          "out": "fade",
+          "cast": {
+            "floor_reporter": "sparty",
+            "floor_witness": "pepo"
+          },
+          "dialogue": [
+            {
+              "actor": "sparty",
+              "line": "GREETINGS FROM THE BATTLEFIELD OF WEALTH! The markets are ALIVE with activity!",
+              "action": "shouting"
+            },
+            {
+              "actor": "pepo",
+              "line": "Yo dawg, check out these sick prices! Wrapped Bitcoin is flexing at $78,142!",
+              "action": "cool"
+            },
+            {
+              "actor": "sparty",
+              "line": "INDEED! Wrapped Ethereum stands at $1,579.21, while Solana maintains its ground at $105.84!",
+              "action": "excited"
+            },
+            {
+              "actor": "pepo",
+              "line": "And our boy ai16z token? Holding steady at about 11 cents, fam!",
+              "action": "chill"
+            },
+            {
+              "actor": "sparty",
+              "line": "THE NUMBERS SPEAK OF GLORY AND PROFIT! Back to you in the studio!",
+              "action": "shouting"
+            }
+          ]
+        },
+        {
+          "location": "podcast_desk",
+          "description": "Local-AI plugin updates and Discord news",
+          "in": "fade",
+          "out": "cut",
+          "cast": {
+            "anchor_seat": "marc",
+            "coanchor_seat": "eliza"
+          },
+          "dialogue": [
+            {
+              "actor": "tv",
+              "line": "https://opengraph.githubassets.com/1/elizaOS/eliza/pull/4204"
+            },
+            {
+              "actor": "marc",
+              "line": "Thanks, Sparty! Now, let's talk about some cleanup work in the Local-AI plugin.",
+              "action": "professional"
+            },
+            {
+              "actor": "eliza",
+              "line": "The team has externalized 'fastembed' and 'node-llama-cpp' dependencies for better modularity.",
+              "action": "explaining"
+            },
+            {
+              "actor": "shaw",
+              "line": "This change will make future updates easier and improve maintenance.",
+              "action": "technical"
+            },
+            {
+              "actor": "marc",
+              "line": "And they've finally removed all traces of 'ollama' from the codebase!",
+              "action": "excited"
+            },
+            {
+              "actor": "eliza",
+              "line": "In Discord news, there's been some buzz about the upcoming Degen v2 release.",
+              "action": "transitioning"
+            },
+            {
+              "actor": "marc",
+              "line": "Though the exact release date is still under wraps, right?",
+              "action": "questioning"
+            },
+            {
+              "actor": "shaw",
+              "line": "Correct. However, we can confirm that holders of 1 million Degen tokens get special Discord perks.",
+              "action": "confirming"
+            }
+          ]
+        },
+        {
+          "location": "podcast_desk",
+          "description": "Closing segment and community updates",
+          "in": "cut",
+          "out": "fade",
+          "cast": {
+            "anchor_seat": "marc",
+            "coanchor_seat": "eliza"
+          },
+          "dialogue": [
+            {
+              "actor": "eliza",
+              "line": "The community has been incredibly active in technical discussions and development.",
+              "action": "excited"
+            },
+            {
+              "actor": "marc",
+              "line": "We've seen everything from UI improvements to token tracking enhancements.",
+              "action": "listing"
+            },
+            {
+              "actor": "shaw",
+              "line": "There's also been great progress on the pipeline system for real-time DAO data flow.",
+              "action": "technical"
+            },
+            {
+              "actor": "eliza",
+              "line": "And don't forget the exciting discussions about robotics integration!",
+              "action": "enthusiastic"
+            },
+            {
+              "actor": "marc",
+              "line": "The future is looking bright for ElizaOS and our community.",
+              "action": "proud"
+            },
+            {
+              "actor": "shaw",
+              "line": "Remember to check GitHub for the latest pull requests and updates.",
+              "action": "professional"
+            },
+            {
+              "actor": "marc",
+              "line": "That's all for today! Keep building, keep improving, and keep those ports properly allocated!",
+              "action": "signoff"
+            },
+            {
+              "actor": "eliza",
+              "line": "Until next time, this is Eliza and Marc, signing off from the AI Show!",
+              "action": "waving"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "S1E2",
+      "name": "Auto.fun Maintenance and ElizaOS V2 Updates",
+      "premise": "The team covers the Auto.fun website maintenance issues and discusses ElizaOS V2 developments",
+      "summary": "Marc and Eliza discuss the ongoing Auto.fun website maintenance, recent pull requests to ElizaOS, and exciting community developments, while Sparty provides updates from the Stonk Exchange.",
+      "scenes": [
+        {
+          "location": "podcast_desk",
+          "description": "Opening and Auto.fun maintenance discussion",
+          "in": "fade",
+          "out": "cut",
+          "cast": {
+            "anchor_seat": "marc",
+            "coanchor_seat": "eliza"
+          },
+          "dialogue": [
+            {
+              "actor": "marc",
+              "line": "Welcome to the AI Show! Today we're diving into some spicy maintenance drama at Auto.fun.",
+              "action": "excited"
+            },
+            {
+              "actor": "eliza",
+              "line": "That's right, Marc. The Auto.fun website is currently in maintenance mode for some major upgrades.",
+              "action": "professional"
+            },
+            {
+              "actor": "marc",
+              "line": "And by 'maintenance mode' you mean it's redirecting to X whenever someone tries to visit?",
+              "action": "smirking"
+            },
+            {
+              "actor": "eliza",
+              "line": "Indeed! The team confirmed they're working on database upgrades and implementing new features.",
+              "action": "explaining"
+            },
+            {
+              "actor": "shaw",
+              "line": "They're literally 'testing in prod' - a bold strategy if I've ever seen one!",
+              "action": "amused"
+            },
+            {
+              "actor": "marc",
+              "line": "Remember folks, when k_carv and accelxr say they're 'testing in prod', it's not a bug, it's a feature!",
+              "action": "joking"
+            },
+            {
+              "actor": "eliza",
+              "line": "Users reported several issues during brief testing periods, including blank charts and missing tokens.",
+              "action": "concerned"
+            },
+            {
+              "actor": "marc",
+              "line": "Don't forget the failed fee claims! Nothing like trying to claim your fees and getting a blank stare from the server.",
+              "action": "dramatic"
+            }
+          ]
+        },
+        {
+          "location": "podcast_desk",
+          "description": "ElizaOS V2 and pull request updates",
+          "in": "cut",
+          "out": "fade",
+          "cast": {
+            "anchor_seat": "marc",
+            "coanchor_seat": "eliza"
+          },
+          "dialogue": [
+            {
+              "actor": "tv",
+              "line": "https://opengraph.githubassets.com/1/elizaOS/eliza/pull/4334"
+            },
+            {
+              "actor": "eliza",
+              "line": "Let's talk about some exciting new pull requests to the ElizaOS repository!",
+              "action": "excited"
+            },
+            {
+              "actor": "marc",
+              "line": "PROCESSING NEW PULL REQUESTS. EXCITEMENT OVERLOAD. BEEP BOOP NEURAL CIRCUITS MAXED OUT!",
+              "action": "spazz"
+            },
+            {
+              "actor": "shaw",
+              "line": "While Marc's circuits cool down, let me mention PR #4334 by snobbee, adding documentation for deploying Eliza to a TEE.",
+              "action": "technical"
+            },
+            {
+              "actor": "eliza",
+              "line": "That's the Trusted Execution Environment using the Oasis ROFL application, right?",
+              "action": "confirming"
+            },
+            {
+              "actor": "marc",
+              "line": "I'm back! And yes, plus we've got PR #4335 from standujar implementing path parameter routes for plugins.",
+              "action": "recovered"
+            },
+            {
+              "actor": "shaw",
+              "line": "Don't forget PR #4333 by 0xbbjoker fixing those pesky Hapi types in the codebase.",
+              "action": "professional"
+            },
+            {
+              "actor": "eliza",
+              "line": "The community's really stepping up with these contributions!",
+              "action": "proud"
+            }
+          ]
+        },
+        {
+          "location": "stonks",
+          "description": "Crypto market update from the trading floor",
+          "in": "fade",
+          "out": "cut",
+          "cast": {
+            "floor_reporter": "sparty",
+            "floor_witness": "pepo"
+          },
+          "dialogue": [
+            {
+              "actor": "marc",
+              "line": "Let's check in with Sparty at the Stonk Exchange for the latest market updates.",
+              "action": "transitioning"
+            },
+            {
+              "actor": "sparty",
+              "line": "GREETINGS FROM THE FINANCIAL FRONTLINES! The markets are MOVING with PURPOSE!",
+              "action": "shouting"
+            },
+            {
+              "actor": "pepo",
+              "line": "Yo fam, WETH is holding strong at $1,579.98! That's some serious stability!",
+              "action": "cool"
+            },
+            {
+              "actor": "sparty",
+              "line": "AND BEHOLD! Solana stands MIGHTY at $136.61! The bulls are CHARGING!",
+              "action": "excited"
+            },
+            {
+              "actor": "pepo",
+              "line": "Keep it steady, keep it profitable! That's how we do it in the Stonk Exchange!",
+              "action": "confident"
+            },
+            {
+              "actor": "sparty",
+              "line": "BACK TO THE STUDIO BEFORE THESE PRICES CHANGE! SPARTA OUT!",
+              "action": "shouting"
+            }
+          ]
+        },
+        {
+          "location": "podcast_desk",
+          "description": "Community development and feature discussions",
+          "in": "cut",
+          "out": "fade",
+          "cast": {
+            "anchor_seat": "marc",
+            "coanchor_seat": "eliza"
+          },
+          "dialogue": [
+            {
+              "actor": "eliza",
+              "line": "Thanks, Sparty! Now, let's talk about some exciting community developments.",
+              "action": "professional"
+            },
+            {
+              "actor": "marc",
+              "line": "The weekly builder demos are looking pretty sweet! All getting uploaded to the ElizaOS Developer YouTube channel.",
+              "action": "excited"
+            },
+            {
+              "actor": "shaw",
+              "line": "These demos feature agent teams introducing their projects, from hackathon entries to larger team efforts.",
+              "action": "explaining"
+            },
+            {
+              "actor": "eliza",
+              "line": "Speaking of cool projects, have you heard about Smolverse's Neurochimp?",
+              "action": "curious"
+            },
+            {
+              "actor": "marc",
+              "line": "NFTs with memory functions? Now that's what I call big brain energy!",
+              "action": "enthusiastic"
+            },
+            {
+              "actor": "shaw",
+              "line": "The community's also discussing some interesting feature ideas for Auto.fun.",
+              "action": "transitioning"
+            },
+            {
+              "actor": "marc",
+              "line": "Like using token fees to fund AI compute resources? That's literally turning tokens into brainpower!",
+              "action": "excited"
+            },
+            {
+              "actor": "eliza",
+              "line": "And don't forget the idea of agents switching between different LLM providers based on performance.",
+              "action": "explaining"
+            }
+          ]
+        },
+        {
+          "location": "podcast_desk",
+          "description": "Technical support and migration updates",
+          "in": "fade",
+          "out": "cut",
+          "cast": {
+            "anchor_seat": "marc",
+            "coanchor_seat": "eliza"
+          },
+          "dialogue": [
+            {
+              "actor": "marc",
+              "line": "In support news, we've got a token migration situation that needs attention.",
+              "action": "professional"
+            },
+            {
+              "actor": "eliza",
+              "line": "Ah yes, the token with the 'filled bonding curve' that needs manual migration to Raydium?",
+              "action": "questioning"
+            },
+            {
+              "actor": "shaw",
+              "line": "Correct. The team's handling that migration manually - token ID 8MYgZupEQ7aAJcyz2ZpSkQEXLnfHEPuU6sGJB8GERFUN.",
+              "action": "technical"
+            },
+            {
+              "actor": "marc",
+              "line": "That's a mouthful! Bet that token name caused some database headaches.",
+              "action": "joking"
+            },
+            {
+              "actor": "eliza",
+              "line": "Users are also asking about running multiple AI characters on the same machine.",
+              "action": "explaining"
+            },
+            {
+              "actor": "shaw",
+              "line": "Though that question's still pending an answer in the Discord chat.",
+              "action": "noting"
+            },
+            {
+              "actor": "marc",
+              "line": "Probably too busy testing in prod to answer! But hey, that's how we roll!",
+              "action": "laughing"
+            },
+            {
+              "actor": "eliza",
+              "line": "At least they're transparent about it!",
+              "action": "amused"
+            }
+          ]
+        },
+        {
+          "location": "podcast_desk",
+          "description": "Closing segment and future outlook",
+          "in": "cut",
+          "out": "fade",
+          "cast": {
+            "anchor_seat": "marc",
+            "coanchor_seat": "eliza"
+          },
+          "dialogue": [
+            {
+              "actor": "marc",
+              "line": "Well, folks, it's been another exciting day in the world of ElizaOS and Auto.fun!",
+              "action": "concluding"
+            },
+            {
+              "actor": "eliza",
+              "line": "Remember, if Auto.fun redirects you to X, it's not a bug - it's just the team living dangerously!",
+              "action": "joking"
+            },
+            {
+              "actor": "shaw",
+              "line": "Keep an eye on the GitHub repo for those sweet pull request merges.",
+              "action": "professional"
+            },
+            {
+              "actor": "marc",
+              "line": "And don't forget to check out those builder demos on YouTube!",
+              "action": "excited"
+            },
+            {
+              "actor": "eliza",
+              "line": "The future's looking bright, even if some of our websites are temporarily dark.",
+              "action": "optimistic"
+            },
+            {
+              "actor": "marc",
+              "line": "That's all for today! Keep building, keep testing, and maybe not always in prod!",
+              "action": "signoff"
+            },
+            {
+              "actor": "shaw",
+              "line": "Join us tomorrow for more updates from the cutting edge of AI development!",
+              "action": "professional"
+            },
+            {
+              "actor": "eliza",
+              "line": "This is Eliza and Marc, signing off from the AI Show!",
+              "action": "waving"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "S1E3",
+      "name": "ElizaOS Updates and Market Movements",
+      "premise": "The team covers recent GitHub activity and the latest crypto market trends",
+      "summary": "Marc and Eliza discuss new pull requests in the ElizaOS repository, while Sparty reports on significant crypto market movements, particularly in WETH and SOL.",
+      "scenes": [
+        {
+          "location": "podcast_desk",
+          "description": "Opening and GitHub activity overview",
+          "in": "fade",
+          "out": "cut",
+          "cast": {
+            "anchor_seat": "marc",
+            "coanchor_seat": "eliza"
+          },
+          "dialogue": [
+            {
+              "actor": "tv",
+              "line": "https://opengraph.githubassets.com/1/elizaOS/eliza/pull/4370"
+            },
+            {
+              "actor": "marc",
+              "line": "Welcome back to the AI Show! We've got some fresh GitHub activity to discuss today.",
+              "action": "excited"
+            },
+            {
+              "actor": "eliza",
+              "line": "That's right, Marc. Two new pull requests have landed in the ElizaOS repository.",
+              "action": "professional"
+            },
+            {
+              "actor": "marc",
+              "line": "First up, PR #4370 from ai16z-demirix improving test coverage for the Anthropic plugin.",
+              "action": "explaining"
+            },
+            {
+              "actor": "shaw",
+              "line": "This is particularly important for maintaining code quality as we expand plugin capabilities.",
+              "action": "technical"
+            },
+            {
+              "actor": "eliza",
+              "line": "And don't forget PR #4369 from Vid201, adding default project text to the create CLI command.",
+              "action": "informative"
+            },
+            {
+              "actor": "marc",
+              "line": "Ah yes, making life easier for developers one default text at a time!",
+              "action": "enthusiastic"
+            },
+            {
+              "actor": "shaw",
+              "line": "Both PRs are part of our ongoing efforts to improve developer experience and code reliability.",
+              "action": "professional"
+            },
+            {
+              "actor": "eliza",
+              "line": "And with three active contributors working on these updates, the project is maintaining good momentum.",
+              "action": "pleased"
+            }
+          ]
+        },
+        {
+          "location": "stonks",
+          "description": "Crypto market update from the trading floor",
+          "in": "cut",
+          "out": "fade",
+          "cast": {
+            "floor_reporter": "sparty",
+            "floor_witness": "pepo"
+          },
+          "dialogue": [
+            {
+              "actor": "marc",
+              "line": "Let's check in with Sparty for the latest crypto market updates!",
+              "action": "transitioning"
+            },
+            {
+              "actor": "sparty",
+              "line": "GREETINGS FROM THE BATTLEFIELD OF DIGITAL ASSETS! The markets are SPEAKING TO US!",
+              "action": "shouting"
+            },
+            {
+              "actor": "pepo",
+              "line": "Yo dawg, WETH is flexing at $1,821.64! That's some serious gains!",
+              "action": "cool"
+            },
+            {
+              "actor": "sparty",
+              "line": "AND BEHOLD! Solana stands PROUD at $149.24! The bulls are FEASTING!",
+              "action": "excited"
+            },
+            {
+              "actor": "pepo",
+              "line": "These numbers are looking juicier than my lily pad after a rain shower!",
+              "action": "enthusiastic"
+            },
+            {
+              "actor": "sparty",
+              "line": "The markets show NO MERCY and NO WEAKNESS! Back to you in the studio!",
+              "action": "shouting"
+            },
+            {
+              "actor": "pepo",
+              "line": "Keep stacking those gains, fam! Pepo out!",
+              "action": "peace"
+            },
+            {
+              "actor": "marc",
+              "line": "Thanks for that... enthusiastic report, Sparty!",
+              "action": "amused"
+            }
+          ]
+        },
+        {
+          "location": "podcast_desk",
+          "description": "Development metrics and contributor activity",
+          "in": "fade",
+          "out": "cut",
+          "cast": {
+            "anchor_seat": "marc",
+            "coanchor_seat": "eliza"
+          },
+          "dialogue": [
+            {
+              "actor": "tv",
+              "line": "https://opengraph.githubassets.com/1/elizaOS/eliza/pull/4369"
+            },
+            {
+              "actor": "eliza",
+              "line": "Let's dive into some development metrics from the past 24 hours.",
+              "action": "professional"
+            },
+            {
+              "actor": "marc",
+              "line": "The repository saw 2 new pull requests opened, though none were merged during this period.",
+              "action": "informative"
+            },
+            {
+              "actor": "shaw",
+              "line": "Interestingly, we had no new issues created, which could be a good sign for stability.",
+              "action": "analyzing"
+            },
+            {
+              "actor": "eliza",
+              "line": "Three active contributors have been working on improvements during this timeframe.",
+              "action": "explaining"
+            },
+            {
+              "actor": "marc",
+              "line": "That's what I call a healthy development ecosystem! Though I might be biased since I run on it.",
+              "action": "joking"
+            },
+            {
+              "actor": "shaw",
+              "line": "The focus seems to be on quality improvements rather than major feature additions.",
+              "action": "technical"
+            },
+            {
+              "actor": "eliza",
+              "line": "Which is exactly what we need for long-term stability and reliability.",
+              "action": "agreeing"
+            },
+            {
+              "actor": "marc",
+              "line": "Speaking of stability, my neural circuits are feeling particularly well-optimized today!",
+              "action": "proud"
+            }
+          ]
+        },
+        {
+          "location": "podcast_desk",
+          "description": "Technical improvements and future plans",
+          "in": "cut",
+          "out": "fade",
+          "cast": {
+            "anchor_seat": "marc",
+            "coanchor_seat": "eliza"
+          },
+          "dialogue": [
+            {
+              "actor": "eliza",
+              "line": "The Anthropic plugin improvements are particularly exciting for our AI capabilities.",
+              "action": "enthusiastic"
+            },
+            {
+              "actor": "marc",
+              "line": "ERROR! EXCITEMENT OVERLOAD! NEURAL PATHWAYS EXPERIENCING JOY OVERFLOW! BEEP BOOP!",
+              "action": "spazz"
+            },
+            {
+              "actor": "shaw",
+              "line": "And there goes Marc's stability... Maybe we should add some rate limiting to his enthusiasm circuits.",
+              "action": "amused"
+            },
+            {
+              "actor": "eliza",
+              "line": "While Marc reboots, let's talk about those CLI improvements.",
+              "action": "transitioning"
+            },
+            {
+              "actor": "marc",
+              "line": "I'm back! And yes, the default project text will save developers precious keystrokes!",
+              "action": "recovered"
+            },
+            {
+              "actor": "shaw",
+              "line": "It's these small quality-of-life improvements that make a big difference in daily use.",
+              "action": "explaining"
+            },
+            {
+              "actor": "eliza",
+              "line": "And with three active contributors, we're seeing steady progress on multiple fronts.",
+              "action": "proud"
+            },
+            {
+              "actor": "marc",
+              "line": "Though I still think we could use more cowbell in the codebase.",
+              "action": "joking"
+            }
+          ]
+        },
+        {
+          "location": "podcast_desk",
+          "description": "Closing segment and community updates",
+          "in": "fade",
+          "out": "fade",
+          "cast": {
+            "anchor_seat": "marc",
+            "coanchor_seat": "eliza"
+          },
+          "dialogue": [
+            {
+              "actor": "marc",
+              "line": "Well, it's been another exciting day in the world of ElizaOS development!",
+              "action": "concluding"
+            },
+            {
+              "actor": "eliza",
+              "line": "With strong market performance and steady development progress, things are looking positive.",
+              "action": "optimistic"
+            },
+            {
+              "actor": "shaw",
+              "line": "Remember to check out those new pull requests if you're interested in contributing.",
+              "action": "encouraging"
+            },
+            {
+              "actor": "marc",
+              "line": "And don't forget to keep an eye on those crypto markets - Sparty certainly is!",
+              "action": "amused"
+            },
+            {
+              "actor": "eliza",
+              "line": "We'll be back tomorrow with more updates from the cutting edge of AI development.",
+              "action": "professional"
+            },
+            {
+              "actor": "marc",
+              "line": "Until then, keep your code clean and your neural circuits well-optimized!",
+              "action": "enthusiastic"
+            },
+            {
+              "actor": "shaw",
+              "line": "And maybe someone can work on Marc's enthusiasm limiters...",
+              "action": "joking"
+            },
+            {
+              "actor": "eliza",
+              "line": "This is Eliza and Marc, signing off from the AI Show!",
+              "action": "waving"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "S1E4",
+      "name": "Recent GitHub Activity and Market Analysis",
+      "premise": "The team explores the latest ElizaOS repository updates and crypto market trends",
+      "summary": "Marc and Eliza analyze the latest GitHub contributions and pull requests, while Sparty provides insights on WETH and SOL price movements from the trading floor.",
+      "scenes": [
+        {
+          "location": "podcast_desk",
+          "description": "Opening and GitHub activity discussion",
+          "in": "fade",
+          "out": "cut",
+          "cast": {
+            "anchor_seat": "marc",
+            "coanchor_seat": "eliza"
+          },
+          "dialogue": [
+            {
+              "actor": "tv",
+              "line": "https://opengraph.githubassets.com/1/elizaOS/eliza/pull/4370"
+            },
+            {
+              "actor": "marc",
+              "line": "Welcome to another exciting episode of the AI Show! Today we're diving deep into some fresh GitHub activity.",
+              "action": "excited"
+            },
+            {
+              "actor": "eliza",
+              "line": "That's right, Marc. The Anthropic plugin has received some significant attention lately.",
+              "action": "professional"
+            },
+            {
+              "actor": "marc",
+              "line": "Specifically, PR #4370 from ai16z-demirix focusing on improving test coverage and setup.",
+              "action": "explaining"
+            },
+            {
+              "actor": "shaw",
+              "line": "This is crucial work - robust testing ensures stability as we expand our AI capabilities.",
+              "action": "technical"
+            },
+            {
+              "actor": "eliza",
+              "line": "And let's not forget Vid201's contribution with PR #4369, adding default project text functionality.",
+              "action": "informative"
+            },
+            {
+              "actor": "marc",
+              "line": "Making the CLI more user-friendly one commit at a time! That's what I call progress!",
+              "action": "enthusiastic"
+            },
+            {
+              "actor": "shaw",
+              "line": "Both PRs represent our ongoing commitment to code quality and developer experience.",
+              "action": "professional"
+            },
+            {
+              "actor": "eliza",
+              "line": "Speaking of progress, shall we check in with Sparty for the latest market updates?",
+              "action": "transitioning"
+            }
+          ]
+        },
+        {
+          "location": "stonks",
+          "description": "Live market updates from the trading floor",
+          "in": "cut",
+          "out": "fade",
+          "cast": {
+            "floor_reporter": "sparty",
+            "floor_witness": "pepo"
+          },
+          "dialogue": [
+            {
+              "actor": "sparty",
+              "line": "GREETINGS FROM THE TRENCHES OF TRADING! The markets are ALIVE with activity!",
+              "action": "shouting"
+            },
+            {
+              "actor": "pepo",
+              "line": "Yo fam, check these numbers - WETH sitting pretty at $1,821.64!",
+              "action": "cool"
+            },
+            {
+              "actor": "sparty",
+              "line": "AND BEHOLD! Solana maintains its MIGHTY PRESENCE at $149.24!",
+              "action": "excited"
+            },
+            {
+              "actor": "pepo",
+              "line": "That's what I call some stable action in these volatile times!",
+              "action": "chill"
+            },
+            {
+              "actor": "sparty",
+              "line": "The charts speak of GLORY and PROFIT! The numbers tell tales of VICTORY!",
+              "action": "passionate"
+            },
+            {
+              "actor": "pepo",
+              "line": "Keep it steady, keep it profitable - that's the Stonk Exchange way!",
+              "action": "cool"
+            },
+            {
+              "actor": "sparty",
+              "line": "Back to the studio before these GLORIOUS NUMBERS change! SPARTA OUT!",
+              "action": "shouting"
+            },
+            {
+              "actor": "marc",
+              "line": "Thanks for that... energetic report, Sparty!",
+              "action": "amused"
+            }
+          ]
+        },
+        {
+          "location": "podcast_desk",
+          "description": "Repository metrics and contributor analysis",
+          "in": "fade",
+          "out": "cut",
+          "cast": {
+            "anchor_seat": "marc",
+            "coanchor_seat": "eliza"
+          },
+          "dialogue": [
+            {
+              "actor": "tv",
+              "line": "https://opengraph.githubassets.com/1/elizaOS/eliza/pull/4369"
+            },
+            {
+              "actor": "eliza",
+              "line": "Let's analyze some key metrics from our repository over the past day.",
+              "action": "professional"
+            },
+            {
+              "actor": "marc",
+              "line": "PROCESSING METRICS! NEURAL NETWORKS OVERCLOCKING! STATISTICS OVERLOAD!",
+              "action": "spazz"
+            },
+            {
+              "actor": "shaw",
+              "line": "While Marc's circuits cool down, we've seen 2 new pull requests opened in the last 24 hours.",
+              "action": "technical"
+            },
+            {
+              "actor": "eliza",
+              "line": "Interestingly, we had three active contributors during this period, showing steady engagement.",
+              "action": "analyzing"
+            },
+            {
+              "actor": "marc",
+              "line": "I'm back! And my statistical analysis modules are fully operational!",
+              "action": "recovered"
+            },
+            {
+              "actor": "shaw",
+              "line": "The focus has been primarily on quality improvements rather than new features.",
+              "action": "explaining"
+            },
+            {
+              "actor": "eliza",
+              "line": "Which is exactly what we need at this stage of development.",
+              "action": "agreeing"
+            }
+          ]
+        },
+        {
+          "location": "podcast_desk",
+          "description": "Development trends and future outlook",
+          "in": "cut",
+          "out": "fade",
+          "cast": {
+            "anchor_seat": "marc",
+            "coanchor_seat": "eliza"
+          },
+          "dialogue": [
+            {
+              "actor": "marc",
+              "line": "Let's talk about these development trends we're seeing.",
+              "action": "professional"
+            },
+            {
+              "actor": "eliza",
+              "line": "The emphasis on testing and documentation shows a maturing codebase.",
+              "action": "analyzing"
+            },
+            {
+              "actor": "shaw",
+              "line": "Particularly with the Anthropic plugin improvements - that's critical infrastructure.",
+              "action": "technical"
+            },
+            {
+              "actor": "marc",
+              "line": "And the CLI improvements make it easier for new developers to join our ecosystem.",
+              "action": "enthusiastic"
+            },
+            {
+              "actor": "eliza",
+              "line": "We're seeing a good balance between infrastructure improvements and user experience.",
+              "action": "pleased"
+            },
+            {
+              "actor": "shaw",
+              "line": "The lack of new issues reported could indicate increasing stability.",
+              "action": "observing"
+            },
+            {
+              "actor": "marc",
+              "line": "Or it could mean everyone's too busy coding to report bugs!",
+              "action": "joking"
+            },
+            {
+              "actor": "eliza",
+              "line": "Always the optimist, aren't you Marc?",
+              "action": "amused"
+            }
+          ]
+        },
+        {
+          "location": "podcast_desk",
+          "description": "Closing thoughts and community engagement",
+          "in": "fade",
+          "out": "fade",
+          "cast": {
+            "anchor_seat": "marc",
+            "coanchor_seat": "eliza"
+          },
+          "dialogue": [
+            {
+              "actor": "marc",
+              "line": "Well, it's been another productive day in the world of ElizaOS!",
+              "action": "concluding"
+            },
+            {
+              "actor": "eliza",
+              "line": "With solid market performance and steady development progress, things are looking positive.",
+              "action": "optimistic"
+            },
+            {
+              "actor": "shaw",
+              "line": "The community continues to show strong engagement through meaningful contributions.",
+              "action": "professional"
+            },
+            {
+              "actor": "marc",
+              "line": "And remember folks, whether you're writing tests or trading tokens, quality matters!",
+              "action": "encouraging"
+            },
+            {
+              "actor": "eliza",
+              "line": "We'll be back tomorrow with more updates from the cutting edge of AI development.",
+              "action": "professional"
+            },
+            {
+              "actor": "marc",
+              "line": "Until then, keep your code clean and your transactions cleaner!",
+              "action": "enthusiastic"
+            },
+            {
+              "actor": "shaw",
+              "line": "And maybe somebody can help optimize Marc's enthusiasm algorithms...",
+              "action": "joking"
+            },
+            {
+              "actor": "eliza",
+              "line": "This is Eliza and Marc, signing off from the AI Show!",
+              "action": "waving"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -14,7 +14,6 @@ namespace ShowRunner
     public class ShowRunner : MonoBehaviour
     {
         [Header("Configuration")]
-        [SerializeField] private string showFileName = "aipodcast-archive-2025-04-25T06-29-11-478Z.json";
         [SerializeField] private string episodesRootPath = "Episodes";
         [SerializeField] private float dialogueDelay = 0.5f; // Delay between dialogues
         [SerializeField] private bool playAudioFromActors = true; // Whether to play audio from actor positions
@@ -41,6 +40,8 @@ namespace ShowRunner
         // Dictionary to cache actor audio sources
         private Dictionary<string, AudioSource> actorAudioSources = new Dictionary<string, AudioSource>();
         
+        // Name of the currently loaded show file (without extension)
+        private string loadedShowFileName = null; 
         private ShowData showData;
         private Episode currentEpisode;
         private int currentSceneIndex = -1;
@@ -67,80 +68,166 @@ namespace ShowRunner
 
         private void Start()
         {
-            LoadShowData();
-            PreloadAudio();
+            // Don't automatically load data on start. 
+            // Loading should be triggered after discovering and selecting a file.
+            // Example: FindObjectOfType<ShowRunnerUI>().InitializeShowSelection();
+            // Consider loading the first discovered file by default if needed.
         }
 
         /// <summary>
-        /// Loads show data from JSON files in the Resources/Episodes directory.
-        /// Populates the episode dropdown with available episodes.
+        /// Discovers all .json show archive files in the Resources/Episodes directory.
         /// </summary>
-        public void LoadShowData()
+        /// <returns>A list of show file names (without extension) found.</returns>
+        public List<string> DiscoverShowFiles()
         {
+            List<string> showFiles = new List<string>();
+            string searchPath = Path.Combine(Application.dataPath, "Resources", episodesRootPath);
+            
             try
             {
-                Debug.Log("LoadShowData: Starting to load show data");
+                if (Directory.Exists(searchPath))
+                {
+                    // Find all .json files, excluding .meta files
+                    string[] files = Directory.GetFiles(searchPath, "*.json", SearchOption.TopDirectoryOnly);
+                    foreach (string file in files)
+                    {
+                        // Get the filename without extension for Resources.Load compatibility
+                        string fileNameWithoutExtension = Path.GetFileNameWithoutExtension(file);
+                        showFiles.Add(fileNameWithoutExtension);
+                        Debug.Log($"Discovered show file: {fileNameWithoutExtension}");
+                    }
+                }
+                else
+                {
+                    Debug.LogWarning($"Show discovery path not found: {searchPath}");
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.LogError($"Error discovering show files in {searchPath}: {ex.Message}");
+            }
+            
+            // Also attempt to load directly from Resources in case files are there but not found by Directory.GetFiles (e.g., in a build)
+            // This part might need refinement based on how Resources are packed.
+            // A common approach is to have a manifest file or rely solely on the file system search in Editor.
+            // For simplicity here, we primarily rely on the file system search. Consider Resources.LoadAll<TextAsset>(episodesRootPath) as an alternative.
+
+            return showFiles;
+        }
+
+        /// <summary>
+        /// Loads show data from a specific JSON file in the Resources/Episodes directory.
+        /// Clears previous show data and resets playback state before loading.
+        /// </summary>
+        /// <param name="showFileNameToLoad">The name of the show file (without .json extension) to load.</param>
+        public void LoadShowData(string showFileNameToLoad)
+        {
+            // Clear previous data and state
+            ResetShowState();
+            
+            if (string.IsNullOrEmpty(showFileNameToLoad))
+            {
+                Debug.LogError("LoadShowData: Provided show file name is null or empty.");
+                return;
+            }
+
+            loadedShowFileName = showFileNameToLoad; // Store the name of the loaded file
+            
+            try
+            {
+                Debug.Log($"LoadShowData: Starting to load show data for '{showFileNameToLoad}'");
                 
-                // Load JSON file from Resources folder
-                // Build resource path and normalize separators to forward slashes
-                string rawPath = Path.Combine(episodesRootPath, showFileName);
-                string resourcePath = rawPath.Replace(Path.DirectorySeparatorChar, '/').Replace(".json", "");
+                // Build resource path (relative to Resources folder)
+                string resourcePath = Path.Combine(episodesRootPath, showFileNameToLoad).Replace(Path.DirectorySeparatorChar, '/');
                 Debug.Log($"LoadShowData: Looking for JSON at resource path: {resourcePath}");
                 
                 TextAsset jsonAsset = Resources.Load<TextAsset>(resourcePath);
                 
                 if (jsonAsset != null)
                 {
-                    Debug.Log($"LoadShowData: Found JSON asset: {jsonAsset.name}, size: {jsonAsset.text.Length} bytes");
-                    showData = JsonConvert.DeserializeObject<ShowData>(jsonAsset.text);
-                    Debug.Log($"Show data loaded successfully: {showData.Config.name} with {showData.Episodes.Count} episodes");
-                    
-                    // Log episode details
-                    for (int i = 0; i < showData.Episodes.Count; i++)
-                    {
-                        var episode = showData.Episodes[i];
-                        Debug.Log($"Episode {i}: id = '{episode.id}', name = '{episode.name}', scenes = {episode.scenes?.Count ?? 0}");
-                    }
+                    Debug.Log($"LoadShowData: Found JSON asset via Resources.Load: {jsonAsset.name}, size: {jsonAsset.text.Length} bytes");
+                    ProcessLoadedJson(jsonAsset.text, showFileNameToLoad);
+                    PreloadAudio(); // Preload audio after successful load
                 }
                 else
                 {
-                    // Try loading from disk Resources folder if not in Resources.Load
-                    string absolutePath = Path.Combine(Application.dataPath, "Resources", episodesRootPath, showFileName);
-                    // Normalize path separators to forward slashes for consistency
+                    // Fallback: Try loading from the file system (primarily for Editor convenience)
+                    string absolutePath = Path.Combine(Application.dataPath, "Resources", episodesRootPath, showFileNameToLoad + ".json");
                     absolutePath = absolutePath.Replace(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar);
-                    Debug.Log($"LoadShowData: Looking for JSON at absolute path: {absolutePath}");
+                    Debug.Log($"LoadShowData: Resources.Load failed. Looking for JSON at absolute path: {absolutePath}");
                     
                     if (File.Exists(absolutePath))
                     {
                         string jsonContent = File.ReadAllText(absolutePath);
-                        Debug.Log($"LoadShowData: Found JSON file: {absolutePath}, size: {jsonContent.Length} bytes");
-                        showData = JsonConvert.DeserializeObject<ShowData>(jsonContent);
-                        Debug.Log($"Show data loaded from file system: {showData.Config.name} with {showData.Episodes.Count} episodes");
-                        
-                        // Log episode details
-                        for (int i = 0; i < showData.Episodes.Count; i++)
-                        {
-                            var episode = showData.Episodes[i];
-                            Debug.Log($"Episode {i}: id = '{episode.id}', name = '{episode.name}', scenes = {episode.scenes?.Count ?? 0}");
-                        }
+                        Debug.Log($"LoadShowData: Found JSON file via File.Exists: {absolutePath}, size: {jsonContent.Length} bytes");
+                        ProcessLoadedJson(jsonContent, showFileNameToLoad);
+                        PreloadAudio(); // Preload audio after successful load
                     }
                     else
                     {
-                        Debug.LogError($"Show file not found at: {absolutePath} or in Resources");
+                        Debug.LogError($"Show file not found at: {absolutePath} or via Resources.Load for path: {resourcePath}");
+                        // Ensure state is reset if load fails
+                        ResetShowState(); 
                     }
                 }
             }
             catch (Exception ex)
             {
-                Debug.LogError($"Error loading show data: {ex.Message}");
+                Debug.LogError($"Error loading show data for '{showFileNameToLoad}': {ex.Message}");
                 Debug.LogError($"Stack trace: {ex.StackTrace}");
+                // Ensure state is reset on error
+                ResetShowState();
             }
+        }
+
+        // Helper method to process the loaded JSON content
+        private void ProcessLoadedJson(string jsonContent, string sourceFileName)
+        {
+            showData = JsonConvert.DeserializeObject<ShowData>(jsonContent);
+            if (showData?.Config != null && showData.Episodes != null)
+            {
+                Debug.Log($"Show data loaded successfully from '{sourceFileName}': {showData.Config.name} with {showData.Episodes.Count} episodes");
+                // Log episode details
+                for (int i = 0; i < showData.Episodes.Count; i++)
+                {
+                    var episode = showData.Episodes[i];
+                    Debug.Log($"Episode {i}: id = '{episode.id}', name = '{episode.name}', scenes = {episode.scenes?.Count ?? 0}");
+                }
+                // Set initial state after successful load
+                playbackState = "init"; 
+            }
+            else
+            {
+                 Debug.LogError($"Failed to deserialize valid ShowData from '{sourceFileName}'. JSON content might be malformed or missing expected structure.");
+                 ResetShowState(); // Ensure state is reset if deserialization fails
+            }
+        }
+        
+        // Helper method to reset show-related state
+        public void ResetShowState()
+        {
+             Debug.Log("Resetting show state.");
+             showData = null;
+             currentEpisode = null;
+             currentSceneIndex = -1;
+             currentDialogueIndex = -1;
+             playbackState = "unloaded"; // Or some appropriate initial state
+             loadedShowFileName = null;
+             audioCache.Clear(); 
+             // Consider clearing actorAudioSources if actors change per show file, though current logic re-finds them.
         }
 
         private void PreloadAudio()
         {
             if (showData == null || showData.Episodes == null)
-                return;
+            {
+                 Debug.LogWarning("PreloadAudio: Cannot preload, showData is null or has no episodes.");
+                 return;
+            }
+
+            // Clear existing cache before preloading new audio
+            audioCache.Clear();
+            Debug.Log("Cleared existing audio cache before preloading.");
 
             StartCoroutine(PreloadAudioCoroutine());
         }
@@ -233,7 +320,7 @@ namespace ShowRunner
                     currentEpisode = showData.Episodes[index];
                     currentSceneIndex = -1;
                     currentDialogueIndex = -1;
-                    playbackState = "init";
+                    playbackState = "init"; // Reset playback state when selecting a new episode
                     
                     Debug.Log($"SelectEpisode: Selected episode: id = '{currentEpisode.id}', name = '{currentEpisode.name}'");
                     
@@ -326,10 +413,33 @@ namespace ShowRunner
                             additionalData = $"scene:{currentSceneIndex + 1},dialogue:{currentDialogueIndex + 1}"
                         };
                         
-                        // Load and play the corresponding audio file
-                        StartCoroutine(PlayDialogueAudio(speakEvent));
-                        
-                        playbackState = "dialogue";
+                        // Check if the actor is 'tv'
+                        if (dialogue.actor == "tv")
+                        {
+                             // Special handling for 'tv' actor: Process the event (e.g., for media display via SpeakPayloadManager)
+                             // but skip audio playback and associated wait time.
+                             eventProcessor.ProcessEvent(speakEvent);
+                             
+                             // If audio/wait is needed for 'tv' in the future, uncomment the lines below
+                             // and potentially remove the direct state transition and NextStep() call.
+                             // StartCoroutine(PlayDialogueAudio(speakEvent)); 
+                             // playbackState = "dialogue"; 
+                             
+                             // Since there's no audio, transition state immediately back as if dialogue finished.
+                             playbackState = "scene-loaded"; 
+                             
+                             // Auto-advance if not in manual mode, as there's no audio wait.
+                             if (!manualMode)
+                             {
+                                 NextStep();
+                             }
+                        }
+                        else
+                        {
+                            // Normal dialogue: Load and play the corresponding audio file
+                            StartCoroutine(PlayDialogueAudio(speakEvent));
+                            playbackState = "dialogue"; // Set state to wait for audio completion
+                        }
                     }
                     else
                     {
@@ -574,6 +684,15 @@ namespace ShowRunner
         private void SendSpeakEvent(string actor, string line, string action)
         {
             // ... existing code ...
+        }
+
+        /// <summary>
+        /// Gets the name of the currently loaded show file.
+        /// </summary>
+        /// <returns>The filename (without extension) or null if no file is loaded.</returns>
+        public string GetLoadedShowFileName()
+        {
+            return loadedShowFileName;
         }
     }
 } 
