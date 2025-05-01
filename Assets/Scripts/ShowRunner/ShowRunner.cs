@@ -70,18 +70,34 @@ namespace ShowRunner
                 }
             }
             
+            // --- DEBUG LOGGING START ---
+            Debug.Log($"ShowRunner Awake: Checking scenePreparationManager. Initial value (from Inspector?): {(scenePreparationManager == null ? "NULL" : "Assigned")}");
+            // --- DEBUG LOGGING END ---
             if (scenePreparationManager == null)
             {
                 scenePreparationManager = FindObjectOfType<ScenePreperationManager>();
+                 // --- DEBUG LOGGING START ---
+                Debug.Log($"ShowRunner Awake: Ran FindObjectOfType<ScenePreperationManager>(). Result: {(scenePreparationManager == null ? "NULL" : "Found")}");
+                 // --- DEBUG LOGGING END ---
                 if (scenePreparationManager == null)
                 {
                     Debug.LogError("ScenePreparationManager not found! The ShowRunner won't function properly.");
                 }
-                else
-                {
-                    // Subscribe to the scene preparation complete event
-                    scenePreparationManager.OnScenePreparationComplete += OnScenePreparationComplete;
-                }
+            }
+            
+            if (scenePreparationManager != null)
+            {
+                // Subscribe to the scene preparation complete event
+                scenePreparationManager.OnScenePreparationComplete += OnScenePreparationComplete;
+                // --- DEBUG LOGGING START ---
+                 Debug.Log("ShowRunner Awake: Successfully SUBSCRIBED to OnScenePreparationComplete.");
+                 // --- DEBUG LOGGING END ---
+            }
+             else
+            {
+                 // --- DEBUG LOGGING START ---
+                 Debug.LogError("ShowRunner Awake: FAILED to subscribe to OnScenePreparationComplete because scenePreparationManager is NULL!");
+                 // --- DEBUG LOGGING END ---
             }
         }
 
@@ -682,23 +698,35 @@ namespace ShowRunner
         // Handle scene preparation complete event
         private void OnScenePreparationComplete(string sceneName)
         {
-            Debug.Log($"Scene preparation completed for: {sceneName}");
+            // --- DEBUG LOGGING START ---
+            Debug.Log($"ShowRunner notified: Scene preparation completed for: {sceneName}");
+            Debug.Log($"Handler check: waitingForScenePreparation = {waitingForScenePreparation}, pendingSceneName = '{pendingSceneName}', received sceneName = '{sceneName}'");
+            // --- DEBUG LOGGING END ---
             
-            // Only proceed if we were waiting for this scene
+            // Only proceed if we were waiting for this specific scene
             if (waitingForScenePreparation && sceneName == pendingSceneName)
             {
+                // --- DEBUG LOGGING START ---
+                Debug.Log("Handler condition PASSED. Updating state.");
+                // --- DEBUG LOGGING END ---
                 waitingForScenePreparation = false;
                 pendingSceneName = null;
                 
                 // Transition to scene-loaded state now that preparation is complete
                 playbackState = "scene-loaded";
-                Debug.Log("ShowRunner state updated to 'scene-loaded' after scene preparation completed");
+                Debug.Log("ShowRunner state updated to 'scene-loaded' after scene preparation completed.");
                 
-                // Auto-advance if not in manual stepping mode
+                // Auto-advance to the first dialogue if not in manual stepping mode
                 if (!manualMode)
                 {
                     NextStep();
                 }
+            }
+            else
+            {
+                 // --- DEBUG LOGGING START ---
+                 Debug.LogWarning($"Handler condition FAILED. Not updating state. State was: {playbackState}");
+                 // --- DEBUG LOGGING END ---
             }
         }
 
