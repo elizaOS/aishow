@@ -174,7 +174,7 @@ namespace ShowRunner
                 return;
             }
 
-            loadedShowFileName = showFileNameToLoad; // Store the name of the loaded file
+            loadedShowFileName = showFileNameToLoad; // Store the name of the loaded file 
             
             try
             {
@@ -364,6 +364,10 @@ namespace ShowRunner
                     currentSceneIndex = -1;
                     currentDialogueIndex = -1;
                     playbackState = "init"; // Reset playback state when selecting a new episode
+                    
+                    // Reset tracking in other managers (e.g., Background Music)
+                    // BackgroundMusicManager.Instance?.ResetEpisodeTracking(); // REVERTED
+                    // CommercialManager.Instance?.ResetEpisodeTracking(); // REVERTED - Method doesn't exist
                     
                     Debug.Log($"SelectEpisode: Selected episode: id = '{currentEpisode.id}', name = '{currentEpisode.name}'");
                     
@@ -859,6 +863,21 @@ namespace ShowRunner
             {
                  Debug.LogWarning("ShowRunner: ResumeShow called but not paused.");
             }
+        }
+
+        /// <summary>
+        /// Gets the location name defined in the JSON for the currently loaded scene.
+        /// </summary>
+        /// <returns>The location string (e.g., "podcast_desk") or null if no scene is loaded or index is invalid.</returns>
+        public string GetCurrentSceneLocation()
+        {
+            if (currentEpisode != null && 
+                currentSceneIndex >= 0 && 
+                currentSceneIndex < currentEpisode.scenes.Count)
+            {
+                return currentEpisode.scenes[currentSceneIndex].location;
+            }
+            return null; // No valid scene loaded or index out of bounds
         }
     }
 } 

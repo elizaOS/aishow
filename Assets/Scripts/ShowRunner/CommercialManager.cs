@@ -34,6 +34,7 @@ namespace ShowRunner
         [SerializeField] private Canvas commercialCanvas;
         [SerializeField, Tooltip("Assign a UI Panel with a CanvasGroup for the fade-to-black effect after commercials.")] 
         private CanvasGroup blackFadePanel;
+        private BackgroundMusicManager backgroundMusicManager;
         
         [Header("Configuration")]
         [Tooltip("List of commercial breaks that can be played sequentially or looped.")]
@@ -105,6 +106,14 @@ namespace ShowRunner
             {
                  Debug.LogError("CommercialManager: Video Player reference is not set!");
             }
+
+            // --- Find BackgroundMusicManager ---
+            backgroundMusicManager = FindObjectOfType<BackgroundMusicManager>();
+            if (backgroundMusicManager == null)
+            {
+                 Debug.LogWarning("CommercialManager: BackgroundMusicManager not found in scene. Music fading during commercials will not work.", this);
+            }
+            // --- End Find ---
         }
         
         /// <summary>
@@ -204,6 +213,13 @@ namespace ShowRunner
                 commercialCanvas.gameObject.SetActive(true);
             }
             
+            // --- Fade out background music ---
+            if (backgroundMusicManager != null)
+            {
+                backgroundMusicManager.FadeOutForCommercials();
+            }
+            // --- End Fade out ---
+
             // Play each commercial clip
             for (int i = 0; i < commercialBreak.commercials.Count; i++)
             {
@@ -354,6 +370,13 @@ namespace ShowRunner
                  Debug.LogError("CommercialManager: ShowRunner instance not found! Cannot resume show AFTER fade.");
             }
             // -----------------------------------------------------
+
+            // --- Resume Background Music AFTER fade is complete ---
+            if (backgroundMusicManager != null)
+            {
+                 backgroundMusicManager.ResumeAfterCommercials();
+            }
+            // --- End Resume Music ---
             
             isPlayingCommercials = false;
         }

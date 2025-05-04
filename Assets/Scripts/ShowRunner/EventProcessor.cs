@@ -109,11 +109,11 @@ namespace ShowRunner
             if (actorGameObject == null)
             {
                 Debug.LogWarning($"Actor '{actor}' not found in the scene. Cannot trigger action '{action}'.");
-                return "normal";
+                return "normal"; // Return the original action if actor not found, or default
             }
 
             // Check for specific actions
-            switch (action)
+            switch (action.ToLower()) // Use ToLower for case-insensitive matching
             {
                 case "wave":
                     Debug.Log($"Actor '{actor}' is performing action 'wave'.");
@@ -127,7 +127,7 @@ namespace ShowRunner
                 
                 case "excited":
                     Debug.Log($"Actor '{actor}' is performing action 'excited'.");
-                    TriggerExcitedEffect(actorGameObject); // Trigger glitch for the specific actor
+                    TriggerExcitedEffect(actorGameObject); // Trigger excited effect for the specific actor
                     break;
                 
                 case "happy":
@@ -147,7 +147,7 @@ namespace ShowRunner
 
                 case "laugh":
                     Debug.Log($"Actor '{actor}' is performing action 'laugh'. Laughing.");
-                    TriggerLaughEffect(actorGameObject); // Trigger glitch for the specific actor
+                    TriggerLaughEffect(actorGameObject); // Trigger laugh effect for the specific actor
                     break;
                 
                 case "amused":
@@ -155,41 +155,60 @@ namespace ShowRunner
                     TriggerAmusedEffect(actorGameObject); // Trigger laser for the specific actor
                     break;
 
+                // --- BigHeadEffect Triggers ---
+                case "bighead_grow":
+                    Debug.Log($"Actor '{actor}' performing action 'bighead_grow'.");
+                    TriggerBigHeadEffect(actorGameObject, BigHeadEffect.EffectMode.Grow);
+                    break;
+                case "bighead_shrink":
+                    Debug.Log($"Actor '{actor}' performing action 'bighead_shrink'.");
+                    TriggerBigHeadEffect(actorGameObject, BigHeadEffect.EffectMode.Shrink);
+                    break;
+                case "bighead_random":
+                    Debug.Log($"Actor '{actor}' performing action 'bighead_random'.");
+                    TriggerBigHeadEffect(actorGameObject, BigHeadEffect.EffectMode.Random);
+                    break;
+                // --- End BigHeadEffect Triggers ---
+
                 case "professional":
                     Debug.Log($"Actor '{actor}' is performing action 'professional'. ");
-                    //TriggerLaughEffect(actorGameObject); // Trigger glitch for the specific actor
+                    // No specific effect, relies on animation state
                     break;
 
                 case "shouting":
-                    Debug.Log($"Actor '{actor}' is performing action 'professional'. ");
-                    //TriggerLaughEffect(actorGameObject); // Trigger glitch for the specific actor
+                    Debug.Log($"Actor '{actor}' is performing action 'shouting'. ");
+                    // No specific effect, relies on animation state
                     break;
 
                 case "cool":
                     Debug.Log($"Actor '{actor}' is performing action 'cool'. ");
-                    //TriggerLaughEffect(actorGameObject); // Trigger glitch for the specific actor
+                    // No specific effect, relies on animation state
                     break;
 
-                case "smooth":
+                case "smooth": // Assuming similar to cool/professional
                     Debug.Log($"Actor '{actor}' is performing action 'smooth'. ");
-                    //TriggerLaughEffect(actorGameObject); // Trigger glitch for the specific actor
+                    // No specific effect, relies on animation state
                     break;
 
-                case "confident":
-                    Debug.Log($"Actor '{actor}' is performing action 'smooth'. ");
-                    //TriggerLaughEffect(actorGameObject); // Trigger glitch for the specific actor
+                case "confident": // Assuming similar to cool/professional
+                    Debug.Log($"Actor '{actor}' is performing action 'confident'. ");
+                    // No specific effect, relies on animation state
                     break;
 
                 case "normal":
-                    Debug.Log($"Actor '{actor}' is performing action 'normal'. Doing nothing.");
+                    Debug.Log($"Actor '{actor}' is performing action 'normal'. Doing nothing special.");
                     break;
 
                 default:
-                    Debug.LogWarning($"Unknown action '{action}' received for actor '{actor}'. Defaulting to 'normal'.");
-                    action = "normal";
+                    // Keep the original action string if it's not recognized as a special effect trigger
+                    // This allows the action string to potentially be used for Animator states directly
+                    Debug.LogWarning($"Unknown or unhandled action '{action}' received for actor '{actor}'. Passing action through.");
+                    // action = "normal"; // Decided against forcing default
                     break;
             }
 
+            // Return the original action string, as it might be used by animation controllers or other systems
+            // even if it triggered a specific effect here.
             return action;
         }
 
@@ -233,7 +252,7 @@ namespace ShowRunner
             {
                 Debug.LogError($"Happy not found on actor '{actorGameObject.name}'. Unable to trigger Happy effect.");
             }
-            
+             
         }
 
         private void TriggerConcernedEffect(GameObject actorGameObject)
@@ -294,5 +313,21 @@ namespace ShowRunner
                 Debug.LogError($"AmusedLazerEffect not found on actor '{actorGameObject.name}'. Unable to trigger amused laser effect.");
             }
         }
+
+        // --- Add method to trigger BigHeadEffect ---
+        private void TriggerBigHeadEffect(GameObject actorGameObject, BigHeadEffect.EffectMode mode)
+        {
+            var bigHeadEffect = actorGameObject.GetComponent<BigHeadEffect>();
+            if (bigHeadEffect != null)
+            {
+                bigHeadEffect.TriggerEffect(mode); // Trigger the specific BigHead effect mode
+                Debug.Log($"BigHeadEffect ({mode}) triggered successfully for actor '{actorGameObject.name}'.");
+            }
+            else
+            {
+                Debug.LogError($"BigHeadEffect component not found on actor '{actorGameObject.name}'. Unable to trigger effect.");
+            }
+        }
+        // --- End Add method ---
     }
 }
