@@ -317,6 +317,11 @@ Active development for the last two months, but In the last 2 weeks, we hit some
   - Included a configurable fade-to-black screen (`CanvasGroup` based) with hold time between commercials and the next scene.
   - Implemented cross-fade logic: Fade-to-black overlaps the end of the last commercial, `ShowRunner` resumes immediately after video ends to allow scene prep during fade/hold.
 
+**Background Music & Commercial Integration**:
+  - Added `BackgroundMusicManager` to handle scene-specific music.
+  - Integrated `BackgroundMusicManager` with `CommercialManager` to fade music out during commercial breaks.
+  - Ensured background music resumes correctly for the *current* scene after commercials finish, fixing an issue where it previously reverted to the pre-commercial scene's music.
+
 ![image](https://github.com/user-attachments/assets/629363a3-412c-4f0f-8392-8a115a90b3a0)
 
 ## Things we can improve
