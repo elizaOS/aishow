@@ -297,7 +297,6 @@ The AI Show benefits the DAO by:
 ![image](https://github.com/user-attachments/assets/e460b3b3-4cef-4488-8bd2-364dea51fc70)
 
 ## Changelog
-**2024-05-01:**
 *   **YouTube Transcript Generator:** Added a new system (`YouTubeTranscriptGenerator` + Editor script) to automatically generate a formatted text transcript (`.txt`) upon episode completion. This includes:
     *   Parsing the show's JSON data.
     *   Formatting output with actor names and lines (scene headers removed for clarity, 'tv' actor commands skipped).
@@ -329,19 +328,15 @@ Active development for the last two months, but In the last 2 weeks, we hit some
   - Integrated `BackgroundMusicManager` with `CommercialManager` to fade music out during commercial breaks.
   - Ensured background music resumes correctly for the *current* scene after commercials finish, fixing an issue where it previously reverted to the pre-commercial scene's music.
 
-![image](https://github.com/user-attachments/assets/629363a3-412c-4f0f-8392-8a115a90b3a0)
+**Outro Manager"
+  - Added a way to pick a video for the outro
 
 ## Things we can improve
-- The JSON aggregator can be improved, as sometimes it is working, and other times it fails. Currently https://github.com/bozp-pzob/ai-news/blob/main/json/daily.json is the source we are pulling from to generate scripts. 
 - Perhaps we can have the prompts updated to deliver more of the updates or longer episodes that can be edited down. As of now the ShowRunner scripts use AI to pick, and summarize these updates. Not all of them are considered. 
-- Look into adding "news interviews" or a way to include a new guest
 - Can improve the approach to "curated" updates, where we have media, and certain specific topics to discuss, and how to update the showrunner to accomplish that.
-- We can port the entire project to Unity HDRP to get better reflections and lighting
 - Get feedback from DAO for more feature requests
 - Can integrate Eliza into the show writing AI pipeline.
 - Reach the core audience better by defining the audience and where to publish to. Currently we publish to youtube, but the community and DAO are not seeing the videos unless we tweet them.
-
-
 
 ## Conclusion  
 The AIShow blends AI innovation with community-driven engagement via video content. By leveraging Automation of github updates to a Unity pipeline, it aims to create video production that strengthens the DAO ecosystem while demonstrating the power of interactive AI.  
