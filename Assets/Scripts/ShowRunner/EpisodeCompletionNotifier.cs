@@ -63,13 +63,17 @@ namespace ShowRunner
 
         /// <summary>
         /// Handler method called when ShowRunner finishes the last dialogue.
+        /// Expects completion data (JsonFilePath, EpisodeId) from ShowRunner.
         /// </summary>
-        private void HandleEpisodeComplete()
+        private void HandleEpisodeComplete(EpisodeCompletionData completionData)
         {
-            Debug.Log("EpisodeCompletionNotifier received OnLastDialogueComplete from ShowRunner! Firing OnEpisodePlaybackFinished.", this);
+            Debug.Log($"EpisodeCompletionNotifier received OnLastDialogueComplete from ShowRunner for Episode {completionData.EpisodeId}! Firing OnEpisodePlaybackFinished.", this);
 
             // Notify any listeners that the episode playback is truly finished.
             OnEpisodePlaybackFinished?.Invoke();
+
+            // Now, invoke the EventManager event with the received data
+            EventManager.InvokeEpisodeComplete(completionData);
 
             // --- TODO: Add your outro video trigger logic here --- 
             // Example: FindObjectOfType<OutroVideoPlayer>()?.PlayOutro();

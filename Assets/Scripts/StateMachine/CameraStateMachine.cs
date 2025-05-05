@@ -37,7 +37,7 @@ public class CameraStateMachine : MonoBehaviour
    private void OnEnable()
     {
         // Subscribe to scene load events and custom event handlers
-        SceneManager.sceneLoaded += OnSceneLoaded; 
+        UnityEngine.SceneManagement.SceneManager.sceneLoaded += OnSceneLoaded;
         EventManager.OnSpeakerChange += HandleSpeakerChange;
         EventManager.OnClearSpeaker += HandleClearSpeaker;
     }
@@ -45,12 +45,12 @@ public class CameraStateMachine : MonoBehaviour
     private void OnDisable()
     {
         // Unsubscribe from events
-        SceneManager.sceneLoaded -= OnSceneLoaded;
+        UnityEngine.SceneManagement.SceneManager.sceneLoaded -= OnSceneLoaded;
         EventManager.OnSpeakerChange -= HandleSpeakerChange;
         EventManager.OnClearSpeaker -= HandleClearSpeaker;
     }
 
-        private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    private void OnSceneLoaded(UnityEngine.SceneManagement.Scene scene, UnityEngine.SceneManagement.LoadSceneMode mode)
     {
         //Debug.Log($"Scene Loaded: {scene.name}");
         

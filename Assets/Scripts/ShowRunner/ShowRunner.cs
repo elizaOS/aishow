@@ -59,7 +59,8 @@ namespace ShowRunner
 
         // Event fired AFTER the last dialogue line of the last scene has completed playback
         // and ShowRunner has internally marked the episode as unloaded.
-        public event Action OnLastDialogueComplete;
+        // Passes data about the completed episode (relative JSON path, episode ID).
+        public event Action<EpisodeCompletionData> OnLastDialogueComplete;
 
         // Internal pause state (set by CommercialManager)
         private bool isPaused = false;
@@ -464,9 +465,17 @@ namespace ShowRunner
                         Debug.Log("All scenes in the episode completed.");
                         playbackState = "episode-unloaded"; // Final state
                         
+                        // Create the completion data
+                        EpisodeCompletionData completionData = new EpisodeCompletionData
+                        {
+                            // Construct the relative path used by YouTubeTranscriptGenerator
+                            JsonFilePath = Path.Combine("Assets", "Resources", episodesRootPath, loadedShowFileName + ".json").Replace('\\', '/'),
+                            EpisodeId = currentEpisode.id
+                        };
+
                         // Invoke the completion event AFTER setting the final state
-                        Debug.Log("Invoking OnLastDialogueComplete event.");
-                        OnLastDialogueComplete?.Invoke(); 
+                        Debug.Log($"Invoking OnLastDialogueComplete event for {completionData.EpisodeId} from {completionData.JsonFilePath}.");
+                        OnLastDialogueComplete?.Invoke(completionData); 
 
                         // Note: Any outro logic (like the previously rejected OutroSequenceManager)
                         // would likely be triggered by a listener to OnLastDialogueComplete now,
