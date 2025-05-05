@@ -65,6 +65,17 @@ Handles the playback of video commercials during scene transitions.
 - `TriggerCommercialBreak()`: Called by ShowRunner to initiate a commercial check.
 - `SkipCurrentCommercials()`: Allows manually stopping the current break.
 
+## Recent Changes (Changelog)
+
+**2024-05-01:**
+*   **YouTube Transcript Generator:** Added a new system (`YouTubeTranscriptGenerator` + Editor script) to automatically generate a formatted text transcript (`.txt`) upon episode completion. This includes:
+    *   Parsing the show's JSON data.
+    *   Formatting output with actor names and lines (scene headers removed for clarity, 'tv' actor commands skipped).
+    *   Saving the transcript to `Assets/Resources/Transcripts/`.
+    *   Integrated event handling (`EventManager.OnEpisodeComplete`, `ShowRunner.OnLastDialogueComplete` modified) to trigger generation automatically.
+*   **Bug Fix (CameraStateMachine):** Resolved `CS0123` errors by explicitly qualifying namespaces (`UnityEngine.SceneManagement`) for `SceneManager`, `Scene`, and `LoadSceneMode` to prevent ambiguity during compilation.
+*   **TV Media Display:** Noted that the transcript generator skips dialogue lines from the 'tv' actor, which are used for displaying images/media during the show.
+
 ## Data Flow
 
 1. **Show Loading:**
@@ -165,26 +176,13 @@ Handles the playback of video commercials during scene transitions.
    - Manage memory efficiently
    - Handle errors gracefully
 
-## Error Handling
 
-1. **Common Issues:**
-   - Missing components
-   - Invalid JSON data
-   - Scene loading failures
-   - UI reference errors
-
-2. **Solutions:**
-   - Component validation
-   - Data validation
-   - Error logging
-   - Graceful fallbacks
 
 ## Future Improvements
 
 1. **Potential Enhancements:**
    - Additional UI features
    - More event types
-   - Dedicated Outro Sequence manager (distinct from commercial transitions)
    - Enhanced error handling
    - Performance optimizations
 
@@ -299,6 +297,15 @@ The AI Show benefits the DAO by:
 ![image](https://github.com/user-attachments/assets/e460b3b3-4cef-4488-8bd2-364dea51fc70)
 
 ## Changelog
+**2024-05-01:**
+*   **YouTube Transcript Generator:** Added a new system (`YouTubeTranscriptGenerator` + Editor script) to automatically generate a formatted text transcript (`.txt`) upon episode completion. This includes:
+    *   Parsing the show's JSON data.
+    *   Formatting output with actor names and lines (scene headers removed for clarity, 'tv' actor commands skipped).
+    *   Saving the transcript to `Assets/Resources/Transcripts/`.
+    *   Integrated event handling (`EventManager.OnEpisodeComplete`, `ShowRunner.OnLastDialogueComplete` modified) to trigger generation automatically.
+*   **Bug Fix (CameraStateMachine):** Resolved `CS0123` errors by explicitly qualifying namespaces (`UnityEngine.SceneManagement`) for `SceneManager`, `Scene`, and `LoadSceneMode` to prevent ambiguity during compilation.
+*   **TV Media Display:** Noted that the transcript generator skips dialogue lines from the 'tv' actor, which are used for displaying images/media during the show.
+
 Active development for the last two months, but In the last 2 weeks, we hit some milestones:
 - Been producing an episode per day for almost a month, missing only a few days when aggregator was down (devs are working on update to aggrogator)
 - Added happy, sad, emotions to visemes 
@@ -334,17 +341,7 @@ Active development for the last two months, but In the last 2 weeks, we hit some
 - Can integrate Eliza into the show writing AI pipeline.
 - Reach the core audience better by defining the audience and where to publish to. Currently we publish to youtube, but the community and DAO are not seeing the videos unless we tweet them.
 
-## Next Steps  
-1. **Content Development** – Finalize the core content pipeline for JSON updates from github for the AINEWS 
-2. **Technical Implementation** – Keep upgrading and testing the codebase to be more efficient and scalable
-3. **User Testing & Feedback** – We've uploaded almost 30 news shows to youtube, and the feedback has been good. Looking to get more feedback from DAO members
-4. **Iteration** – Refine based on user feedback. With the aggregator to be perfected so we can make news shows everyday. 
-5. **Issue Tracking** - https://github.com/elizaOS/aishow/issues we have completed a large number of goals, but there remains technical issues to be worked on there.
-6. **Timeline** - Decide the timeline of these projects, and frequency.
 
-## Challenges  
-- **Scalability** – Refactor code to be more scalable, and modularize code sections to be more reusable on different show formats.
-- **Recruitment** of possibly more Unity devs for Animations, Refactoring, or advanced features to increase iteration and development time.  
 
 ## Conclusion  
 The AIShow blends AI innovation with community-driven engagement via video content. By leveraging Automation of github updates to a Unity pipeline, it aims to create video production that strengthens the DAO ecosystem while demonstrating the power of interactive AI.  
