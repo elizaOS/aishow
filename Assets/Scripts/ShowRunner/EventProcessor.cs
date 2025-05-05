@@ -180,6 +180,26 @@ namespace ShowRunner
                     // No specific effect, relies on animation state
                     break;
 
+                case "enthusiastic":
+                    Debug.Log($"Actor '{actor}' is performing action 'enthusiastic'. ");
+                    // No specific effect, relies on animation state
+                    break;
+
+                case "joking":
+                    Debug.Log($"Actor '{actor}' is performing action 'joking'. ");
+                    // No specific effect, relies on animation state
+                    break;
+
+                case "waving":
+                    Debug.Log($"Actor '{actor}' is performing action 'waving'. ");
+                    // No specific effect, relies on animation state
+                    break;     
+
+                case "concluding":
+                    Debug.Log($"Actor '{actor}' is performing action 'concluding'. ");
+                    // No specific effect, relies on animation state
+                    break;                 
+
                 case "cool":
                     Debug.Log($"Actor '{actor}' is performing action 'cool'. ");
                     // No specific effect, relies on animation state
@@ -192,6 +212,61 @@ namespace ShowRunner
 
                 case "confident": // Assuming similar to cool/professional
                     Debug.Log($"Actor '{actor}' is performing action 'confident'. ");
+                    // No specific effect, relies on animation state
+                    break;
+
+                case "optimistic": // Assuming similar to cool/professional
+                    Debug.Log($"Actor '{actor}' is performing action 'optimistic'. ");
+                    // No specific effect, relies on animation state
+                    break;
+
+                case "observing": // Assuming similar to cool/professional
+                    Debug.Log($"Actor '{actor}' is performing action 'observing'. ");
+                    // No specific effect, relies on animation state
+                    break;
+
+                case "pleased": // Assuming similar to cool/professional
+                    Debug.Log($"Actor '{actor}' is performing action 'pleased'. ");
+                    // No specific effect, relies on animation state
+                    break;
+
+                case "technical": // Assuming similar to cool/professional
+                    Debug.Log($"Actor '{actor}' is performing action 'technical'. ");
+                    // No specific effect, relies on animation state
+                    break;
+
+                case "analyzing": // Assuming similar to cool/professional
+                    Debug.Log($"Actor '{actor}' is performing action 'analyzing'. ");
+                    // No specific effect, relies on animation state
+                    break;
+
+                case "agreeing": // Assuming similar to cool/professional
+                    Debug.Log($"Actor '{actor}' is performing action 'agreeing'. ");
+                    // No specific effect, relies on animation state
+                    break;
+
+                case "explaining": // Assuming similar to cool/professional
+                    Debug.Log($"Actor '{actor}' is performing action 'explaining'. ");
+                    // No specific effect, relies on animation state
+                    break;
+
+                case "recovered": // Assuming similar to cool/professional
+                    Debug.Log($"Actor '{actor}' is performing action 'recovered'. ");
+                    // No specific effect, relies on animation state
+                    break;
+
+                case "passionate": // Assuming similar to cool/professional
+                    Debug.Log($"Actor '{actor}' is performing action 'passionate'. ");
+                    // No specific effect, relies on animation state
+                    break;
+
+                case "chill": // Assuming similar to cool/professional
+                    Debug.Log($"Actor '{actor}' is performing action 'chill'. ");
+                    // No specific effect, relies on animation state
+                    break;
+
+                case "transitioning": // Assuming similar to cool/professional
+                    Debug.Log($"Actor '{actor}' is performing action 'transitioning'. ");
                     // No specific effect, relies on animation state
                     break;
 

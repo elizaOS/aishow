@@ -37,7 +37,7 @@ public class CameraStateMachine : MonoBehaviour
    private void OnEnable()
     {
         // Subscribe to scene load events and custom event handlers
-        SceneManager.sceneLoaded += OnSceneLoaded;
+        SceneManager.sceneLoaded += OnSceneLoaded; 
         EventManager.OnSpeakerChange += HandleSpeakerChange;
         EventManager.OnClearSpeaker += HandleClearSpeaker;
     }
