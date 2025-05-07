@@ -15,8 +15,8 @@ namespace ShowRunner
         [Tooltip("Optional: Assign the ScenePreperationManager. If null, will search the scene.")]
         [SerializeField] private ScenePreperationManager scenePreparationManager;
 
-        [Tooltip("Optional: Assign the EpisodeCompletionNotifier. If null, will search the scene.")]
-        [SerializeField] private EpisodeCompletionNotifier episodeCompletionNotifier;
+        // [Tooltip("Optional: Assign the EpisodeCompletionNotifier. If null, will search the scene.")] // No longer needed by BackgroundMusicManager
+        // [SerializeField] private EpisodeCompletionNotifier episodeCompletionNotifier;
         
         private BackgroundMusicManager backgroundMusicManager;
 
@@ -56,15 +56,7 @@ namespace ShowRunner
                 }
             }
 
-            // Find EpisodeCompletionNotifier if not assigned
-            if (episodeCompletionNotifier == null)
-            {
-                 episodeCompletionNotifier = FindObjectOfType<EpisodeCompletionNotifier>();
-                 if (episodeCompletionNotifier == null)
-                 {
-                     Debug.LogError("BackgroundMusicManagerSetup: EpisodeCompletionNotifier not found in scene!", this);
-                 }
-            }
+            // EpisodeCompletionNotifier is no longer a direct dependency for BackgroundMusicManager
 
             // Inject dependencies into BackgroundMusicManager
             // This uses reflection, alternatively use direct property access or an Initialize method.
@@ -72,16 +64,9 @@ namespace ShowRunner
             if (scenePrepField != null && scenePreparationManager != null) scenePrepField.SetValue(backgroundMusicManager, scenePreparationManager);
             else if(scenePreparationManager == null) Debug.LogError("Failed to inject ScenePreperationManager dependency.", this);
 
-
-            var notifierField = typeof(BackgroundMusicManager).GetField("episodeCompletionNotifier", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
-            if (notifierField != null && episodeCompletionNotifier != null) notifierField.SetValue(backgroundMusicManager, episodeCompletionNotifier);
-            else if(episodeCompletionNotifier == null) Debug.LogError("Failed to inject EpisodeCompletionNotifier dependency.", this);
-
-
             var audioSourceField = typeof(BackgroundMusicManager).GetField("backgroundAudioSource", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
             if (audioSourceField != null && backgroundAudioSource != null) audioSourceField.SetValue(backgroundMusicManager, backgroundAudioSource);
             else if(backgroundAudioSource == null) Debug.LogError("Failed to inject backgroundAudioSource dependency.", this);
-
 
             Debug.Log("BackgroundMusicManagerSetup completed.", this);
         }

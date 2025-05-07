@@ -4,9 +4,18 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 using Newtonsoft.Json;
+using ShowRunner.UI;
 
 namespace ShowRunner
 {
+    // Define the data structure for episode completion events within this namespace
+    [System.Serializable] // Keep serializable if needed elsewhere
+    public struct EpisodeCompletionData
+    {
+        public string JsonFilePath;
+        public string EpisodeId;
+    }
+
     /// <summary>
     /// Core controller class for managing show playback, scene preparation, and event processing.
     /// This class orchestrates the entire show experience, from loading episodes to managing scene transitions.
@@ -62,6 +71,12 @@ namespace ShowRunner
         // Passes data about the completed episode (relative JSON path, episode ID).
         public event Action<EpisodeCompletionData> OnLastDialogueComplete;
 
+        // Event fired when an episode is selected, passing the episode description/premise.
+        public event Action<string, string> OnEpisodeSelectedForDisplay;
+
+        // Event fired when the current scene changes, passing the scene name/location.
+        public event Action<string> OnSceneChangedForDisplay;
+
         // Internal pause state (set by CommercialManager)
         private bool isPaused = false;
 
@@ -107,6 +122,16 @@ namespace ShowRunner
              else
             {
                  Debug.LogError("ShowRunner Awake: Could not find ScenePreparationManager to subscribe to OnScenePreparationComplete!");
+            }
+
+            // Subscribe to UXAnimationManager events if the manager exists
+            if (UXAnimationManager.Instance != null)
+            {
+                this.OnLastDialogueComplete += UXAnimationManager.Instance.OnEpisodeEnd;
+            }
+            else
+            {
+                Debug.LogWarning("ShowRunner Awake: UXAnimationManager instance not found. Episode End UX events won't fire.");
             }
         }
 
@@ -366,11 +391,28 @@ namespace ShowRunner
                     currentDialogueIndex = -1;
                     playbackState = "init"; // Reset playback state when selecting a new episode
                     
-                    // Reset tracking in other managers (e.g., Background Music)
-                    // BackgroundMusicManager.Instance?.ResetEpisodeTracking(); // REVERTED
-                    // CommercialManager.Instance?.ResetEpisodeTracking(); // REVERTED - Method doesn't exist
-                    
+                    // Reset the OutroCaller state to allow the next outro to play
+                    OutroCaller outroCaller = FindObjectOfType<OutroCaller>();
+                    if (outroCaller != null)
+                    {
+                        outroCaller.ResetOutroState();
+                    }
+                    else
+                    {
+                         Debug.LogWarning("SelectEpisode could not find OutroCaller to reset its state.");
+                    }
+
+                    // Notify UX Manager that an episode has been selected/started
+                    UXAnimationManager.Instance?.OnEpisodeStart();
+
                     Debug.Log($"SelectEpisode: Selected episode: id = '{currentEpisode.id}', name = '{currentEpisode.name}'");
+                    
+                    // Invoke the OnEpisodeSelectedForDisplay event with premise or summary
+                    string episodeName = !string.IsNullOrEmpty(currentEpisode.name) ? currentEpisode.name : currentEpisode.id;
+                    string premise = !string.IsNullOrEmpty(currentEpisode.premise) ? currentEpisode.premise :
+                                     !string.IsNullOrEmpty(currentEpisode.summary) ? currentEpisode.summary :
+                                     "No description available.";
+                    OnEpisodeSelectedForDisplay?.Invoke(episodeName, premise);
                     
                     // Verify the episode data
                     if (string.IsNullOrEmpty(currentEpisode.name))
@@ -440,6 +482,9 @@ namespace ShowRunner
                         // Proceed with scene preparation
                         var scene = currentEpisode.scenes[currentSceneIndex];
                         Debug.Log($"Loading scene {currentSceneIndex + 1}: {scene.location}");
+                        
+                        // Invoke the OnSceneChangedForDisplay event
+                        OnSceneChangedForDisplay?.Invoke(scene.location ?? "Unnamed Scene");
                         
                         // Create a prepareScene event
                         EventData sceneEvent = new EventData
@@ -756,6 +801,9 @@ namespace ShowRunner
                 playbackState = "scene-loaded";
                 Debug.Log("ShowRunner state updated to 'scene-loaded' after scene preparation completed.");
                 
+                // Notify UX Manager about the scene change
+                UXAnimationManager.Instance?.OnSceneChanged(sceneName);
+
                 // Now check if we should resume the ShowRunner
                 // Resume only if we were paused waiting for a commercial break AND that break is now finished
                 if (isPaused)
@@ -781,7 +829,13 @@ namespace ShowRunner
                 // Unsubscribe to prevent memory leaks
                 scenePreparationManager.OnScenePreparationComplete -= OnScenePreparationComplete;
             }
-            
+
+            // Unsubscribe from UXAnimationManager event
+            if (UXAnimationManager.Instance != null)
+            {
+                this.OnLastDialogueComplete -= UXAnimationManager.Instance.OnEpisodeEnd;
+            }
+
             foreach (var actorAudioSource in actorAudioSources.Values)
             {
                 if (actorAudioSource != null && actorAudioSource != defaultAudioSource)

@@ -16,13 +16,13 @@ namespace ShowRunner
         // Ensure they match the field names used in the Setup script.
         private AudioSource backgroundAudioSource;
         private ScenePreperationManager scenePreparationManager;
-        private EpisodeCompletionNotifier episodeCompletionNotifier;
+        // private EpisodeCompletionNotifier episodeCompletionNotifier; // No longer used directly for episode end
         // --- End Injected Dependencies ---
 
         [System.Serializable]
         public struct LocationMusicMapping
         {
-            public string locationName;
+            public string locationName; 
             public AudioClip musicClip;
             [Range(0f, 1f)] public float volume;
         }
@@ -65,15 +65,18 @@ namespace ShowRunner
             }
         }
 
-        private void OnEnable()
+        // Subscribe in Start to ensure dependencies from Setup.Awake are ready 
+        // and subscription happens before the first scene prep potentially finishes.
+        private void Start()
         {
             // Check dependencies before subscribing
             // Dependencies should be injected by Setup script in Awake
-            if (scenePreparationManager != null && episodeCompletionNotifier != null && backgroundAudioSource != null && !isSubscribed)
+            if (scenePreparationManager != null && ShowRunner.Instance != null && backgroundAudioSource != null && !isSubscribed)
             {
                 Debug.Log("BackgroundMusicManager subscribing to events.", this);
                 scenePreparationManager.OnScenePreparationComplete += HandleScenePreparationComplete;
-                episodeCompletionNotifier.OnEpisodePlaybackFinished += HandleEpisodeFinished;
+                // Subscribe to ShowRunner's event for precise end-of-dialogue timing
+                ShowRunner.Instance.OnLastDialogueComplete += HandleLastDialogueComplete;
                 isSubscribed = true;
             }
             else if (isSubscribed)
@@ -84,10 +87,11 @@ namespace ShowRunner
             {
                  // Dependencies might not be ready yet if Setup script hasn't run.
                  // Consider using StartCoroutine(WaitForDependenciesAndSubscribe()); if issues persist.
-                Debug.LogWarning("BackgroundMusicManager OnEnable: Dependencies not met. Subscription will be attempted later or might fail if Setup doesn't run.", this);
+                Debug.LogWarning("BackgroundMusicManager Start: Dependencies not met. Subscription will be attempted later or might fail if Setup doesn't run.", this);
             }
         }
 
+        // Unsubscribe in OnDisable as usual
         private void OnDisable()
         {
             if (isSubscribed)
@@ -97,9 +101,10 @@ namespace ShowRunner
                 {
                     scenePreparationManager.OnScenePreparationComplete -= HandleScenePreparationComplete;
                 }
-                if (episodeCompletionNotifier != null)
+                // Unsubscribe from ShowRunner's event
+                if (ShowRunner.Instance != null)
                 {
-                    episodeCompletionNotifier.OnEpisodePlaybackFinished -= HandleEpisodeFinished;
+                    ShowRunner.Instance.OnLastDialogueComplete -= HandleLastDialogueComplete;
                 }
                 isSubscribed = false;
             }
@@ -107,6 +112,7 @@ namespace ShowRunner
 
         private void HandleScenePreparationComplete(string sceneName)
         {
+            Debug.Log($"[BMM] HandleScenePreparationComplete triggered for Unity scene: '{sceneName}'");
             // If music is faded for commercials, don't process scene changes
             if (isFadedForCommercials)
             {
@@ -121,21 +127,28 @@ namespace ShowRunner
             ShowRunner showRunner = ShowRunner.Instance; // Assuming Singleton pattern
             if (showRunner == null)
             {
-                Debug.LogError("BackgroundMusicManager: ShowRunner instance not found! Cannot determine current location.", this);
+                Debug.LogError("[BMM] ShowRunner instance not found! Cannot determine current location.", this);
                 return;
             }
             
             string newLocation = showRunner.GetCurrentSceneLocation();
+
+            // === Log the result ===
             if (string.IsNullOrEmpty(newLocation))
             {
-                 Debug.LogWarning($"BackgroundMusicManager: Could not get current scene location from ShowRunner for scene '{sceneName}'. Using default music.", this);
-                 // Optionally play default music or do nothing
-                 PlayMusicForLocation(null); 
-                 return;
+                // Updated log: We don't know the index for sure here, just that location is missing.
+                Debug.LogWarning($"[BMM] GetCurrentSceneLocation() returned NULL or EMPTY when preparing Unity scene '{sceneName}'. Using default music.", this);
+                PlayMusicForLocation(null); // Explicitly pass null if location is invalid
+                return;
+            }
+            else
+            {
+                Debug.Log($"[BMM] GetCurrentSceneLocation() returned: '{newLocation}'");
             }
 
-            Debug.Log($"BackgroundMusicManager: Scene preparation complete for location '{newLocation}' (Unity scene: {sceneName}).", this);
+            Debug.Log($"[BMM] Scene preparation complete for location '{newLocation}' (Unity scene: '{sceneName}'). Current BMM location is '{currentLocation ?? "null"}'", this);
 
+            // Only play if the location actually changed
             if (newLocation != currentLocation)
             {
                 PlayMusicForLocation(newLocation);
@@ -148,9 +161,10 @@ namespace ShowRunner
             }
         }
 
-        private void HandleEpisodeFinished()
+        // Renamed handler to reflect the event it's subscribed to
+        private void HandleLastDialogueComplete(EpisodeCompletionData completionData)
         {
-            Debug.Log("BackgroundMusicManager: Episode finished. Fading out background music.", this);
+            Debug.Log($"BackgroundMusicManager: Last dialogue complete for episode '{completionData.EpisodeId}'. Fading out background music.", this);
             FadeOutMusic();
             currentLocation = null; // Reset location tracking
             isFadedForCommercials = false; // Ensure flag is reset if episode ends abruptly

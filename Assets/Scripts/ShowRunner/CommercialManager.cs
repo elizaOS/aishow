@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Video;
 using UnityEngine.UI;
+using ShowRunner.UI;
 
 namespace ShowRunner 
 {
@@ -379,6 +380,9 @@ namespace ShowRunner
             // --- End Resume Music ---
             
             isPlayingCommercials = false;
+
+            // Notify UX Manager that commercials have ended
+            // UXAnimationManager.Instance?.OnCommercialEnd();
         }
         
         /// <summary>

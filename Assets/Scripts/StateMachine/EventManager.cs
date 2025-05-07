@@ -1,12 +1,6 @@
 using System;
 using UnityEngine;
-
-// Data structure to pass event info
-public struct EpisodeCompletionData
-{
-    public string JsonFilePath; // Relative path used to load the episode
-    public string EpisodeId;    // The ID of the completed episode (e.g., "S1E1")
-}
+using ShowRunner;
 
 public class EventManager
 {
@@ -19,7 +13,7 @@ public class EventManager
     /// Event fired when an episode has finished playing.
     /// Passes the path to the source JSON and the Episode ID.
     /// </summary>
-    public static event Action<EpisodeCompletionData> OnEpisodeComplete;
+    public static event Action<ShowRunner.EpisodeCompletionData> OnEpisodeComplete;
 
     private Transform currentSpeaker;
 
@@ -58,7 +52,7 @@ public class EventManager
     /// Invokes the OnEpisodeComplete event.
     /// </summary>
     /// <param name="completionData">Data about the completed episode.</param>
-    public static void InvokeEpisodeComplete(EpisodeCompletionData completionData)
+    public static void InvokeEpisodeComplete(ShowRunner.EpisodeCompletionData completionData)
     {
         Debug.Log($"Invoking OnEpisodeComplete for Episode: {completionData.EpisodeId} from path: {completionData.JsonFilePath}");
         OnEpisodeComplete?.Invoke(completionData);

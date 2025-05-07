@@ -1,9 +1,15 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-[RequireComponent(typeof(Camera))]
+// No longer requiring Camera component on this GameObject itself
+// [RequireComponent(typeof(Camera))] 
 public class HandheldCamera : MonoBehaviour
 {
+    [Header("Camera Reference")]
+    [Tooltip("The actual Unity Camera that this script will control (FOV, and its transform should follow this GameObject).")]
+    public Camera actualUnityCamera; // Public reference to the Camera component
+
+    [Header("Targeting")]
     public Transform[] targets; // List of targets (actors on stage)
     public float switchTargetTimeMin = 3f; // Minimum time before switching targets
     public float switchTargetTimeMax = 5f; // Maximum time before switching targets
@@ -25,58 +31,116 @@ public class HandheldCamera : MonoBehaviour
     private Quaternion desiredRotation; // Desired rotation to look at the target
     private float wobbleTimer; // Timer for calculating wobble
 
-    private Camera cam; // Reference to the camera component
     private bool isZooming = false; // Flag to indicate if zoom is active
     private float zoomTimer = 0f; // Timer for managing zoom cooldown
     private float timeToNextZoom; // Time before the next zoom event
 
+    // Flag to ensure one-time initialization for certain settings (like initial rotation snap)
+    private bool m_IsFirstInitialization = true;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
-        cam = GetComponent<Camera>();
-        if (cam != null)
+        // cam = GetComponent<Camera>(); // Old way of getting camera
+        
+        // Validate the actualUnityCamera reference
+        if (actualUnityCamera == null)
         {
-            cam.fieldOfView = defaultFOV;
+            Debug.LogError("HandheldCamera: 'actualUnityCamera' is not assigned in the Inspector. This script requires a Camera to control.", this);
+            enabled = false; // Disable script if no camera is assigned
+            return;
         }
+
+        // FOV initialization is now handled in InitializeCameraTarget to ensure correct behavior
+        // on enable/disable cycles.
+        // Initial FOV setting, if needed directly in Awake, would use actualUnityCamera.fieldOfView
     }
 
     private void Start()
     {
+        // InitializeCameraTarget is called in OnEnable, which also runs on start.
+        // Calling it here ensures initialization if the object starts active.
+        // If it starts disabled, OnEnable will handle it when activated.
+        // The logic within InitializeCameraTarget manages first-time vs. subsequent calls.
         InitializeCameraTarget();
     }
 
     private void OnEnable()
     {
+        // Called when the component is enabled, including after being disabled or when the GameObject is activated.
+        // Handles both initial setup (if Start hasn't run yet for a disabled-then-enabled object)
+        // and re-initialization logic.
         InitializeCameraTarget();
     }
 
     private void InitializeCameraTarget()
     {
-        if (targets.Length > 0)
+        if (targets == null || targets.Length == 0)
         {
-            // Select initial target if not already set
-            if (currentTarget == null)
+            // No targets available.
+            // Ensure camera is at default FOV and not in a zooming state.
+            if (actualUnityCamera != null)
             {
-                currentTarget = targets[Random.Range(0, targets.Length)];
+                actualUnityCamera.fieldOfView = defaultFOV;
             }
-            
-            // Calculate and set initial rotation
-            if (currentTarget != null)
+            isZooming = false;
+            // currentTarget will be null, Update/FixedUpdate will do nothing.
+            // No rotation change is enforced here if no targets.
+
+            // If this is the first time, mark it so full init doesn't happen again if targets appear later
+            if (m_IsFirstInitialization)
             {
-                Vector3 directionToTarget = currentTarget.position - transform.position;
-                desiredRotation = Quaternion.LookRotation(directionToTarget);
-                
-                // Ensure smooth initial rotation
+                m_IsFirstInitialization = false;
+            }
+            return;
+        }
+
+        // --- Target Selection ---
+        // Preserve current target if it exists and is valid, otherwise pick a new one.
+        // (Original logic for this was sound: if currentTarget is null, pick one)
+        if (currentTarget == null)
+        {
+            currentTarget = targets[Random.Range(0, targets.Length)];
+        }
+        // If currentTarget is still null (e.g. targets array was filtered to empty by other logic not shown),
+        // we might have an issue. Assuming targets array always has valid entries if length > 0.
+
+        // --- Rotation ---
+        if (currentTarget != null)
+        {
+            Vector3 directionToTarget = currentTarget.position - transform.position;
+            desiredRotation = Quaternion.LookRotation(directionToTarget);
+
+            if (m_IsFirstInitialization)
+            {
+                // Snap rotation only on the very first initialization.
+                // This prevents rotational jumps when re-enabling the script.
                 transform.rotation = desiredRotation;
             }
+            // On subsequent enables, transform.rotation is not snapped here.
+            // FixedUpdate will smoothly handle camera movement towards desiredRotation.
+        }
 
-            // Reset zoom-related variables
-            isZooming = false;
-            zoomTimer = 0f;
-            timeToNextZoom = Random.Range(zoomCooldownMin, zoomCooldownMax);
+        // --- FOV and Zoom State ---
+        if (actualUnityCamera != null)
+        {
+            // On first initialization OR on any re-enable, reset to default FOV.
+            // This addresses the "snap back" from a previous zoom state when re-enabled.
+            actualUnityCamera.fieldOfView = defaultFOV;
+        }
+        // Reset zoom state variables consistently upon enable/re-enable.
+        isZooming = false; // Ensures no zoom operation thinks it's active.
+        zoomTimer = 0f;    // Reset zoom cooldown timer.
+        timeToNextZoom = Random.Range(zoomCooldownMin, zoomCooldownMax); // Schedule next potential zoom.
 
-            // Reset target switching and other timers
-            timeToSwitchTarget = Random.Range(switchTargetTimeMin, switchTargetTimeMax);
+        // --- Target Switching Timer ---
+        // Reset the timer for switching targets.
+        timeToSwitchTarget = Random.Range(switchTargetTimeMin, switchTargetTimeMax);
+
+        // After the first full initialization sequence, set this flag to false.
+        if (m_IsFirstInitialization)
+        {
+            m_IsFirstInitialization = false;
         }
     }
 
@@ -186,7 +250,7 @@ public class HandheldCamera : MonoBehaviour
     while (elapsedTime < zoomDuration / 2f)
     {
         elapsedTime += Time.deltaTime;
-        cam.fieldOfView = Mathf.Lerp(defaultFOV, zoomFOV, elapsedTime / (zoomDuration / 2f));
+        actualUnityCamera.fieldOfView = Mathf.Lerp(defaultFOV, zoomFOV, elapsedTime / (zoomDuration / 2f));
         yield return null;
     }
 
@@ -198,7 +262,7 @@ public class HandheldCamera : MonoBehaviour
     while (elapsedTime < zoomDuration / 2f)
     {
         elapsedTime += Time.deltaTime;
-        cam.fieldOfView = Mathf.Lerp(zoomFOV, defaultFOV, elapsedTime / (zoomDuration / 2f));
+        actualUnityCamera.fieldOfView = Mathf.Lerp(zoomFOV, defaultFOV, elapsedTime / (zoomDuration / 2f));
         yield return null;
     }
 

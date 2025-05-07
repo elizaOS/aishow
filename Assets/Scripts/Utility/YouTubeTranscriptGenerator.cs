@@ -5,6 +5,7 @@ using System.Text;
 using System.Collections.Generic;
 using System;
 using System.Linq;
+using ShowRunner;
 
 // --- JSON Data Structures ---
 // These classes represent the structure of the episode JSON file.
