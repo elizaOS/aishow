@@ -29833,54 +29833,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -4419789730614284961, guid: f74adaa0ddc280f4dacbc6bc148f716b, type: 3}
   m_PrefabInstance: {fileID: 1359899802}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &939418909
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 939418910}
-  - component: {fileID: 939418911}
-  m_Layer: 0
-  m_Name: JibPitchController
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &939418910
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 939418909}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.0780945, y: -0.7670641, z: -2.2338104}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1075679828}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &939418911
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 939418909}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a431fbd0507956a4eb7dfd7e4fd0da6e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cameraArm: {fileID: 1591212492}
-  pitchMin: -10
-  pitchMax: 10
-  pitchDuration: 10
 --- !u!4 &939562533 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4304890118132360457, guid: 483c94f933fd3fd458d529253d241e24, type: 3}
@@ -35235,6 +35187,7 @@ GameObject:
   - component: {fileID: 1075679831}
   - component: {fileID: 1075679830}
   - component: {fileID: 1075679829}
+  - component: {fileID: 1075679832}
   m_Layer: 0
   m_Name: JibBlockNewsRoom
   m_TagString: Untagged
@@ -35255,8 +35208,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 939418910}
-  - {fileID: 1308060151}
   - {fileID: 1944419375}
   - {fileID: 1208434543}
   - {fileID: 624580037}
@@ -35333,6 +35284,41 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1075679827}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1075679832
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1075679827}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfd91440fee4f7c49aee960aa3c803e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jibBasePivot: {fileID: 624580037}
+  jibArmPivot: {fileID: 1591212492}
+  cameraTransform: {fileID: 1629856484}
+  actualCamera: {fileID: 1300688548}
+  panAngle: 50
+  panSpeed: 2
+  pitchMin: -10
+  pitchMax: 10
+  pitchCycleDuration: 25
+  targets:
+  - {fileID: 1944419375}
+  - {fileID: 1208434543}
+  switchTargetTimeMin: 10
+  switchTargetTimeMax: 15
+  cameraAimSpeed: 3
+  overshootAmount: 0
+  overshootDamping: 5
+  defaultFOV: 60
+  zoomFOV: 40
+  zoomInOutDuration: 10
+  zoomHoldDuration: 10
+  zoomCooldownMin: 5
+  zoomCooldownMax: 5
 --- !u!1 &1075705429
 GameObject:
   m_ObjectHideFlags: 0
@@ -42445,7 +42431,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -42906,53 +42892,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1305410346}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &1308060150
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1308060151}
-  - component: {fileID: 1308060152}
-  m_Layer: 0
-  m_Name: JibController
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1308060151
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1308060150}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.0780945, y: -0.7670641, z: -2.2338104}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1075679828}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1308060152
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1308060150}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65b1b6f5f306d7742950cc77397e0c90, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  jibArm: {fileID: 624580037}
-  panAngle: 50
-  panSpeed: 3
 --- !u!4 &1309927962 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6322167795654741586, guid: 483c94f933fd3fd458d529253d241e24, type: 3}
@@ -49980,7 +49919,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1629856484}
   - component: {fileID: 1629856486}
-  - component: {fileID: 1629856485}
   m_Layer: 0
   m_Name: jibCameraLogic
   m_TagString: Untagged
@@ -50004,32 +49942,6 @@ Transform:
   - {fileID: 1300688555}
   m_Father: {fileID: 1591212492}
   m_LocalEulerAnglesHint: {x: 0, y: 75.447, z: 0}
---- !u!114 &1629856485
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1629856483}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 26478fbba012f2346917cbd210c2e107, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targets:
-  - {fileID: 1944419375}
-  - {fileID: 1208434543}
-  switchTargetTimeMin: 3
-  switchTargetTimeMax: 15
-  panSpeed: 1
-  overshootAmount: 0
-  overshootDamping: 0
-  defaultFOV: 50
-  zoomFOV: 20
-  zoomDuration: 10
-  zoomCooldownMin: 10
-  zoomCooldownMax: 20
-  targetCamera: {fileID: 1300688548}
 --- !u!54 &1629856486
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -50053,7 +49965,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
