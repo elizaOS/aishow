@@ -171,10 +171,15 @@ public class IntroSequenceManager : MonoBehaviour
     {
         Debug.Log("Intro sequence completed.");
 
-        // Deactivate the last step if it exists
-        if (introSteps.Length > 0 && introSteps[currentStepIndex - 1]?.stepObject != null)
+        // Deactivate the last step if it exists and currentStepIndex is valid
+        // Check ensures currentStepIndex-1 is a valid index (0 to introSteps.Length-1)
+        if (introSteps.Length > 0 && currentStepIndex > 0 && currentStepIndex <= introSteps.Length)
         {
-            introSteps[currentStepIndex - 1].stepObject.SetActive(false);
+            // Ensure the step object itself is not null before trying to access it
+            if (introSteps[currentStepIndex - 1]?.stepObject != null)
+            {
+                introSteps[currentStepIndex - 1].stepObject.SetActive(false);
+            }
         }
 
         // Reset VideoPlayers in all steps
@@ -189,7 +194,11 @@ public class IntroSequenceManager : MonoBehaviour
                     videoPlayer.frame = 0;
                     if (videoPlayer.targetTexture != null)
                     {
-                        videoPlayer.targetTexture.Release();
+                        // Check if the render texture is still valid/created before releasing
+                        if (videoPlayer.targetTexture.IsCreated())
+                        {
+                            videoPlayer.targetTexture.Release();
+                        }
                     }
                 }
             }
