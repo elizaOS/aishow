@@ -31,6 +31,7 @@ namespace ShowRunner
         [SerializeField] private EventProcessor eventProcessor;
         [SerializeField] private AudioSource defaultAudioSource;
         [SerializeField] private ScenePreperationManager scenePreparationManager;
+        [SerializeField] private SceneTransitionManager sceneTransitionManager;
 
         [Header("Playback Settings")]
         [SerializeField, Tooltip("If enabled, steps only when UI triggers NextStep; disable for full auto-play.")]
@@ -132,6 +133,15 @@ namespace ShowRunner
             else
             {
                 Debug.LogWarning("ShowRunner Awake: UXAnimationManager instance not found. Episode End UX events won't fire.");
+            }
+
+            if (sceneTransitionManager == null)
+            {
+                sceneTransitionManager = FindObjectOfType<SceneTransitionManager>();
+                if (sceneTransitionManager == null)
+                {
+                    Debug.LogWarning("SceneTransitionManager not found! Scene transitions will not be available.");
+                }
             }
         }
 
@@ -723,6 +733,15 @@ namespace ShowRunner
                 audioSource.clip = dialogueClip;
                 audioSource.enabled = true;
                 audioSource.Play();
+
+                // Check if this is the last line of the scene
+                bool isLastLine = currentDialogueIndex == currentEpisode.scenes[currentSceneIndex].dialogue.Count - 1;
+                
+                // If it's the last line and we have a transition manager, notify it
+                if (isLastLine && sceneTransitionManager != null)
+                {
+                    sceneTransitionManager.OnLastLineOfScene(speakEvent, dialogueClip.length);
+                }
                 
                 // Wait for the audio to finish (plus a small delay)
                 float waitTime = dialogueClip.length + dialogueDelay;
@@ -776,11 +795,17 @@ namespace ShowRunner
             List<string> titles = new List<string>();
             if (showData?.Episodes != null)
             {
+                Debug.Log($"GetEpisodeTitles: Found {showData.Episodes.Count} episodes");
                 foreach (var episode in showData.Episodes)
                 {
+                    Debug.Log($"GetEpisodeTitles: Processing episode {episode.id} - {episode.name}");
                     string name = string.IsNullOrEmpty(episode.name) ? episode.id : episode.name;
                     titles.Add($"{episode.id}: {name}");
                 }
+            }
+            else
+            {
+                Debug.LogWarning("GetEpisodeTitles: showData or Episodes is null");
             }
             return titles;
         }

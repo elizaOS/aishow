@@ -327,26 +327,42 @@ namespace ShowRunner
 
         public void PopulateEpisodeDropdown(System.Collections.Generic.List<string> episodeTitles)
         {
-            if (episodeDropdown == null) return;
+            if (episodeDropdown == null)
+            {
+                Debug.LogError("PopulateEpisodeDropdown: episodeDropdown is null");
+                return;
+            }
+
+            Debug.Log($"PopulateEpisodeDropdown: Received {episodeTitles?.Count ?? 0} episode titles");
+            if (episodeTitles != null)
+            {
+                foreach (var title in episodeTitles)
+                {
+                    Debug.Log($"PopulateEpisodeDropdown: Processing title: {title}");
+                }
+            }
 
             episodeDropdown.ClearOptions();
 
             if (episodeTitles == null || episodeTitles.Count == 0)
             {
+                Debug.LogWarning("PopulateEpisodeDropdown: No episode titles provided");
                 episodeDropdown.options.Add(new TMP_Dropdown.OptionData("-- No Episodes --"));
                 SetEpisodeSelectionInteractable(false); // Disable dropdown and load button
             }
             else
             {
                 // Add a placeholder first if needed, or just the titles
-                 List<string> options = new List<string> { "-- Select Episode --" };
-                 options.AddRange(episodeTitles);
-                 episodeDropdown.AddOptions(options);
-                 SetEpisodeSelectionInteractable(true); // Enable dropdown and load button
+                List<string> options = new List<string> { "-- Select Episode --" };
+                options.AddRange(episodeTitles);
+                Debug.Log($"PopulateEpisodeDropdown: Adding {options.Count} options to dropdown");
+                episodeDropdown.AddOptions(options);
+                SetEpisodeSelectionInteractable(true); // Enable dropdown and load button
             }
             
             episodeDropdown.value = 0; // Default to the first item (placeholder or first episode)
             episodeDropdown.RefreshShownValue();
+            Debug.Log($"PopulateEpisodeDropdown: Dropdown now has {episodeDropdown.options.Count} options");
         }
 
         public int GetSelectedEpisodeIndex()

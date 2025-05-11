@@ -22,8 +22,9 @@ namespace ShowRunner
         [System.Serializable]
         public struct LocationMusicMapping
         {
-            public string locationName; 
-            public AudioClip musicClip;
+            public string locationName;
+            [Tooltip("List of possible music clips for this location. One will be chosen at random each time.")]
+            public List<AudioClip> musicClips; // Changed from single AudioClip to list
             [Range(0f, 1f)] public float volume;
         }
 
@@ -51,7 +52,8 @@ namespace ShowRunner
             // Build the dictionary for faster lookups
             foreach (var mapping in musicMappings)
             {
-                if (!string.IsNullOrEmpty(mapping.locationName) && mapping.musicClip != null)
+                // Accept mapping if it has a name and at least one valid clip
+                if (!string.IsNullOrEmpty(mapping.locationName) && mapping.musicClips != null && mapping.musicClips.Count > 0)
                 {
                     if (!musicMap.ContainsKey(mapping.locationName))
                     {
@@ -180,9 +182,18 @@ namespace ShowRunner
 
             if (!string.IsNullOrEmpty(locationName) && musicMap.TryGetValue(locationName, out mapping))
             {
-                clipToPlay = mapping.musicClip;
-                targetVolume = mapping.volume;
-                Debug.Log($"BackgroundMusicManager: Found music mapping for location '{locationName}': Clip '{clipToPlay.name}', Volume {targetVolume}", this);
+                // Randomly pick a clip from the list for this location
+                if (mapping.musicClips != null && mapping.musicClips.Count > 0)
+                {
+                    int randomIndex = UnityEngine.Random.Range(0, mapping.musicClips.Count);
+                    clipToPlay = mapping.musicClips[randomIndex];
+                    targetVolume = mapping.volume;
+                    Debug.Log($"BackgroundMusicManager: Randomly selected clip '{clipToPlay.name}' for location '{locationName}', Volume {targetVolume}", this);
+                }
+                else
+                {
+                    Debug.LogWarning($"BackgroundMusicManager: No music clips found in mapping for location '{locationName}'. Using default.", this);
+                }
             }
             else
             {
@@ -203,19 +214,9 @@ namespace ShowRunner
             // --- Play or adjust the new music --- 
             if (clipToPlay != null)
             {
-                // Check if the target clip is already playing (or was playing before fade out started)
-                if (backgroundAudioSource.clip == clipToPlay && backgroundAudioSource.isPlaying)
-                {
-                     Debug.Log($"BackgroundMusicManager: Target clip '{clipToPlay.name}' is already playing. Adjusting volume.", this);
-                     // Only adjust volume if it's different and not already fading (handled by FadeInMusic)
-                     FadeInMusic(clipToPlay, targetVolume, false); // Adjust volume without restart, uses fadeInDuration
-                }
-                else
-                {
-                     // Start new clip playback and fade in
-                     Debug.Log($"BackgroundMusicManager: Starting fade in for new clip '{clipToPlay.name}'.", this);
-                     FadeInMusic(clipToPlay, targetVolume, true); // Start new clip, uses fadeInDuration
-                }
+                // Always randomize, so even if the same location is triggered, a new clip may be chosen
+                Debug.Log($"BackgroundMusicManager: Starting fade in for new/randomized clip '{clipToPlay.name}'.", this);
+                FadeInMusic(clipToPlay, targetVolume, true); // Always restart for new random
             }
             else
             {
