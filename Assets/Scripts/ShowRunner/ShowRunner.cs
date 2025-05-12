@@ -736,11 +736,21 @@ namespace ShowRunner
 
                 // Check if this is the last line of the scene
                 bool isLastLine = currentDialogueIndex == currentEpisode.scenes[currentSceneIndex].dialogue.Count - 1;
-                
+                // Check if this is the last scene in the episode
+                bool isLastScene = currentSceneIndex == currentEpisode.scenes.Count - 1;
                 // If it's the last line and we have a transition manager, notify it
+                // Only trigger transition if NOT the last scene, or if IgnoreLastSceneTransition is false
                 if (isLastLine && sceneTransitionManager != null)
                 {
-                    sceneTransitionManager.OnLastLineOfScene(speakEvent, dialogueClip.length);
+                    // Look ahead to the next scene for transition
+                    string nextLocation = null;
+                    if (currentSceneIndex + 1 < currentEpisode.scenes.Count)
+                        nextLocation = currentEpisode.scenes[currentSceneIndex + 1].location;
+                    // Only play transition if not the last scene, or if IgnoreLastSceneTransition is false
+                    if (!isLastScene || !sceneTransitionManager.IgnoreLastSceneTransition)
+                    {
+                        sceneTransitionManager.OnLastLineOfScene(speakEvent, dialogueClip.length, nextLocation);
+                    }
                 }
                 
                 // Wait for the audio to finish (plus a small delay)

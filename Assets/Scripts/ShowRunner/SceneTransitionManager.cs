@@ -11,7 +11,7 @@ namespace ShowRunner
     public class SceneTransitionManager : MonoBehaviour
     {
         [System.Serializable]
-        public struct LocationTransitionMapping
+        public struct LocationTransitionMapping 
         {
             public string locationName;
             [Tooltip("The transition animation to use for this location")]
@@ -20,7 +20,7 @@ namespace ShowRunner
             public string transitionTriggerParam;
             [Tooltip("The sound effect to play during transition")]
             public AudioClip transitionSound;
-            [Range(0f, 1f)] public float volume;
+            [Range(0f, 1f)] public float volume; 
         }
 
         [Header("Transition Configuration")]
@@ -33,6 +33,14 @@ namespace ShowRunner
 
         [Header("Timing")]
         [SerializeField, Range(0f, 1f)] private float startTransitionAtAudioProgress = 0.8f;
+
+        [Header("Behavior")]
+        [Tooltip("If true, skips the transition animation/sound on the last scene of the episode (to avoid overlap with outro).")]
+        [SerializeField] private bool ignoreLastSceneTransition = true;
+        /// <summary>
+        /// If true, skips the transition animation/sound on the last scene of the episode (to avoid overlap with outro).
+        /// </summary>
+        public bool IgnoreLastSceneTransition => ignoreLastSceneTransition;
 
         private Dictionary<string, LocationTransitionMapping> transitionMap = new Dictionary<string, LocationTransitionMapping>();
         private AudioSource transitionAudioSource;
@@ -103,13 +111,19 @@ namespace ShowRunner
         /// <summary>
         /// Called by ShowRunner when processing the last line of a scene.
         /// </summary>
-        public void OnLastLineOfScene(EventData speakEvent, float audioLength)
+        public void OnLastLineOfScene(EventData speakEvent, float audioLength, string nextLocation)
         {
             if (isTransitioning) return;
 
             // Calculate when to start the transition
             float startTime = audioLength * startTransitionAtAudioProgress;
-            
+
+            // Use the next location for the transition
+            if (!string.IsNullOrEmpty(nextLocation))
+            {
+                currentLocation = nextLocation;
+            }
+
             // Start the transition coroutine
             if (currentTransitionCoroutine != null)
             {
@@ -132,6 +146,7 @@ namespace ShowRunner
 
             if (!string.IsNullOrEmpty(currentLocation) && transitionMap.TryGetValue(currentLocation, out mapping))
             {
+                Debug.Log($"[STM] Found mapping for location '{currentLocation}'. Using custom animator and trigger.");
                 if (mapping.transitionAnimator != null)
                 {
                     animatorToUse = mapping.transitionAnimator;
@@ -146,12 +161,23 @@ namespace ShowRunner
                 }
                 volumeToUse = mapping.volume;
             }
+            else
+            {
+                Debug.Log($"[STM] No mapping found for location '{currentLocation ?? "null"}'. Using default animator and trigger.");
+            }
+
+            // Log which animator and trigger will be used
+            Debug.Log($"[STM] Using animator: '{animatorToUse?.name ?? "null"}', trigger: '{triggerToUse}' for location: '{currentLocation ?? "null"}'");
 
             // Start the transition animation
             isTransitioning = true;
             if (animatorToUse != null)
             {
                 animatorToUse.SetTrigger(triggerToUse);
+            }
+            else
+            {
+                Debug.LogWarning("[STM] Animator to use is null! Transition will not play.");
             }
 
             // Play transition sound
