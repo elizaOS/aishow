@@ -243,7 +243,7 @@ public class HandheldCamera : MonoBehaviour
     private System.Collections.IEnumerator ZoomCoroutine()
 {
     isZooming = true;
-    Debug.Log("Zoom started");
+    //Debug.Log("Zoom started");
 
     // Zoom in
     float elapsedTime = 0f;
@@ -266,7 +266,7 @@ public class HandheldCamera : MonoBehaviour
         yield return null;
     }
 
-    Debug.Log("Zoom finished");
+    //Debug.Log("Zoom finished");
     isZooming = false;
 }
 

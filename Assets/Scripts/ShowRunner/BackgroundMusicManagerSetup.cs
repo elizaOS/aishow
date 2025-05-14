@@ -68,7 +68,7 @@ namespace ShowRunner
             if (audioSourceField != null && backgroundAudioSource != null) audioSourceField.SetValue(backgroundMusicManager, backgroundAudioSource);
             else if(backgroundAudioSource == null) Debug.LogError("Failed to inject backgroundAudioSource dependency.", this);
 
-            Debug.Log("BackgroundMusicManagerSetup completed.", this);
+            //Debug.Log("BackgroundMusicManagerSetup completed.", this);
         }
     }
 } 

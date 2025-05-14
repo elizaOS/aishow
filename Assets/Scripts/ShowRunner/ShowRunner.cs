@@ -86,7 +86,7 @@ namespace ShowRunner
             // Singleton pattern implementation
             if (Instance != null && Instance != this)
             {
-                Debug.LogWarning("Another instance of ShowRunner already exists. Destroying this one.");
+                // Debug.LogWarning("Another instance of ShowRunner already exists. Destroying this one.");
                 Destroy(gameObject);
                 return;
             }
@@ -102,7 +102,7 @@ namespace ShowRunner
                 eventProcessor = FindObjectOfType<EventProcessor>();
                 if (eventProcessor == null)
                 {
-                    Debug.LogError("EventProcessor not found! The ShowRunner won't function properly.");
+                    // Debug.LogError("EventProcessor not found! The ShowRunner won't function properly.");
                 }
             }
             
@@ -111,7 +111,7 @@ namespace ShowRunner
                 scenePreparationManager = FindObjectOfType<ScenePreperationManager>();
                 if (scenePreparationManager == null)
                 {
-                    Debug.LogError("ScenePreparationManager not found! The ShowRunner won't function properly.");
+                    // Debug.LogError("ScenePreparationManager not found! The ShowRunner won't function properly.");
                 }
             }
             
@@ -122,7 +122,7 @@ namespace ShowRunner
             }
              else
             {
-                 Debug.LogError("ShowRunner Awake: Could not find ScenePreparationManager to subscribe to OnScenePreparationComplete!");
+                 // Debug.LogError("ShowRunner Awake: Could not find ScenePreparationManager to subscribe to OnScenePreparationComplete!");
             }
 
             // Subscribe to UXAnimationManager events if the manager exists
@@ -132,7 +132,7 @@ namespace ShowRunner
             }
             else
             {
-                Debug.LogWarning("ShowRunner Awake: UXAnimationManager instance not found. Episode End UX events won't fire.");
+                // Debug.LogWarning("ShowRunner Awake: UXAnimationManager instance not found. Episode End UX events won't fire.");
             }
 
             if (sceneTransitionManager == null)
@@ -140,7 +140,7 @@ namespace ShowRunner
                 sceneTransitionManager = FindObjectOfType<SceneTransitionManager>();
                 if (sceneTransitionManager == null)
                 {
-                    Debug.LogWarning("SceneTransitionManager not found! Scene transitions will not be available.");
+                    // Debug.LogWarning("SceneTransitionManager not found! Scene transitions will not be available.");
                 }
             }
         }
@@ -173,17 +173,17 @@ namespace ShowRunner
                         // Get the filename without extension for Resources.Load compatibility
                         string fileNameWithoutExtension = Path.GetFileNameWithoutExtension(file);
                         showFiles.Add(fileNameWithoutExtension);
-                        Debug.Log($"Discovered show file: {fileNameWithoutExtension}");
+                        // Debug.Log($"Discovered show file: {fileNameWithoutExtension}");
                     }
                 }
                 else
                 {
-                    Debug.LogWarning($"Show discovery path not found: {searchPath}");
+                    // Debug.LogWarning($"Show discovery path not found: {searchPath}");
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                Debug.LogError($"Error discovering show files in {searchPath}: {ex.Message}");
+                // Debug.LogError($"Error discovering show files in {searchPath}: {ex.Message}");
             }
             
             // Also attempt to load directly from Resources in case files are there but not found by Directory.GetFiles (e.g., in a build)
@@ -206,7 +206,7 @@ namespace ShowRunner
             
             if (string.IsNullOrEmpty(showFileNameToLoad))
             {
-                Debug.LogError("LoadShowData: Provided show file name is null or empty.");
+                // Debug.LogError("LoadShowData: Provided show file name is null or empty.");
                 return;
             }
 
@@ -214,17 +214,17 @@ namespace ShowRunner
             
             try
             {
-                Debug.Log($"LoadShowData: Starting to load show data for '{showFileNameToLoad}'");
+                // Debug.Log($"LoadShowData: Starting to load show data for '{showFileNameToLoad}'");
                 
                 // Build resource path (relative to Resources folder)
                 string resourcePath = Path.Combine(episodesRootPath, showFileNameToLoad).Replace(Path.DirectorySeparatorChar, '/');
-                Debug.Log($"LoadShowData: Looking for JSON at resource path: {resourcePath}");
+                // Debug.Log($"LoadShowData: Looking for JSON at resource path: {resourcePath}");
                 
                 TextAsset jsonAsset = Resources.Load<TextAsset>(resourcePath);
                 
                 if (jsonAsset != null)
                 {
-                    Debug.Log($"LoadShowData: Found JSON asset via Resources.Load: {jsonAsset.name}, size: {jsonAsset.text.Length} bytes");
+                    // Debug.Log($"LoadShowData: Found JSON asset via Resources.Load: {jsonAsset.name}, size: {jsonAsset.text.Length} bytes");
                     ProcessLoadedJson(jsonAsset.text, showFileNameToLoad);
                     PreloadAudio(); // Preload audio after successful load
                 }
@@ -233,27 +233,27 @@ namespace ShowRunner
                     // Fallback: Try loading from the file system (primarily for Editor convenience)
                     string absolutePath = Path.Combine(Application.dataPath, "Resources", episodesRootPath, showFileNameToLoad + ".json");
                     absolutePath = absolutePath.Replace(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar);
-                    Debug.Log($"LoadShowData: Resources.Load failed. Looking for JSON at absolute path: {absolutePath}");
+                    // Debug.Log($"LoadShowData: Resources.Load failed. Looking for JSON at absolute path: {absolutePath}");
                     
                     if (File.Exists(absolutePath))
                     {
                         string jsonContent = File.ReadAllText(absolutePath);
-                        Debug.Log($"LoadShowData: Found JSON file via File.Exists: {absolutePath}, size: {jsonContent.Length} bytes");
+                        // Debug.Log($"LoadShowData: Found JSON file via File.Exists: {absolutePath}, size: {jsonContent.Length} bytes");
                         ProcessLoadedJson(jsonContent, showFileNameToLoad);
                         PreloadAudio(); // Preload audio after successful load
                     }
                     else
                     {
-                        Debug.LogError($"Show file not found at: {absolutePath} or via Resources.Load for path: {resourcePath}");
+                        // Debug.LogError($"Show file not found at: {absolutePath} or via Resources.Load for path: {resourcePath}");
                         // Ensure state is reset if load fails
                         ResetShowState(); 
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                Debug.LogError($"Error loading show data for '{showFileNameToLoad}': {ex.Message}");
-                Debug.LogError($"Stack trace: {ex.StackTrace}");
+                // Debug.LogError($"Error loading show data for '{showFileNameToLoad}': {ex.Message}");
+                // Debug.LogError($"Stack trace: {ex.StackTrace}");
                 // Ensure state is reset on error
                 ResetShowState();
             }
@@ -265,19 +265,19 @@ namespace ShowRunner
             showData = JsonConvert.DeserializeObject<ShowData>(jsonContent);
             if (showData?.Config != null && showData.Episodes != null)
             {
-                Debug.Log($"Show data loaded successfully from '{sourceFileName}': {showData.Config.name} with {showData.Episodes.Count} episodes");
+                // Debug.Log($"Show data loaded successfully from '{sourceFileName}': {showData.Config.name} with {showData.Episodes.Count} episodes");
                 // Log episode details
                 for (int i = 0; i < showData.Episodes.Count; i++)
                 {
                     var episode = showData.Episodes[i];
-                    Debug.Log($"Episode {i}: id = '{episode.id}', name = '{episode.name}', scenes = {episode.scenes?.Count ?? 0}");
+                    // Debug.Log($"Episode {i}: id = '{episode.id}', name = '{episode.name}', scenes = {episode.scenes?.Count ?? 0}");
                 }
                 // Set initial state after successful load
                 playbackState = "init"; 
             }
             else
             {
-                 Debug.LogError($"Failed to deserialize valid ShowData from '{sourceFileName}'. JSON content might be malformed or missing expected structure.");
+                 // Debug.LogError($"Failed to deserialize valid ShowData from '{sourceFileName}'. JSON content might be malformed or missing expected structure.");
                  ResetShowState(); // Ensure state is reset if deserialization fails
             }
         }
@@ -285,7 +285,7 @@ namespace ShowRunner
         // Helper method to reset show-related state
         public void ResetShowState()
         {
-             Debug.Log("Resetting show state.");
+             // Debug.Log("Resetting show state.");
              showData = null;
              currentEpisode = null;
              currentSceneIndex = -1;
@@ -300,13 +300,13 @@ namespace ShowRunner
         {
             if (showData == null || showData.Episodes == null)
             {
-                 Debug.LogWarning("PreloadAudio: Cannot preload, showData is null or has no episodes.");
+                 // Debug.LogWarning("PreloadAudio: Cannot preload, showData is null or has no episodes.");
                  return;
             }
 
             // Clear existing cache before preloading new audio
             audioCache.Clear();
-            Debug.Log("Cleared existing audio cache before preloading.");
+            // Debug.Log("Cleared existing audio cache before preloading.");
 
             StartCoroutine(PreloadAudioCoroutine());
         }
@@ -326,7 +326,7 @@ namespace ShowRunner
                 }
             }
 
-            Debug.Log($"Starting preload of {totalFiles} audio files...");
+            // Debug.Log($"Starting preload of {totalFiles} audio files...");
 
             // Now preload the files
             foreach (var episode in showData.Episodes)
@@ -367,7 +367,7 @@ namespace ShowRunner
                             // Log progress periodically
                             if (loadedFiles % 10 == 0 || loadedFiles == totalFiles)
                             {
-                                Debug.Log($"Preloaded {loadedFiles}/{totalFiles} audio files");
+                                // Debug.Log($"Preloaded {loadedFiles}/{totalFiles} audio files");
                             }
                         }
                         
@@ -378,7 +378,7 @@ namespace ShowRunner
                 }
             }
             
-            Debug.Log($"Audio preload complete. Loaded {loadedFiles}/{totalFiles} files.");
+            // Debug.Log($"Audio preload complete. Loaded {loadedFiles}/{totalFiles} files.");
         }
 
         /// <summary>
@@ -388,11 +388,11 @@ namespace ShowRunner
         /// <param name="index">Index of the selected episode in the dropdown</param>
         public void SelectEpisode(int index)
         {
-            Debug.Log($"SelectEpisode: Selecting episode at index {index}");
+            // Debug.Log($"SelectEpisode: Selecting episode at index {index}");
             
             if (showData != null && showData.Episodes != null)
             {
-                Debug.Log($"SelectEpisode: Show data has {showData.Episodes.Count} episodes");
+                // Debug.Log($"SelectEpisode: Show data has {showData.Episodes.Count} episodes");
                 
                 if (index >= 0 && index < showData.Episodes.Count)
                 {
@@ -409,13 +409,13 @@ namespace ShowRunner
                     }
                     else
                     {
-                         Debug.LogWarning("SelectEpisode could not find OutroCaller to reset its state.");
+                         // Debug.LogWarning("SelectEpisode could not find OutroCaller to reset its state.");
                     }
 
                     // Notify UX Manager that an episode has been selected/started
                     UXAnimationManager.Instance?.OnEpisodeStart();
 
-                    Debug.Log($"SelectEpisode: Selected episode: id = '{currentEpisode.id}', name = '{currentEpisode.name}'");
+                    // Debug.Log($"SelectEpisode: Selected episode: id = '{currentEpisode.id}', name = '{currentEpisode.name}'");
                     
                     // Invoke the OnEpisodeSelectedForDisplay event with premise or summary
                     string episodeName = !string.IsNullOrEmpty(currentEpisode.name) ? currentEpisode.name : currentEpisode.id;
@@ -427,26 +427,26 @@ namespace ShowRunner
                     // Verify the episode data
                     if (string.IsNullOrEmpty(currentEpisode.name))
                     {
-                        Debug.LogWarning($"SelectEpisode: Episode at index {index} has an empty name");
+                        // Debug.LogWarning($"SelectEpisode: Episode at index {index} has an empty name");
                     }
                     
                     if (currentEpisode.scenes == null || currentEpisode.scenes.Count == 0)
                     {
-                        Debug.LogWarning($"SelectEpisode: Episode at index {index} has no scenes");
+                        // Debug.LogWarning($"SelectEpisode: Episode at index {index} has no scenes");
                     }
                     else
                     {
-                        Debug.Log($"SelectEpisode: Episode has {currentEpisode.scenes.Count} scenes");
+                        // Debug.Log($"SelectEpisode: Episode has {currentEpisode.scenes.Count} scenes");
                     }
                 }
                 else
                 {
-                    Debug.LogError($"SelectEpisode: Invalid episode index: {index}. Valid range: 0-{showData.Episodes.Count - 1}");
+                    // Debug.LogError($"SelectEpisode: Invalid episode index: {index}. Valid range: 0-{showData.Episodes.Count - 1}");
                 }
             }
             else
             {
-                Debug.LogError("SelectEpisode: Show data is null or has no episodes. Call LoadShowData() first.");
+                // Debug.LogError("SelectEpisode: Show data is null or has no episodes. Call LoadShowData() first.");
             }
         }
 
@@ -455,20 +455,20 @@ namespace ShowRunner
             // Prevent advancing if paused or waiting for scene preparation
             if (isPaused || waitingForScenePreparation)
             {
-                Debug.LogWarning($"NextStep called but ShowRunner is paused ({isPaused}) or waiting for scene prep ({waitingForScenePreparation}). Ignoring.");
+                // Debug.LogWarning($"NextStep called but ShowRunner is paused ({isPaused}) or waiting for scene prep ({waitingForScenePreparation}). Ignoring.");
                 return;
             }
 
             if (currentEpisode == null)
             {
-                Debug.LogWarning("No episode selected. Please select an episode first.");
+                // Debug.LogWarning("No episode selected. Please select an episode first.");
                 return;
             }
 
             switch (playbackState)
             {
                 case "init":
-                    Debug.Log("Starting episode playback");
+                    // Debug.Log("Starting episode playback");
                     playbackState = "episode-loaded";
                     break;
 
@@ -485,13 +485,13 @@ namespace ShowRunner
                         }
                         else
                         {
-                             Debug.LogWarning("CommercialManager instance not found. Cannot trigger commercial break check.");
+                             // Debug.LogWarning("CommercialManager instance not found. Cannot trigger commercial break check.");
                         }
                         // ---------------------------------------
                         
                         // Proceed with scene preparation
                         var scene = currentEpisode.scenes[currentSceneIndex];
-                        Debug.Log($"Loading scene {currentSceneIndex + 1}: {scene.location}");
+                        // Debug.Log($"Loading scene {currentSceneIndex + 1}: {scene.location}");
                         
                         // Invoke the OnSceneChangedForDisplay event
                         OnSceneChangedForDisplay?.Invoke(scene.location ?? "Unnamed Scene");
@@ -517,7 +517,7 @@ namespace ShowRunner
                     else
                     {
                         // --- Episode Finished --- 
-                        Debug.Log("All scenes in the episode completed.");
+                        // Debug.Log("All scenes in the episode completed.");
                         playbackState = "episode-unloaded"; // Final state
                         
                         // Create the completion data
@@ -529,7 +529,7 @@ namespace ShowRunner
                         };
 
                         // Invoke the completion event AFTER setting the final state
-                        Debug.Log($"Invoking OnLastDialogueComplete event for {completionData.EpisodeId} from {completionData.JsonFilePath}.");
+                        // Debug.Log($"Invoking OnLastDialogueComplete event for {completionData.EpisodeId} from {completionData.JsonFilePath}.");
                         OnLastDialogueComplete?.Invoke(completionData); 
 
                         // Note: Any outro logic (like the previously rejected OutroSequenceManager)
@@ -540,7 +540,7 @@ namespace ShowRunner
 
                 case "scene-preparing":
                     // Still preparing scene - we'll be notified when it's done
-                    Debug.Log("Scene is still being prepared. Waiting...");
+                    // Debug.Log("Scene is still being prepared. Waiting...");
                     break;
 
                 case "scene-loaded":
@@ -550,7 +550,7 @@ namespace ShowRunner
                     if (currentDialogueIndex < currentScene.dialogue.Count)
                     {
                         var dialogue = currentScene.dialogue[currentDialogueIndex];
-                        Debug.Log($"{dialogue.actor}: \"{dialogue.line}\"");
+                        // Debug.Log($"{dialogue.actor}: \"{dialogue.line}\"");
                         
                         // Create a speak event
                         EventData speakEvent = new EventData
@@ -595,7 +595,7 @@ namespace ShowRunner
                     }
                     else
                     {
-                        Debug.Log("Scene completed");
+                        // Debug.Log("Scene completed");
                         playbackState = "scene-unloaded";
                     }
                     break;
@@ -612,7 +612,7 @@ namespace ShowRunner
                     break;
 
                 case "episode-unloaded":
-                    Debug.Log("Show playback complete");
+                    // Debug.Log("Show playback complete");
                     break;
             }
         }
@@ -665,7 +665,7 @@ namespace ShowRunner
                 return audioSource;
             }
             // 4) Fallback
-            Debug.LogWarning($"Could not find actor '{actorName}' for audio playback. Using default audio source.");
+            // Debug.LogWarning($"Could not find actor '{actorName}' for audio playback. Using default audio source.");
             if (defaultAudioSource != null && !defaultAudioSource.enabled)
                 defaultAudioSource.enabled = true;
             return defaultAudioSource;
@@ -686,7 +686,7 @@ namespace ShowRunner
             // Try to get from cache first
             if (audioCache.TryGetValue(audioKey, out dialogueClip))
             {
-                Debug.Log($"Using cached audio: {audioKey}");
+                // Debug.Log($"Using cached audio: {audioKey}");
             }
             else
             {
@@ -759,7 +759,7 @@ namespace ShowRunner
             }
             else
             {
-                Debug.LogWarning($"Audio clip not found for: {audioKey}. Proceeding without audio.");
+                // Debug.LogWarning($"Audio clip not found for: {audioKey}. Proceeding without audio.");
                 // Default wait time if no audio
                 yield return new WaitForSeconds(3.0f);
             }
@@ -774,24 +774,24 @@ namespace ShowRunner
         // Utility functions for UI
         public string GetCurrentEpisodeTitle()
         {
-            Debug.Log("GetCurrentEpisodeTitle called");
+            // Debug.Log("GetCurrentEpisodeTitle called");
             
             if (currentEpisode == null)
             {
-                Debug.LogWarning("GetCurrentEpisodeTitle: currentEpisode is null");
+                // Debug.LogWarning("GetCurrentEpisodeTitle: currentEpisode is null");
                 return "No Episode Selected";
             }
             
-            Debug.Log($"GetCurrentEpisodeTitle: currentEpisode.id = '{currentEpisode.id}'");
-            Debug.Log($"GetCurrentEpisodeTitle: currentEpisode.name = '{currentEpisode.name}'");
+            // Debug.Log($"GetCurrentEpisodeTitle: currentEpisode.id = '{currentEpisode.id}'");
+            // Debug.Log($"GetCurrentEpisodeTitle: currentEpisode.name = '{currentEpisode.name}'");
             
             if (string.IsNullOrEmpty(currentEpisode.name))
             {
-                Debug.LogWarning("GetCurrentEpisodeTitle: currentEpisode.name is null or empty, using id instead");
+                // Debug.LogWarning("GetCurrentEpisodeTitle: currentEpisode.name is null or empty, using id instead");
                 return currentEpisode.id;
             }
             
-            Debug.Log($"GetCurrentEpisodeTitle: Returning name '{currentEpisode.name}' for episode id {currentEpisode.id}");
+            // Debug.Log($"GetCurrentEpisodeTitle: Returning name '{currentEpisode.name}' for episode id {currentEpisode.id}");
             return currentEpisode.name;
         }
         
@@ -805,17 +805,17 @@ namespace ShowRunner
             List<string> titles = new List<string>();
             if (showData?.Episodes != null)
             {
-                Debug.Log($"GetEpisodeTitles: Found {showData.Episodes.Count} episodes");
+                // Debug.Log($"GetEpisodeTitles: Found {showData.Episodes.Count} episodes");
                 foreach (var episode in showData.Episodes)
                 {
-                    Debug.Log($"GetEpisodeTitles: Processing episode {episode.id} - {episode.name}");
+                    // Debug.Log($"GetEpisodeTitles: Processing episode {episode.id} - {episode.name}");
                     string name = string.IsNullOrEmpty(episode.name) ? episode.id : episode.name;
                     titles.Add($"{episode.id}: {name}");
                 }
             }
             else
             {
-                Debug.LogWarning("GetEpisodeTitles: showData or Episodes is null");
+                // Debug.LogWarning("GetEpisodeTitles: showData or Episodes is null");
             }
             return titles;
         }
@@ -834,7 +834,7 @@ namespace ShowRunner
                 waitingForScenePreparation = false;
                 pendingSceneName = null;
                 playbackState = "scene-loaded";
-                Debug.Log("ShowRunner state updated to 'scene-loaded' after scene preparation completed.");
+                // Debug.Log("ShowRunner state updated to 'scene-loaded' after scene preparation completed.");
                 
                 // Notify UX Manager about the scene change
                 UXAnimationManager.Instance?.OnSceneChanged(sceneName);
@@ -852,7 +852,7 @@ namespace ShowRunner
             }
             else
             {
-                 Debug.LogWarning($"Received OnScenePreparationComplete for {sceneName}, but was not waiting for it or waiting for {pendingSceneName}. State: {playbackState}");
+                 // Debug.LogWarning($"Received OnScenePreparationComplete for {sceneName}, but was not waiting for it or waiting for {pendingSceneName}. State: {playbackState}");
             }
         }
 
@@ -935,11 +935,11 @@ namespace ShowRunner
                 isPaused = true;
                 // Time.timeScale = 0f; // REMOVED: Don't pause global time
                 // TODO: Consider pausing specific audio sources if necessary (e.g., background music)
-                Debug.Log("ShowRunner: Internal state PAUSED");
+                // Debug.Log("ShowRunner: Internal state PAUSED");
             }
             else
             {
-                Debug.LogWarning("ShowRunner: PauseShow called but already paused.");
+                // Debug.LogWarning("ShowRunner: PauseShow called but already paused.");
             }
         }
 
@@ -955,11 +955,11 @@ namespace ShowRunner
                 isPaused = false;
                 // Time.timeScale = 1f; // REMOVED: Don't resume global time
                  // TODO: Consider resuming specific audio sources if necessary
-                Debug.Log("ShowRunner: Internal state RESUMED");
+                // Debug.Log("ShowRunner: Internal state RESUMED");
             }
              else
             {
-                 Debug.LogWarning("ShowRunner: ResumeShow called but not paused.");
+                 // Debug.LogWarning("ShowRunner: ResumeShow called but not paused.");
             }
         }
 

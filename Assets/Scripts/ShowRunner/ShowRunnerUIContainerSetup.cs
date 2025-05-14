@@ -36,11 +36,11 @@ namespace ShowRunner
                 uiShowRunnerProp.objectReferenceValue = showRunner;
                 uiObj1.ApplyModifiedProperties();
                 
-                Debug.Log("ShowRunner found and assigned to UI Container.");
+                //Debug.Log("ShowRunner found and assigned to UI Container.");
             }
             else
             {
-                Debug.LogWarning("ShowRunner not found in the scene. Please assign it manually.");
+                //Debug.LogWarning("ShowRunner not found in the scene. Please assign it manually.");
             }
             
             // Set up UI controller reference in container
@@ -58,7 +58,7 @@ namespace ShowRunner
             // Select the container in the hierarchy
             Selection.activeGameObject = containerObj;
             
-            Debug.Log("UI Container setup complete! Now assign your UI elements in the inspector.");
+            //Debug.Log("UI Container setup complete! Now assign your UI elements in the inspector.");
         }
     }
 #endif

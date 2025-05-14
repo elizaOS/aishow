@@ -85,7 +85,7 @@ namespace ShowRunner
         {
             if (completionNotifier != null)
             {
-                Debug.Log("OutroCaller subscribing to EpisodeCompletionNotifier.OnEpisodePlaybackFinished.", this);
+                //Debug.Log("OutroCaller subscribing to EpisodeCompletionNotifier.OnEpisodePlaybackFinished.", this);
                 completionNotifier.OnEpisodePlaybackFinished += StartOutroVideo;
             }
         }

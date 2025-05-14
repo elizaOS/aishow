@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using Newtonsoft.Json;
+using UnityEngine;
 
 /// <summary>
 /// Data structures for managing show content, including episodes, scenes, and dialogue.
@@ -15,12 +15,10 @@ namespace ShowRunner
     public class ShowData
     {
         /// <summary>The name of the show</summary>
-        [JsonProperty("config")]
-        public ShowConfig Config { get; set; }
+        public ShowConfig Config;
         
         /// <summary>List of episodes in the show</summary>
-        [JsonProperty("episodes")]
-        public List<Episode> Episodes { get; set; }
+        public List<Episode> Episodes;
     }
 
     /// <summary>
@@ -30,12 +28,25 @@ namespace ShowRunner
     public class ShowConfig
     {
         /// <summary>Unique identifier for the episode</summary>
-        [JsonProperty("name")]
-        public string name { get; set; }
+        public string id;
+        
+        /// <summary>Display name of the episode</summary>
+        public string name;
+        
+        /// <summary>Description or summary of the episode</summary>
+        public string description;
+        
+        /// <summary>Creator of the episode</summary>
+        public string creator;
+        
+        /// <summary>List of prompts for the episode</summary>
+        public Dictionary<string, string> prompts;
         
         /// <summary>List of actors in the show</summary>
-        [JsonProperty("actors")]
-        public Dictionary<string, ActorConfig> actors { get; set; }
+        public Dictionary<string, ActorConfig> actors;
+        
+        /// <summary>List of locations in the show</summary>
+        public Dictionary<string, LocationConfig> locations;
     }
 
     /// <summary>
@@ -45,8 +56,32 @@ namespace ShowRunner
     public class ActorConfig
     {
         /// <summary>Name of the actor</summary>
-        [JsonProperty("name")]
-        public string name { get; set; }
+        public string name;
+        
+        /// <summary>Gender of the actor</summary>
+        public string gender;
+        
+        /// <summary>Description of the actor</summary>
+        public string description;
+        
+        /// <summary>Voice of the actor</summary>
+        public string voice;
+    }
+
+    /// <summary>
+    /// Represents a single location in the show, containing metadata.
+    /// </summary>
+    [Serializable]
+    public class LocationConfig
+    {
+        /// <summary>Name of the location</summary>
+        public string name;
+        
+        /// <summary>Description of the location</summary>
+        public string description;
+        
+        /// <summary>List of slots in the location</summary>
+        public Dictionary<string, string> slots;
     }
 
     /// <summary>
@@ -56,24 +91,19 @@ namespace ShowRunner
     public class Episode
     {
         /// <summary>Unique identifier for the episode</summary>
-        [JsonProperty("id")]
-        public string id { get; set; }
+        public string id;
         
         /// <summary>Display name of the episode</summary>
-        [JsonProperty("name")]
-        public string name { get; set; }
+        public string name;
         
         /// <summary>Description or summary of the episode</summary>
-        [JsonProperty("premise")]
-        public string premise { get; set; }
+        public string premise;
         
         /// <summary>List of scenes in the episode</summary>
-        [JsonProperty("summary")]
-        public string summary { get; set; }
+        public string summary;
         
         /// <summary>List of scenes in the episode</summary>
-        [JsonProperty("scenes")]
-        public List<Scene> scenes { get; set; }
+        public List<Scene> scenes;
     }
 
     /// <summary>
@@ -83,12 +113,22 @@ namespace ShowRunner
     public class Scene
     {
         /// <summary>Unique identifier for the scene</summary>
-        [JsonProperty("location")]
-        public string location { get; set; }
+        public string location;
+        
+        /// <summary>Description of the scene</summary>
+        public string description;
+        
+        /// <summary>In time of the scene</summary>
+        public string inTime;
+        
+        /// <summary>Out time of the scene</summary>
+        public string outTime;
+        
+        /// <summary>List of cast members in the scene</summary>
+        public Dictionary<string, string> cast;
         
         /// <summary>List of dialogue entries in the scene</summary>
-        [JsonProperty("dialogue")]
-        public List<Dialogue> dialogue { get; set; }
+        public List<Dialogue> dialogue;
     }
 
     /// <summary>
@@ -98,15 +138,12 @@ namespace ShowRunner
     public class Dialogue
     {
         /// <summary>Name of the character speaking</summary>
-        [JsonProperty("actor")]
-        public string actor { get; set; }
+        public string actor;
         
         /// <summary>The dialogue line to be spoken</summary>
-        [JsonProperty("line")]
-        public string line { get; set; }
+        public string line;
         
         /// <summary>Action or emotion to be performed while speaking</summary>
-        [JsonProperty("action")]
-        public string action { get; set; }
+        public string action;
     }
 } 

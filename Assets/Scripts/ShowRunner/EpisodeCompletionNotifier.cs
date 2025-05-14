@@ -29,7 +29,7 @@ namespace ShowRunner
                 showRunnerInstance = FindObjectOfType<ShowRunner>();
                  if (showRunnerInstance == null)
                  {
-                    Debug.LogError("EpisodeCompletionNotifier could not find the ShowRunner instance! Cannot subscribe to completion event.", this);
+                    //Debug.LogError("EpisodeCompletionNotifier could not find the ShowRunner instance! Cannot subscribe to completion event.", this);
                     enabled = false; // Disable self if ShowRunner not found
                  }
             }
@@ -40,13 +40,13 @@ namespace ShowRunner
             // Subscribe to the ShowRunner event if we have an instance and haven't already
             if (showRunnerInstance != null && !isSubscribed)
             {
-                Debug.Log("EpisodeCompletionNotifier subscribing to ShowRunner.OnLastDialogueComplete.", this);
+                //Debug.Log("EpisodeCompletionNotifier subscribing to ShowRunner.OnLastDialogueComplete.", this);
                 showRunnerInstance.OnLastDialogueComplete += HandleEpisodeComplete;
                 isSubscribed = true;
             }
             else if(showRunnerInstance == null)
             {
-                Debug.LogWarning("EpisodeCompletionNotifier OnEnable: ShowRunner instance is still null. Ensure it exists in the scene before this component enables.", this);
+                //Debug.LogWarning("EpisodeCompletionNotifier OnEnable: ShowRunner instance is still null. Ensure it exists in the scene before this component enables.", this);
             }
         }
 
@@ -55,7 +55,7 @@ namespace ShowRunner
             // Unsubscribe to prevent memory leaks
             if (showRunnerInstance != null && isSubscribed)
             {
-                 Debug.Log("EpisodeCompletionNotifier unsubscribing from ShowRunner.OnLastDialogueComplete.", this);
+                 //Debug.Log("EpisodeCompletionNotifier unsubscribing from ShowRunner.OnLastDialogueComplete.", this);
                 showRunnerInstance.OnLastDialogueComplete -= HandleEpisodeComplete;
                 isSubscribed = false;
             }
@@ -67,7 +67,7 @@ namespace ShowRunner
         /// </summary>
         private void HandleEpisodeComplete(EpisodeCompletionData completionData)
         {
-            Debug.Log($"EpisodeCompletionNotifier received OnLastDialogueComplete from ShowRunner for Episode {completionData.EpisodeId}! Firing OnEpisodePlaybackFinished.", this);
+            //Debug.Log($"EpisodeCompletionNotifier received OnLastDialogueComplete from ShowRunner for Episode {completionData.EpisodeId}! Firing OnEpisodePlaybackFinished.", this);
 
             // Notify any listeners that the episode playback is truly finished.
             OnEpisodePlaybackFinished?.Invoke();

@@ -80,14 +80,18 @@ namespace ShowRunner
             {
                 episodeDropdown = GetComponentInChildren<TMP_Dropdown>();
                 if (episodeDropdown != null)
-                    Debug.Log("Found episode dropdown in children: " + episodeDropdown.name);
+                {
+                    //Debug.Log("Found episode dropdown in children: " + episodeDropdown.name);
+                }
             }
             
             if (loadButton == null)
             {
                 loadButton = GetComponentInChildren<Button>();
                 if (loadButton != null)
-                    Debug.Log("Found load button in children: " + loadButton.name);
+                {
+                    //Debug.Log("Found load button in children: " + loadButton.name);
+                }
             }
             
             if (nextButton == null)
@@ -137,7 +141,7 @@ namespace ShowRunner
                 showRunner = FindObjectOfType<ShowRunner>();
                 if (showRunner == null)
                 {
-                    Debug.LogError("ShowRunner not found! The UI won't function properly.");
+                    //Debug.LogError("ShowRunner not found! The UI won't function properly.");
                 }
                 else
                 {
@@ -154,7 +158,7 @@ namespace ShowRunner
                 uiController = GetComponentInChildren<ShowRunnerUI>();
                 if (uiController == null)
                 {
-                    Debug.LogError("ShowRunnerUI not found! The UI won't function properly.");
+                    //Debug.LogError("ShowRunnerUI not found! The UI won't function properly.");
                 }
                 else
                 {
@@ -182,7 +186,7 @@ namespace ShowRunner
             {
                 bool newVisibility = !mainCanvas.enabled;
                 SetUIVisible(newVisibility);
-                Debug.Log($"UI visibility toggled: {(newVisibility ? "Visible" : "Hidden")}");
+                //Debug.Log($"UI visibility toggled: {(newVisibility ? "Visible" : "Hidden")}");
             }
         }
 
@@ -329,16 +333,16 @@ namespace ShowRunner
         {
             if (episodeDropdown == null)
             {
-                Debug.LogError("PopulateEpisodeDropdown: episodeDropdown is null");
+                //Debug.LogError("PopulateEpisodeDropdown: episodeDropdown is null");
                 return;
             }
 
-            Debug.Log($"PopulateEpisodeDropdown: Received {episodeTitles?.Count ?? 0} episode titles");
+            //Debug.Log($"PopulateEpisodeDropdown: Received {episodeTitles?.Count ?? 0} episode titles");
             if (episodeTitles != null)
             {
                 foreach (var title in episodeTitles)
                 {
-                    Debug.Log($"PopulateEpisodeDropdown: Processing title: {title}");
+                    //Debug.Log($"PopulateEpisodeDropdown: Processing title: {title}");
                 }
             }
 
@@ -346,7 +350,7 @@ namespace ShowRunner
 
             if (episodeTitles == null || episodeTitles.Count == 0)
             {
-                Debug.LogWarning("PopulateEpisodeDropdown: No episode titles provided");
+                //Debug.LogWarning("PopulateEpisodeDropdown: No episode titles provided");
                 episodeDropdown.options.Add(new TMP_Dropdown.OptionData("-- No Episodes --"));
                 SetEpisodeSelectionInteractable(false); // Disable dropdown and load button
             }
@@ -355,21 +359,21 @@ namespace ShowRunner
                 // Add a placeholder first if needed, or just the titles
                 List<string> options = new List<string> { "-- Select Episode --" };
                 options.AddRange(episodeTitles);
-                Debug.Log($"PopulateEpisodeDropdown: Adding {options.Count} options to dropdown");
+                //Debug.Log($"PopulateEpisodeDropdown: Adding {options.Count} options to dropdown");
                 episodeDropdown.AddOptions(options);
                 SetEpisodeSelectionInteractable(true); // Enable dropdown and load button
             }
             
             episodeDropdown.value = 0; // Default to the first item (placeholder or first episode)
             episodeDropdown.RefreshShownValue();
-            Debug.Log($"PopulateEpisodeDropdown: Dropdown now has {episodeDropdown.options.Count} options");
+            //Debug.Log($"PopulateEpisodeDropdown: Dropdown now has {episodeDropdown.options.Count} options");
         }
 
         public int GetSelectedEpisodeIndex()
         {
             if (episodeDropdown == null || episodeDropdown.value == 0) // Index 0 is placeholder
             {
-                 // Debug.LogWarning("GetSelectedEpisodeIndex: Placeholder selected or dropdown invalid.");
+                 //Debug.LogWarning("GetSelectedEpisodeIndex: Placeholder selected or dropdown invalid.");
                  return -1; 
             }
             // Adjust index because of the placeholder at index 0

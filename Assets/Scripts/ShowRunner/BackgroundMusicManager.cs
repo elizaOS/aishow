@@ -75,7 +75,7 @@ namespace ShowRunner
             // Dependencies should be injected by Setup script in Awake
             if (scenePreparationManager != null && ShowRunner.Instance != null && backgroundAudioSource != null && !isSubscribed)
             {
-                Debug.Log("BackgroundMusicManager subscribing to events.", this);
+                //Debug.Log("BackgroundMusicManager subscribing to events.", this);
                 scenePreparationManager.OnScenePreparationComplete += HandleScenePreparationComplete;
                 // Subscribe to ShowRunner's event for precise end-of-dialogue timing
                 ShowRunner.Instance.OnLastDialogueComplete += HandleLastDialogueComplete;

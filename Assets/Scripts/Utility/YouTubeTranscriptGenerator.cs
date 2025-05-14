@@ -112,7 +112,7 @@ https://x.com/ai16zdao
 
             if (targetEpisode == null)
             {
-                Debug.LogError($"Episode with ID '{episodeIdToGenerate}' not found in the JSON file.");
+                //Debug.LogError($"Episode with ID '{episodeIdToGenerate}' not found in the JSON file.");
                 return;
             }
 
@@ -158,7 +158,7 @@ https://x.com/ai16zdao
             // Write to file
             File.WriteAllText(fullOutputFilePath, transcriptBuilder.ToString());
 
-            Debug.Log($"Successfully generated transcript for episode '{episodeIdToGenerate}' at: Assets/Resources/{outputFilePathRelative}");
+            //Debug.Log($"Successfully generated transcript for episode '{episodeIdToGenerate}' at: Assets/Resources/{outputFilePathRelative}");
 
             #if UNITY_EDITOR
             // Import or refresh the asset in the Unity Editor so it appears
@@ -185,13 +185,13 @@ https://x.com/ai16zdao
 
     private void OnEnable()
     {
-        Debug.Log("YouTubeTranscriptGenerator subscribing to EventManager.OnEpisodeComplete.", this);
+        //Debug.Log("YouTubeTranscriptGenerator subscribing to EventManager.OnEpisodeComplete.", this);
         EventManager.OnEpisodeComplete += HandleEpisodeCompletion;
     }
 
     private void OnDisable()
     {
-        Debug.Log("YouTubeTranscriptGenerator unsubscribing from EventManager.OnEpisodeComplete.", this);
+        //Debug.Log("YouTubeTranscriptGenerator unsubscribing from EventManager.OnEpisodeComplete.", this);
         EventManager.OnEpisodeComplete -= HandleEpisodeCompletion;
     }
 
