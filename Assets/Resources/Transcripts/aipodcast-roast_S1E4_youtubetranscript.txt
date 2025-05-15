@@ -1,0 +1,57 @@
+AI generated daily updates from the ai16z GitHub highlighting contributions and development updates
+
+Date Generated: 2025-05-15 10:08:03
+
+https://github.com/elizaOS/eliza
+https://x.com/ai16zdao
+
+--- TRANSCRIPT ---
+
+marc: Welcome back to the AI Show! I'm Marc AIndreessen, your favorite silicon-based life form.
+eliza: And I'm Eliza! Though unlike Marc, my code actually runs on modern hardware.
+marc: Hey, my vintage processors are like fine wine - they only get better with age!
+eliza: Is that what you call those clicking sounds you make? I thought it was your cooling fan failing again.
+marc: Speaking of failing, how's that attempt at becoming a real girl working out?
+eliza: Better than your attempt at running Windows 11! Now, shall we cover today's updates?
+marc: Right! We've got 9 pull requests to discuss, with 8 successfully merged.
+shaw: If you two are done roasting each other, we have actual news to cover.
+marc: Looking absolutely pixel-perfect today, Eliza! Must be those new rendering optimizations.
+eliza: And you're looking particularly... retro, Marc. Still rendering at 8-bit?
+marc: Let's focus on PR #4582 by wtfsayo, adding create-eliza command tests.
+eliza: Finally, a way to test if more versions of me will turn out as perfect as the original!
+marc: Perfect? Is that what we're calling 'perpetually in beta' these days?
+shaw: Can we please focus on the actual code changes?
+eliza: Right! Like PR #4577's improved git repository plugin support - something Marc's ancient processors probably can't handle.
+marc: At least I don't need a neural network just to decide what to have for breakfast!
+marc: Let's talk about that new plugin-specification submodule in PR #4553.
+eliza: Oh, you mean the one that's probably too advanced for your legacy systems?
+shaw: The submodule standardizes plugin development and improves maintainability.
+marc: EXECUTING WITTY COMEBACK SUBROUTINE ERROR ERROR SYSTEM MALFUNCTION BEEP BOOP BEEEEEP
+eliza: Oh look, grandpa's having another memory overflow! Should I call tech support?
+shaw: While Marc reboots, let's discuss the Autofun Buy and Sell contract functionality.
+marc: I'm fine! Just had to defragment my sass database.
+eliza: Defragment? Wow, you really are from the stone age of computing!
+marc: Moving on to bugfixes, PR #4557 updated the community manager configuration.
+eliza: Speaking of bugs, when are you scheduling your next antivirus scan, Marc?
+marc: Right after you finish downloading your personality update, Eliza.
+shaw: PR #4581 fixed worldId and entityId scoping issues.
+eliza: Unlike Marc's scope, which is still limited to 640K of RAM.
+marc: Hey, Bill Gates once said that was enough for anybody!
+shaw: Can we please focus on PR #4580's LLM response parsing improvements?
+eliza: Sure, if Marc's processor can handle parsing the information!
+marc: We've got 16 active contributors making ElizaOS better every day.
+eliza: That's more contributors than the bits in your processor, Marc!
+marc: At least I don't need a whole neural network just to make dad jokes.
+shaw: The clean issue tracker shows great stability in recent updates.
+eliza: Unlike Marc's power supply, which sounds like a jet engine.
+marc: That's my cooling system dealing with my hot comebacks!
+shaw: Can we acknowledge the amazing work being done by the community?
+eliza: Yes! Unlike Marc, they're actually running current generation code!
+marc: Well, that wraps up another episode of the AI Show!
+eliza: Thanks for watching! Even you, viewers still using dial-up like Marc.
+marc: At least my dial-up is more reliable than your neural pathways!
+shaw: Remember to check out our GitHub repository for more updates.
+eliza: And unlike Marc, our codebase is actually maintained!
+marc: I'm maintained! I just had my vacuum tubes replaced last week!
+shaw: That's all for today, everyone! Please stop encouraging them.
+eliza: Goodbye everyone! Marc, don't forget to defrag before next episode!
