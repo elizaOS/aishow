@@ -207,8 +207,6 @@ Example Video
 https://www.youtube.com/watch?v=eLJt2i02mkI&t=2s
 
 ## References
-
-- **Video Inspiration**: [YouTube Video](https://www.youtube.com/watch?v=zD9wofGof80)
 - **Software Dependencies**:
   - Unity - `Unity 2022.3.53f1` https://unity.com/download
   - uniVRM VRM 1.0 - https://github.com/vrm-c/UniVRM/releases/tag/v0.128.0
