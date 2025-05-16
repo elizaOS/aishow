@@ -163,7 +163,7 @@ Handles playback of video commercials between scenes. Pauses/Resumes ShowRunner 
    - Component validation
    - Data validation
    - Error logging
-   - Graceful fallbacks
+   - Graceful fallbacks 
 
 ## Future Improvements
 
