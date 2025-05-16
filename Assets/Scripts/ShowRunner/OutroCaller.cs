@@ -22,6 +22,9 @@ namespace ShowRunner
         [Tooltip("The captions textbox GameObject that should be disabled before the outro plays.")]
         [SerializeField] private GameObject captionsTextbox;
 
+        [Tooltip("The AudioSource component that will play the video's audio.")]
+        [SerializeField] private AudioSource videoAudioSource;
+
         [Header("Fade Out")]
         [Tooltip("Panel used for fading to black after the video.")]
         [SerializeField] private Image fadePanel;
@@ -34,15 +37,15 @@ namespace ShowRunner
 
         private void Awake()
         {
+            Debug.Log("OutroCaller: Starting initialization...", this);
+
             // Find Notifier if not assigned
             if (completionNotifier == null)
             {
                 completionNotifier = FindObjectOfType<EpisodeCompletionNotifier>();
                 if (completionNotifier == null)
                 {
-                    Debug.LogError("OutroCaller could not find EpisodeCompletionNotifier! Outro will not play.", this);
-                    enabled = false;
-                    return;
+                    Debug.LogWarning("OutroCaller could not find EpisodeCompletionNotifier. Will try to continue anyway.", this);
                 }
             }
 
@@ -54,47 +57,62 @@ namespace ShowRunner
                 return;
             }
 
-            // Try to get the VideoPlayer component early
+            // Get the VideoPlayer component
             videoPlayer = outroVideoObject.GetComponent<VideoPlayer>();
             if (videoPlayer == null)
             {
-                 Debug.LogError($"No VideoPlayer component found on the assigned Outro Video Object ({outroVideoObject.name}). Outro cannot play.", this);
-                 enabled = false;
-                 return;
+                Debug.LogError($"No VideoPlayer component found on {outroVideoObject.name}!", this);
+                enabled = false;
+                return;
             }
 
-            // Ensure VideoPlayer initial state is correct
-            videoPlayer.playOnAwake = false;
-            videoPlayer.Stop();
-
-            // Validate the fade panel
-            if (fadePanel != null)
+            // Configure audio settings
+            if (videoAudioSource != null)
             {
-                // Initialize fade panel to be transparent
-                Color panelColor = fadePanel.color;
-                panelColor.a = 0f;
-                fadePanel.color = panelColor;
-                fadePanel.gameObject.SetActive(true);
+                videoPlayer.audioOutputMode = VideoAudioOutputMode.AudioSource;
+                videoPlayer.controlledAudioTrackCount = 1;
+                videoPlayer.SetTargetAudioSource(0, videoAudioSource);
+                
+                // Optimize audio source
+                videoAudioSource.playOnAwake = false;
+                videoAudioSource.bypassEffects = true;
+                videoAudioSource.bypassListenerEffects = true;
+                videoAudioSource.bypassReverbZones = true;
+                videoAudioSource.priority = 0;
+                videoAudioSource.spatialBlend = 0f;
             }
+
+            // Ensure VideoPlayer is properly configured
+            videoPlayer.playOnAwake = false;
+            videoPlayer.skipOnDrop = true;
+            videoPlayer.frameReady += OnFrameReady;
 
             // Ensure the outro object is initially inactive
             outroVideoObject.SetActive(false);
+            
+            Debug.Log("OutroCaller: Initialization complete", this);
         }
 
         private void OnEnable()
         {
+            Debug.Log("OutroCaller: OnEnable called", this);
             if (completionNotifier != null)
             {
-                //Debug.Log("OutroCaller subscribing to EpisodeCompletionNotifier.OnEpisodePlaybackFinished.", this);
+                Debug.Log("OutroCaller: Subscribing to EpisodeCompletionNotifier", this);
                 completionNotifier.OnEpisodePlaybackFinished += StartOutroVideo;
+            }
+            else
+            {
+                Debug.LogWarning("OutroCaller: No EpisodeCompletionNotifier found to subscribe to!", this);
             }
         }
 
         private void OnDisable()
         {
+            Debug.Log("OutroCaller: OnDisable called", this);
             if (completionNotifier != null)
             {
-                Debug.Log("OutroCaller unsubscribing from EpisodeCompletionNotifier.OnEpisodePlaybackFinished.", this);
+                Debug.Log("OutroCaller: Unsubscribing from EpisodeCompletionNotifier", this);
                 completionNotifier.OnEpisodePlaybackFinished -= StartOutroVideo;
             }
         }
@@ -105,109 +123,75 @@ namespace ShowRunner
         /// </summary>
         private void StartOutroVideo()
         {
-            Debug.Log("Received episode completion signal. Starting outro video...", this);
-
-            // Prevent starting if already started for this episode cycle
+            Debug.Log("OutroCaller: Starting outro video sequence...", this);
+            
             if (hasOutroStarted)
             {
-                Debug.LogWarning("StartOutroVideo called, but outro has already started. Ignoring duplicate trigger.", this);
+                Debug.LogWarning("Outro already started. Ignoring duplicate trigger.", this);
                 return;
             }
-            hasOutroStarted = true; // Set flag immediately
 
             if (outroVideoObject == null || videoPlayer == null)
             {
-                Debug.LogError("Cannot start outro video because references are missing.", this);
-                hasOutroStarted = false; // Reset flag if we can't proceed
+                Debug.LogError("Critical components missing. Cannot start outro.", this);
                 return;
             }
 
-            // Disable captions textbox if assigned
+            hasOutroStarted = true;
+
+            // Disable captions if present
             if (captionsTextbox != null)
             {
                 captionsTextbox.SetActive(false);
-                Debug.Log("Disabled captions textbox.", this);
             }
 
-            // --- Explicit Stop before starting coroutines --- 
-            Debug.Log("Ensuring VideoPlayer is stopped before starting delay coroutine.", this);
-            videoPlayer.Stop();
-
-            // Activate the parent GameObject
+            // Activate and prepare video
+            Debug.Log("Activating video object", this);
             outroVideoObject.SetActive(true);
+            
+            // Reset video player
+            videoPlayer.Stop();
+            videoPlayer.frame = 0;
 
-            // --- Clear Target Texture Immediately After Activation ---
-            // Clear before any delays or preparation to prevent brief display of first frame.
-            if (videoPlayer.targetTexture != null) 
-            { 
-                RenderTexture rt = videoPlayer.targetTexture;
-                RenderTexture.active = rt;
-                GL.Clear(true, true, Color.black); // Use black or Color.clear depending on needs
-                RenderTexture.active = null;
-                Debug.Log("Cleared VideoPlayer target texture immediately after activating object in StartOutroVideo.", this);
-            }
-
-            // Add a delay before starting the video to allow music to fade
-            StartCoroutine(DelayedPlayVideoFromStart(fadeDuration)); // Use the fade duration from BMM
+            StartCoroutine(DelayedPlayVideoFromStart(fadeDuration));
         }
 
-        // Coroutine to introduce a delay before playing the video
         private IEnumerator DelayedPlayVideoFromStart(float delay)
         {
-            Debug.Log($"OutroCaller: Waiting {delay} seconds for music fade before starting video...");
-            yield return new WaitForSeconds(delay); 
-            Debug.Log("OutroCaller: Delay complete. Starting video preparation.");
-            
-            // Now proceed with the original video playing logic
-            yield return StartCoroutine(PlayVideoFromStart());
-        }
-
-        // Renamed original coroutine
-        private IEnumerator PlayVideoFromStart()
-        {
-            // Texture clearing logic has been moved to StartOutroVideo
-
-            // We now assume the player is stopped due to checks in Awake and StartOutroVideo.
-            // Removing the redundant check/stop here.
-            // if (videoPlayer.isPlaying)
-
-            // Reset to the beginning
-            videoPlayer.frame = 0; // Sets the frame to 0
-            Debug.Log("VideoPlayer frame reset to 0.", this);
-
-            // Prepare the video (preloads data)
-            Debug.Log("Preparing video...", this);
-            videoPlayer.Prepare();
-
-            // Wait until prepared
-            float prepareTimeout = 10f; // Safety timeout
-            float prepareTimer = 0f;
-            while (!videoPlayer.isPrepared && prepareTimer < prepareTimeout)
-            {
-                prepareTimer += Time.deltaTime;
-                yield return null; // Wait for next frame
-            }
+            Debug.Log($"Waiting {delay} seconds before starting video...", this);
+            yield return new WaitForSeconds(delay);
 
             if (!videoPlayer.isPrepared)
             {
-                Debug.LogError($"Video preparation timed out for {outroVideoObject.name}! Cannot play outro.", this);
-                outroVideoObject.SetActive(false); // Deactivate if prep fails
-                yield break; // Exit coroutine
+                Debug.Log("Preparing video...", this);
+                videoPlayer.Prepare();
+                
+                float prepareTimeout = 10f;
+                float prepareTimer = 0f;
+                
+                while (!videoPlayer.isPrepared && prepareTimer < prepareTimeout)
+                {
+                    prepareTimer += Time.deltaTime;
+                    yield return null;
+                }
+
+                if (!videoPlayer.isPrepared)
+                {
+                    Debug.LogError("Video preparation timed out!", this);
+                    yield break;
+                }
             }
 
-            // Preparation complete, play the video
-            Debug.Log("Video prepared. Playing outro.", this);
+            Debug.Log("Starting video playback...", this);
             videoPlayer.Play();
 
-            // Wait for video to finish before fading out
             while (videoPlayer.isPlaying)
             {
                 yield return null;
             }
+
+            Debug.Log("Video playback complete. Starting fade out...", this);
             
-            Debug.Log("Outro video finished. Starting fade out.", this);
-            
-            // Start fade out if panel is assigned
             if (fadePanel != null)
             {
                 yield return StartCoroutine(FadeToBlack());
@@ -275,6 +259,27 @@ namespace ShowRunner
                 fadePanel.gameObject.SetActive(true); // Keep it active but transparent
             }
             Debug.Log("OutroCaller state reset.", this);
+        }
+
+        private void OnFrameReady(VideoPlayer source, long frameIdx)
+        {
+            if (frameIdx == 0)
+            {
+                Debug.Log("First frame ready", this);
+            }
+        }
+
+        private void OnDestroy()
+        {
+            if (videoPlayer != null)
+            {
+                videoPlayer.frameReady -= OnFrameReady;
+            }
+            
+            if (fadePanel != null)
+            {
+                fadePanel.gameObject.SetActive(false);
+            }
         }
     }
 } 
