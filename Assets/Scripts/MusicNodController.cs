@@ -25,7 +25,6 @@ public class MusicNodController : MonoBehaviour
     [SerializeField] private float headNodAngle = 15f;
     [SerializeField] private float torsoNodAngle = 8f;
     [SerializeField] private float nodSpeed = 5f;
-    [SerializeField] private float nodSmoothing = 0.1f;
     [SerializeField, Range(0f, 1f)] private float intensityMultiplier = 1f;
     
     [Header("Nod Pattern Settings")]

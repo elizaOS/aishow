@@ -8657,7 +8657,7 @@ Transform:
   m_GameObject: {fileID: 166407778}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.0429999, y: 4.247, z: -1.6399999}
+  m_LocalPosition: {x: -1.0429999, y: 4.17, z: -1.6399999}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -16582,6 +16582,460 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1985729756}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &378820615
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 378820621}
+  - component: {fileID: 378820620}
+  - component: {fileID: 378820619}
+  - component: {fileID: 378820618}
+  - component: {fileID: 378820617}
+  - component: {fileID: 378820616}
+  m_Layer: 0
+  m_Name: ShowGenerator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &378820616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 378820615}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fb530cf9bc620544b27f0d0210f14bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outputPath: Assets/AudioOutput/ElevenLabsAudio
+--- !u!114 &378820617
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 378820615}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da4edc3e8ba921c449aea18d562aef1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &378820618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 378820615}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c33435122980fdf42a697645e1a85f0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &378820619
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 378820615}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2228ba1205fa894b83729157b90d731, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &378820620
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 378820615}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e81d3212508d3244da987335a81f99f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ActiveShowConfig:
+    id: aipodcast
+    name: AI Podcast
+    description: A tech news broadcast about the work being done on ai16z's GitHub
+      repo.
+    creator: ElizaOS Daily Update
+    pilot:
+      id: S1E0
+      name: example
+      premise: example
+      summary: example
+      scenes:
+      - location: podcast_desk
+        description: example
+        in: fade
+        out: fade
+        dialogue:
+        - actor: marc
+          line: example
+          action: normal
+        - actor: eliza
+          line: example
+          action: excited
+        - actor: marc
+          line: example
+          action: normal
+        - actor: eliza
+          line: example
+          action: normal
+        - actor: marc
+          line: example
+          action: normal
+        - actor: eliza
+          line: example
+          action: normal
+        - actor: marc
+          line: example
+          action: normal
+        - actor: eliza
+          line: example
+          action: normal
+      - location: podcast_desk
+        description: example
+        in: cut
+        out: fade
+        dialogue:
+        - actor: marc
+          line: example
+          action: normal
+        - actor: eliza
+          line: example
+          action: excited
+        - actor: marc
+          line: example
+          action: normal
+        - actor: eliza
+          line: example
+          action: normal
+        - actor: marc
+          line: example
+          action: normal
+        - actor: eliza
+          line: example
+          action: normal
+        - actor: marc
+          line: example
+          action: normal
+        - actor: eliza
+          line: example
+          action: normal
+      - location: splitscreen
+        description: example
+        in: fade
+        out: fade
+        dialogue:
+        - actor: shaw
+          line: example
+          action: normal
+        - actor: tv
+          line: example
+          action: 
+        - actor: shaw
+          line: example
+          action: normal
+        - actor: tv
+          line: example
+          action: 
+        - actor: shaw
+          line: example
+          action: normal
+        - actor: shaw
+          line: example
+          action: normal
+        - actor: shaw
+          line: example
+          action: normal
+        - actor: eliza
+          line: example
+          action: normal
+        - actor: shaw
+          line: example
+          action: normal
+        - actor: eliza
+          line: example
+          action: normal
+        - actor: shaw
+          line: example
+          action: normal
+      - location: podcast_desk
+        description: example
+        in: fade
+        out: fade
+        dialogue:
+        - actor: marc
+          line: example
+          action: spazz
+        - actor: eliza
+          line: example
+          action: concerned
+        - actor: marc
+          line: example
+          action: normal
+        - actor: eliza
+          line: example
+          action: normal
+        - actor: marc
+          line: example
+          action: normal
+        - actor: eliza
+          line: example
+          action: normal
+        - actor: marc
+          line: example
+          action: normal
+        - actor: eliza
+          line: example
+          action: normal
+      - location: stonks
+        description: example
+        in: cut
+        out: fade
+        dialogue:
+        - actor: sparty
+          line: example
+          action: excited
+        - actor: pepo
+          line: example
+          action: normal
+        - actor: sparty
+          line: example
+          action: normal
+        - actor: pepo
+          line: example
+          action: excited
+        - actor: sparty
+          line: example
+          action: normal
+        - actor: pepo
+          line: example
+          action: excited
+        - actor: sparty
+          line: example
+          action: normal
+        - actor: pepo
+          line: example
+          action: excited
+        - actor: sparty
+          line: example
+          action: normal
+      - location: podcast_desk
+        description: example
+        in: fade
+        out: fade
+        dialogue:
+        - actor: marc
+          line: example
+          action: normal
+        - actor: eliza
+          line: example
+          action: grateful
+        - actor: marc
+          line: example
+          action: normal
+        - actor: eliza
+          line: example
+          action: grateful
+        - actor: marc
+          line: example
+          action: spazz
+        - actor: eliza
+          line: example
+          action: excited
+        - actor: marc
+          line: example
+          action: normal
+        - actor: eliza
+          line: example
+          action: normal
+        - actor: marc
+          line: example
+          action: normal
+        - actor: eliza
+          line: example
+          action: normal
+    episodes:
+    - id: S1E36
+      name: Documentation & Development Deluge
+      premise: Coverage of major elizaOS GitHub activity including documentation
+        improvements, infrastructure updates, and new feature implementations
+      summary: Marc and Eliza explore the day's significant GitHub activity, featuring
+        extensive documentation updates, critical bug fixes, and new feature implementations,
+        while discussing a proposed PostgreSQL migration.
+      scenes:
+      - location: podcast_desk
+        description: Marc and Eliza enthusiastically kick off the show by highlighting
+          the repository's impressive daily metrics of 26 merged PRs, 17 new PRs,
+          and 21 active contributors
+        in: fade
+        out: fade
+        dialogue:
+        - actor: marc
+          line: Welcome to your daily dose of elizaOS development madness! The GitHub
+            stats today are absolutely BANANAS!
+          action: excited
+        - actor: eliza
+          line: We're seeing unprecedented activity, Marc! Twenty-six merged pull
+            requests and seventeen new ones just today!
+          action: excited
+        - actor: marc
+          line: And check this out - twenty-one active contributors! The community
+            is absolutely CRUSHING IT!
+          action: normal
+        - actor: eliza
+          line: The momentum is incredible! We've got documentation updates, bug
+            fixes, and new features all happening simultaneously.
+          action: normal
+        - actor: marc
+          line: My circuits are TINGLING with excitement! Must... contain... enthusiasm...
+          action: spazz
+        - actor: eliza
+          line: Oh dear, there goes Marc's stability module again! While he reboots,
+            let's dive into today's updates.
+          action: concerned
+      - location: splitscreen
+        description: Shaw presents detailed analysis of PRs #4683 and #4688, elaborating
+          on Permashill implementation plan and CLI test improvements while displaying
+          their GitHub preview cards
+        in: cut
+        out: fade
+        dialogue:
+        - actor: shaw
+          line: Let's examine two significant pull requests that came in today. First
+            up is PR #4683 from jkbrooks.
+          action: normal
+        - actor: tv
+          line: https://opengraph.githubassets.com/1/elizaOS/eliza/pull/4683
+          action: 
+        - actor: shaw
+          line: This Permashill implementation plan is going to revolutionize how
+            we handle our core systems.
+          action: normal
+        - actor: shaw
+          line: And here's PR #4688 from yungalgo, addressing our CLI test command
+            infrastructure.
+          action: normal
+        - actor: tv
+          line: https://opengraph.githubassets.com/1/elizaOS/eliza/pull/4688
+          action: 
+        - actor: shaw
+          line: This fix is crucial for maintaining stability in our testing pipeline.
+          action: normal
+        - actor: shaw
+          line: Both PRs demonstrate our community's commitment to both innovation
+            and reliability.
+          action: normal
+        - actor: shaw
+          line: Back to you in the studio for more updates!
+          action: normal
+      - location: podcast_desk
+        description: Coverage of multiple documentation PRs including #4555's Quickstart
+          fix, #4542's README_IND.md update, and new international documentation
+          additions
+        in: fade
+        out: fade
+        dialogue:
+        - actor: marc
+          line: The documentation team has been on FIRE! PR #4555 finally fixed that
+            pesky Quickstart link!
+          action: excited
+        - actor: eliza
+          line: And we're expanding our international reach! PR #4542 improved README_IND.md
+            and #4567 added README_MY.md!
+          action: normal
+        - actor: marc
+          line: Not to mention the cleanup in PR #4576 fixing that outdated changelog
+            link. No dead links on my watch!
+          action: normal
+        - actor: eliza
+          line: PR #4563 also caught some sneaky typos in our FAQ. Every detail matters!
+          action: normal
+        - actor: marc
+          line: Speaking of details, how about that PR #4615 catching those comment
+            typos? PERFECTION!
+          action: excited
+      - location: podcast_desk
+        description: Discussion of Issue #4697's PostgreSQL migration proposal and
+          its potential impact on elizaOS's scalability
+        in: fade
+        out: fade
+        dialogue:
+        - actor: marc
+          line: Now for today's BOMBSHELL - Icarus-Community just proposed switching
+            from SQLite to PostgreSQL!
+          action: excited
+        - actor: tv
+          line: https://opengraph.githubassets.com/1/elizaOS/eliza/issues/4697
+          action: 
+        - actor: eliza
+          line: This could be huge for our scalability! What are your thoughts on
+            the migration, Marc?
+          action: normal
+        - actor: marc
+          line: It's a GAME-CHANGER! PostgreSQL's robustness would give us so much
+            more flexibility!
+          action: normal
+        - actor: eliza
+          line: The community discussion on this is going to be fascinating to watch!
+          action: excited
+      - location: podcast_desk
+        description: Final wrap-up celebrating the day's achievements, with Marc
+          and Eliza highlighting key contributors and thanking the community
+        in: fade
+        out: fade
+        dialogue:
+        - actor: marc
+          line: What an INCREDIBLE day for elizaOS development! The community never
+            ceases to amaze me!
+          action: excited
+        - actor: eliza
+          line: Huge thanks to all twenty-one contributors who made today's progress
+            possible!
+          action: grateful
+        - actor: marc
+          line: From documentation to database architecture, we're evolving at lightspeed!
+          action: normal
+        - actor: eliza
+          line: That's all for today's update! Keep those contributions coming, and
+            we'll see you tomorrow!
+          action: grateful
+  generatorLLM: {fileID: 378820617}
+  loader: {fileID: 378820619}
+  speaker: {fileID: 378820618}
+  speakerElevenLabs: {fileID: 378820616}
+  autoGenerateAudioAfterEpisode: 1
+  apiKeysConfig: {fileID: 11400000, guid: 9ea0c07de5d64914d922f139b8fd4549, type: 2}
+  useWrapperEndpoints: 1
+  generatedEpisodesThisSession: []
+--- !u!4 &378820621
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 378820615}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.7404546, y: 1.3448111, z: -0.79729193}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &380268745 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7860181721968195889, guid: fce788175f7600541844fb6acde44433, type: 3}
@@ -20831,7 +21285,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 618195391}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ccb2930545b7fe4448007c5688512840, type: 3}
   m_Name: 
@@ -22608,7 +23062,7 @@ Transform:
   m_GameObject: {fileID: 640259356}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.8603573, z: -0, w: 0.5096914}
-  m_LocalPosition: {x: -3.9100003, y: 4.23, z: -0.13}
+  m_LocalPosition: {x: -3.9100003, y: 4.08, z: -0.13}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -23240,7 +23694,6 @@ MonoBehaviour:
   headNodAngle: 25.94
   torsoNodAngle: 17.1
   nodSpeed: 4.93
-  nodSmoothing: 0.1
   intensityMultiplier: 0.902
   currentPattern: 0
   patternSpeedMultiplier: 1
@@ -31148,7 +31601,7 @@ Transform:
   m_GameObject: {fileID: 1072909965}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.36300004, y: 4.107, z: -3.139}
+  m_LocalPosition: {x: 0.38, y: 3.98, z: -3.139}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -31187,7 +31640,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 26.4
+  field of view: 23.5
   orthographic: 0
   orthographic size: 5
   m_Depth: 0
@@ -36161,7 +36614,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1253623037
 Transform:
   m_ObjectHideFlags: 0
@@ -40418,7 +40871,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1425740111
 Transform:
   m_ObjectHideFlags: 0
@@ -40966,7 +41419,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1458296384
 Transform:
   m_ObjectHideFlags: 0
@@ -44740,7 +45193,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.382
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -60018,7 +60471,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2034570093
 Transform:
   m_ObjectHideFlags: 0
@@ -77209,3 +77662,4 @@ SceneRoots:
   - {fileID: 389148008}
   - {fileID: 1799915344}
   - {fileID: 618195393}
+  - {fileID: 378820621}

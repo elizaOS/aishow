@@ -11,9 +11,6 @@ public class MusicNodControllerEditor : Editor
     private const int MAX_HISTORY = 50;
     private float[] frequencyBands = new float[8];
     private float currentBeatValue = 0f;
-    private bool isBeatDetected = false;
-    private float beatTimer = 0f;
-    private const float BEAT_VISUAL_DURATION = 0.2f;
 
     private void OnEnable()
     {

@@ -80,3 +80,14 @@ Assets/SoundFX/Bleeps/Bleeps.zip
 Assets/SoundFX/Bleeps/Bleeps.zip.meta
 /.cursor
 /Assets/Resources/Episodes
+/aipodcast-showrunner-new-news-and-image-support - new prompt
+
+# Ignore API key asset files (secrets)
+Assets/ShowrunnerPort/ShowGeneratorApiKeys.asset
+/Assets/Resources/Transcripts
+/Assets/Resources/LLMRequests
+Assets/Resources/LLMRequests.meta
+/Assets/Resources/Transcripts
+/Assets/Resources/web-payload
+Assets/Resources/web-payload.meta
+/Resources/Episodes
