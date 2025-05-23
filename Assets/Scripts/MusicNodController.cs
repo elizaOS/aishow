@@ -312,7 +312,7 @@ public class MusicNodController : MonoBehaviour
         {
             beatThreshold = averageBeatValue * thresholdMultiplier;
             isCalibrated = true;
-            Debug.Log($"Beat detection calibrated. Average: {averageBeatValue:F2}, Threshold: {beatThreshold:F2}, Max: {maxBeatValue:F2}");
+            //Debug.Log($"Beat detection calibrated. Average: {averageBeatValue:F2}, Threshold: {beatThreshold:F2}, Max: {maxBeatValue:F2}");
         }
     }
 

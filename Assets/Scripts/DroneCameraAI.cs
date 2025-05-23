@@ -78,7 +78,7 @@ public class DroneCameraAI : MonoBehaviour
         }
         else if (droneCamera == null)
         {
-            Debug.LogError("DroneCameraAI: No camera found or assigned. Visuals will be incorrect.");
+            //Debug.LogError("DroneCameraAI: No camera found or assigned. Visuals will be incorrect.");
         }
             
         currentFOV = (droneCamera != null) ? droneCamera.fieldOfView : fieldOfViewMax;
@@ -89,7 +89,7 @@ public class DroneCameraAI : MonoBehaviour
             shotTimer = currentHoldDuration;
             FindNewTargetPosition();
         } else {
-            Debug.LogWarning("DroneCameraAI: No actors assigned. Drone will be idle.");
+            //Debug.LogWarning("DroneCameraAI: No actors assigned. Drone will be idle.");
             targetPosition = transform.position; // Default target to current position if no actors
         }
     }
@@ -171,24 +171,13 @@ public class DroneCameraAI : MonoBehaviour
     private void UpdateDroneOrientation()
     {
         if (actors[currentActorIndex] == null) return;
-
         Transform currentTargetActor = actors[currentActorIndex];
         Vector3 targetLookPosition = currentTargetActor.position;
-
         Rigidbody actorRb = currentTargetActor.GetComponent<Rigidbody>();
-        if (actorRb != null)
-        {
-            targetLookPosition += actorRb.velocity * lookAheadDistance;
-        }
-
+        if (actorRb != null) targetLookPosition += actorRb.velocity * lookAheadDistance;
         Vector3 directionToTarget = targetLookPosition - rb.position;
-
-        // --- DEBUG SECTION START ---
-        // Uncomment these lines in your Unity Editor to see debug rays in the Scene View
-        // Debug.DrawRay(rb.position, directionToTarget, Color.red); // Shows desired look direction
-        // Debug.DrawRay(rb.position, rb.transform.forward * directionToTarget.magnitude, Color.blue); // Shows current forward direction
-        // --- DEBUG SECTION END ---
-
+        // Debug.DrawRay(rb.position, directionToTarget, Color.red); // Commented out
+        // Debug.DrawRay(rb.position, rb.transform.forward * directionToTarget.magnitude, Color.blue); // Commented out
         if (directionToTarget.sqrMagnitude > 0.01f)
         {
             Quaternion targetBodyOrientation = Quaternion.LookRotation(directionToTarget);
@@ -272,7 +261,7 @@ public class DroneCameraAI : MonoBehaviour
     {
         if (actors == null || actors.Length == 0) 
         {
-            Debug.LogWarning("FindNewTargetPosition: No actors to target.");
+            //Debug.LogWarning("FindNewTargetPosition: No actors to target.");
             targetPosition = transform.position; // Stay put if no actors
             isTransitioning = false;
             return;
@@ -305,7 +294,7 @@ public class DroneCameraAI : MonoBehaviour
         } while (sequenceIndex != initialIndex);
 
         if (!foundValidActor) {
-            Debug.LogWarning("No valid (non-null) actors found in sequence! Drone will hold current position or idle.");
+            //Debug.LogWarning("No valid (non-null) actors found in sequence! Drone will hold current position or idle.");
             targetPosition = transform.position; // Hold current pos if no valid actor found
             isTransitioning = false;
             return;
@@ -334,7 +323,7 @@ public class DroneCameraAI : MonoBehaviour
         {
             if (hit.transform != currentTargetTransform && !hit.transform.IsChildOf(transform))
             {
-                Debug.Log("Target position for drone movement might be occluded by " + hit.transform.name + ". Drone will attempt shot or pick new spot next cycle.");
+                //Debug.Log("Target position for drone movement might be occluded by " + hit.transform.name + ". Drone will attempt shot or pick new spot next cycle.");
             }
         }
     }
