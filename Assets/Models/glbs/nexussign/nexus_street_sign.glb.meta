@@ -1,0 +1,42 @@
+fileFormatVersion: 2
+guid: 5071e86fd1e55524281ed5ce65fa52ad
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Glass.001
+    second: {fileID: 2100000, guid: 11c9fcd7ef066254191a11c009b1e0d5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.004
+    second: {fileID: 2100000, guid: 66e891921c425bb4e928d662d2a20ace, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: stainless_steel
+    second: {fileID: 2100000, guid: f1e950554b0243e44bc921996d337252, type: 2}
+  - first:
+      type: UnityEngine:Texture
+      assembly: UnityEngine.CoreModule
+      name: texture_0
+    second: {fileID: 2800000, guid: 749479de1d7ae704485b7b72d5e1f16b, type: 3}
+  - first:
+      type: UnityEngine:Texture
+      assembly: UnityEngine.CoreModule
+      name: texture_1.standard
+    second: {fileID: 2800000, guid: 2921bc67a4e6ff146bea3a90a4b68c2c, type: 3}
+  - first:
+      type: UnityEngine:Texture
+      assembly: UnityEngine.CoreModule
+      name: texture_2.normal
+    second: {fileID: 2800000, guid: dd5244bac4ac7b642b701b632c9bee69, type: 3}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: cc45016b844e7624dae3aec10fb443ea, type: 3}
+  reverseAxis: 0
+  renderPipeline: 0
