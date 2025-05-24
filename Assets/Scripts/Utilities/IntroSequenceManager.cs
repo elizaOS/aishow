@@ -16,6 +16,9 @@ public class IntroSequenceManager : MonoBehaviour
     private static IntroSequenceManager instance;
     public bool isEnabled = true; // Enables or disables the intro sequence
 
+    // Event fired when the intro sequence actually begins its playback logic.
+    public event Action OnIntroSequenceActualStart;
+
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
@@ -50,6 +53,10 @@ public class IntroSequenceManager : MonoBehaviour
             OnSequenceComplete();
             yield break;
         }
+
+        // Invoke the start event here
+        Debug.Log("IntroSequenceManager: Invoking OnIntroSequenceActualStart.");
+        OnIntroSequenceActualStart?.Invoke();
 
         if (introSteps.Length > 0)
         {

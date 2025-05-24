@@ -6,8 +6,9 @@ using UnityEngine.Networking;
 public class TextureLoader : MonoBehaviour
 {
     [Header("Texture Loader Settings")]
-    public Renderer targetRenderer; // Reference to the renderer of the object
+    public Renderer[] targetRenderers; // Reference to the renderers of the objects
     public string textureURL;       // URL for the texture to load
+    public RenderTexture targetRenderTexture; // RenderTexture to update
 
     public GameObject mediaTvReference; // Reference to the TV in the news room 
 
@@ -45,16 +46,37 @@ public class TextureLoader : MonoBehaviour
                 // Get the downloaded texture
                 Texture2D texture = DownloadHandlerTexture.GetContent(webRequest);
 
-                // Apply the texture to the Emission channel
-                if (targetRenderer != null && targetRenderer.material != null)
+                // Apply the texture to the Emission channel of all targetRenderers
+                if (targetRenderers != null && targetRenderers.Length > 0)
                 {
-                    targetRenderer.material.SetTexture("_EmissionMap", texture);
-                    targetRenderer.material.EnableKeyword("_EMISSION");
-                    Debug.Log("Successfully applied the texture to the Emission channel.");
+                    foreach (Renderer renderer in targetRenderers)
+                    {
+                        if (renderer != null && renderer.material != null)
+                        {
+                            renderer.material.SetTexture("_EmissionMap", texture);
+                            renderer.material.EnableKeyword("_EMISSION");
+                            Debug.Log($"Successfully applied the texture to the Emission channel of {renderer.gameObject.name}.");
+                        }
+                        else
+                        {
+                            Debug.LogWarning("A Target Renderer or its Material is not assigned in the array.");
+                        }
+                    }
                 }
                 else
                 {
-                    Debug.LogWarning("Target Renderer or Material is not assigned.");
+                    Debug.LogWarning("Target Renderers array is not assigned or is empty.");
+                }
+
+                // Update the RenderTexture
+                if (targetRenderTexture != null)
+                {
+                    Graphics.Blit(texture, targetRenderTexture);
+                    Debug.Log("Successfully updated the Target RenderTexture.");
+                }
+                else
+                {
+                    Debug.LogWarning("Target RenderTexture is not assigned.");
                 }
             }
         }

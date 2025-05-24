@@ -75,6 +75,9 @@ namespace ShowRunner
         // Event fired when an episode is selected, passing the episode description/premise.
         public event Action<string, string> OnEpisodeSelectedForDisplay;
 
+        // Event fired when an episode is selected and considered "started" for playback purposes
+        public event Action OnEpisodeActualStart; 
+
         // Event fired when the current scene changes, passing the scene name/location.
         public event Action<string> OnSceneChangedForDisplay;
 
@@ -470,6 +473,12 @@ namespace ShowRunner
                 case "init":
                     // Debug.Log("Starting episode playback");
                     playbackState = "episode-loaded";
+                    // THIS IS A GOOD SPOT FOR "ACTUAL START" if currentEpisode is valid
+                    if (currentEpisode != null)
+                    {
+                        Debug.Log($"ShowRunner: Invoking OnEpisodeActualStart from NextStep (init state) for episode {currentEpisode.id}");
+                        OnEpisodeActualStart?.Invoke(); 
+                    }
                     break;
 
                 case "episode-loaded":
@@ -919,6 +928,12 @@ namespace ShowRunner
         public string GetLoadedShowFileName()
         {
             return loadedShowFileName;
+        }
+
+        // Helper method to get current episode ID for the recorder
+        public string GetCurrentEpisodeId()
+        {
+            return currentEpisode?.id;
         }
 
         // --- Pause/Resume Functionality ---

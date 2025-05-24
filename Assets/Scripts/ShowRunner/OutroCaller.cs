@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.Video; // Required for VideoPlayer
 using System.Collections; // Required for Coroutine
 using UnityEngine.UI; // Required for UI components
+using System; // Required for Action
 
 namespace ShowRunner
 {
@@ -34,6 +35,9 @@ namespace ShowRunner
 
         private VideoPlayer videoPlayer;
         private bool hasOutroStarted = false; // Flag to prevent double execution
+
+        // Event fired when the outro video and subsequent fade-out are fully complete.
+        public event Action OnOutroVideoAndFadeComplete; 
 
         private void Awake()
         {
@@ -236,6 +240,8 @@ namespace ShowRunner
             Debug.Log("Fade out complete.", this);
             
             // Optional: You could signal completion here with an event if needed
+            Debug.Log("OutroCaller: Invoking OnOutroVideoAndFadeComplete.", this);
+            OnOutroVideoAndFadeComplete?.Invoke();
         }
 
         /// <summary>

@@ -34,24 +34,24 @@ MonoBehaviour:
     Modification: 0
     OtherLicenseUrl: 
   Expression:
-    Happy: {fileID: 1331549646584460956, guid: 0d1c1517cc82197478ca53e21335a6c3, type: 3}
-    Angry: {fileID: -680168811974642460, guid: 0d1c1517cc82197478ca53e21335a6c3, type: 3}
-    Sad: {fileID: -4140618486940527717, guid: 0d1c1517cc82197478ca53e21335a6c3, type: 3}
-    Relaxed: {fileID: -673667479763519131, guid: 0d1c1517cc82197478ca53e21335a6c3, type: 3}
-    Surprised: {fileID: 8367322364097770655, guid: 0d1c1517cc82197478ca53e21335a6c3, type: 3}
-    Aa: {fileID: -4981769727764245264, guid: 0d1c1517cc82197478ca53e21335a6c3, type: 3}
-    Ih: {fileID: 7592938696408043630, guid: 0d1c1517cc82197478ca53e21335a6c3, type: 3}
-    Ou: {fileID: -3069254169857426044, guid: 0d1c1517cc82197478ca53e21335a6c3, type: 3}
-    Ee: {fileID: -2564424997208761075, guid: 0d1c1517cc82197478ca53e21335a6c3, type: 3}
-    Oh: {fileID: 7301602523032170006, guid: 0d1c1517cc82197478ca53e21335a6c3, type: 3}
-    Blink: {fileID: -1282421089175907701, guid: 0d1c1517cc82197478ca53e21335a6c3, type: 3}
-    BlinkLeft: {fileID: 117516076257945462, guid: 0d1c1517cc82197478ca53e21335a6c3, type: 3}
-    BlinkRight: {fileID: -3630277102334738080, guid: 0d1c1517cc82197478ca53e21335a6c3, type: 3}
-    LookUp: {fileID: 8898716908589827829, guid: 0d1c1517cc82197478ca53e21335a6c3, type: 3}
-    LookDown: {fileID: 6322223568427267142, guid: 0d1c1517cc82197478ca53e21335a6c3, type: 3}
-    LookLeft: {fileID: -2763323457229052393, guid: 0d1c1517cc82197478ca53e21335a6c3, type: 3}
-    LookRight: {fileID: -8200056920375764036, guid: 0d1c1517cc82197478ca53e21335a6c3, type: 3}
-    Neutral: {fileID: -7143853869815321999, guid: 0d1c1517cc82197478ca53e21335a6c3, type: 3}
+    Happy: {fileID: 0}
+    Angry: {fileID: 0}
+    Sad: {fileID: 0}
+    Relaxed: {fileID: 0}
+    Surprised: {fileID: 0}
+    Aa: {fileID: 0}
+    Ih: {fileID: 0}
+    Ou: {fileID: 0}
+    Ee: {fileID: 0}
+    Oh: {fileID: 0}
+    Blink: {fileID: 0}
+    BlinkLeft: {fileID: 0}
+    BlinkRight: {fileID: 0}
+    LookUp: {fileID: 0}
+    LookDown: {fileID: 0}
+    LookLeft: {fileID: 0}
+    LookRight: {fileID: 0}
+    Neutral: {fileID: 0}
     CustomClips: []
   LookAt:
     OffsetFromHead: {x: -0, y: 0.06, z: 0}
