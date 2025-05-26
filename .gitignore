@@ -92,3 +92,51 @@ Assets/Resources/LLMRequests.meta
 Assets/Resources/web-payload.meta
 /Resources/Episodes
 /ShowRecordings
+
+Assets/StreamingAssets/client_secrets.json
+
+# Unity Standard Files & Folders
+/[Ll]ibrary/
+/[Tt]emp/
+/[Oo]bj/
+/[Bb]uild/
+/[Bb]uilds/
+/[Ll]ogs/
+/[Mm]emoryCaptures/
+/[Rr]ecordings/
+/[Uu]serSettings/
+
+# Visual Studio / Rider specific files
+.vs/
+.vscode/
+*.csproj
+*.unityproj
+*.sln
+*.suo
+*.tmp
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.mdb
+*.opendb
+*.VC.db
+
+# Unity Meta files
+*.meta
+
+# macOS specific files
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows specific files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Asset Store Tools generated files
+AssetStoreToolsStructs.dll
+AssetStoreTools.dll

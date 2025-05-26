@@ -140,68 +140,33 @@ namespace ShowGenerator
                 attempt++;
                 try
                 {
-                    var result = await RunOnMainThread(() =>
-                    {
-                        var res = new {
-                            Success = false,
-                            Error = "",
-                            ResponseCode = 0
-                        };
-                        string endpointUrl = string.Empty;
-                        string payloadJson = string.Empty;
-                        UnityWebRequest www = null;
-                        try
-                        {
-                            if (useWrapper)
-                            {
-                                endpointUrl = apiKeys.elevenLabsWrapperUrl;
-                                var payload = new ElevenLabsRequest { text = dialogue.line, voice_id = voiceId };
-                                payloadJson = JsonUtility.ToJson(payload);
-                                www = new UnityWebRequest(endpointUrl, "POST");
-                                byte[] bodyRaw = Encoding.UTF8.GetBytes(payloadJson);
-                                www.uploadHandler = new UploadHandlerRaw(bodyRaw);
-                                www.downloadHandler = new DownloadHandlerBuffer();
-                                www.SetRequestHeader("Content-Type", "application/json");
-                            }
-                            else
-                            {
-                                endpointUrl = DirectElevenLabsApiEndpointBase + voiceId;
-                                var payload = new { text = dialogue.line };
-                                payloadJson = JsonUtility.ToJson(payload);
-                                www = new UnityWebRequest(endpointUrl, "POST");
-                                byte[] bodyRaw = Encoding.UTF8.GetBytes(payloadJson);
-                                www.uploadHandler = new UploadHandlerRaw(bodyRaw);
-                                www.downloadHandler = new DownloadHandlerBuffer();
-                                www.SetRequestHeader("Content-Type", "application/json");
-                                www.SetRequestHeader("xi-api-key", apiKeys.elevenLabsApiKey);
-                            }
-                            www.timeout = 30;
-                            Debug.Log($"Attempt {attempt}/{MAX_RETRIES} for actor '{dialogue.actor}'");
-                            var operation = www.SendWebRequest();
-                            while (!operation.isDone) { }
-                            Debug.Log($"Network call completed. Result: {www.result}");
-                            if (www.result == UnityWebRequest.Result.Success)
-                            {
-                                File.WriteAllBytes(filePath, www.downloadHandler.data);
-                                Debug.Log($"Audio saved: {filePath}");
-                                return new { Success = true, Error = "", ResponseCode = (int)www.responseCode };
-                            }
-                            else
-                            {
-                                Debug.LogWarning($"Attempt {attempt} failed: {www.responseCode} - {www.error}");
-                                return new { Success = false, Error = www.error, ResponseCode = (int)www.responseCode };
-                            }
-                        }
-                        catch (Exception ex)
-                        {
-                            Debug.LogWarning($"Exception on attempt {attempt}: {ex.Message}");
-                            return new { Success = false, Error = ex.Message, ResponseCode = 0 };
-                        }
-                    });
+                    string endpointUrl;
+                    object payload;
+                    Dictionary<string, string> headers = null;
 
-                    if (result.Success)
+                    if (useWrapper)
                     {
+                        endpointUrl = apiKeys.elevenLabsWrapperUrl;
+                        payload = new ElevenLabsRequest { text = dialogue.line, voice_id = voiceId };
+                    }
+                    else
+                    {
+                        endpointUrl = DirectElevenLabsApiEndpointBase + voiceId;
+                        payload = new { text = dialogue.line };
+                        headers = new Dictionary<string, string> { { "xi-api-key", apiKeys.elevenLabsApiKey } };
+                    }
+
+                    Debug.Log($"Attempt {attempt}/{MAX_RETRIES} for actor '{dialogue.actor}'");
+                    byte[] audioData = await ApiCaller.PostJsonForBytesAsync(endpointUrl, payload, headers);
+                    if (audioData != null && audioData.Length > 0)
+                    {
+                        File.WriteAllBytes(filePath, audioData);
+                        Debug.Log($"Audio saved: {filePath}");
                         return;
+                    }
+                    else
+                    {
+                        Debug.LogWarning($"Attempt {attempt} failed: No audio data returned");
                     }
                 }
                 catch (Exception ex)

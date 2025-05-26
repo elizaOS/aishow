@@ -6,6 +6,7 @@ public class HeadlineScroller : MonoBehaviour
 {
     [SerializeField] public TextMeshProUGUI tickerText;
     [SerializeField] public float scrollSpeed = 100f;
+    [SerializeField] private TMP_FontAsset emojiFont; // Reference to the emoji font asset
 
     private RectTransform textRect;
     private RectTransform parentRect;
@@ -14,6 +15,21 @@ public class HeadlineScroller : MonoBehaviour
     {
         textRect = tickerText.rectTransform;
         parentRect = GetComponent<RectTransform>();
+
+        // Ensure we have a font that supports emojis
+        if (emojiFont == null)
+        {
+            // Try to find the EmojiOne font asset
+            emojiFont = Resources.Load<TMP_FontAsset>("Fonts & Materials/EmojiOne");
+            if (emojiFont == null)
+            {
+                Debug.LogWarning("Emoji font not found. Some characters may not display correctly.");
+            }
+            else
+            {
+                tickerText.font = emojiFont;
+            }
+        }
 
         // Add ContentSizeFitter if not present
         if (tickerText.GetComponent<ContentSizeFitter>() == null)
