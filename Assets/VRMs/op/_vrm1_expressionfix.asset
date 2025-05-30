@@ -1,0 +1,86 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88684271e27adb843b6570957c9e7637, type: 3}
+  m_Name: _vrm1_expressionfix
+  m_EditorClassIdentifier: 
+  m_prefab: {fileID: -1728013695380148634, guid: 549dbcb6929dd05458443afd7505c907, type: 3}
+  Meta:
+    Name: 
+    Version: 
+    Authors:
+    - ', VIANVOLAEUS'
+    CopyrightInformation: 
+    ContactInformation: 
+    References:
+    - 
+    ThirdPartyLicenses: 
+    Thumbnail: {fileID: 0}
+    AvatarPermission: 0
+    ViolentUsage: 0
+    SexualUsage: 0
+    CommercialUsage: 0
+    PoliticalOrReligiousUsage: 0
+    AntisocialOrHateUsage: 0
+    CreditNotation: 0
+    Redistribution: 0
+    Modification: 0
+    OtherLicenseUrl: 
+  Expression:
+    Happy: {fileID: 1331549646584460956, guid: 549dbcb6929dd05458443afd7505c907, type: 3}
+    Angry: {fileID: -680168811974642460, guid: 549dbcb6929dd05458443afd7505c907, type: 3}
+    Sad: {fileID: -4140618486940527717, guid: 549dbcb6929dd05458443afd7505c907, type: 3}
+    Relaxed: {fileID: -673667479763519131, guid: 549dbcb6929dd05458443afd7505c907, type: 3}
+    Surprised: {fileID: 8367322364097770655, guid: 549dbcb6929dd05458443afd7505c907, type: 3}
+    Aa: {fileID: -4981769727764245264, guid: 549dbcb6929dd05458443afd7505c907, type: 3}
+    Ih: {fileID: 7592938696408043630, guid: 549dbcb6929dd05458443afd7505c907, type: 3}
+    Ou: {fileID: -3069254169857426044, guid: 549dbcb6929dd05458443afd7505c907, type: 3}
+    Ee: {fileID: -2564424997208761075, guid: 549dbcb6929dd05458443afd7505c907, type: 3}
+    Oh: {fileID: 7301602523032170006, guid: 549dbcb6929dd05458443afd7505c907, type: 3}
+    Blink: {fileID: -1282421089175907701, guid: 549dbcb6929dd05458443afd7505c907, type: 3}
+    BlinkLeft: {fileID: 117516076257945462, guid: 549dbcb6929dd05458443afd7505c907, type: 3}
+    BlinkRight: {fileID: -3630277102334738080, guid: 549dbcb6929dd05458443afd7505c907, type: 3}
+    LookUp: {fileID: 8898716908589827829, guid: 549dbcb6929dd05458443afd7505c907, type: 3}
+    LookDown: {fileID: 6322223568427267142, guid: 549dbcb6929dd05458443afd7505c907, type: 3}
+    LookLeft: {fileID: -2763323457229052393, guid: 549dbcb6929dd05458443afd7505c907, type: 3}
+    LookRight: {fileID: -8200056920375764036, guid: 549dbcb6929dd05458443afd7505c907, type: 3}
+    Neutral: {fileID: -7143853869815321999, guid: 549dbcb6929dd05458443afd7505c907, type: 3}
+    CustomClips:
+    - {fileID: -2249498358941996396, guid: 549dbcb6929dd05458443afd7505c907, type: 3}
+    - {fileID: -7762591722495527913, guid: 549dbcb6929dd05458443afd7505c907, type: 3}
+    - {fileID: -1555903019938726463, guid: 549dbcb6929dd05458443afd7505c907, type: 3}
+    - {fileID: 7026979718344808093, guid: 549dbcb6929dd05458443afd7505c907, type: 3}
+    - {fileID: -41388004037702065, guid: 549dbcb6929dd05458443afd7505c907, type: 3}
+    - {fileID: -2309079312824982096, guid: 549dbcb6929dd05458443afd7505c907, type: 3}
+    - {fileID: -5703995704680395467, guid: 549dbcb6929dd05458443afd7505c907, type: 3}
+    - {fileID: -4665015836622644345, guid: 549dbcb6929dd05458443afd7505c907, type: 3}
+    - {fileID: 5515767950324675713, guid: 549dbcb6929dd05458443afd7505c907, type: 3}
+    - {fileID: 6560708084237303185, guid: 549dbcb6929dd05458443afd7505c907, type: 3}
+    - {fileID: -3453391536077830023, guid: 549dbcb6929dd05458443afd7505c907, type: 3}
+  LookAt:
+    OffsetFromHead: {x: -0, y: 0, z: 0}
+    LookAtType: 0
+    HorizontalOuter:
+      CurveXRangeDegree: 90
+      CurveYRangeDegree: 10
+    HorizontalInner:
+      CurveXRangeDegree: 90
+      CurveYRangeDegree: 10
+    VerticalDown:
+      CurveXRangeDegree: 90
+      CurveYRangeDegree: 10
+    VerticalUp:
+      CurveXRangeDegree: 90
+      CurveYRangeDegree: 10
+  FirstPerson:
+    Renderers:
+    - Renderer: optimism
+      FirstPersonFlag: 0
