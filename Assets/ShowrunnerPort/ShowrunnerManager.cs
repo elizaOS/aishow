@@ -45,7 +45,8 @@ public class ShowrunnerManager : MonoBehaviour
         { "eliza", "c0vk1lVZg53AttdoaYki" },
         { "marc", "v8BnZUxdzXDlja6wr0Ou" },
         { "shaw", "gYOKECHBoqupz2yMhZp1" },
-        { "optimism", "c0vk1lVZg53AttdoaYki" }
+        { "optimism", "c0vk1lVZg53AttdoaYki" },
+        { "sunny", "v8BnZUxdzXDlja6wr0Ou" }
     };
 
     private ShowGenerator.ShowConfig DeepCopyShowConfig(ShowGenerator.ShowConfig source)

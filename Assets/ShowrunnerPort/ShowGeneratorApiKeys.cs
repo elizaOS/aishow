@@ -15,6 +15,9 @@ namespace ShowGenerator
         [Tooltip("API Key for direct ElevenLabs TTS access. Used if 'Use Wrapper Endpoints' is false.")]
         public string elevenLabsApiKey = "";
 
+        [Tooltip("API Key for x23.ai access.")]
+        public string x23ApiKey = "";
+
         [Header("Wrapper URLs")]
         [Tooltip("The URL for the Claude wrapper endpoint. Used if 'Use Wrapper Endpoints' is true.")]
         public string claudeWrapperUrl = "";
@@ -33,6 +36,7 @@ namespace ShowGenerator
         {
             llmApiKey = ""; // Default to empty for keys
             elevenLabsApiKey = ""; // Default to empty for keys
+            x23ApiKey = ""; // Default to empty for x23.ai key
             claudeWrapperUrl = DefaultClaudeWrapperUrl;
             elevenLabsWrapperUrl = DefaultElevenLabsWrapperUrl;
         }
