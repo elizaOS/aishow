@@ -125,7 +125,7 @@ namespace ShowGenerator
             }
         }
 
-        public async Task<ShowEpisode> GenerateEpisode(ShowConfig config, ShowGenerator.ShowGeneratorApiKeys apiKeys, bool useWrapper)
+        public async Task<ShowEpisode> GenerateEpisode(ShowConfig config, ShowGenerator.ShowGeneratorApiKeys apiKeys, bool useWrapper, bool useCustomAffixes = false, string customPrefix = "", string customSuffix = "")
         {
             if (config == null)
             {
@@ -147,6 +147,13 @@ namespace ShowGenerator
 
             // Build the single prompt string as in the web app
             StringBuilder promptBuilder = new StringBuilder();
+
+            // 0. Custom Prefix (if enabled and provided)
+            if (useCustomAffixes && !string.IsNullOrEmpty(customPrefix))
+            {
+                promptBuilder.AppendLine(customPrefix);
+                promptBuilder.AppendLine(); // Add a newline for separation
+            }
 
             // 1. Main prompt/instructions
             string rawConfigEpisodePrompt = config.prompts != null && config.prompts.ContainsKey("episode") ? config.prompts["episode"] : "Generate a new episode.";
@@ -213,6 +220,13 @@ namespace ShowGenerator
             // 5. Final instruction
             promptBuilder.AppendLine();
             promptBuilder.AppendLine("Now, generate the episode. Remember, I need ONLY the JSON for the new ShowEpisode object. This JSON should represent a single episode and must not contain a list of other episodes within its own structure. Ensure it adheres to the ShowEpisode class definition and all instructions provided in the preceding messages.");
+
+            // 6. Custom Suffix (if enabled and provided)
+            if (useCustomAffixes && !string.IsNullOrEmpty(customSuffix))
+            {
+                promptBuilder.AppendLine(); // Add a newline for separation
+                promptBuilder.AppendLine(customSuffix);
+            }
 
             // Build the messages array with a single message
             var messages = new List<ClaudeMessage>

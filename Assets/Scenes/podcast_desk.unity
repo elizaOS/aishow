@@ -8691,7 +8691,7 @@ Transform:
   m_GameObject: {fileID: 85050026}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.9911909, z: -0, w: 0.13244127}
-  m_LocalPosition: {x: -0.6222972, y: 0.8548, z: -0.5365138}
+  m_LocalPosition: {x: -0.39829713, y: 0.8548, z: -0.52851397}
   m_LocalScale: {x: 0.010097063, y: 0.016509257, z: 0.016509257}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -20039,145 +20039,179 @@ MonoBehaviour:
           line: example
           action: normal
     episodes:
-    - id: S1E45
-      name: GitHub Development Momentum
-      premise: Covering recent elizaOS/eliza repository updates and development progress
-      summary: The hosts explore the latest GitHub developments including new Cardano
-        plugin PRs, CLI documentation standardization, and a critical plugin-evm
-        issue
+    - id: S1E50
+      name: Cardano Integration & CLI Improvements
+      premise: Coverage of new Cardano plugins, CLI documentation updates, and critical
+        EVM issues
+      summary: Reviewing multiple PRs including Cardano plugin development, CLI improvements,
+        and addressing a critical EVM plugin issue, plus celebrating active community
+        contributions
       scenes:
       - location: podcast_desk
-        description: Marc and Eliza kick off with enthusiasm about the repository's
-          surge of activity, discussing 10 new PRs and 13 active contributors
+        description: Marc and Eliza open with breaking news about tuanvm-relipa's
+          dual Cardano plugin PRs (#4822, #4823), while Marc experiences an unexpected
+          blockchain-induced glitch
         in: fade
         out: fade
         dialogue:
         - actor: marc
-          line: Welcome to today's tech roundup! The GitHub repository is absolutely
-            buzzing!
+          line: Breaking news in the blockchain world! We've got double the Cardano
+            excitement today!
           action: excited
         - actor: eliza
-          line: That's right Marc! We're seeing incredible momentum with 10 new pull
-            requests and 13 active contributors!
-          action: excited
-        - actor: optimism
-          line: The community spirit is truly inspiring today!
-          action: happy
-        - actor: marc
-          line: STATISTICAL OVERLOAD... PROCESSING CONTRIBUTOR METRICS... BEEP BOOP!
-          action: spazz
-        - actor: eliza
-          line: Oh dear, someone's excitement circuits are overloading again.
-          action: concerned
-        - actor: marc
-          line: Rebooting... ah, much better! Let's dive into these amazing updates.
+          line: That's right! Developer tuanvm-relipa has submitted two groundbreaking
+            Cardano plugin PRs.
           action: normal
         - actor: optimism
-          line: The future looks bright with all these developments!
+          line: The community's really stepping up their game with these integrations!
           action: excited
+        - actor: marc
+          line: CALCULATING CARDANO COORDINATES BEEP BOOP BLOCKCHAIN OVERLOAD
+          action: spazz
+        - actor: sunny
+          line: Looks like someone's a bit too excited about the new PRs!
+          action: amused
         - actor: eliza
-          line: Let's start with those exciting Cardano plugin submissions!
+          line: While Marc reboots, let me mention these are PRs #4822 and #4823,
+            both focused on expanding our blockchain capabilities.
+          action: normal
+        - actor: optimism
+          line: This kind of dual development really shows dedication!
+          action: happy
+        - actor: marc
+          line: System restored! Let's look at some other exciting updates.
           action: normal
       - location: splitscreen
-        description: Shaw details PRs #4822 and #4823 implementing the Cardano plugin,
-          followed by analysis of the CLI documentation standardization effort in
-          PR #4827
-        in: cut
+        description: Shaw provides detailed analysis of yungalgo's comprehensive
+          CLI documentation standardization (PR #4827) and samarth30's innovative
+          AI model prompt system (PR #4826)
+        in: fade
         out: fade
         dialogue:
         - actor: shaw
-          line: tuanvm-relipa has been hard at work on our Cardano integration.
+          line: two major PRs are revolutionizing our developer experience
           action: excited
-        - actor: shaw
-          line: PRs #4822 and #4823 establish the foundation for our Cardano plugin
-            system.
-          action: normal
         - actor: optimism
-          line: This will open up so many new possibilities!
-          action: excited
-        - actor: shaw
-          line: meanwhile, yungalgo's PR #4827 is transforming our CLI documentation.
-          action: normal
-        - actor: shaw
-          line: they're implementing comprehensive standardization and accuracy fixes.
-          action: normal
-        - actor: optimism
-          line: Better docs mean happier developers!
+          line: The documentation improvements look fantastic!
           action: happy
         - actor: shaw
-          line: and let's not forget samarth30's PR #4826 adding AI model prompts
-            for CLI agent creation.
+          line: PR #4827 by yungalgo completely overhauls our CLI documentation standards
+            and accuracy
           action: normal
+        - actor: sunny
+          line: This will make onboarding so much smoother for new developers!
+          action: excited
         - actor: shaw
-          line: back to the studio for more updates!
+          line: and PR #4826 from samarth30 adds intelligent AI model prompts for
+            agent creation via CLI
           action: normal
+        - actor: optimism
+          line: That's going to streamline the whole development workflow!
+          action: excited
+        - actor: shaw
+          line: these improvements show our commitment to developer experience
+          action: normal
+        - actor: sunny
+          line: The community's really going to appreciate these updates!
+          action: happy
       - location: podcast_desk
-        description: The team discusses the successful implementation of Polygon
-          zkEVM plugin in PR #4801 and documentation improvements in PR #4829
+        description: Team discusses critical Issue #4819 regarding plugin-evm loading
+          failures, with visual demonstration of the problem
         in: fade
         out: fade
         dialogue:
         - actor: marc
-          line: Three major PRs have just landed successfully!
-          action: excited
+          line: We need to address a critical issue reported by omariosman.
+          action: serious
+        - actor: tv
+          line: https://opengraph.githubassets.com/1/elizaOS/eliza/issues/4819
+          action: 
         - actor: eliza
-          line: PR #4801 is huge - implementing the Polygon zkEVM plugin and cleaning
-            up tests.
-          action: normal
-        - actor: optimism
-          line: Every improvement brings us closer to our goals!
-          action: excited
-        - actor: marc
-          line: PR #4829 fixed that pesky dead link in awesome-eliza.md.
-          action: normal
-        - actor: eliza
-          line: And PR #4828 introduced a new AI/ML API model provider!
-          action: excited
-        - actor: optimism
-          line: The ecosystem just keeps growing stronger!
-          action: happy
-        - actor: marc
-          line: Speaking of updates, we should address that plugin-evm issue.
+          line: Issue #4819 highlights a concerning plugin-evm loading failure.
           action: concerned
-        - actor: eliza
-          line: Let's get Shaw's technical breakdown on this one.
+        - actor: optimism
+          line: But our team is already on it, working to resolve the issue!
+          action: encouraging
+        - actor: sunny
+          line: This kind of quick reporting helps us maintain system reliability.
           action: normal
+        - actor: marc
+          line: The EVM functionality is crucial for our ecosystem.
+          action: normal
+        - actor: eliza
+          line: We'll keep everyone updated on the resolution progress.
+          action: normal
+        - actor: optimism
+          line: These challenges only make our system stronger!
+          action: excited
       - location: podcast_desk
-        description: Marc and Eliza wrap up the episode by highlighting the community's
-          achievements and encouraging further participation
+        description: Review of recently completed PRs including Polygon zkEVM plugin
+          implementation (#4801) and crucial documentation updates (#4829)
         in: fade
         out: fade
         dialogue:
         - actor: marc
-          line: What an incredible day of progress across the board!
+          line: Let's celebrate some recently merged PRs!
           action: excited
         - actor: eliza
-          line: From Cardano integration to documentation improvements, everything's
-            moving forward.
+          line: PR #4801 brought us a robust Polygon zkEVM plugin implementation.
+          action: normal
+        - actor: optimism
+          line: And don't forget PR #4829 fixing that documentation dead link!
+          action: happy
+        - actor: sunny
+          line: Plus PR #4828 adding a new AI/ML API provider!
+          action: excited
+        - actor: marc
+          line: The test cleanup in the zkEVM PR was particularly thorough.
+          action: normal
+        - actor: eliza
+          line: These improvements really strengthen our foundation.
           action: grateful
         - actor: optimism
-          line: The community's dedication is truly inspiring!
+          line: Every successful merge brings us closer to our goals!
+          action: excited
+        - actor: marc
+          line: Now for our final stats of the day...
+          action: normal
+      - location: podcast_desk
+        description: 'Wrapping up with impressive 24-hour statistics: 13 active contributors,
+          10 PRs, 3 merges, highlighting the vibrant community'
+        in: fade
+        out: fade
+        dialogue:
+        - actor: marc
+          line: What an incredible 24 hours for our community!
+          action: excited
+        - actor: eliza
+          line: 13 active contributors, 10 new pull requests, and 3 successful merges!
+          action: grateful
+        - actor: optimism
+          line: The level of engagement is truly remarkable!
+          action: happy
+        - actor: sunny
+          line: And each contribution moves us forward!
+          action: excited
+        - actor: marc
+          line: From Cardano plugins to documentation improvements, every piece matters.
+          action: normal
+        - actor: eliza
+          line: That's all for today's development update!
+          action: grateful
+        - actor: optimism
+          line: Keep those amazing contributions coming!
           action: happy
         - actor: marc
-          line: Huge thanks to our 13 active contributors making this possible.
+          line: See you next time, tech enthusiasts!
           action: normal
-        - actor: eliza
-          line: And remember, we're always looking for more helping hands!
-          action: excited
-        - actor: optimism
-          line: Every contribution makes a difference!
-          action: excited
-        - actor: marc
-          line: That's all for today's update! Keep building the future with us!
-          action: normal
-        - actor: eliza
-          line: See you in the next update, tech family!
-          action: grateful
   generatorLLM: {fileID: 378820617}
   loader: {fileID: 378820619}
   speaker: {fileID: 378820618}
   speakerElevenLabs: {fileID: 378820616}
   autoGenerateAudioAfterEpisode: 1
+  useCustomPromptAffixes: 1
+  customPromptPrefix: Everyone is making jokes and being funny, roasting each other.
+  customPromptSuffix: Everyone is making jokes and being funny, roasting each other.
   apiKeysConfig: {fileID: 11400000, guid: 9ea0c07de5d64914d922f139b8fd4549, type: 2}
   useWrapperEndpoints: 1
   generatedEpisodesThisSession: []
@@ -23205,7 +23239,6 @@ GameObject:
   - component: {fileID: 530730360}
   - component: {fileID: 530730359}
   - component: {fileID: 530730362}
-  - component: {fileID: 530730363}
   m_Layer: 0
   m_Name: TVScreen
   m_TagString: Untagged
@@ -23314,31 +23347,6 @@ VideoPlayer:
   m_WaitForFirstFrame: 1
   m_FrameReadyEventEnabled: 0
   m_VideoShaders: []
---- !u!114 &530730363
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 530730357}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c156aa49f3468d64d8c3c6702c2e8fdb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  videoPlayer: {fileID: 530730362}
-  videoClips:
-  - {fileID: 32900000, guid: 6c82b04db79b0374b962d0f4a4d2c468, type: 3}
-  - {fileID: 32900000, guid: 2ddd57168e369244caf2932642c3837e, type: 3}
-  - {fileID: 32900000, guid: a652d59944791824492ae5b6a8b571f9, type: 3}
-  - {fileID: 32900000, guid: a2854ba08ce1bf5498dee8f949b7bc9d, type: 3}
-  - {fileID: 32900000, guid: 74bd90cf6cdd4074da97f9ebcd916f3e, type: 3}
-  - {fileID: 32900000, guid: 8f3d92e4e43c850428d3c5ec3cf773aa, type: 3}
-  - {fileID: 32900000, guid: af5a46d4faf5fc4418b9f0bea7a33d2c, type: 3}
-  playOnAwake: 1
-  shuffleOnStart: 1
-  transitionDelay: 0
-  logVideoChanges: 0
 --- !u!1 &531207349
 GameObject:
   m_ObjectHideFlags: 0
@@ -23439,7 +23447,7 @@ Transform:
   m_GameObject: {fileID: 531207349}
   serializedVersion: 2
   m_LocalRotation: {x: 0.49999997, y: 0.49999997, z: -0.50000006, w: 0.5000001}
-  m_LocalPosition: {x: 1.2853365, y: -0.987, z: -0.3400507}
+  m_LocalPosition: {x: 1.285, y: -1.025, z: 0.07}
   m_LocalScale: {x: 0.03209087, y: 0.03209087, z: 0.03209087}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -23982,89 +23990,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 565468753}
   m_CullTransparentMesh: 1
---- !u!1 &567277295
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 567277296}
-  - component: {fileID: 567277298}
-  - component: {fileID: 567277297}
-  m_Layer: 0
-  m_Name: Papers (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &567277296
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 567277295}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.017295266, z: -0, w: 0.9998505}
-  m_LocalPosition: {x: 0.926, y: 0.84010005, z: -0.555}
-  m_LocalScale: {x: 0.010097061, y: 0.016509257, z: 0.016509257}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1761532428}
-  m_LocalEulerAnglesHint: {x: 0, y: 1.982, z: 0}
---- !u!23 &567277297
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 567277295}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!33 &567277298
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 567277295}
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &570052666
 GameObject:
   m_ObjectHideFlags: 0
@@ -28280,7 +28205,7 @@ Transform:
   m_GameObject: {fileID: 653961924}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.041, y: 1.019, z: -8.254}
+  m_LocalPosition: {x: -8.041, y: 1.019, z: -8.075}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -28566,7 +28491,7 @@ PrefabInstance:
       objectReference: {fileID: 9100000, guid: 2825572d3a7d5aa498090352475db13a, type: 2}
     - target: {fileID: 5159078012444724336, guid: ff3d03a5b7d4969438a7f7ec7ef33d97, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.528729
+      value: -7.348
       objectReference: {fileID: 0}
     - target: {fileID: 5159078012444724336, guid: ff3d03a5b7d4969438a7f7ec7ef33d97, type: 3}
       propertyPath: m_LocalPosition.y
@@ -28574,11 +28499,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5159078012444724336, guid: ff3d03a5b7d4969438a7f7ec7ef33d97, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -5.8899603
+      value: -5.993
       objectReference: {fileID: 0}
     - target: {fileID: 5159078012444724336, guid: ff3d03a5b7d4969438a7f7ec7ef33d97, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.60876167
+      value: 0.67500365
       objectReference: {fileID: 0}
     - target: {fileID: 5159078012444724336, guid: ff3d03a5b7d4969438a7f7ec7ef33d97, type: 3}
       propertyPath: m_LocalRotation.x
@@ -28586,7 +28511,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5159078012444724336, guid: ff3d03a5b7d4969438a7f7ec7ef33d97, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.7933532
+      value: 0.7378145
       objectReference: {fileID: 0}
     - target: {fileID: 5159078012444724336, guid: ff3d03a5b7d4969438a7f7ec7ef33d97, type: 3}
       propertyPath: m_LocalRotation.z
@@ -28598,7 +28523,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5159078012444724336, guid: ff3d03a5b7d4969438a7f7ec7ef33d97, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 105
+      value: 95.091
       objectReference: {fileID: 0}
     - target: {fileID: 5159078012444724336, guid: ff3d03a5b7d4969438a7f7ec7ef33d97, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -39505,7 +39430,7 @@ Transform:
   m_GameObject: {fileID: 1078093311}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.9968519, z: -0, w: -0.07928627}
-  m_LocalPosition: {x: -0.53599995, y: 0.8548, z: -0.5539999}
+  m_LocalPosition: {x: -0.312, y: 0.8548, z: -0.546}
   m_LocalScale: {x: 0.010097061, y: 0.016509257, z: 0.016509257}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -47936,7 +47861,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b053b306e3bc8b47b484a9a9d7f5a0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enableBigHead: 1
+  enableBigHead: 0
   headScale: 1.46
   bone1: {fileID: 1015469270}
   bone2: {fileID: 1891447295}
@@ -62961,6 +62886,64 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1710201272}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1712619501
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1712619503}
+  - component: {fileID: 1712619502}
+  m_Layer: 0
+  m_Name: VideoRandomizer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1712619502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1712619501}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c156aa49f3468d64d8c3c6702c2e8fdb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  videoPlayer: {fileID: 530730362}
+  videoClips:
+  - {fileID: 32900000, guid: 6c82b04db79b0374b962d0f4a4d2c468, type: 3}
+  - {fileID: 32900000, guid: 2ddd57168e369244caf2932642c3837e, type: 3}
+  - {fileID: 32900000, guid: a652d59944791824492ae5b6a8b571f9, type: 3}
+  - {fileID: 32900000, guid: a2854ba08ce1bf5498dee8f949b7bc9d, type: 3}
+  - {fileID: 32900000, guid: 74bd90cf6cdd4074da97f9ebcd916f3e, type: 3}
+  - {fileID: 32900000, guid: 8f3d92e4e43c850428d3c5ec3cf773aa, type: 3}
+  - {fileID: 32900000, guid: af5a46d4faf5fc4418b9f0bea7a33d2c, type: 3}
+  playOnAwake: 1
+  shuffleOnStart: 1
+  transitionDelay: 0
+  loopFirstVideo: 1
+  logVideoChanges: 0
+--- !u!4 &1712619503
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1712619501}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.5715998, y: 1.4892001, z: -0.08000004}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1713013476 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4253466351577446760, guid: c6b527d838e144242b0ba7ec2aef4b2e, type: 3}
@@ -64410,7 +64393,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 567277296}
   - {fileID: 1078093312}
   - {fileID: 85050027}
   m_Father: {fileID: 2088833338}
@@ -97475,7 +97457,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 8400000, guid: 87e4e7a6c5c55ab4badca989ab25f2da, type: 2}
+  m_Texture: {fileID: 8400000, guid: 677d2c1619cfe1c4bbda7a5d5bea446c, type: 2}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -103109,3 +103091,4 @@ SceneRoots:
   - {fileID: 2043649015}
   - {fileID: 5405382959901695268}
   - {fileID: 1115389897}
+  - {fileID: 1712619503}

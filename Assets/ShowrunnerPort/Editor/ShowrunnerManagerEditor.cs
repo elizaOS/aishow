@@ -94,6 +94,20 @@ public class ShowrunnerManagerEditor : Editor
         EditorGUILayout.Space();
         EditorGUILayout.LabelField("Showrunner Workflow & Config Management", EditorStyles.boldLabel);
 
+        // Custom Prompt Affixes Section
+        EditorGUILayout.Space();
+        EditorGUILayout.LabelField("Custom Prompt Affixes", EditorStyles.boldLabel);
+        mgr.useCustomPromptAffixes = EditorGUILayout.Toggle(new GUIContent("Use Custom Prompt Affixes", "Enable to add custom prefix and suffix to the LLM prompt."), mgr.useCustomPromptAffixes);
+        if (mgr.useCustomPromptAffixes)
+        {
+            EditorGUI.indentLevel++;
+            EditorGUILayout.LabelField(new GUIContent("Custom Prompt Prefix", "Text to prepend to the LLM prompt."));
+            mgr.customPromptPrefix = EditorGUILayout.TextArea(mgr.customPromptPrefix, GUILayout.Height(EditorGUIUtility.singleLineHeight * 3));
+            EditorGUILayout.LabelField(new GUIContent("Custom Prompt Suffix", "Text to append to the LLM prompt."));
+            mgr.customPromptSuffix = EditorGUILayout.TextArea(mgr.customPromptSuffix, GUILayout.Height(EditorGUIUtility.singleLineHeight * 3));
+            EditorGUI.indentLevel--;
+        }
+
         if (GUILayout.Button("Load Show Config from JSON"))
         {
             string path = EditorUtility.OpenFilePanel("Load Show Config", Application.dataPath, "json");

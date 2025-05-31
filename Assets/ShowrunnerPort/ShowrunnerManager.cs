@@ -22,6 +22,16 @@ public class ShowrunnerManager : MonoBehaviour
     [Tooltip("If enabled, audio will be generated automatically after each episode is generated.")]
     public bool autoGenerateAudioAfterEpisode = false;
 
+    [Header("Custom Prompt Affixes")]
+    [Tooltip("If enabled, the custom prefix and suffix will be added to the LLM prompt.")]
+    public bool useCustomPromptAffixes = false;
+    [Tooltip("Custom text to prepend to the LLM prompt. Only used if 'Use Custom Prompt Affixes' is enabled.")]
+    [TextArea(3, 5)]
+    public string customPromptPrefix = "";
+    [Tooltip("Custom text to append to the LLM prompt. Only used if 'Use Custom Prompt Affixes' is enabled.")]
+    [TextArea(3, 5)]
+    public string customPromptSuffix = "";
+
     [Header("API Configuration")]
     public ShowGenerator.ShowGeneratorApiKeys apiKeysConfig;
 
@@ -45,8 +55,8 @@ public class ShowrunnerManager : MonoBehaviour
         { "eliza", "c0vk1lVZg53AttdoaYki" },
         { "marc", "v8BnZUxdzXDlja6wr0Ou" },
         { "shaw", "gYOKECHBoqupz2yMhZp1" },
-        { "optimism", "c0vk1lVZg53AttdoaYki" },
-        { "sunny", "v8BnZUxdzXDlja6wr0Ou" }
+        { "optimism", "56AoDkrOh6qfVPDXZ7Pt" },
+        { "sunny", "pNInz6obpgDQGcFmaJgB" }
     };
 
     private ShowGenerator.ShowConfig DeepCopyShowConfig(ShowGenerator.ShowConfig source)
@@ -165,7 +175,7 @@ public class ShowrunnerManager : MonoBehaviour
         if (generatorLLM != null && ActiveShowConfig != null && apiKeysConfig != null)
         {
             Debug.Log($"Attempting to generate episode using ActiveShowConfig as template: {ActiveShowConfig.name}. Using wrapper: {useWrapperEndpoints}");
-            ShowEpisode newEpisode = await generatorLLM.GenerateEpisode(ActiveShowConfig, apiKeysConfig, useWrapperEndpoints);
+            ShowEpisode newEpisode = await generatorLLM.GenerateEpisode(ActiveShowConfig, apiKeysConfig, useWrapperEndpoints, useCustomPromptAffixes, customPromptPrefix, customPromptSuffix);
 
             if (newEpisode != null)
             {
@@ -277,7 +287,7 @@ public class ShowrunnerManager : MonoBehaviour
         
         LastGeneratedShowConfigCopy = null; 
         Debug.Log($"[ShowrunnerManager] Attempting to call LLM.GenerateEpisode. Use Wrapper: {useWrapperEndpoints}, API Key Config Valid: {apiKeysConfig != null}");
-        ShowEpisode newEpisode = await generatorLLM.GenerateEpisode(ActiveShowConfig, apiKeysConfig, useWrapperEndpoints);
+        ShowEpisode newEpisode = await generatorLLM.GenerateEpisode(ActiveShowConfig, apiKeysConfig, useWrapperEndpoints, useCustomPromptAffixes, customPromptPrefix, customPromptSuffix);
 
         if (newEpisode != null)
         {
