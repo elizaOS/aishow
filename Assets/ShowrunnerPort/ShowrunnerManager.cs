@@ -38,6 +38,46 @@ public class ShowrunnerManager : MonoBehaviour
     [Tooltip("If true, uses the wrapper URLs defined in ApiKeysConfig. If false, uses direct API calls with API keys.")]
     public bool useWrapperEndpoints = true;
 
+    [Header("X23.ai API Data Injection")]
+    [Tooltip("If enabled, data from the x23.ai API will be fetched and injected into the LLM prompt.")]
+    public bool useX23ApiData = false;
+
+    [Tooltip("Select the type of x23.ai API request to make for data injection.")]
+    public X23ApiRequestType x23ApiRequestType = X23ApiRequestType.KeywordSearch; // Default to a common one
+
+    [Tooltip("Search query for x23.ai KeywordSearch, RagSearch, or HybridSearch.")]
+    public string x23SearchQuery = "latest AI developments";
+
+    [Tooltip("Maximum number of items to fetch from x23.ai. Default varies by endpoint.")]
+    public int x23Limit = 5;
+
+    [Tooltip("Comma-separated list of protocols to filter by for x23.ai (e.g., aave,optimism). Leave empty for all.")]
+    public string x23ProtocolsToFilter = "";
+
+    [Tooltip("Comma-separated list of item types to filter by for x23.ai (e.g., discussion,snapshot). Leave empty for all.")]
+    public string x23ItemTypesToFilter = "";
+    
+    [Header("X23.ai Search Specific Parameters")]
+    [Tooltip("Similarity threshold for x23.ai RAG/Hybrid search (0.0 to 1.0). Default: 0.4")]
+    [Range(0f, 1f)]
+    public float x23SimilarityThreshold = 0.4f;
+
+    [Tooltip("For x23.ai KeywordSearch: Exact match? Default: false")]
+    public bool x23ExactMatchForKeyword = false;
+
+    [Tooltip("For x23.ai KeywordSearch: Sort by relevance? Default: true")]
+    public bool x23SortByRelevanceForKeyword = true;
+
+    [Header("X23.ai Feed Specific Parameters")]
+    [Tooltip("For x23.ai RecentFeed/TopScoredFeed/DigestFeed: Unix Timestamp (seconds). 0 for default/no limit/current time if API supports.")]
+    public long x23UnixTimestamp = 0;
+
+    [Tooltip("For x23.ai TopScoredFeed: Minimum score threshold. Default: 3000")]
+    public double x23ScoreThresholdForTopScored = 3000;
+
+    [Tooltip("For x23.ai DigestFeed: Time period ('daily', 'weekly', 'monthly'). Default: 'daily'")]
+    public string x23TimePeriodForDigest = "daily";
+
     // This list stores episodes generated during the current session, 
     // potentially for workflows that don't immediately save to ActiveShowConfig.episodes
     // or for UI display of "newly generated" items.
@@ -175,7 +215,7 @@ public class ShowrunnerManager : MonoBehaviour
         if (generatorLLM != null && ActiveShowConfig != null && apiKeysConfig != null)
         {
             Debug.Log($"Attempting to generate episode using ActiveShowConfig as template: {ActiveShowConfig.name}. Using wrapper: {useWrapperEndpoints}");
-            ShowEpisode newEpisode = await generatorLLM.GenerateEpisode(ActiveShowConfig, apiKeysConfig, useWrapperEndpoints, useCustomPromptAffixes, customPromptPrefix, customPromptSuffix);
+            ShowEpisode newEpisode = await generatorLLM.GenerateEpisode(ActiveShowConfig, apiKeysConfig, useWrapperEndpoints, useCustomPromptAffixes, customPromptPrefix, customPromptSuffix, this);
 
             if (newEpisode != null)
             {
@@ -287,7 +327,7 @@ public class ShowrunnerManager : MonoBehaviour
         
         LastGeneratedShowConfigCopy = null; 
         Debug.Log($"[ShowrunnerManager] Attempting to call LLM.GenerateEpisode. Use Wrapper: {useWrapperEndpoints}, API Key Config Valid: {apiKeysConfig != null}");
-        ShowEpisode newEpisode = await generatorLLM.GenerateEpisode(ActiveShowConfig, apiKeysConfig, useWrapperEndpoints, useCustomPromptAffixes, customPromptPrefix, customPromptSuffix);
+        ShowEpisode newEpisode = await generatorLLM.GenerateEpisode(ActiveShowConfig, apiKeysConfig, useWrapperEndpoints, useCustomPromptAffixes, customPromptPrefix, customPromptSuffix, this);
 
         if (newEpisode != null)
         {

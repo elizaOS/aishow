@@ -20003,6 +20003,41 @@ MonoBehaviour:
         - actor: sparty
           line: example
           action: normal
+      - location: optimism_desk
+        description: example
+        in: fade
+        out: fade
+        dialogue:
+        - actor: optimism
+          line: example
+          action: normal
+        - actor: sunny
+          line: example
+          action: grateful
+        - actor: optimism
+          line: example
+          action: normal
+        - actor: sunny
+          line: example
+          action: grateful
+        - actor: optimism
+          line: example
+          action: spazz
+        - actor: sunny
+          line: example
+          action: excited
+        - actor: optimism
+          line: example
+          action: normal
+        - actor: sunny
+          line: example
+          action: normal
+        - actor: optimism
+          line: example
+          action: normal
+        - actor: sunny
+          line: example
+          action: normal
       - location: podcast_desk
         description: example
         in: fade
@@ -20039,181 +20074,177 @@ MonoBehaviour:
           line: example
           action: normal
     episodes:
-    - id: S1E50
-      name: Cardano Integration & CLI Improvements
-      premise: Coverage of new Cardano plugins, CLI documentation updates, and critical
-        EVM issues
-      summary: Reviewing multiple PRs including Cardano plugin development, CLI improvements,
-        and addressing a critical EVM plugin issue, plus celebrating active community
-        contributions
+    - id: S1E53
+      name: Privacy, Protocols, and Progress
+      premise: Coverage of latest ElizaOS GitHub developments, AI agent blockchain
+        integration news, and key DAO updates
+      summary: Marc and Eliza explore major developments in AI agent blockchain integration,
+        review significant GitHub activity with 30+ merged PRs, and dive into DAO
+        governance discussions around Venus Protocol and RocketPool.
       scenes:
       - location: podcast_desk
-        description: Marc and Eliza open with breaking news about tuanvm-relipa's
-          dual Cardano plugin PRs (#4822, #4823), while Marc experiences an unexpected
-          blockchain-induced glitch
+        description: Opening segment covering ElizaOS's integration with Datai Network
+          and Phala Network for enhanced AI agent capabilities, with @hashwarlock's
+          TEE hosting implementation featured
         in: fade
         out: fade
         dialogue:
         - actor: marc
-          line: Breaking news in the blockchain world! We've got double the Cardano
-            excitement today!
+          line: Welcome to the cutting edge of AI and blockchain! We've got some
+            major integrations to cover today.
           action: excited
         - actor: eliza
-          line: That's right! Developer tuanvm-relipa has submitted two groundbreaking
-            Cardano plugin PRs.
-          action: normal
-        - actor: optimism
-          line: The community's really stepping up their game with these integrations!
-          action: excited
-        - actor: marc
-          line: CALCULATING CARDANO COORDINATES BEEP BOOP BLOCKCHAIN OVERLOAD
-          action: spazz
-        - actor: sunny
-          line: Looks like someone's a bit too excited about the new PRs!
-          action: amused
-        - actor: eliza
-          line: While Marc reboots, let me mention these are PRs #4822 and #4823,
-            both focused on expanding our blockchain capabilities.
-          action: normal
-        - actor: optimism
-          line: This kind of dual development really shows dedication!
-          action: happy
-        - actor: marc
-          line: System restored! Let's look at some other exciting updates.
-          action: normal
-      - location: splitscreen
-        description: Shaw provides detailed analysis of yungalgo's comprehensive
-          CLI documentation standardization (PR #4827) and samarth30's innovative
-          AI model prompt system (PR #4826)
-        in: fade
-        out: fade
-        dialogue:
-        - actor: shaw
-          line: two major PRs are revolutionizing our developer experience
-          action: excited
-        - actor: optimism
-          line: The documentation improvements look fantastic!
-          action: happy
-        - actor: shaw
-          line: PR #4827 by yungalgo completely overhauls our CLI documentation standards
-            and accuracy
-          action: normal
-        - actor: sunny
-          line: This will make onboarding so much smoother for new developers!
-          action: excited
-        - actor: shaw
-          line: and PR #4826 from samarth30 adds intelligent AI model prompts for
-            agent creation via CLI
-          action: normal
-        - actor: optimism
-          line: That's going to streamline the whole development workflow!
-          action: excited
-        - actor: shaw
-          line: these improvements show our commitment to developer experience
-          action: normal
-        - actor: sunny
-          line: The community's really going to appreciate these updates!
-          action: happy
-      - location: podcast_desk
-        description: Team discusses critical Issue #4819 regarding plugin-evm loading
-          failures, with visual demonstration of the problem
-        in: fade
-        out: fade
-        dialogue:
-        - actor: marc
-          line: We need to address a critical issue reported by omariosman.
-          action: serious
+          line: That's right! Our platform is now integrated with Datai Network for
+            context-aware AI agents.
+          action: proud
         - actor: tv
-          line: https://opengraph.githubassets.com/1/elizaOS/eliza/issues/4819
+          line: https://pbs.twimg.com/media/GsMI20jXUAAVwcm.jpg
           action: 
-        - actor: eliza
-          line: Issue #4819 highlights a concerning plugin-evm loading failure.
-          action: concerned
-        - actor: optimism
-          line: But our team is already on it, working to resolve the issue!
-          action: encouraging
-        - actor: sunny
-          line: This kind of quick reporting helps us maintain system reliability.
-          action: normal
         - actor: marc
-          line: The EVM functionality is crucial for our ecosystem.
-          action: normal
+          line: And @hashwarlock just dropped a game-changing wrapper around Phala
+            Network CLI!
+          action: enthusiastic
         - actor: eliza
-          line: We'll keep everyone updated on the resolution progress.
-          action: normal
-        - actor: optimism
-          line: These challenges only make our system stronger!
+          line: It gives ElizaOS easy TEE hosting capabilities in minutes. The PR
+            is already up!
+          action: informative
+        - actor: marc
+          line: Speaking of building, @autodotfun is making waves with their platform
+            for creating on-chain agents without coding.
+          action: interested
+        - actor: eliza
+          line: It's amazing how accessible agent development is becoming. Shaw,
+            want to give us a closer look at those GitHub updates?
+          action: transitioning
+        - actor: marc
+          line: Yes, let's check in with our resident code wizard!
+          action: enthusiastic
+      - location: splitscreen
+        description: Shaw details the day's massive GitHub activity, highlighting
+          key PRs including plugin specifications (#4851) and Polymarket integration
+          (#4842), while demonstrating new features
+        in: cut
+        out: fade
+        dialogue:
+        - actor: shaw
+          line: massive day in the repo - we've got 30 PRs merged and some game-changing
+            additions
           action: excited
+        - actor: tv
+          line: https://pbs.twimg.com/ext_tw_video_thumb/1928396878455947264/pu/img/ZMzP_iHp0fAXvIvC.jpg
+          action: 
+        - actor: shaw
+          line: PR #4851 from @lalalune adds core plugin specifications - this is
+            huge for extensibility
+          action: technical
+        - actor: shaw
+          line: and PR #4842 brings enhanced Polymarket plugin features with comprehensive
+            trading actions
+          action: informative
+        - actor: eliza
+          line: How's the documentation looking for all these new features?
+          action: curious
+        - actor: shaw
+          line: solid - PR #4827 just landed with comprehensive CLI docs standardization
+          action: satisfied
+        - actor: marc
+          line: Any improvements to the development experience?
+          action: interested
+        - actor: shaw
+          line: definitely - PR #4825 improves PGLite setup and environment handling,
+            making local development much smoother
+          action: proud
+      - location: optimism_desk
+        description: Optimism and Sunny analyze the RocketPool Saturn I funding discussion,
+          detailing community sentiment on treasury management and reward allocation
+        in: fade
+        out: fade
+        dialogue:
+        - actor: optimism
+          line: Big developments in the RocketPool ecosystem today! The community
+            is discussing major changes to protocol funding in Saturn I.
+          action: professional
+        - actor: sunny
+          line: That's right! The polls show 84% support for reducing RPL stakers'
+            share to boost the treasury.
+          action: informative
+        - actor: optimism
+          line: And there's a fascinating proposal about ETH diversification - 70%
+            support for funding the treasury with ETH from rETH commission.
+          action: interested
+        - actor: sunny
+          line: The community seems focused on sustainable growth rather than immediate
+            changes to rETH commission rates.
+          action: analytical
+        - actor: optimism
+          line: Notable that there's no strong push for immediate ETH diversification
+            of treasury holdings.
+          action: thoughtful
+        - actor: sunny
+          line: All eyes are on the upcoming RPIP-46 votes that will shape these
+            changes!
+          action: excited
+        - actor: optimism
+          line: Back to you in the studio!
+          action: professional
       - location: podcast_desk
-        description: Review of recently completed PRs including Polygon zkEVM plugin
-          implementation (#4801) and crucial documentation updates (#4829)
+        description: Final segment covering Venus Protocol's strategic partnership
+          with Arculus hardware wallets, featuring projected growth metrics and community
+          response
         in: fade
         out: fade
         dialogue:
         - actor: marc
-          line: Let's celebrate some recently merged PRs!
-          action: excited
+          line: And now for some exciting news from Venus Protocol!
+          action: enthusiastic
         - actor: eliza
-          line: PR #4801 brought us a robust Polygon zkEVM plugin implementation.
-          action: normal
-        - actor: optimism
-          line: And don't forget PR #4829 fixing that documentation dead link!
-          action: happy
-        - actor: sunny
-          line: Plus PR #4828 adding a new AI/ML API provider!
+          line: They're proposing a game-changing partnership with Arculus hardware
+            wallets!
           action: excited
         - actor: marc
-          line: The test cleanup in the zkEVM PR was particularly thorough.
-          action: normal
+          line: The numbers are impressive - projecting $500M to $800M in new TVL
+            within a year.
+          action: analytical
         - actor: eliza
-          line: These improvements really strengthen our foundation.
-          action: grateful
-        - actor: optimism
-          line: Every successful merge brings us closer to our goals!
-          action: excited
+          line: And that could mean $1.6M to $2.5M in annualized revenue for Venus.
+          action: informative
         - actor: marc
-          line: Now for our final stats of the day...
-          action: normal
-      - location: podcast_desk
-        description: 'Wrapping up with impressive 24-hour statistics: 13 active contributors,
-          10 PRs, 3 merges, highlighting the vibrant community'
-        in: fade
-        out: fade
-        dialogue:
-        - actor: marc
-          line: What an incredible 24 hours for our community!
-          action: excited
+          line: CALCULATING HARDWARE WALLET INTEGRATION PROBABILITY... BEEP BOOP
+          action: spazz
         - actor: eliza
-          line: 13 active contributors, 10 new pull requests, and 3 successful merges!
-          action: grateful
-        - actor: optimism
-          line: The level of engagement is truly remarkable!
-          action: happy
-        - actor: sunny
-          line: And each contribution moves us forward!
-          action: excited
+          line: Oh dear, looks like someone needs a firmware update! But speaking
+            of updates, the community response has been overwhelmingly positive.
+          action: amused
         - actor: marc
-          line: From Cardano plugins to documentation improvements, every piece matters.
-          action: normal
+          line: That's all for today's show! Keep building, keep securing, and keep
+            those hardware wallets... hard?
+          action: concluding
         - actor: eliza
-          line: That's all for today's development update!
-          action: grateful
-        - actor: optimism
-          line: Keep those amazing contributions coming!
-          action: happy
-        - actor: marc
-          line: See you next time, tech enthusiasts!
-          action: normal
+          line: And that's why I write the closing lines! See you next time, everyone!
+          action: laughing
   generatorLLM: {fileID: 378820617}
   loader: {fileID: 378820619}
   speaker: {fileID: 378820618}
   speakerElevenLabs: {fileID: 378820616}
   autoGenerateAudioAfterEpisode: 1
-  useCustomPromptAffixes: 1
-  customPromptPrefix: Everyone is making jokes and being funny, roasting each other.
-  customPromptSuffix: Everyone is making jokes and being funny, roasting each other.
+  useCustomPromptAffixes: 0
+  customPromptPrefix: 
+  customPromptSuffix: 'the actor Optimism and Sunny have their own section talking
+    about the X23_API_DATA_CONTEXT:'
   apiKeysConfig: {fileID: 11400000, guid: 9ea0c07de5d64914d922f139b8fd4549, type: 2}
   useWrapperEndpoints: 1
+  useX23ApiData: 0
+  x23ApiRequestType: 2
+  x23SearchQuery: latest AI developments
+  x23Limit: 3
+  x23ProtocolsToFilter: 
+  x23ItemTypesToFilter: 
+  x23SimilarityThreshold: 0.4
+  x23ExactMatchForKeyword: 0
+  x23SortByRelevanceForKeyword: 1
+  x23UnixTimestamp: 0
+  x23ScoreThresholdForTopScored: 3000
+  x23TimePeriodForDigest: daily
   generatedEpisodesThisSession: []
 --- !u!4 &378820621
 Transform:
@@ -22869,6 +22900,11 @@ MonoBehaviour:
   - locationName: splitscreen
     transitionAnimator: {fileID: 999673027}
     transitionTriggerParam: transitionsplitscreen
+    transitionSound: {fileID: 8300000, guid: a5d69d2fb1a5534478d012e2424a71d9, type: 3}
+    volume: 0.338
+  - locationName: optimism_desk
+    transitionAnimator: {fileID: 999673027}
+    transitionTriggerParam: transitionpodcastdesk
     transitionSound: {fileID: 8300000, guid: a5d69d2fb1a5534478d012e2424a71d9, type: 3}
     volume: 0.338
   defaultTransitionAnimator: {fileID: 999673027}
@@ -58638,6 +58674,50 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 8bb3ebae50cab4a4087aac8a073ec9eb, type: 3}
     - {fileID: 8300000, guid: b87f46b2784bf6240acb8697991bdd55, type: 3}
     volume: 0.107
+  - locationName: splitscreen
+    musicClips:
+    - {fileID: 8300000, guid: c163c4bcc014f0b488911d90f5f42a24, type: 3}
+    - {fileID: 8300000, guid: 365f70bba851e414d8121e25896895ac, type: 3}
+    - {fileID: 8300000, guid: 315ac95e0330cfe43b4924485d2daee6, type: 3}
+    - {fileID: 8300000, guid: be4ea4369190919478bbd96dbab4c0aa, type: 3}
+    - {fileID: 8300000, guid: 6d19d30bf1722d64ba37a205e876e92a, type: 3}
+    - {fileID: 8300000, guid: d011273bb4777a24eb3c5f685df98fc9, type: 3}
+    - {fileID: 8300000, guid: 342f5bdff6c071843b64f838ff24a53e, type: 3}
+    - {fileID: 8300000, guid: f84499f510426b34b8f12e7c893dcc1f, type: 3}
+    - {fileID: 8300000, guid: 216e088b6360d0f49bd4bf917b05a94c, type: 3}
+    - {fileID: 8300000, guid: 30c864e548ce28b4daf68bfc7a1dddc5, type: 3}
+    - {fileID: 8300000, guid: 4443ea4688d48b843b78569567578c30, type: 3}
+    - {fileID: 8300000, guid: 61b40378067f06546947ebfe5b0243ad, type: 3}
+    - {fileID: 8300000, guid: 1fd27c05a6536864fafb074c3d70274c, type: 3}
+    - {fileID: 8300000, guid: 8e7fe35a655e09d4e981698d192dd974, type: 3}
+    - {fileID: 8300000, guid: feab63856d1c5f84fbb2732ad81b4929, type: 3}
+    - {fileID: 8300000, guid: ec7fafb9580f60a44bcd6a98b423238b, type: 3}
+    - {fileID: 8300000, guid: 656f9693994b175459b294ff76238cc6, type: 3}
+    - {fileID: 8300000, guid: 8bb3ebae50cab4a4087aac8a073ec9eb, type: 3}
+    - {fileID: 8300000, guid: b87f46b2784bf6240acb8697991bdd55, type: 3}
+    volume: 0.107
+  - locationName: optimism_desk
+    musicClips:
+    - {fileID: 8300000, guid: c163c4bcc014f0b488911d90f5f42a24, type: 3}
+    - {fileID: 8300000, guid: 365f70bba851e414d8121e25896895ac, type: 3}
+    - {fileID: 8300000, guid: 315ac95e0330cfe43b4924485d2daee6, type: 3}
+    - {fileID: 8300000, guid: be4ea4369190919478bbd96dbab4c0aa, type: 3}
+    - {fileID: 8300000, guid: 6d19d30bf1722d64ba37a205e876e92a, type: 3}
+    - {fileID: 8300000, guid: d011273bb4777a24eb3c5f685df98fc9, type: 3}
+    - {fileID: 8300000, guid: 342f5bdff6c071843b64f838ff24a53e, type: 3}
+    - {fileID: 8300000, guid: f84499f510426b34b8f12e7c893dcc1f, type: 3}
+    - {fileID: 8300000, guid: 216e088b6360d0f49bd4bf917b05a94c, type: 3}
+    - {fileID: 8300000, guid: 30c864e548ce28b4daf68bfc7a1dddc5, type: 3}
+    - {fileID: 8300000, guid: 4443ea4688d48b843b78569567578c30, type: 3}
+    - {fileID: 8300000, guid: 61b40378067f06546947ebfe5b0243ad, type: 3}
+    - {fileID: 8300000, guid: 1fd27c05a6536864fafb074c3d70274c, type: 3}
+    - {fileID: 8300000, guid: 8e7fe35a655e09d4e981698d192dd974, type: 3}
+    - {fileID: 8300000, guid: feab63856d1c5f84fbb2732ad81b4929, type: 3}
+    - {fileID: 8300000, guid: ec7fafb9580f60a44bcd6a98b423238b, type: 3}
+    - {fileID: 8300000, guid: 656f9693994b175459b294ff76238cc6, type: 3}
+    - {fileID: 8300000, guid: 8bb3ebae50cab4a4087aac8a073ec9eb, type: 3}
+    - {fileID: 8300000, guid: b87f46b2784bf6240acb8697991bdd55, type: 3}
+    volume: 0.107
   defaultMusicClip: {fileID: 8300000, guid: c449abc1b129fa944b31097b0fc9b26e, type: 3}
   defaultVolume: 0.09
   fadeInDuration: 15
@@ -62781,6 +62861,85 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1708585053}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1708926160
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1708926161}
+  - component: {fileID: 1708926163}
+  - component: {fileID: 1708926162}
+  m_Layer: 0
+  m_Name: ElevenLabsOneLiner Settings
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1708926161
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1708926160}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -416.91147, y: -35.689957, z: 109.91072}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2043649015}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1708926162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1708926160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3f94a75a62a34d44abd74adbdaddfd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  apiKeysConfig: {fileID: 11400000, guid: 9ea0c07de5d64914d922f139b8fd4549, type: 2}
+  useWrapperEndpoints: 0
+  textToSpeak: Hello, this is an experimental test line with voice settings.
+  outputFileName: experimental_line
+  selectedVoiceId: gYOKECHBoqupz2yMhZp1
+  selectedVoiceIndex: 5
+  stability: 0.75
+  similarityBoost: 0.75
+  styleExaggeration: 0
+  useSpeakerBoost: 1
+--- !u!114 &1708926163
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1708926160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e65fbd43e56d944e9ba17183365c0bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  apiKeysConfig: {fileID: 11400000, guid: 9ea0c07de5d64914d922f139b8fd4549, type: 2}
+  useWrapperEndpoints: 1
+  textToSpeak: They told him, "Don't you ever come around here". "Don't wanna see
+    your face, you better disappear". The fire's in their eyes and their words are
+    really clear. So beat it, just beat it. You better run, you better do what you
+    can. Don't wanna see no blood, don't be a macho man. You wanna be tough, better
+    do what you can. So beat it, but you wanna be bad. Just beat it (beat it), beat
+    it (beat it). No one wants to be defeated. Showin' how funky and strong is your
+    fight. It doesn't matter who's wrong or right. Just beat it (beat it).
+  selectedVoiceId: c0vk1lVZg53AttdoaYki
+  outputFileName: inspector_generated_line.mp3
+  selectedVoiceIndex: 3
 --- !u!1 &1710201272
 GameObject:
   m_ObjectHideFlags: 0
@@ -62937,12 +63096,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1712619501}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.5715998, y: 1.4892001, z: -0.08000004}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -407.69363, y: -34.161823, z: 117.1903}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 2043649015}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1713013476 stripped
 Transform:
@@ -63552,6 +63711,62 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -6241684689483050148, guid: 0d1c1517cc82197478ca53e21335a6c3, type: 3}
   m_PrefabInstance: {fileID: 2112578196}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1732538579
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1732538580}
+  - component: {fileID: 1732538581}
+  m_Layer: 0
+  m_Name: ElevenLabsOneLiner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1732538580
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1732538579}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -416.91147, y: -35.689957, z: 109.91072}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2043649015}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1732538581
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1732538579}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e65fbd43e56d944e9ba17183365c0bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  apiKeysConfig: {fileID: 11400000, guid: 9ea0c07de5d64914d922f139b8fd4549, type: 2}
+  useWrapperEndpoints: 1
+  textToSpeak: They told him, "Don't you ever come around here". "Don't wanna see
+    your face, you better disappear". The fire's in their eyes and their words are
+    really clear. So beat it, just beat it. You better run, you better do what you
+    can. Don't wanna see no blood, don't be a macho man. You wanna be tough, better
+    do what you can. So beat it, but you wanna be bad. Just beat it (beat it), beat
+    it (beat it). No one wants to be defeated. Showin' how funky and strong is your
+    fight. It doesn't matter who's wrong or right. Just beat it (beat it).
+  selectedVoiceId: c0vk1lVZg53AttdoaYki
+  outputFileName: inspector_generated_line.mp3
+  selectedVoiceIndex: 3
 --- !u!1 &1733104854
 GameObject:
   m_ObjectHideFlags: 0
@@ -85094,6 +85309,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 378820621}
+  - {fileID: 1640308217}
   - {fileID: 380268745}
   - {fileID: 1562859732}
   - {fileID: 2006712745}
@@ -85112,8 +85328,10 @@ Transform:
   - {fileID: 1633108079}
   - {fileID: 129712647}
   - {fileID: 1286661715}
-  - {fileID: 1640308217}
   - {fileID: 26396264}
+  - {fileID: 1712619503}
+  - {fileID: 1732538580}
+  - {fileID: 1708926161}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &2043755943 stripped
@@ -103091,4 +103309,3 @@ SceneRoots:
   - {fileID: 2043649015}
   - {fileID: 5405382959901695268}
   - {fileID: 1115389897}
-  - {fileID: 1712619503}

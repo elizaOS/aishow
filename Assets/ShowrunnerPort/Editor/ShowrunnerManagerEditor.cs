@@ -36,6 +36,8 @@ public class ShowrunnerManagerEditor : Editor
     private bool showEpisodesSummary = false;
     private bool showVoiceMapSummary = false; 
 
+    private bool showX23ApiSettings = false; // Added for X23 API section
+
     private void OnEnable()
     {
         // Reset generation state flags when the editor is enabled
@@ -257,6 +259,62 @@ public class ShowrunnerManagerEditor : Editor
         EditorGUILayout.LabelField("ActiveShowConfig Details", EditorStyles.boldLabel);
 
         DrawActiveShowConfigDetails(mgr);
+
+        // X23.ai API Data Injection Settings Section
+        EditorGUILayout.Space();
+        showX23ApiSettings = EditorGUILayout.Foldout(showX23ApiSettings, "X23.ai Data Injection Settings", true);
+        if (showX23ApiSettings)
+        {
+            EditorGUILayout.BeginVertical(EditorStyles.helpBox);
+            Undo.RecordObject(mgr, "Change X23.ai Settings");
+
+            mgr.useX23ApiData = EditorGUILayout.Toggle(new GUIContent("Use X23.ai Data", "Enable to fetch and inject data from x23.ai API into the LLM prompt."), mgr.useX23ApiData);
+            GUI.enabled = mgr.useX23ApiData; // Only enable sub-fields if useX23ApiData is true
+
+            mgr.x23ApiRequestType = (X23ApiRequestType)EditorGUILayout.EnumPopup(new GUIContent("X23 API Request Type", "Select the x23.ai endpoint to use."), mgr.x23ApiRequestType);
+
+            EditorGUILayout.LabelField("General Parameters", EditorStyles.boldLabel);
+            mgr.x23SearchQuery = EditorGUILayout.TextField(new GUIContent("Search Query", "For Keyword, RAG, Hybrid search."), mgr.x23SearchQuery);
+            mgr.x23Limit = EditorGUILayout.IntField(new GUIContent("Limit", "Max items to fetch."), mgr.x23Limit);
+            mgr.x23ProtocolsToFilter = EditorGUILayout.TextField(new GUIContent("Protocols (comma-sep)", "e.g., aave,optimism"), mgr.x23ProtocolsToFilter);
+            mgr.x23ItemTypesToFilter = EditorGUILayout.TextField(new GUIContent("Item Types (comma-sep)", "e.g., discussion,snapshot"), mgr.x23ItemTypesToFilter);
+
+            // Conditional fields based on selected API type
+            switch (mgr.x23ApiRequestType)
+            {
+                case X23ApiRequestType.KeywordSearch:
+                    EditorGUILayout.LabelField("Keyword Search Specific", EditorStyles.boldLabel);
+                    mgr.x23ExactMatchForKeyword = EditorGUILayout.Toggle(new GUIContent("Exact Match", "Keyword search exact match."), mgr.x23ExactMatchForKeyword);
+                    mgr.x23SortByRelevanceForKeyword = EditorGUILayout.Toggle(new GUIContent("Sort by Relevance", "Keyword search sort by relevance."), mgr.x23SortByRelevanceForKeyword);
+                    break;
+                case X23ApiRequestType.RagSearch:
+                case X23ApiRequestType.HybridSearch:
+                    EditorGUILayout.LabelField("Similarity Search Specific", EditorStyles.boldLabel);
+                    mgr.x23SimilarityThreshold = EditorGUILayout.Slider(new GUIContent("Similarity Threshold", "For RAG/Hybrid search."), mgr.x23SimilarityThreshold, 0f, 1f);
+                    break;
+                case X23ApiRequestType.RecentFeed:
+                case X23ApiRequestType.TopScoredFeed:
+                    EditorGUILayout.LabelField("Feed Specific", EditorStyles.boldLabel);
+                    mgr.x23UnixTimestamp = EditorGUILayout.LongField(new GUIContent("Unix Timestamp", "0 for default/current."), mgr.x23UnixTimestamp);
+                    if (mgr.x23ApiRequestType == X23ApiRequestType.TopScoredFeed)
+                    {
+                        mgr.x23ScoreThresholdForTopScored = EditorGUILayout.DoubleField(new GUIContent("Score Threshold", "Min score for TopScoredFeed."), mgr.x23ScoreThresholdForTopScored);
+                    }
+                    break;
+                case X23ApiRequestType.DigestFeed:
+                    EditorGUILayout.LabelField("Digest Feed Specific", EditorStyles.boldLabel);
+                    mgr.x23UnixTimestamp = EditorGUILayout.LongField(new GUIContent("Unix Timestamp", "0 for default/current."), mgr.x23UnixTimestamp);
+                    mgr.x23TimePeriodForDigest = EditorGUILayout.TextField(new GUIContent("Time Period", "'daily', 'weekly', or 'monthly'."), mgr.x23TimePeriodForDigest);
+                    break;
+            }
+            
+            GUI.enabled = true; // Re-enable GUI for subsequent sections
+            EditorGUILayout.EndVertical();
+            if (GUI.changed)
+            {
+                EditorUtility.SetDirty(mgr);
+            }
+        }
     }
 
     // New async void method to handle episode generation on the main thread

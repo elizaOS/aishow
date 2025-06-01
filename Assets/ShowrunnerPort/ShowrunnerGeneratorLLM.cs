@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.IO; // Added for File and Directory operations
 using System; // Added for Exception
 using System.Text.RegularExpressions;
+using System.Linq; // Added for ParseStringToList helper
 
 namespace ShowGenerator
 {
@@ -125,7 +126,15 @@ namespace ShowGenerator
             }
         }
 
-        public async Task<ShowEpisode> GenerateEpisode(ShowConfig config, ShowGenerator.ShowGeneratorApiKeys apiKeys, bool useWrapper, bool useCustomAffixes = false, string customPrefix = "", string customSuffix = "")
+        // Helper to parse comma-separated strings into a list for X23 API requests
+        private List<string>? ParseStringToList(string? s)
+        {
+            if (string.IsNullOrWhiteSpace(s))
+                return null; 
+            return s.Split(',').Select(p => p.Trim()).Where(p => !string.IsNullOrEmpty(p)).ToList();
+        }
+
+        public async Task<ShowEpisode> GenerateEpisode(ShowConfig config, ShowGenerator.ShowGeneratorApiKeys apiKeys, bool useWrapper, bool useCustomAffixes = false, string customPrefix = "", string customSuffix = "", ShowrunnerManager? manager = null)
         {
             if (config == null)
             {
@@ -164,7 +173,7 @@ namespace ShowGenerator
             }
             promptBuilder.AppendLine(rawConfigEpisodePrompt);
 
-            // 2. External data (if present)
+            // 2. External data (if present from [externalData] shortcode)
             bool hasShortcodes = rawConfigEpisodePrompt.Contains("[externalData src='") || rawConfigEpisodePrompt.Contains("[externalData src=\"");
             if (hasShortcodes)
             {
@@ -173,6 +182,72 @@ namespace ShowGenerator
                 {
                     promptBuilder.AppendLine();
                     promptBuilder.AppendLine($"EXTERNAL_DATA_CONTEXT:\n{extractedExternalData}");
+                }
+            }
+
+            // 2.5. X23.ai API Data Injection (if manager and its settings are provided)
+            if (manager != null && manager.useX23ApiData && manager.apiKeysConfig != null && !string.IsNullOrEmpty(manager.apiKeysConfig.x23ApiKey))
+            {
+                Debug.Log("[ShowrunnerGeneratorLLM] X23.ai data injection is enabled. Fetching data...");
+                string x23DataJson = string.Empty;
+                try
+                {
+                    List<string>? protocols = ParseStringToList(manager.x23ProtocolsToFilter);
+                    List<string>? itemTypes = ParseStringToList(manager.x23ItemTypesToFilter);
+                    long? x23Timestamp = manager.x23UnixTimestamp == 0 ? (long?)null : manager.x23UnixTimestamp;
+
+                    switch (manager.x23ApiRequestType)
+                    {
+                        case X23ApiRequestType.SupportedProtocols:
+                            x23DataJson = await X23ApiService.GetSupportedProtocolsAsync(manager.apiKeysConfig.x23ApiKey);
+                            break;
+                        case X23ApiRequestType.SupportedItemTypes:
+                            x23DataJson = await X23ApiService.GetSupportedItemTypesAsync(manager.apiKeysConfig.x23ApiKey);
+                            break;
+                        case X23ApiRequestType.RecentFeed:
+                            var recentReq = new RecentFeedRequest { Limit = manager.x23Limit, Protocols = protocols, ItemTypes = itemTypes, MaxUnixTimestamp = x23Timestamp };
+                            x23DataJson = await X23ApiService.PostRecentFeedAsync(manager.apiKeysConfig.x23ApiKey, recentReq);
+                            break;
+                        case X23ApiRequestType.TopScoredFeed:
+                            var topScoredReq = new TopScoredFeedRequest { Limit = manager.x23Limit, Protocols = protocols, ItemTypes = itemTypes, ScoreThreshold = manager.x23ScoreThresholdForTopScored, MaxUnixTimestamp = x23Timestamp };
+                            x23DataJson = await X23ApiService.GetTopScoredFeedAsync(manager.apiKeysConfig.x23ApiKey, topScoredReq);
+                            break;
+                        case X23ApiRequestType.DigestFeed:
+                            var digestReq = new DigestFeedRequest { Protocols = protocols, TimePeriod = manager.x23TimePeriodForDigest, UnixTimestamp = x23Timestamp }; // Limit is not applicable here by default
+                            x23DataJson = await X23ApiService.PostDigestFeedAsync(manager.apiKeysConfig.x23ApiKey, digestReq);
+                            break;
+                        case X23ApiRequestType.KeywordSearch:
+                            var keywordReq = new KeywordSearchRequest { Query = manager.x23SearchQuery, Limit = manager.x23Limit, Protocols = protocols, ItemTypes = itemTypes, ExactMatch = manager.x23ExactMatchForKeyword, SortByRelevance = manager.x23SortByRelevanceForKeyword };
+                            x23DataJson = await X23ApiService.PostKeywordSearchAsync(manager.apiKeysConfig.x23ApiKey, keywordReq);
+                            break;
+                        case X23ApiRequestType.RagSearch:
+                            var ragReq = new RagSearchRequest { Query = manager.x23SearchQuery, Limit = manager.x23Limit, Protocols = protocols, ItemTypes = itemTypes, SimilarityThreshold = manager.x23SimilarityThreshold };
+                            x23DataJson = await X23ApiService.PostRagSearchAsync(manager.apiKeysConfig.x23ApiKey, ragReq);
+                            break;
+                        case X23ApiRequestType.HybridSearch:
+                            var hybridReq = new HybridSearchRequest { Query = manager.x23SearchQuery, Limit = manager.x23Limit, Protocols = protocols, ItemTypes = itemTypes, SimilarityThreshold = manager.x23SimilarityThreshold };
+                            x23DataJson = await X23ApiService.PostHybridSearchAsync(manager.apiKeysConfig.x23ApiKey, hybridReq);
+                            break;
+                        default:
+                            Debug.LogWarning($"[ShowrunnerGeneratorLLM] X23.ai API request type '{manager.x23ApiRequestType}' is not handled.");
+                            break;
+                    }
+
+                    if (!string.IsNullOrEmpty(x23DataJson))
+                    {
+                        promptBuilder.AppendLine();
+                        promptBuilder.AppendLine($"X23_API_DATA_CONTEXT:\n{x23DataJson}");
+                        Debug.Log("[ShowrunnerGeneratorLLM] Successfully fetched and appended X23.ai data to prompt.");
+                    }
+                    else
+                    {
+                        Debug.LogWarning("[ShowrunnerGeneratorLLM] X23.ai data was empty or not fetched for the selected type.");
+                    }
+                }
+                catch (Exception e)
+                {
+                    Debug.LogError($"[ShowrunnerGeneratorLLM] Error fetching or processing X23.ai data: {e.Message}");
+                    // Decide if you want to stop or continue without this data. For now, we continue.
                 }
             }
 
