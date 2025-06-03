@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hedra Manifest Explorer</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎬 Hedra Manifest Explorer</h1>
+            <p>Browse and explore Hedra processing manifests for AI Show episodes</p>
+        </header>
+
+        <div class="controls">
+            <div class="file-input-group" style="grid-column: 1 / -1; max-width: 400px; margin: 0 auto;">
+                <label for="folderInput" class="btn btn-primary">
+                    📁 Load Episode Folder
+                </label>
+                <input type="file" id="folderInput" webkitdirectory directory multiple style="display: none;">
+                <span id="folderStatus" class="status">No episode folder selected</span>
+            </div>
+        </div>
+
+        <!-- Debug Logs Section - Always Visible -->
+        <div class="logs" id="logsContainer">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                <h2>📝 Debug Logs</h2>
+                <button class="btn btn-secondary" id="clearLogsBtn" style="padding: 8px 16px; font-size: 0.8rem;">
+                    🗑️ Clear Logs
+                </button>
+            </div>
+            <div class="log-content" id="logContent">
+                <p class="log-entry info">Explorer initialized. Ready to load episode folder.</p>
+            </div>
+        </div>
+
+        <div class="manifest-info" id="manifestInfo" style="display: none;">
+            <h2>📋 Manifest Overview</h2>
+            <div class="info-grid">
+                <div class="info-item">
+                    <span class="label">Total Segments:</span>
+                    <span class="value" id="totalSegments">0</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">Episode:</span>
+                    <span class="value" id="episodeInfo">Unknown</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="segments-container" id="segmentsContainer" style="display: none;">
+            <h2>🎭 Segments</h2>
+            <div class="segments-grid" id="segmentsGrid">
+                <!-- Segments will be populated here -->
+            </div>
+        </div>
+
+        <div class="processing-controls" id="processingControls" style="display: none;">
+            <h2>⚙️ Processing Controls</h2>
+            <div class="control-buttons">
+                <button class="btn btn-success" id="processAllBtn" disabled>
+                    🚀 Process All Segments
+                </button>
+                <button class="btn btn-warning" id="processSingleBtn" disabled>
+                    🎯 Process Selected Segment
+                </button>
+                <button class="btn btn-danger" id="stopProcessingBtn" disabled>
+                    ⏹️ Stop Processing
+                </button>
+            </div>
+            <div class="processing-status" id="processingStatus">
+                Ready to process
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 
