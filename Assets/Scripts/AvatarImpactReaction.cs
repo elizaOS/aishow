@@ -20,7 +20,7 @@ public class AvatarImpactReaction : MonoBehaviour
     public AnimationCurve recoveryCurve = AnimationCurve.EaseInOut(0, 1, 1, 0);
     
     private bool isReacting = false;
-    private Vector3 currentImpactDirection;
+    private Vector3 currentImpactDirection;  
     private float currentImpactForce;
     private Quaternion originalHeadRotation;
     private Quaternion originalSpineRotation;

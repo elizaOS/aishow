@@ -97816,7 +97816,7 @@ MonoBehaviour:
   selectedApiMode: 0
   sourceEpisodeJsonPath: Assets/Resources/Episodes/S1E56/AI_Podcast_S1E56.json
   inputEpisodeId: AI_Podcast_S1E56
-  explicitManifestPath: Assets/Resources/Episodes/S1E56/hedra_processing/hedra_manifest.json
+  explicitManifestPath: Assets/Resources/Episodes/S1E55/hedra_processing/hedra_manifest.json
   outputSubfolderName: hedra_processing
   defaultAspectRatio: 16:9
   defaultResolution: 720p
