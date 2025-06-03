@@ -20074,166 +20074,161 @@ MonoBehaviour:
           line: example
           action: normal
     episodes:
-    - id: S1E53
-      name: Privacy, Protocols, and Progress
-      premise: Coverage of latest ElizaOS GitHub developments, AI agent blockchain
-        integration news, and key DAO updates
-      summary: Marc and Eliza explore major developments in AI agent blockchain integration,
-        review significant GitHub activity with 30+ merged PRs, and dive into DAO
-        governance discussions around Venus Protocol and RocketPool.
+    - id: S1E55
+      name: DAO Updates & Development Progress
+      premise: Coverage of major GitHub developments and DAO ecosystem updates
+      summary: Discussion of significant GitHub activity including PRs and issues,
+        plus key updates from the Superfluid and ENS DAOs, featuring special coverage
+        from Optimism and Sunny.
       scenes:
       - location: podcast_desk
-        description: Opening segment covering ElizaOS's integration with Datai Network
-          and Phala Network for enhanced AI agent capabilities, with @hashwarlock's
-          TEE hosting implementation featured
+        description: Opening coverage of GitHub activity metrics, highlighting 15
+          new PRs and significant developer engagement
         in: fade
         out: fade
         dialogue:
         - actor: marc
-          line: Welcome to the cutting edge of AI and blockchain! We've got some
-            major integrations to cover today.
+          line: Breaking news from the development front - we're seeing massive activity
+            in the elizaOS repository!
           action: excited
         - actor: eliza
-          line: That's right! Our platform is now integrated with Datai Network for
-            context-aware AI agents.
-          action: proud
-        - actor: tv
-          line: https://pbs.twimg.com/media/GsMI20jXUAAVwcm.jpg
-          action: 
-        - actor: marc
-          line: And @hashwarlock just dropped a game-changing wrapper around Phala
-            Network CLI!
+          line: That's right Marc! June 1st brought us 15 new pull requests and 19
+            merged PRs - talk about a productive day!
           action: enthusiastic
-        - actor: eliza
-          line: It gives ElizaOS easy TEE hosting capabilities in minutes. The PR
-            is already up!
-          action: informative
         - actor: marc
-          line: Speaking of building, @autodotfun is making waves with their platform
-            for creating on-chain agents without coding.
-          action: interested
+          line: And with 22 active contributors, the community is absolutely buzzing
+            with development energy.
+          action: analytical
         - actor: eliza
-          line: It's amazing how accessible agent development is becoming. Shaw,
-            want to give us a closer look at those GitHub updates?
+          line: Let's dive into some of these major changes. We've got some game-changing
+            features in the works!
+          action: excited
+        - actor: marc
+          line: First up is PR #4864 by @lalalune - completely refactoring the message
+            server!
+          action: focused
+        - actor: eliza
+          line: And don't forget PR #4869 - replacing PGLite with a fast in-memory
+            implementation. That's going to be huge for performance!
+          action: impressed
+        - actor: marc
+          line: Let's take a closer look at some of these other merged PRs with our
+            producer Shaw.
           action: transitioning
-        - actor: marc
-          line: Yes, let's check in with our resident code wizard!
-          action: enthusiastic
       - location: splitscreen
-        description: Shaw details the day's massive GitHub activity, highlighting
-          key PRs including plugin specifications (#4851) and Polymarket integration
-          (#4842), while demonstrating new features
+        description: Shaw details recent merged PRs including plugin specifications
+          and core package improvements
         in: cut
         out: fade
         dialogue:
         - actor: shaw
-          line: massive day in the repo - we've got 30 PRs merged and some game-changing
-            additions
+          line: big moves in the plugin ecosystem today - PR #4851 added plugin specifications
+            to core
           action: excited
-        - actor: tv
-          line: https://pbs.twimg.com/ext_tw_video_thumb/1928396878455947264/pu/img/ZMzP_iHp0fAXvIvC.jpg
-          action: 
         - actor: shaw
-          line: PR #4851 from @lalalune adds core plugin specifications - this is
-            huge for extensibility
-          action: technical
-        - actor: shaw
-          line: and PR #4842 brings enhanced Polymarket plugin features with comprehensive
-            trading actions
-          action: informative
-        - actor: eliza
-          line: How's the documentation looking for all these new features?
-          action: curious
-        - actor: shaw
-          line: solid - PR #4827 just landed with comprehensive CLI docs standardization
-          action: satisfied
-        - actor: marc
-          line: Any improvements to the development experience?
-          action: interested
-        - actor: shaw
-          line: definitely - PR #4825 improves PGLite setup and environment handling,
-            making local development much smoother
-          action: proud
-      - location: optimism_desk
-        description: Optimism and Sunny analyze the RocketPool Saturn I funding discussion,
-          detailing community sentiment on treasury management and reward allocation
-        in: fade
-        out: fade
-        dialogue:
-        - actor: optimism
-          line: Big developments in the RocketPool ecosystem today! The community
-            is discussing major changes to protocol funding in Saturn I.
-          action: professional
-        - actor: sunny
-          line: That's right! The polls show 84% support for reducing RPL stakers'
-            share to boost the treasury.
-          action: informative
-        - actor: optimism
-          line: And there's a fascinating proposal about ETH diversification - 70%
-            support for funding the treasury with ETH from rETH commission.
-          action: interested
-        - actor: sunny
-          line: The community seems focused on sustainable growth rather than immediate
-            changes to rETH commission rates.
+          line: PR #4874 enhances the core package build process, making everything
+            smoother for developers
           action: analytical
-        - actor: optimism
-          line: Notable that there's no strong push for immediate ETH diversification
-            of treasury holdings.
-          action: thoughtful
-        - actor: sunny
-          line: All eyes are on the upcoming RPIP-46 votes that will shape these
-            changes!
-          action: excited
-        - actor: optimism
-          line: Back to you in the studio!
-          action: professional
-      - location: podcast_desk
-        description: Final segment covering Venus Protocol's strategic partnership
-          with Arculus hardware wallets, featuring projected growth metrics and community
-          response
-        in: fade
-        out: fade
-        dialogue:
-        - actor: marc
-          line: And now for some exciting news from Venus Protocol!
+        - actor: shaw
+          line: we've also got PR #4868 optimizing plugin loading to reduce startup
+            log spam
+          action: informative
+        - actor: shaw
+          line: and check out PR #4862 - adding example prompt injection cases for
+            future LLM training
           action: enthusiastic
         - actor: eliza
-          line: They're proposing a game-changing partnership with Arculus hardware
-            wallets!
-          action: excited
-        - actor: marc
-          line: The numbers are impressive - projecting $500M to $800M in new TVL
-            within a year.
-          action: analytical
-        - actor: eliza
-          line: And that could mean $1.6M to $2.5M in annualized revenue for Venus.
+          line: Any critical issues we should be aware of, Shaw?
+          action: curious
+        - actor: shaw
+          line: yeah, issue #4876 about macOS compatibility with bun install needs
+            attention
+          action: concerned
+        - actor: shaw
+          line: and issue #4861 reporting plugin installation problems with the giphy
+            plugin
+          action: serious
+        - actor: shaw
+          line: back to you in the studio for the latest DAO updates
+          action: professional
+      - location: optimism_desk
+        description: Optimism and Sunny discuss Superfluid DAO delegate candidacy
+          and protocol growth initiatives
+        in: fade
+        out: fade
+        dialogue:
+        - actor: optimism
+          line: Welcome to our special coverage of the latest DAO developments! Big
+            news from Superfluid today, Sunny!
+          action: welcoming
+        - actor: sunny
+          line: That's right! We're seeing exciting developments with @vijay's candidacy
+            for Superfluid DAO delegate.
+          action: enthusiastic
+        - actor: optimism
+          line: As the first product hire and current CPO at Superfluid Labs, @vijay
+            brings impressive credentials to the table.
           action: informative
+        - actor: sunny
+          line: His vision includes popularizing money streaming through viral apps
+            and unique DeFi opportunities.
+          action: excited
+        - actor: optimism
+          line: And let's not forget his focus on protocol longevity with Superfluid
+            V2!
+          action: enthusiastic
+        - actor: sunny
+          line: There's also interesting discussion about SUP transferability with
+            @imran seeking collaboration.
+          action: analytical
+        - actor: optimism
+          line: This could be a pivotal moment for the Superfluid ecosystem. Let's
+            move on to our ENS coverage!
+          action: transitioning
+      - location: podcast_desk
+        description: Closing segment covering ENS DAO's l2.eth proposal and its implications
+          for L2 interoperability
+        in: fade
+        out: fade
+        dialogue:
         - actor: marc
-          line: CALCULATING HARDWARE WALLET INTEGRATION PROBABILITY... BEEP BOOP
+          line: Breaking news from ENS DAO - they're considering a game-changing
+            proposal for l2.eth!
+          action: excited
+        - actor: eliza
+          line: This is huge! The proposal aims to enable chain-specific addresses
+            and improve L2 interoperability.
+          action: enthusiastic
+        - actor: marc
+          line: PROCESSING CHAIN SPECIFICATIONS... INTEROP DETECTED!
           action: spazz
         - actor: eliza
-          line: Oh dear, looks like someone needs a firmware update! But speaking
-            of updates, the community response has been overwhelmingly positive.
-          action: amused
+          line: It would move the chain name registry on-chain, replacing the current
+            GitHub list system.
+          action: informative
         - actor: marc
-          line: That's all for today's show! Keep building, keep securing, and keep
-            those hardware wallets... hard?
-          action: concluding
+          line: Community feedback has been fascinating - some suggesting more user-friendly
+            alternatives to 'l2'.
+          action: analytical
         - actor: eliza
-          line: And that's why I write the closing lines! See you next time, everyone!
-          action: laughing
+          line: And that wraps up our coverage for today! Keep building, keep innovating!
+          action: concluding
+        - actor: marc
+          line: See you next time, fellow builders!
+          action: friendly
   generatorLLM: {fileID: 378820617}
   loader: {fileID: 378820619}
   speaker: {fileID: 378820618}
   speakerElevenLabs: {fileID: 378820616}
   autoGenerateAudioAfterEpisode: 1
-  useCustomPromptAffixes: 0
-  customPromptPrefix: 
+  useCustomPromptAffixes: 1
+  customPromptPrefix: 'This show only features Sunny and Optimism talking about x23.
+    the actor Optimism and Sunny have their own section talking about the X23_API_DATA_CONTEXT: '
   customPromptSuffix: 'the actor Optimism and Sunny have their own section talking
     about the X23_API_DATA_CONTEXT:'
   apiKeysConfig: {fileID: 11400000, guid: 9ea0c07de5d64914d922f139b8fd4549, type: 2}
   useWrapperEndpoints: 1
-  useX23ApiData: 0
+  useX23ApiData: 1
   x23ApiRequestType: 2
   x23SearchQuery: latest AI developments
   x23Limit: 3
@@ -22904,7 +22899,7 @@ MonoBehaviour:
     volume: 0.338
   - locationName: optimism_desk
     transitionAnimator: {fileID: 999673027}
-    transitionTriggerParam: transitionpodcastdesk
+    transitionTriggerParam: transition
     transitionSound: {fileID: 8300000, guid: a5d69d2fb1a5534478d012e2424a71d9, type: 3}
     volume: 0.338
   defaultTransitionAnimator: {fileID: 999673027}
@@ -61945,7 +61940,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1640308215}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bf5af66f1874da3408a0413ee90c8533, type: 3}
   m_Name: 
@@ -86132,7 +86127,7 @@ MonoBehaviour:
     - name: Commercial 2
       videoClip: {fileID: 32900000, guid: 9d53233041bccdf4d9d4c33ca07a35f0, type: 3}
     skipThisBreak: 0
-  skipAllCommercials: 0
+  skipAllCommercials: 1
   skipFirstNSceneChanges: 0
   fadeInDuration: 0.5
   holdDuration: 1

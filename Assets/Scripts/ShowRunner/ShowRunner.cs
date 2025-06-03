@@ -936,6 +936,24 @@ namespace ShowRunner
             return currentEpisode?.id;
         }
 
+        /// <summary>
+        /// Gets the current scene index (0-based).
+        /// </summary>
+        /// <returns>The current scene index, or -1 if not applicable.</returns>
+        public int GetCurrentSceneIndex()
+        {
+            return currentSceneIndex;
+        }
+
+        /// <summary>
+        /// Gets the current dialogue index within the current scene (0-based).
+        /// </summary>
+        /// <returns>The current dialogue index, or -1 if not applicable.</returns>
+        public int GetCurrentDialogueIndex()
+        {
+            return currentDialogueIndex;
+        }
+
         // --- Pause/Resume Functionality ---
 
         /// <summary>

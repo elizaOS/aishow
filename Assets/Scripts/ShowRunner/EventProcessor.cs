@@ -13,6 +13,12 @@ namespace ShowRunner
     [RequireComponent(typeof(ScenePreperationManager))]
     public class EventProcessor : MonoBehaviour
     {
+        /// <summary>
+        /// Event triggered when a 'speak' event is processed.
+        /// Passes the EventData associated with the speak event.
+        /// </summary>
+        public static event Action<EventData> OnSpeakEventProcessed;
+
         private ScenePreperationManager scenePreparationManager;
         
         private void Awake()
@@ -89,6 +95,9 @@ namespace ShowRunner
                 };
 
                 SpeakPayloadManager.Instance.HandleSpeakPayload(payload.ToString());
+
+                // Invoke the event for listeners like ScreenshotManager
+                OnSpeakEventProcessed?.Invoke(eventData);
             }
             catch (Exception ex)
             {
