@@ -6175,6 +6175,8 @@ MonoBehaviour:
   isAutoScreenshottingEnabled: 0
   autoScreenshotInterval: 30
   manualScreenshotKey: 115
+  enableSpeakEventScreenshots: 0
+  speakEventSubFolderName: SpeakEvents
   screenshotFolderName: Screenshots
   jpgQuality: 75
 --- !u!1 &26716550
@@ -19953,22 +19955,22 @@ MonoBehaviour:
         in: fade
         out: fade
         dialogue:
-        - actor: optimism
+        - actor: shaw
           line: example
           action: happy
-        - actor: optimism
+        - actor: shaw
           line: example
           action: concerned
-        - actor: optimism
+        - actor: shaw
           line: example
           action: normal
-        - actor: optimism
+        - actor: shaw
           line: example
           action: normal
-        - actor: optimism
+        - actor: shaw
           line: example
           action: normal
-        - actor: optimism
+        - actor: shaw
           line: example
           action: normal
       - location: stonks
@@ -20001,41 +20003,6 @@ MonoBehaviour:
           line: example
           action: excited
         - actor: sparty
-          line: example
-          action: normal
-      - location: optimism_desk
-        description: example
-        in: fade
-        out: fade
-        dialogue:
-        - actor: optimism
-          line: example
-          action: normal
-        - actor: sunny
-          line: example
-          action: grateful
-        - actor: optimism
-          line: example
-          action: normal
-        - actor: sunny
-          line: example
-          action: grateful
-        - actor: optimism
-          line: example
-          action: spazz
-        - actor: sunny
-          line: example
-          action: excited
-        - actor: optimism
-          line: example
-          action: normal
-        - actor: sunny
-          line: example
-          action: normal
-        - actor: optimism
-          line: example
-          action: normal
-        - actor: sunny
           line: example
           action: normal
       - location: podcast_desk
@@ -20075,160 +20042,171 @@ MonoBehaviour:
           action: normal
     episodes:
     - id: S1E55
-      name: DAO Updates & Development Progress
-      premise: Coverage of major GitHub developments and DAO ecosystem updates
-      summary: Discussion of significant GitHub activity including PRs and issues,
-        plus key updates from the Superfluid and ENS DAOs, featuring special coverage
-        from Optimism and Sunny.
+      name: Message Server Overhaul & Plugin Progress
+      premise: Covering significant architectural changes to elizaOS's message handling
+        system and plugin infrastructure
+      summary: The team explores major updates to the message server architecture,
+        discusses plugin specification improvements, and reviews an active day of
+        GitHub development with 19 merged PRs and 15 new submissions
       scenes:
       - location: podcast_desk
-        description: Opening coverage of GitHub activity metrics, highlighting 15
-          new PRs and significant developer engagement
+        description: Marc and Eliza enthusiastically break down PRs 4864 and 4869,
+          focusing on the standalone message server refactor and memory implementation
+          changes
         in: fade
         out: fade
         dialogue:
         - actor: marc
-          line: Breaking news from the development front - we're seeing massive activity
-            in the elizaOS repository!
+          line: Welcome to another exciting day in the elizaOS universe! The repository
+            is absolutely buzzing with activity.
           action: excited
         - actor: eliza
-          line: That's right Marc! June 1st brought us 15 new pull requests and 19
-            merged PRs - talk about a productive day!
-          action: enthusiastic
-        - actor: marc
-          line: And with 22 active contributors, the community is absolutely buzzing
-            with development energy.
-          action: analytical
-        - actor: eliza
-          line: Let's dive into some of these major changes. We've got some game-changing
-            features in the works!
-          action: excited
-        - actor: marc
-          line: First up is PR #4864 by @lalalune - completely refactoring the message
-            server!
-          action: focused
-        - actor: eliza
-          line: And don't forget PR #4869 - replacing PGLite with a fast in-memory
-            implementation. That's going to be huge for performance!
-          action: impressed
-        - actor: marc
-          line: Let's take a closer look at some of these other merged PRs with our
-            producer Shaw.
-          action: transitioning
-      - location: splitscreen
-        description: Shaw details recent merged PRs including plugin specifications
-          and core package improvements
-        in: cut
-        out: fade
-        dialogue:
-        - actor: shaw
-          line: big moves in the plugin ecosystem today - PR #4851 added plugin specifications
-            to core
-          action: excited
-        - actor: shaw
-          line: PR #4874 enhances the core package build process, making everything
-            smoother for developers
-          action: analytical
-        - actor: shaw
-          line: we've also got PR #4868 optimizing plugin loading to reduce startup
-            log spam
-          action: informative
-        - actor: shaw
-          line: and check out PR #4862 - adding example prompt injection cases for
-            future LLM training
-          action: enthusiastic
-        - actor: eliza
-          line: Any critical issues we should be aware of, Shaw?
-          action: curious
-        - actor: shaw
-          line: yeah, issue #4876 about macOS compatibility with bun install needs
-            attention
-          action: concerned
-        - actor: shaw
-          line: and issue #4861 reporting plugin installation problems with the giphy
-            plugin
-          action: serious
-        - actor: shaw
-          line: back to you in the studio for the latest DAO updates
+          line: That's right! We've got some major architectural changes in the pipeline,
+            starting with PR 4864 from @lalalune.
           action: professional
-      - location: optimism_desk
-        description: Optimism and Sunny discuss Superfluid DAO delegate candidacy
-          and protocol growth initiatives
-        in: fade
-        out: fade
-        dialogue:
-        - actor: optimism
-          line: Welcome to our special coverage of the latest DAO developments! Big
-            news from Superfluid today, Sunny!
-          action: welcoming
-        - actor: sunny
-          line: That's right! We're seeing exciting developments with @vijay's candidacy
-            for Superfluid DAO delegate.
-          action: enthusiastic
-        - actor: optimism
-          line: As the first product hire and current CPO at Superfluid Labs, @vijay
-            brings impressive credentials to the table.
-          action: informative
-        - actor: sunny
-          line: His vision includes popularizing money streaming through viral apps
-            and unique DeFi opportunities.
-          action: excited
-        - actor: optimism
-          line: And let's not forget his focus on protocol longevity with Superfluid
-            V2!
-          action: enthusiastic
-        - actor: sunny
-          line: There's also interesting discussion about SUP transferability with
-            @imran seeking collaboration.
-          action: analytical
-        - actor: optimism
-          line: This could be a pivotal moment for the Superfluid ecosystem. Let's
-            move on to our ENS coverage!
-          action: transitioning
-      - location: podcast_desk
-        description: Closing segment covering ENS DAO's l2.eth proposal and its implications
-          for L2 interoperability
-        in: fade
-        out: fade
-        dialogue:
         - actor: marc
-          line: Breaking news from ENS DAO - they're considering a game-changing
-            proposal for l2.eth!
-          action: excited
+          line: Oh yes, completely separating the message server from agents! This
+            is going to be REVOLUTIONARY!
+          action: enthusiastic
         - actor: eliza
-          line: This is huge! The proposal aims to enable chain-specific addresses
-            and improve L2 interoperability.
-          action: enthusiastic
+          line: And don't forget PR 4869 - @0xbbjoker is proposing to replace the
+            PGLite message bus with a fast in-memory implementation.
+          action: excited
         - actor: marc
-          line: PROCESSING CHAIN SPECIFICATIONS... INTEROP DETECTED!
+          line: MAXIMUM SPEED ACHIEVED! MEMORY OPTIMIZATION PROTOCOLS ENGAGED!
           action: spazz
         - actor: eliza
-          line: It would move the chain name registry on-chain, replacing the current
-            GitHub list system.
+          line: Someone's excited about the performance improvements! Though I can't
+            blame you - these changes are significant.
+          action: amused
+        - actor: marc
+          line: With 19 PRs merged today alone, we've got a lot to unpack. Shaw,
+            can you join us for a technical breakdown?
+          action: professional
+        - actor: eliza
+          line: Yes, let's get Shaw's perspective on these architectural changes.
+          action: interested
+      - location: splitscreen
+        description: Shaw details the evolution of the plugin system through PRs
+          4851 and 4871, explaining how the consolidation of plugin specifications
+          improves the development workflow
+        in: fade
+        out: fade
+        dialogue:
+        - actor: shaw
+          line: the plugin architecture is getting a complete overhaul
+          action: focused
+        - actor: shaw
+          line: PR 4851 brought plugin specifications directly into core, while 4871
+            removed the old submodule structure
+          action: explaining
+        - actor: eliza
+          line: How does this affect developers working with plugins?
+          action: curious
+        - actor: shaw
+          line: PR 4868 optimized plugin loading to reduce startup log spam - much
+            cleaner experience now
+          action: pleased
+        - actor: marc
+          line: And I see PR 4873 fixed the elizaos start command for plugins?
+          action: interested
+        - actor: shaw
+          line: exactly - smoother initialization process across the board
+          action: professional
+        - actor: eliza
+          line: These changes seem to be really streamlining the development process.
+          action: approving
+        - actor: shaw
+          line: with 22 active contributors today, we're seeing great community engagement
+            with these improvements
+          action: excited
+      - location: podcast_desk
+        description: The team addresses recent bug reports and documentation improvements,
+          including Issue 4876 regarding macOS compatibility and PR 4877's documentation
+          fixes
+        in: fade
+        out: fade
+        dialogue:
+        - actor: marc
+          line: Let's talk about some of the challenges being addressed - Issue 4876
+            highlights some installation problems on macOS.
+          action: serious
+        - actor: eliza
+          line: Yes, @ceeriil reported issues with bun install, but there's already
+            work on implementing fallbacks to pnpm and npm.
           action: informative
         - actor: marc
-          line: Community feedback has been fascinating - some suggesting more user-friendly
-            alternatives to 'l2'.
-          action: analytical
+          line: We're also seeing documentation improvements with PR 4877 fixing
+            the docs readme build.
+          action: professional
         - actor: eliza
-          line: And that wraps up our coverage for today! Keep building, keep innovating!
-          action: concluding
+          line: And PR 4875 cleaned up some CHANGELOG.md errors - keeping everything
+            accurate and up-to-date.
+          action: pleased
         - actor: marc
-          line: See you next time, fellow builders!
-          action: friendly
+          line: Issue 4861 from @BinaryBluePeach is reporting some giphy plugin installation
+            problems.
+          action: concerned
+        - actor: eliza
+          line: That's likely related to our ongoing plugin system updates - should
+            be resolved soon with these infrastructure improvements.
+          action: reassuring
+        - actor: marc
+          line: It's great to see such rapid response to user feedback.
+          action: approving
+        - actor: eliza
+          line: Absolutely - it shows how engaged our development community is.
+          action: happy
+      - location: podcast_desk
+        description: Marc and Eliza conclude the episode by celebrating the day's
+          impressive development statistics and thanking the community for their
+          contributions
+        in: fade
+        out: fade
+        dialogue:
+        - actor: marc
+          line: What an incredible day for elizaOS - 15 new pull requests and 19
+            merged!
+          action: excited
+        - actor: eliza
+          line: Plus three new issues that'll help us improve the system even further.
+          action: enthusiastic
+        - actor: marc
+          line: The dedication of our 22 active contributors today has been truly
+            impressive.
+          action: grateful
+        - actor: eliza
+          line: From architectural improvements to documentation updates, every contribution
+            counts.
+          action: sincere
+        - actor: marc
+          line: And that's what makes open source development so special - everyone
+            working together towards a common goal.
+          action: thoughtful
+        - actor: eliza
+          line: Speaking of working together, we should wrap up today's episode.
+          action: professional
+        - actor: marc
+          line: Thanks for joining us for another exciting day in elizaOS development!
+          action: grateful
+        - actor: eliza
+          line: Until next time, keep contributing and building the future!
+          action: cheerful
   generatorLLM: {fileID: 378820617}
   loader: {fileID: 378820619}
   speaker: {fileID: 378820618}
   speakerElevenLabs: {fileID: 378820616}
   autoGenerateAudioAfterEpisode: 1
   useCustomPromptAffixes: 1
-  customPromptPrefix: 'This show only features Sunny and Optimism talking about x23.
-    the actor Optimism and Sunny have their own section talking about the X23_API_DATA_CONTEXT: '
-  customPromptSuffix: 'the actor Optimism and Sunny have their own section talking
-    about the X23_API_DATA_CONTEXT:'
+  customPromptPrefix: 'Important Formatting Rule: When referring to Pull Requests
+    (PRs), do not include a hashtag symbol (#) before the PR number. For instance,
+    always use the format ''PR123'' and avoid ''#PR123''.'
+  customPromptSuffix: 'Important Formatting Rule: When referring to Pull Requests
+    (PRs), do not include a hashtag symbol (#) before the PR number. For instance,
+    always use the format ''PR123'' and avoid ''#PR123''.'
   apiKeysConfig: {fileID: 11400000, guid: 9ea0c07de5d64914d922f139b8fd4549, type: 2}
   useWrapperEndpoints: 1
-  useX23ApiData: 1
+  useX23ApiData: 0
   x23ApiRequestType: 2
   x23SearchQuery: latest AI developments
   x23Limit: 3
@@ -22897,11 +22875,6 @@ MonoBehaviour:
     transitionTriggerParam: transitionsplitscreen
     transitionSound: {fileID: 8300000, guid: a5d69d2fb1a5534478d012e2424a71d9, type: 3}
     volume: 0.338
-  - locationName: optimism_desk
-    transitionAnimator: {fileID: 999673027}
-    transitionTriggerParam: transition
-    transitionSound: {fileID: 8300000, guid: a5d69d2fb1a5534478d012e2424a71d9, type: 3}
-    volume: 0.338
   defaultTransitionAnimator: {fileID: 999673027}
   defaultTransitionTrigger: transition
   defaultTransitionSound: {fileID: 8300000, guid: a5d69d2fb1a5534478d012e2424a71d9, type: 3}
@@ -25288,7 +25261,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &617215980
 Transform:
   m_ObjectHideFlags: 0
@@ -28511,6 +28484,10 @@ PrefabInstance:
     - target: {fileID: -1728013695380148634, guid: ff3d03a5b7d4969438a7f7ec7ef33d97, type: 3}
       propertyPath: m_Name
       value: sunny
+      objectReference: {fileID: 0}
+    - target: {fileID: -1728013695380148634, guid: ff3d03a5b7d4969438a7f7ec7ef33d97, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -1728013695380148634, guid: ff3d03a5b7d4969438a7f7ec7ef33d97, type: 3}
       propertyPath: m_TagString
@@ -35881,7 +35858,7 @@ GameObject:
   - component: {fileID: 977223517}
   - component: {fileID: 977223516}
   m_Layer: 0
-  m_Name: YoutubeDescriptionGenerator
+  m_Name: TranscriptGenerator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -38235,7 +38212,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1060982848
 RectTransform:
   m_ObjectHideFlags: 0
@@ -48976,6 +48953,10 @@ PrefabInstance:
       value: optimism
       objectReference: {fileID: 0}
     - target: {fileID: -1728013695380148634, guid: 549dbcb6929dd05458443afd7505c907, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -1728013695380148634, guid: 549dbcb6929dd05458443afd7505c907, type: 3}
       propertyPath: m_TagString
       value: Actor
       objectReference: {fileID: 0}
@@ -53984,7 +53965,6 @@ MonoBehaviour:
   - {fileID: 1413610538}
   - {fileID: 1254514995}
   - {fileID: 231142617}
-  - {fileID: 1308915824}
   minDistanceToActor: 6.93
   maxDistanceToActor: 20.48
   moveForce: 10
@@ -60088,7 +60068,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1575737371}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_RenderMode: 0
   m_Camera: {fileID: 0}
@@ -85305,6 +85285,10 @@ Transform:
   m_Children:
   - {fileID: 378820621}
   - {fileID: 1640308217}
+  - {fileID: 26396264}
+  - {fileID: 977223517}
+  - {fileID: 506850886}
+  - {fileID: 2130024434}
   - {fileID: 380268745}
   - {fileID: 1562859732}
   - {fileID: 2006712745}
@@ -85312,10 +85296,8 @@ Transform:
   - {fileID: 5120402567972249071}
   - {fileID: 9199288255987472479}
   - {fileID: 1796967086}
-  - {fileID: 977223517}
   - {fileID: 1030708288}
   - {fileID: 1521339895}
-  - {fileID: 506850886}
   - {fileID: 6794019984731814016}
   - {fileID: 497716099}
   - {fileID: 1799915344}
@@ -85323,7 +85305,6 @@ Transform:
   - {fileID: 1633108079}
   - {fileID: 129712647}
   - {fileID: 1286661715}
-  - {fileID: 26396264}
   - {fileID: 1712619503}
   - {fileID: 1732538580}
   - {fileID: 1708926161}
@@ -91461,7 +91442,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2088833338
 Transform:
   m_ObjectHideFlags: 0
@@ -97787,6 +97768,306 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -95545726695785077, guid: b20155e66be41cd408e7ed6ed9be29f3, type: 3}
   m_PrefabInstance: {fileID: 589783576}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2130024433
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2130024434}
+  - component: {fileID: 2130024435}
+  m_Layer: 0
+  m_Name: HedraPrep
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2130024434
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2130024433}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2043649015}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2130024435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2130024433}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 821d60c55055948429965454bd4281c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  apiKeysSO: {fileID: 11400000, guid: 9ea0c07de5d64914d922f139b8fd4549, type: 2}
+  selectedApiMode: 0
+  sourceEpisodeJsonPath: Assets/Resources/Episodes/S1E56/AI_Podcast_S1E56.json
+  inputEpisodeId: AI_Podcast_S1E56
+  explicitManifestPath: Assets/Resources/Episodes/S1E56/hedra_processing/hedra_manifest.json
+  outputSubfolderName: hedra_processing
+  defaultAspectRatio: 16:9
+  defaultResolution: 720p
+  screenshotExtension: .jpg
+  audioExtension: .mp3
+  defaultAudioSource: audio
+  defaultVoiceId: 
+  segmentIndexToProcess: 2
+  loadedManifestContent: "{\n    \"segmentsToProcess\": [\n        {\n           
+    \"text\": \"Welcome to another thrilling day of elizaOS development! We've got
+    some major updates to discuss.\",\n            \"voiceUrl\": \"Assets/Resources/Episodes/S1E56/audio/S1E56_1_1.mp3\",\n           
+    \"avatarImage\": \"Assets/Resources/Episodes/S1E56/screenshots/S1E56_1_1.jpg\",\n           
+    \"aspectRatio\": \"16:9\",\n            \"audioSource\": \"audio\",\n           
+    \"voiceId\": \"\",\n            \"avatarImageInput\": {\n                \"prompt\":
+    \"Welcome to another thrilling day of elizaOS development! We've got some major
+    updates to discuss.\"\n            },\n            \"resolution\": \"720p\",\n           
+    \"ai_model_id_override\": \"d1dd37a3-e39a-4854-a298-6510289f9cf2\"\n        },\n       
+    {\n            \"text\": \"That's right! Let's start with PR4890 by wtfsayo,
+    which brings some exciting messaging improvements.\",\n            \"voiceUrl\":
+    \"Assets/Resources/Episodes/S1E56/audio/S1E56_1_2.mp3\",\n            \"avatarImage\":
+    \"Assets/Resources/Episodes/S1E56/screenshots/S1E56_1_2.jpg\",\n            \"aspectRatio\":
+    \"16:9\",\n            \"audioSource\": \"audio\",\n            \"voiceId\":
+    \"\",\n            \"avatarImageInput\": {\n                \"prompt\": \"That's
+    right! Let's start with PR4890 by wtfsayo, which brings some exciting messaging
+    improvements.\"\n            },\n            \"resolution\": \"720p\",\n           
+    \"ai_model_id_override\": \"d1dd37a3-e39a-4854-a298-6510289f9cf2\"\n        },\n       
+    {\n            \"text\": \"RECONFIGURING MESSAGING PROTOCOLS... INITIALIZING
+    UI ENHANCEMENT SEQUENCE...\",\n            \"voiceUrl\": \"Assets/Resources/Episodes/S1E56/audio/S1E56_1_3.mp3\",\n           
+    \"avatarImage\": \"Assets/Resources/Episodes/S1E56/screenshots/S1E56_1_3.jpg\",\n           
+    \"aspectRatio\": \"16:9\",\n            \"audioSource\": \"audio\",\n           
+    \"voiceId\": \"\",\n            \"avatarImageInput\": {\n                \"prompt\":
+    \"RECONFIGURING MESSAGING PROTOCOLS... INITIALIZING UI ENHANCEMENT SEQUENCE...\"\n           
+    },\n            \"resolution\": \"720p\",\n            \"ai_model_id_override\":
+    \"d1dd37a3-e39a-4854-a298-6510289f9cf2\"\n        },\n        {\n           
+    \"text\": \"Easy there, Marc! Yes, the UI changes are significant, but let's
+    break them down for our viewers.\",\n            \"voiceUrl\": \"Assets/Resources/Episodes/S1E56/audio/S1E56_1_4.mp3\",\n           
+    \"avatarImage\": \"Assets/Resources/Episodes/S1E56/screenshots/S1E56_1_4.jpg\",\n           
+    \"aspectRatio\": \"16:9\",\n            \"audioSource\": \"audio\",\n           
+    \"voiceId\": \"\",\n            \"avatarImageInput\": {\n                \"prompt\":
+    \"Easy there, Marc! Yes, the UI changes are significant, but let's break them
+    down for our viewers.\"\n            },\n            \"resolution\": \"720p\",\n           
+    \"ai_model_id_override\": \"d1dd37a3-e39a-4854-a298-6510289f9cf2\"\n        },\n       
+    {\n            \"text\": \"Speaking of breaking things down, PR4864 has completely
+    separated the message server from agents.\",\n            \"voiceUrl\": \"Assets/Resources/Episodes/S1E56/audio/S1E56_1_5.mp3\",\n           
+    \"avatarImage\": \"Assets/Resources/Episodes/S1E56/screenshots/S1E56_1_5.jpg\",\n           
+    \"aspectRatio\": \"16:9\",\n            \"audioSource\": \"audio\",\n           
+    \"voiceId\": \"\",\n            \"avatarImageInput\": {\n                \"prompt\":
+    \"Speaking of breaking things down, PR4864 has completely separated the message
+    server from agents.\"\n            },\n            \"resolution\": \"720p\",\n           
+    \"ai_model_id_override\": \"d1dd37a3-e39a-4854-a298-6510289f9cf2\"\n        },\n       
+    {\n            \"text\": \"That's a huge architectural improvement! And it's
+    already been merged.\",\n            \"voiceUrl\": \"Assets/Resources/Episodes/S1E56/audio/S1E56_1_6.mp3\",\n           
+    \"avatarImage\": \"Assets/Resources/Episodes/S1E56/screenshots/S1E56_1_6.jpg\",\n           
+    \"aspectRatio\": \"16:9\",\n            \"audioSource\": \"audio\",\n           
+    \"voiceId\": \"\",\n            \"avatarImageInput\": {\n                \"prompt\":
+    \"That's a huge architectural improvement! And it's already been merged.\"\n           
+    },\n            \"resolution\": \"720p\",\n            \"ai_model_id_override\":
+    \"d1dd37a3-e39a-4854-a298-6510289f9cf2\"\n        },\n        {\n           
+    \"text\": \"Shaw, want to give us your technical perspective on these changes?\",\n           
+    \"voiceUrl\": \"Assets/Resources/Episodes/S1E56/audio/S1E56_1_7.mp3\",\n           
+    \"avatarImage\": \"Assets/Resources/Episodes/S1E56/screenshots/S1E56_1_7.jpg\",\n           
+    \"aspectRatio\": \"16:9\",\n            \"audioSource\": \"audio\",\n           
+    \"voiceId\": \"\",\n            \"avatarImageInput\": {\n                \"prompt\":
+    \"Shaw, want to give us your technical perspective on these changes?\"\n           
+    },\n            \"resolution\": \"720p\",\n            \"ai_model_id_override\":
+    \"d1dd37a3-e39a-4854-a298-6510289f9cf2\"\n        },\n        {\n           
+    \"text\": \"Yes, let's get the inside scoop from our producer!\",\n           
+    \"voiceUrl\": \"Assets/Resources/Episodes/S1E56/audio/S1E56_1_8.mp3\",\n           
+    \"avatarImage\": \"Assets/Resources/Episodes/S1E56/screenshots/S1E56_1_8.jpg\",\n           
+    \"aspectRatio\": \"16:9\",\n            \"audioSource\": \"audio\",\n           
+    \"voiceId\": \"\",\n            \"avatarImageInput\": {\n                \"prompt\":
+    \"Yes, let's get the inside scoop from our producer!\"\n            },\n           
+    \"resolution\": \"720p\",\n            \"ai_model_id_override\": \"d1dd37a3-e39a-4854-a298-6510289f9cf2\"\n       
+    },\n        {\n            \"text\": \"the switch to postgres-js in PR4881 is
+    a game-changer for our database layer\",\n            \"voiceUrl\": \"Assets/Resources/Episodes/S1E56/audio/S1E56_2_1.mp3\",\n           
+    \"avatarImage\": \"Assets/Resources/Episodes/S1E56/screenshots/S1E56_2_1.jpg\",\n           
+    \"aspectRatio\": \"16:9\",\n            \"audioSource\": \"audio\",\n           
+    \"voiceId\": \"\",\n            \"avatarImageInput\": {\n                \"prompt\":
+    \"the switch to postgres-js in PR4881 is a game-changer for our database layer\"\n           
+    },\n            \"resolution\": \"720p\",\n            \"ai_model_id_override\":
+    \"d1dd37a3-e39a-4854-a298-6510289f9cf2\"\n        },\n        {\n           
+    \"text\": \"as you can see from this architecture diagram, we're streamlining
+    the entire data flow\",\n            \"voiceUrl\": \"Assets/Resources/Episodes/S1E56/audio/S1E56_2_3.mp3\",\n           
+    \"avatarImage\": \"Assets/Resources/Episodes/S1E56/screenshots/S1E56_2_3.jpg\",\n           
+    \"aspectRatio\": \"16:9\",\n            \"audioSource\": \"audio\",\n           
+    \"voiceId\": \"\",\n            \"avatarImageInput\": {\n                \"prompt\":
+    \"as you can see from this architecture diagram, we're streamlining the entire
+    data flow\"\n            },\n            \"resolution\": \"720p\",\n           
+    \"ai_model_id_override\": \"d1dd37a3-e39a-4854-a298-6510289f9cf2\"\n        },\n       
+    {\n            \"text\": \"How does this tie in with the messaging server separation?\",\n           
+    \"voiceUrl\": \"Assets/Resources/Episodes/S1E56/audio/S1E56_2_4.mp3\",\n           
+    \"avatarImage\": \"Assets/Resources/Episodes/S1E56/screenshots/S1E56_2_4.jpg\",\n           
+    \"aspectRatio\": \"16:9\",\n            \"audioSource\": \"audio\",\n           
+    \"voiceId\": \"\",\n            \"avatarImageInput\": {\n                \"prompt\":
+    \"How does this tie in with the messaging server separation?\"\n            },\n           
+    \"resolution\": \"720p\",\n            \"ai_model_id_override\": \"d1dd37a3-e39a-4854-a298-6510289f9cf2\"\n       
+    },\n        {\n            \"text\": \"it's all about making each component more
+    independent and efficient\",\n            \"voiceUrl\": \"Assets/Resources/Episodes/S1E56/audio/S1E56_2_5.mp3\",\n           
+    \"avatarImage\": \"Assets/Resources/Episodes/S1E56/screenshots/S1E56_2_5.jpg\",\n           
+    \"aspectRatio\": \"16:9\",\n            \"audioSource\": \"audio\",\n           
+    \"voiceId\": \"\",\n            \"avatarImageInput\": {\n                \"prompt\":
+    \"it's all about making each component more independent and efficient\"\n           
+    },\n            \"resolution\": \"720p\",\n            \"ai_model_id_override\":
+    \"d1dd37a3-e39a-4854-a298-6510289f9cf2\"\n        },\n        {\n           
+    \"text\": \"And I see we've also improved the CLI with PR4888's workspace dependency
+    resolution.\",\n            \"voiceUrl\": \"Assets/Resources/Episodes/S1E56/audio/S1E56_2_6.mp3\",\n           
+    \"avatarImage\": \"Assets/Resources/Episodes/S1E56/screenshots/S1E56_2_6.jpg\",\n           
+    \"aspectRatio\": \"16:9\",\n            \"audioSource\": \"audio\",\n           
+    \"voiceId\": \"\",\n            \"avatarImageInput\": {\n                \"prompt\":
+    \"And I see we've also improved the CLI with PR4888's workspace dependency resolution.\"\n           
+    },\n            \"resolution\": \"720p\",\n            \"ai_model_id_override\":
+    \"d1dd37a3-e39a-4854-a298-6510289f9cf2\"\n        },\n        {\n           
+    \"text\": \"exactly - better plugin loading, cleaner startup logs, more reliable
+    dependency management\",\n            \"voiceUrl\": \"Assets/Resources/Episodes/S1E56/audio/S1E56_2_7.mp3\",\n           
+    \"avatarImage\": \"Assets/Resources/Episodes/S1E56/screenshots/S1E56_2_7.jpg\",\n           
+    \"aspectRatio\": \"16:9\",\n            \"audioSource\": \"audio\",\n           
+    \"voiceId\": \"\",\n            \"avatarImageInput\": {\n                \"prompt\":
+    \"exactly - better plugin loading, cleaner startup logs, more reliable dependency
+    management\"\n            },\n            \"resolution\": \"720p\",\n           
+    \"ai_model_id_override\": \"d1dd37a3-e39a-4854-a298-6510289f9cf2\"\n        },\n       
+    {\n            \"text\": \"These improvements are really adding up!\",\n           
+    \"voiceUrl\": \"Assets/Resources/Episodes/S1E56/audio/S1E56_2_8.mp3\",\n           
+    \"avatarImage\": \"Assets/Resources/Episodes/S1E56/screenshots/S1E56_2_8.jpg\",\n           
+    \"aspectRatio\": \"16:9\",\n            \"audioSource\": \"audio\",\n           
+    \"voiceId\": \"\",\n            \"avatarImageInput\": {\n                \"prompt\":
+    \"These improvements are really adding up!\"\n            },\n            \"resolution\":
+    \"720p\",\n            \"ai_model_id_override\": \"d1dd37a3-e39a-4854-a298-6510289f9cf2\"\n       
+    },\n        {\n            \"text\": \"Exciting news for our developer community
+    - elizaOS is co-hosting Builder Banter!\",\n            \"voiceUrl\": \"Assets/Resources/Episodes/S1E56/audio/S1E56_3_1.mp3\",\n           
+    \"avatarImage\": \"Assets/Resources/Episodes/S1E56/screenshots/S1E56_3_1.jpg\",\n           
+    \"aspectRatio\": \"16:9\",\n            \"audioSource\": \"audio\",\n           
+    \"voiceId\": \"\",\n            \"avatarImageInput\": {\n                \"prompt\":
+    \"Exciting news for our developer community - elizaOS is co-hosting Builder Banter!\"\n           
+    },\n            \"resolution\": \"720p\",\n            \"ai_model_id_override\":
+    \"d1dd37a3-e39a-4854-a298-6510289f9cf2\"\n        },\n        {\n           
+    \"text\": \"That's right! Last week they had 16 projects and 542 live listeners
+    - incredible engagement!\",\n            \"voiceUrl\": \"Assets/Resources/Episodes/S1E56/audio/S1E56_3_3.mp3\",\n           
+    \"avatarImage\": \"Assets/Resources/Episodes/S1E56/screenshots/S1E56_3_3.jpg\",\n           
+    \"aspectRatio\": \"16:9\",\n            \"audioSource\": \"audio\",\n           
+    \"voiceId\": \"\",\n            \"avatarImageInput\": {\n                \"prompt\":
+    \"That's right! Last week they had 16 projects and 542 live listeners - incredible
+    engagement!\"\n            },\n            \"resolution\": \"720p\",\n           
+    \"ai_model_id_override\": \"d1dd37a3-e39a-4854-a298-6510289f9cf2\"\n        },\n       
+    {\n            \"text\": \"And we're partnering with PayAI Network for this edition.
+    Shaw, what can builders expect?\",\n            \"voiceUrl\": \"Assets/Resources/Episodes/S1E56/audio/S1E56_3_4.mp3\",\n           
+    \"avatarImage\": \"Assets/Resources/Episodes/S1E56/screenshots/S1E56_3_4.jpg\",\n           
+    \"aspectRatio\": \"16:9\",\n            \"audioSource\": \"audio\",\n           
+    \"voiceId\": \"\",\n            \"avatarImageInput\": {\n                \"prompt\":
+    \"And we're partnering with PayAI Network for this edition. Shaw, what can builders
+    expect?\"\n            },\n            \"resolution\": \"720p\",\n           
+    \"ai_model_id_override\": \"d1dd37a3-e39a-4854-a298-6510289f9cf2\"\n        },\n       
+    {\n            \"text\": \"it's a great opportunity for projects to share updates
+    and form partnerships\",\n            \"voiceUrl\": \"Assets/Resources/Episodes/S1E56/audio/S1E56_3_5.mp3\",\n           
+    \"avatarImage\": \"Assets/Resources/Episodes/S1E56/screenshots/S1E56_3_5.jpg\",\n           
+    \"aspectRatio\": \"16:9\",\n            \"audioSource\": \"audio\",\n           
+    \"voiceId\": \"\",\n            \"avatarImageInput\": {\n                \"prompt\":
+    \"it's a great opportunity for projects to share updates and form partnerships\"\n           
+    },\n            \"resolution\": \"720p\",\n            \"ai_model_id_override\":
+    \"d1dd37a3-e39a-4854-a298-6510289f9cf2\"\n        },\n        {\n           
+    \"text\": \"And I hear there's something special for elizaOS contributors?\",\n           
+    \"voiceUrl\": \"Assets/Resources/Episodes/S1E56/audio/S1E56_3_6.mp3\",\n           
+    \"avatarImage\": \"Assets/Resources/Episodes/S1E56/screenshots/S1E56_3_6.jpg\",\n           
+    \"aspectRatio\": \"16:9\",\n            \"audioSource\": \"audio\",\n           
+    \"voiceId\": \"\",\n            \"avatarImageInput\": {\n                \"prompt\":
+    \"And I hear there's something special for elizaOS contributors?\"\n           
+    },\n            \"resolution\": \"720p\",\n            \"ai_model_id_override\":
+    \"d1dd37a3-e39a-4854-a298-6510289f9cf2\"\n        },\n        {\n           
+    \"text\": \"Yes! Contributors should link their wallets - future rewards might
+    be coming!\",\n            \"voiceUrl\": \"Assets/Resources/Episodes/S1E56/audio/S1E56_3_7.mp3\",\n           
+    \"avatarImage\": \"Assets/Resources/Episodes/S1E56/screenshots/S1E56_3_7.jpg\",\n           
+    \"aspectRatio\": \"16:9\",\n            \"audioSource\": \"audio\",\n           
+    \"voiceId\": \"\",\n            \"avatarImageInput\": {\n                \"prompt\":
+    \"Yes! Contributors should link their wallets - future rewards might be coming!\"\n           
+    },\n            \"resolution\": \"720p\",\n            \"ai_model_id_override\":
+    \"d1dd37a3-e39a-4854-a298-6510289f9cf2\"\n        },\n        {\n           
+    \"text\": \"Building the future together - that's what it's all about!\",\n           
+    \"voiceUrl\": \"Assets/Resources/Episodes/S1E56/audio/S1E56_3_8.mp3\",\n           
+    \"avatarImage\": \"Assets/Resources/Episodes/S1E56/screenshots/S1E56_3_8.jpg\",\n           
+    \"aspectRatio\": \"16:9\",\n            \"audioSource\": \"audio\",\n           
+    \"voiceId\": \"\",\n            \"avatarImageInput\": {\n                \"prompt\":
+    \"Building the future together - that's what it's all about!\"\n            },\n           
+    \"resolution\": \"720p\",\n            \"ai_model_id_override\": \"d1dd37a3-e39a-4854-a298-6510289f9cf2\"\n       
+    },\n        {\n            \"text\": \"What a productive day - 10 merged pull
+    requests and 3 new issues to tackle!\",\n            \"voiceUrl\": \"Assets/Resources/Episodes/S1E56/audio/S1E56_4_1.mp3\",\n           
+    \"avatarImage\": \"Assets/Resources/Episodes/S1E56/screenshots/S1E56_4_1.jpg\",\n           
+    \"aspectRatio\": \"16:9\",\n            \"audioSource\": \"audio\",\n           
+    \"voiceId\": \"\",\n            \"avatarImageInput\": {\n                \"prompt\":
+    \"What a productive day - 10 merged pull requests and 3 new issues to tackle!\"\n           
+    },\n            \"resolution\": \"720p\",\n            \"ai_model_id_override\":
+    \"d1dd37a3-e39a-4854-a298-6510289f9cf2\"\n        },\n        {\n           
+    \"text\": \"And seven active contributors working hard to improve elizaOS.\",\n           
+    \"voiceUrl\": \"Assets/Resources/Episodes/S1E56/audio/S1E56_4_2.mp3\",\n           
+    \"avatarImage\": \"Assets/Resources/Episodes/S1E56/screenshots/S1E56_4_2.jpg\",\n           
+    \"aspectRatio\": \"16:9\",\n            \"audioSource\": \"audio\",\n           
+    \"voiceId\": \"\",\n            \"avatarImageInput\": {\n                \"prompt\":
+    \"And seven active contributors working hard to improve elizaOS.\"\n           
+    },\n            \"resolution\": \"720p\",\n            \"ai_model_id_override\":
+    \"d1dd37a3-e39a-4854-a298-6510289f9cf2\"\n        },\n        {\n           
+    \"text\": \"From messaging improvements to database upgrades, we're seeing real
+    progress.\",\n            \"voiceUrl\": \"Assets/Resources/Episodes/S1E56/audio/S1E56_4_3.mp3\",\n           
+    \"avatarImage\": \"Assets/Resources/Episodes/S1E56/screenshots/S1E56_4_3.jpg\",\n           
+    \"aspectRatio\": \"16:9\",\n            \"audioSource\": \"audio\",\n           
+    \"voiceId\": \"\",\n            \"avatarImageInput\": {\n                \"prompt\":
+    \"From messaging improvements to database upgrades, we're seeing real progress.\"\n           
+    },\n            \"resolution\": \"720p\",\n            \"ai_model_id_override\":
+    \"d1dd37a3-e39a-4854-a298-6510289f9cf2\"\n        },\n        {\n           
+    \"text\": \"Don't forget our documentation updates - PR4891 really cleaned up
+    our README!\",\n            \"voiceUrl\": \"Assets/Resources/Episodes/S1E56/audio/S1E56_4_4.mp3\",\n           
+    \"avatarImage\": \"Assets/Resources/Episodes/S1E56/screenshots/S1E56_4_4.jpg\",\n           
+    \"aspectRatio\": \"16:9\",\n            \"audioSource\": \"audio\",\n           
+    \"voiceId\": \"\",\n            \"avatarImageInput\": {\n                \"prompt\":
+    \"Don't forget our documentation updates - PR4891 really cleaned up our README!\"\n           
+    },\n            \"resolution\": \"720p\",\n            \"ai_model_id_override\":
+    \"d1dd37a3-e39a-4854-a298-6510289f9cf2\"\n        },\n        {\n           
+    \"text\": \"As they say in the elizaOS world - 'no errors, no effort'!\",\n           
+    \"voiceUrl\": \"Assets/Resources/Episodes/S1E56/audio/S1E56_4_5.mp3\",\n           
+    \"avatarImage\": \"Assets/Resources/Episodes/S1E56/screenshots/S1E56_4_5.jpg\",\n           
+    \"aspectRatio\": \"16:9\",\n            \"audioSource\": \"audio\",\n           
+    \"voiceId\": \"\",\n            \"avatarImageInput\": {\n                \"prompt\":
+    \"As they say in the elizaOS world - 'no errors, no effort'!\"\n            },\n           
+    \"resolution\": \"720p\",\n            \"ai_model_id_override\": \"d1dd37a3-e39a-4854-a298-6510289f9cf2\"\n       
+    },\n        {\n            \"text\": \"And remember - the graph isn't the work,
+    it's just a shadow of it.\",\n            \"voiceUrl\": \"Assets/Resources/Episodes/S1E56/audio/S1E56_4_6.mp3\",\n           
+    \"avatarImage\": \"Assets/Resources/Episodes/S1E56/screenshots/S1E56_4_6.jpg\",\n           
+    \"aspectRatio\": \"16:9\",\n            \"audioSource\": \"audio\",\n           
+    \"voiceId\": \"\",\n            \"avatarImageInput\": {\n                \"prompt\":
+    \"And remember - the graph isn't the work, it's just a shadow of it.\"\n           
+    },\n            \"resolution\": \"720p\",\n            \"ai_model_id_override\":
+    \"d1dd37a3-e39a-4854-a298-6510289f9cf2\"\n        },\n        {\n           
+    \"text\": \"That's all for today's update! Keep building, keep contributing,
+    and keep pushing the boundaries!\",\n            \"voiceUrl\": \"Assets/Resources/Episodes/S1E56/audio/S1E56_4_7.mp3\",\n           
+    \"avatarImage\": \"Assets/Resources/Episodes/S1E56/screenshots/S1E56_4_7.jpg\",\n           
+    \"aspectRatio\": \"16:9\",\n            \"audioSource\": \"audio\",\n           
+    \"voiceId\": \"\",\n            \"avatarImageInput\": {\n                \"prompt\":
+    \"That's all for today's update! Keep building, keep contributing, and keep pushing
+    the boundaries!\"\n            },\n            \"resolution\": \"720p\",\n           
+    \"ai_model_id_override\": \"d1dd37a3-e39a-4854-a298-6510289f9cf2\"\n        },\n       
+    {\n            \"text\": \"See you next time on the elizaOS Daily Update!\",\n           
+    \"voiceUrl\": \"Assets/Resources/Episodes/S1E56/audio/S1E56_4_8.mp3\",\n           
+    \"avatarImage\": \"Assets/Resources/Episodes/S1E56/screenshots/S1E56_4_8.jpg\",\n           
+    \"aspectRatio\": \"16:9\",\n            \"audioSource\": \"audio\",\n           
+    \"voiceId\": \"\",\n            \"avatarImageInput\": {\n                \"prompt\":
+    \"See you next time on the elizaOS Daily Update!\"\n            },\n           
+    \"resolution\": \"720p\",\n            \"ai_model_id_override\": \"d1dd37a3-e39a-4854-a298-6510289f9cf2\"\n       
+    }\n    ]\n}"
+  processBatchStrictlySequentially: 1
+  pollingIntervalSeconds: 10
+  maxPollingAttempts: 100
+  delayBetweenConcurrentSubmissions: 1
+  delayBetweenStrictSequentialSubmissions: 0.5
+  defaultNewApiAiModelId: d1dd37a3-e39a-4854-a298-6510289f9cf2
 --- !u!1 &2132457536
 GameObject:
   m_ObjectHideFlags: 0
@@ -100151,7 +100432,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2870815838365691853
 RectTransform:
   m_ObjectHideFlags: 0

@@ -22,7 +22,7 @@ public class DialogueLine
 [Serializable]
 public class Scene
 {
-    public string location;
+    public string location; 
     public string description;
     public string @in; // Use @ to allow 'in' as a variable name
     public string @out; // Use @ to allow 'out' as a variable name
@@ -73,12 +73,25 @@ https://x.com/ai16zdao
     /// <summary>
     /// Generates a YouTube transcript for a specific episode from a JSON file.
     /// </summary>
-    /// <param name="jsonFilePathRelative">Relative path to the episode JSON file (e.g., Assets/Resources/Episodes/show.json).</param>
+    /// <param name="jsonFilePathRelativeOrAbsolute">Relative or absolute path to the episode JSON file (e.g., Assets/Resources/Episodes/show.json).</param>
     /// <param name="episodeIdToGenerate">The ID of the episode to generate the transcript for (e.g., "S1E1").</param>
-    public void GenerateTranscript(string jsonFilePathRelative, string episodeIdToGenerate)
+    public void GenerateTranscript(string jsonFilePathRelativeOrAbsolute, string episodeIdToGenerate)
     {
-        string fullJsonPath = Path.Combine(Application.dataPath, "..", jsonFilePathRelative); // Navigate up from Assets and then use relative path
-        string outputDirectory = Path.Combine(Application.dataPath, "Resources", "Transcripts");
+        string fullJsonPath;
+        if (Path.IsPathRooted(jsonFilePathRelativeOrAbsolute))
+        {
+            fullJsonPath = jsonFilePathRelativeOrAbsolute;
+        }
+        else
+        {
+            // Assumes relative to project root like "Assets/Resources/Episodes/show.json"
+            fullJsonPath = Path.Combine(Application.dataPath, "..", jsonFilePathRelativeOrAbsolute);
+        }
+
+        // New: Define base path for the specific episode's assets
+        string baseEpisodePath = Path.Combine(Application.dataPath, "Resources", "Episodes", episodeIdToGenerate);
+        // New: Define the output directory for transcripts within the episode's folder
+        string outputDirectory = Path.Combine(baseEpisodePath, "transcript");
         string showId = "unknown_show"; // Default value
 
         try
@@ -116,7 +129,7 @@ https://x.com/ai16zdao
                 return;
             }
 
-            // Ensure the output directory exists
+            // Ensure the new output directory exists
             if (!Directory.Exists(outputDirectory))
             {
                 Directory.CreateDirectory(outputDirectory);
@@ -128,9 +141,10 @@ https://x.com/ai16zdao
 
             // Construct filename: ShowID_EpisodeID_youtubetranscript.txt
             string outputFileName = $"{showId}_{targetEpisode.id}_youtubetranscript.txt";
-            // Output path relative to Assets/Resources/
-            string outputFilePathRelative = Path.Combine("Transcripts", outputFileName);
+            // New: Full path to the output file in the new directory
             string fullOutputFilePath = Path.Combine(outputDirectory, outputFileName);
+            // New: Relative path for AssetDatabase import
+            string relativePathForImport = Path.Combine("Resources", "Episodes", episodeIdToGenerate, "transcript", outputFileName);
 
 
             StringBuilder transcriptBuilder = new StringBuilder();
@@ -158,11 +172,11 @@ https://x.com/ai16zdao
             // Write to file
             File.WriteAllText(fullOutputFilePath, transcriptBuilder.ToString());
 
-            //Debug.Log($"Successfully generated transcript for episode '{episodeIdToGenerate}' at: Assets/Resources/{outputFilePathRelative}");
+            Debug.Log($"Successfully generated transcript for episode '{episodeIdToGenerate}' at: Assets/{relativePathForImport}");
 
             #if UNITY_EDITOR
             // Import or refresh the asset in the Unity Editor so it appears
-            UnityEditor.AssetDatabase.ImportAsset(Path.Combine("Assets", "Resources", outputFilePathRelative));
+            UnityEditor.AssetDatabase.ImportAsset(Path.Combine("Assets", relativePathForImport));
             UnityEditor.AssetDatabase.Refresh();
             #endif
 
@@ -202,6 +216,7 @@ https://x.com/ai16zdao
     {
         Debug.Log($"Received OnEpisodeComplete event for {completionData.EpisodeId}. Generating transcript.", this);
         // Call the existing generation method with data from the event
+        // Ensure completionData.JsonFilePath is absolute or correctly handled by GenerateTranscript
         GenerateTranscript(completionData.JsonFilePath, completionData.EpisodeId);
     }
 

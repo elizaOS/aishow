@@ -129,10 +129,21 @@ namespace ShowRunner.Utility
             var controllerSettings = ScriptableObject.CreateInstance<RecorderControllerSettings>();
             m_RecorderController = new RecorderController(controllerSettings);
 
-            var mediaOutputFolder = new DirectoryInfo(Path.Combine(Application.dataPath, "..", "ShowRecordings"));
+            string episodeId = "UnknownEpisode";
+            if (m_ShowRunnerInstance != null)
+            {
+                episodeId = m_ShowRunnerInstance.GetCurrentEpisodeId() ?? "UnknownEpisode";
+            }
+            
+            // Define the new path structure
+            var mediaOutputFolder = new DirectoryInfo(Path.Combine(Application.dataPath, "Resources", "Episodes", episodeId, "realtime-recording"));
+            
             if (!mediaOutputFolder.Exists)
             {
                 mediaOutputFolder.Create();
+                 #if UNITY_EDITOR
+                UnityEditor.AssetDatabase.Refresh(); // Refresh to show the new folder in Unity Editor
+                #endif
             }
 
             m_Settings = ScriptableObject.CreateInstance<MovieRecorderSettings>();
@@ -154,13 +165,8 @@ namespace ShowRunner.Utility
                 OutputHeight = outputHeight
             };
 
-            string episodeId = "UnknownEpisode";
-            if (m_ShowRunnerInstance != null)
-            {
-                episodeId = m_ShowRunnerInstance.GetCurrentEpisodeId() ?? "UnknownEpisode";
-            }
             string timestamp = DateTime.Now.ToString("yyyyMMdd_HHmmss");
-            string fileName = $"{episodeId}_{timestamp}";
+            string fileName = $"{episodeId}_{timestamp}"; // Filename itself still includes episodeId for clarity
             m_CurrentRecordingPath = Path.Combine(mediaOutputFolder.FullName, fileName);
             m_Settings.OutputFile = m_CurrentRecordingPath; 
 
@@ -219,15 +225,16 @@ namespace ShowRunner.Utility
                 return null;
 
             // Cast to CoreEncoderSettings to access Codec property
-            CoreEncoderSettings encoderSettings = m_Settings.EncoderSettings as CoreEncoderSettings;
+            CoreEncoderSettings encoderSettings = m_Settings.EncoderSettings as CoreEncoderSettings; 
+
             if (encoderSettings == null)
             {
                 Debug.LogWarning("ShowRecorder: Could not cast EncoderSettings to CoreEncoderSettings. Cannot determine file extension.");
                 return new FileInfo(m_Settings.OutputFile + ".unknown"); // Fallback
             }
-
+            
             string extension = "." + encoderSettings.Codec.ToString().ToLower();
-            if(encoderSettings.Codec == CoreEncoderSettings.OutputCodec.WEBM) // Changed to WEBM (all caps)
+            if(encoderSettings.Codec == CoreEncoderSettings.OutputCodec.WEBM) 
             {
                 extension = ".webm";
             }
@@ -236,6 +243,11 @@ namespace ShowRunner.Utility
             {
                 extension = ".mp4";
             }
+            // Add other codecs as necessary, e.g., ProRes
+            // else if (encoderSettings.Codec == CoreEncoderSettings.OutputCodec.ProRes)
+            // {
+            //     extension = ".mov"; 
+            // }
 
             return new FileInfo(m_Settings.OutputFile + extension);
         }

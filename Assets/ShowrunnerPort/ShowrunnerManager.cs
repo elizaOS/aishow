@@ -291,23 +291,36 @@ public class ShowrunnerManager : MonoBehaviour
 
         try
         {
-            string directoryPath = Path.Combine(Application.dataPath, "Resources", "Episodes");
-            if (!Directory.Exists(directoryPath))
+            // Original save path
+            string baseDirectoryPath = Path.Combine(Application.dataPath, "Resources", "Episodes");
+            if (!Directory.Exists(baseDirectoryPath))
             {
-                Directory.CreateDirectory(directoryPath);
-                Debug.Log($"[SaveShowConfigToFile] Created directory: {directoryPath}");
+                Directory.CreateDirectory(baseDirectoryPath);
+                Debug.Log($"[SaveShowConfigToFile] Created directory: {baseDirectoryPath}");
             }
 
-            // Filename: ShowID_EpisodeID.json (e.g., aipodcast_S1E1.json)
-            // This saves the *entire ShowConfig* containing the new episode.
-            string sanitizedShowName = configToSave.name.Replace(" ", "_"); // New: Sanitize name
-            sanitizedShowName = Regex.Replace(sanitizedShowName, @"[^a-zA-Z0-9_]", ""); // New: Remove invalid chars
-            string filename = $"{sanitizedShowName}_{episodeIdForFilename}.json"; // New: Use sanitized name
-            string filePath = Path.Combine(directoryPath, filename);
+            string sanitizedShowName = configToSave.name.Replace(" ", "_");
+            sanitizedShowName = Regex.Replace(sanitizedShowName, @"[^a-zA-Z0-9_]", "");
+            string filename = $"{sanitizedShowName}_{episodeIdForFilename}.json";
+            
+            // Save to the original location (root of Episodes folder)
+            string originalFilePath = Path.Combine(baseDirectoryPath, filename);
+            ShowGeneratorConfigLoader.SaveToJson(configToSave, originalFilePath);
+            Debug.Log($"[SaveShowConfigToFile] Successfully saved ShowConfig to original location: {originalFilePath}");
 
-            // Use the loader's SaveToJson, which now wraps with 'config'
-            ShowGeneratorConfigLoader.SaveToJson(configToSave, filePath);
-            Debug.Log($"[SaveShowConfigToFile] Successfully saved ShowConfig with new episode to: {filePath}");
+            // New: Save a copy to the episode-specific folder
+            if (episodeIdForFilename != "UnknownEpisode") // Avoid creating "UnknownEpisode" folder if ID was bad
+            {
+                string episodeSpecificDirectoryPath = Path.Combine(baseDirectoryPath, episodeIdForFilename);
+                if (!Directory.Exists(episodeSpecificDirectoryPath))
+                {
+                    Directory.CreateDirectory(episodeSpecificDirectoryPath);
+                    Debug.Log($"[SaveShowConfigToFile] Created episode-specific directory: {episodeSpecificDirectoryPath}");
+                }
+                string copyFilePath = Path.Combine(episodeSpecificDirectoryPath, filename);
+                ShowGeneratorConfigLoader.SaveToJson(configToSave, copyFilePath);
+                Debug.Log($"[SaveShowConfigToFile] Successfully saved ShowConfig copy to: {copyFilePath}");
+            }
             
             #if UNITY_EDITOR
             UnityEditor.AssetDatabase.Refresh();

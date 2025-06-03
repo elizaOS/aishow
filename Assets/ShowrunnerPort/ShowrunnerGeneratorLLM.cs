@@ -1,3 +1,4 @@
+#nullable enable
 using UnityEngine;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,35 +17,35 @@ namespace ShowGenerator
     [System.Serializable]
     public class ClaudeMessage
     {
-        public string role;
-        public string content;
+        public string role = string.Empty;
+        public string content = string.Empty;
     }
 
     [System.Serializable]
     public class ClaudeApiRequestPayload
     {
         public string model = "claude-3-opus-20240229"; // Default, can be overridden by ShowrunnerManager settings
-        public List<ClaudeMessage> messages;
+        public List<ClaudeMessage> messages = new List<ClaudeMessage>();
         public int max_tokens = 4096; // Increased from 2048 to allow for longer episode JSON
-        public string system; // Field for the system prompt
+        public string system = string.Empty; // Field for the system prompt
         // Add other parameters like temperature if needed
     }
 
     [System.Serializable]
     public class ClaudeApiResponseContent
     {
-        public string type;
-        public string text; // This is where the generated episode JSON string will be
+        public string type = string.Empty;
+        public string text = string.Empty; // This is where the generated episode JSON string will be
     }
 
     [System.Serializable]
     public class ClaudeApiResponse
     {
-        public string id;
-        public string type;
-        public string role;
-        public string model;
-        public List<ClaudeApiResponseContent> content;
+        public string id = string.Empty;
+        public string type = string.Empty;
+        public string role = string.Empty;
+        public string model = string.Empty;
+        public List<ClaudeApiResponseContent> content = new List<ClaudeApiResponseContent>();
         // Add usage, stop_reason, stop_sequence if needed for more detailed handling
     }
 
@@ -53,7 +54,7 @@ namespace ShowGenerator
         private const string DirectClaudeApiUrl = "https://api.anthropic.com/v1/messages";
         private const string ClaudeApiVersion = "2023-06-01";
 
-        private async Task<string> FetchExternalDataAsync(string url)
+        private async Task<string?> FetchExternalDataAsync(string url)
         {
             using (UnityWebRequest webRequest = UnityWebRequest.Get(url))
             {
@@ -79,18 +80,18 @@ namespace ShowGenerator
         }
 
         // Simplified ProcessShortcodesAsync
-        private async Task<string> ProcessShortcodesAsync(string prompt, bool extractOnly = false)
+        private async Task<string?> ProcessShortcodesAsync(string prompt, bool extractOnly = false)
         {
             if (extractOnly)
             {
-                var match = Regex.Match(prompt, @"\[externalData src=['""]([^'""]+)['""]\]");
+                var match = Regex.Match(prompt, @"\[externalData src=['\""]([^'\""]+)['\""]\]");
                 if (match.Success)
                 {
                     string targetUrl = match.Groups[1].Value;
                     if (targetUrl.Contains("elizaos.github.io"))
                     {
                         Debug.Log("Fetching external data");
-                        string externalDataJson = await FetchExternalDataAsync(targetUrl);
+                        string? externalDataJson = await FetchExternalDataAsync(targetUrl);
                         if (!string.IsNullOrEmpty(externalDataJson))
                         {
                             StringBuilder sb = new StringBuilder();
@@ -101,19 +102,19 @@ namespace ShowGenerator
                         else
                         {
                             Debug.LogWarning("Failed to fetch external data");
-                            return string.Empty;
+                            return string.Empty; // Return empty string instead of null if fetch failed but was expected
                         }
                     }
                     else
                     {
                         Debug.LogWarning("External data URL not recognized");
-                        return string.Empty;
+                        return string.Empty; // Return empty string if URL not recognized
                     }
                 }
                 else
                 {
                     Debug.Log("No external data tags found");
-                    return string.Empty;
+                    return string.Empty; // Return empty string if no tags found
                 }
             }
             else
@@ -134,7 +135,7 @@ namespace ShowGenerator
             return s.Split(',').Select(p => p.Trim()).Where(p => !string.IsNullOrEmpty(p)).ToList();
         }
 
-        public async Task<ShowEpisode> GenerateEpisode(ShowConfig config, ShowGenerator.ShowGeneratorApiKeys apiKeys, bool useWrapper, bool useCustomAffixes = false, string customPrefix = "", string customSuffix = "", ShowrunnerManager? manager = null)
+        public async Task<ShowEpisode?> GenerateEpisode(ShowConfig config, ShowGenerator.ShowGeneratorApiKeys apiKeys, bool useWrapper, bool useCustomAffixes = false, string customPrefix = "", string customSuffix = "", ShowrunnerManager? manager = null)
         {
             if (config == null)
             {
@@ -147,7 +148,7 @@ namespace ShowGenerator
                 return null;
             }
 
-            string apiUrl = useWrapper ? apiKeys.claudeWrapperUrl : DirectClaudeApiUrl;
+            string? apiUrl = useWrapper ? apiKeys.claudeWrapperUrl : DirectClaudeApiUrl;
             if (string.IsNullOrEmpty(apiUrl))
             {
                 Debug.LogError("API URL is not configured");
@@ -165,19 +166,35 @@ namespace ShowGenerator
             }
 
             // 1. Main prompt/instructions
-            string rawConfigEpisodePrompt = config.prompts != null && config.prompts.ContainsKey("episode") ? config.prompts["episode"] : "Generate a new episode.";
-            if (string.IsNullOrEmpty(rawConfigEpisodePrompt))
+            string rawConfigEpisodePrompt;
+            if (config.prompts != null && config.prompts.TryGetValue("episode", out string? episodePromptValueFromDict) && !string.IsNullOrEmpty(episodePromptValueFromDict))
             {
-                Debug.LogWarning("Episode prompt is missing or empty");
-                rawConfigEpisodePrompt = "Generate a new creative episode based on the provided config. Follow all instructions regarding content, data usage, and JSON structure provided in the main prompt.";
+                rawConfigEpisodePrompt = episodePromptValueFromDict;
+            }
+            else
+            {
+                rawConfigEpisodePrompt = "Generate a new episode."; // Default value
+                if (config.prompts == null)
+                {
+                    Debug.LogWarning("Config.prompts is null. Using default episode prompt.");
+                }
+                else if (!config.prompts.ContainsKey("episode"))
+                {
+                     Debug.LogWarning("Episode prompt key 'episode' not found in config.prompts. Using default episode prompt.");
+                }
+                else if (string.IsNullOrEmpty(config.prompts["episode"])) // Safe to access if Key is present
+                {
+                    Debug.LogWarning("Episode prompt is present but empty in config.prompts. Using default episode prompt.");
+                }
             }
             promptBuilder.AppendLine(rawConfigEpisodePrompt);
+
 
             // 2. External data (if present from [externalData] shortcode)
             bool hasShortcodes = rawConfigEpisodePrompt.Contains("[externalData src='") || rawConfigEpisodePrompt.Contains("[externalData src=\"");
             if (hasShortcodes)
             {
-                string extractedExternalData = await ProcessShortcodesAsync(rawConfigEpisodePrompt, true);
+                string? extractedExternalData = await ProcessShortcodesAsync(rawConfigEpisodePrompt, true);
                 if (!string.IsNullOrEmpty(extractedExternalData))
                 {
                     promptBuilder.AppendLine();
@@ -256,8 +273,8 @@ namespace ShowGenerator
             {
                 try
                 {
-                    ShowEpisode pilotCopy = JsonConvert.DeserializeObject<ShowEpisode>(JsonConvert.SerializeObject(config.pilot));
-                    if (pilotCopy.scenes != null)
+                    ShowEpisode? pilotCopy = JsonConvert.DeserializeObject<ShowEpisode>(JsonConvert.SerializeObject(config.pilot));
+                    if (pilotCopy != null && pilotCopy.scenes != null) // Added null check for pilotCopy
                     {
                         foreach (var scene in pilotCopy.scenes)
                         {
@@ -285,12 +302,16 @@ namespace ShowGenerator
             }
 
             // 4. Config JSON (without pilot/prompts)
-            ShowConfig configForPayload = JsonConvert.DeserializeObject<ShowConfig>(JsonConvert.SerializeObject(config));
-            configForPayload.pilot = null;
-            configForPayload.prompts = null;
-            string configJsonString = JsonConvert.SerializeObject(configForPayload, Formatting.Indented);
-            promptBuilder.AppendLine();
-            promptBuilder.AppendLine($"CONFIG:\n{configJsonString}");
+            ShowConfig? configForPayload = JsonConvert.DeserializeObject<ShowConfig>(JsonConvert.SerializeObject(config));
+            if (configForPayload != null)
+            {
+                configForPayload.pilot = null;
+                configForPayload.prompts = null;
+                string configJsonString = JsonConvert.SerializeObject(configForPayload, Formatting.Indented);
+                promptBuilder.AppendLine();
+                promptBuilder.AppendLine($"CONFIG:\n{configJsonString}");
+            }
+
 
             // 5. Final instruction
             promptBuilder.AppendLine();
@@ -377,7 +398,7 @@ namespace ShowGenerator
                     {
                         // Parse the LLM response as a ClaudeApiResponse
                         var apiResponse = JsonConvert.DeserializeObject<ClaudeApiResponse>(responseText);
-                        if (apiResponse?.content != null && apiResponse.content.Count > 0)
+                        if (apiResponse?.content != null && apiResponse.content.Count > 0 && apiResponse.content[0] != null)
                         {
                             string episodeJson = apiResponse.content[0].text;
                             var episode = JsonConvert.DeserializeObject<ShowEpisode>(episodeJson);
@@ -385,7 +406,7 @@ namespace ShowGenerator
                         }
                         else
                         {
-                            Debug.LogError("API response content is null or empty");
+                            Debug.LogError("API response content is null, empty, or first element is null");
                             return null;
                         }
                     }
@@ -411,7 +432,7 @@ namespace ShowGenerator
         // New method to test the Claude endpoint with a simple "Hi" message
         public async Task<string> TestClaudeEndpointAsync(string wrapperUrlFromManager, string llmApiKey, bool useWrapper, ShowGenerator.ShowGeneratorApiKeys apiKeys)
         {
-            string effectiveApiUrl;
+            string? effectiveApiUrl;
             if (useWrapper)
             {
                 effectiveApiUrl = wrapperUrlFromManager;
@@ -476,8 +497,9 @@ namespace ShowGenerator
                 {
                     Debug.LogError($"[LLM Test] Error: {req.error}");
                     Debug.LogError($"[LLM Test] Status Code: {req.responseCode}");
-                    Debug.LogError($"[LLM Test] Body: {req.downloadHandler.text}");
-                    return $"Error: {req.responseCode} - {req.error}. Body: {req.downloadHandler.text}";
+                    string responseBody = req.downloadHandler?.text ?? "N/A";
+                    Debug.LogError($"[LLM Test] Body: {responseBody}");
+                    return $"Error: {req.responseCode} - {req.error}. Body: {responseBody}";
                 }
             }
         }
@@ -487,7 +509,7 @@ namespace ShowGenerator
     [System.Serializable]
     public class ErrorResponseWrapper
     {
-        public string error;
-        public string type;
+        public string error = string.Empty;
+        public string type = string.Empty;
     }
 } 

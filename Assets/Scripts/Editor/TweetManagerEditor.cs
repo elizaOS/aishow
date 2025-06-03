@@ -7,7 +7,7 @@ public class TweetManagerEditor : Editor
 {
     // Editable fields for testing in the inspector
     private Texture profilePicTex;
-    private string name = "";
+    private new string name = "";
     private string url = "";
     private string date = "";
     private string tweet = "";
