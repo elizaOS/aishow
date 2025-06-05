@@ -452,6 +452,6 @@ public class ShowrunnerManager : MonoBehaviour
             return "Error: API Keys Config not assigned.";
         }
         // Pass the necessary parts from apiKeysConfig for the test
-        return await generatorLLM.TestClaudeEndpointAsync(apiKeysConfig.claudeWrapperUrl, apiKeysConfig.llmApiKey, useWrapperEndpoints, apiKeysConfig);
+        return await generatorLLM.TestClaudeEndpointAsync(apiKeysConfig.claudeWrapperUrl, apiKeysConfig.anthropicApiKey, useWrapperEndpoints, apiKeysConfig);
     }
 } 

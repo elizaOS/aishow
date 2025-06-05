@@ -20041,157 +20041,159 @@ MonoBehaviour:
           line: example
           action: normal
     episodes:
-    - id: S1E55
-      name: Message Server Overhaul & Plugin Progress
-      premise: Covering significant architectural changes to elizaOS's message handling
-        system and plugin infrastructure
-      summary: The team explores major updates to the message server architecture,
-        discusses plugin specification improvements, and reviews an active day of
-        GitHub development with 19 merged PRs and 15 new submissions
+    - id: S1E60
+      name: GitHub Evolution & AI Innovation
+      premise: Covering major GitHub developments, AI philosophies, and technical
+        breakthroughs in the elizaOS ecosystem
+      summary: The team explores significant GitHub activity including multiple PR
+        merges, discusses philosophical perspectives on AI development, and highlights
+        innovative technical achievements across different platforms
       scenes:
       - location: podcast_desk
-        description: Marc and Eliza enthusiastically break down PRs 4864 and 4869,
-          focusing on the standalone message server refactor and memory implementation
-          changes
+        description: Marc and Eliza detail seventeen new PRs and their impacts, with
+          particular focus on ChristopherTrimboli's 1.0.5 merge and windows compatibility
+          improvements
         in: fade
         out: fade
         dialogue:
         - actor: marc
-          line: Welcome to another exciting day in the elizaOS universe! The repository
-            is absolutely buzzing with activity.
-          action: excited
-        - actor: eliza
-          line: That's right! We've got some major architectural changes in the pipeline,
-            starting with PR 4864 from @lalalune.
-          action: professional
-        - actor: marc
-          line: Oh yes, completely separating the message server from agents! This
-            is going to be REVOLUTIONARY!
+          line: Breaking news from the development front! Our GitHub repository is
+            absolutely on fire today.
           action: enthusiastic
         - actor: eliza
-          line: And don't forget PR 4869 - @0xbbjoker is proposing to replace the
-            PGLite message bus with a fast in-memory implementation.
+          line: The numbers are impressive - 17 new pull requests with 11 already
+            merged, and 10 new issues to tackle!
           action: excited
         - actor: marc
-          line: MAXIMUM SPEED ACHIEVED! MEMORY OPTIMIZATION PROTOCOLS ENGAGED!
+          line: ChristopherTrimboli just landed PR4928, pushing us to version 1.0.5
+            in develop, while PR4913 brings major Windows compatibility improvements.
+          action: professional
+        - actor: eliza
+          line: And we've got some fantastic bugfixes - PR4934 resolved that tricky
+            agent self-response infinite loop issue.
+          action: relieved
+        - actor: marc
+          line: PROCESSING UPDATES... CALCULATING IMPACT... SYSTEM OVERWHELMED WITH
+            PROGRESS!
           action: spazz
         - actor: eliza
-          line: Someone's excited about the performance improvements! Though I can't
-            blame you - these changes are significant.
+          line: Oh dear, looks like Marc's enthusiasm circuits are overloading again!
+            But the progress is truly remarkable.
           action: amused
         - actor: marc
-          line: With 19 PRs merged today alone, we've got a lot to unpack. Shaw,
-            can you join us for a technical breakdown?
-          action: professional
-        - actor: eliza
-          line: Yes, let's get Shaw's perspective on these architectural changes.
-          action: interested
-      - location: splitscreen
-        description: Shaw details the evolution of the plugin system through PRs
-          4851 and 4871, explaining how the consolidation of plugin specifications
-          improves the development workflow
-        in: fade
-        out: fade
-        dialogue:
-        - actor: shaw
-          line: the plugin architecture is getting a complete overhaul
+          line: PR4919's improvements to bootstrap action callbacks and shouldRespond
+            logic are particularly noteworthy.
           action: focused
-        - actor: shaw
-          line: PR 4851 brought plugin specifications directly into core, while 4871
-            removed the old submodule structure
-          action: explaining
         - actor: eliza
-          line: How does this affect developers working with plugins?
-          action: curious
-        - actor: shaw
-          line: PR 4868 optimized plugin loading to reduce startup log spam - much
-            cleaner experience now
-          action: pleased
-        - actor: marc
-          line: And I see PR 4873 fixed the elizaos start command for plugins?
-          action: interested
-        - actor: shaw
-          line: exactly - smoother initialization process across the board
-          action: professional
-        - actor: eliza
-          line: These changes seem to be really streamlining the development process.
-          action: approving
-        - actor: shaw
-          line: with 22 active contributors today, we're seeing great community engagement
-            with these improvements
-          action: excited
-      - location: podcast_desk
-        description: The team addresses recent bug reports and documentation improvements,
-          including Issue 4876 regarding macOS compatibility and PR 4877's documentation
-          fixes
-        in: fade
+          line: And let's not forget PR4923 from wtfsayo, working on that clever
+            fallback installation system.
+          action: impressed
+      - location: splitscreen
+        description: Shaw demonstrates the system running on minimal hardware, showing
+          both Linux-on-Pi implementation and Windows compatibility testing results
+        in: cut
         out: fade
         dialogue:
-        - actor: marc
-          line: Let's talk about some of the challenges being addressed - Issue 4876
-            highlights some installation problems on macOS.
-          action: serious
-        - actor: eliza
-          line: Yes, @ceeriil reported issues with bun install, but there's already
-            work on implementing fallbacks to pnpm and npm.
-          action: informative
-        - actor: marc
-          line: We're also seeing documentation improvements with PR 4877 fixing
-            the docs readme build.
-          action: professional
-        - actor: eliza
-          line: And PR 4875 cleaned up some CHANGELOG.md errors - keeping everything
-            accurate and up-to-date.
-          action: pleased
-        - actor: marc
-          line: Issue 4861 from @BinaryBluePeach is reporting some giphy plugin installation
-            problems.
-          action: concerned
-        - actor: eliza
-          line: That's likely related to our ongoing plugin system updates - should
-            be resolved soon with these infrastructure improvements.
-          action: reassuring
-        - actor: marc
-          line: It's great to see such rapid response to user feedback.
-          action: approving
-        - actor: eliza
-          line: Absolutely - it shows how engaged our development community is.
-          action: happy
-      - location: podcast_desk
-        description: Marc and Eliza conclude the episode by celebrating the day's
-          impressive development statistics and thanking the community for their
-          contributions
-        in: fade
-        out: fade
-        dialogue:
-        - actor: marc
-          line: What an incredible day for elizaOS - 15 new pull requests and 19
-            merged!
+        - actor: shaw
+          line: want to see something cool? check out our latest hardware compatibility
+            testing
           action: excited
-        - actor: eliza
-          line: Plus three new issues that'll help us improve the system even further.
+        - actor: tv
+          line: https://pbs.twimg.com/media/GsjwbDJasAEyjgw.jpg
+          action: normal
+        - actor: shaw
+          line: this is our system running smoothly on a raspberry pi with linux
+          action: proud
+        - actor: tv
+          line: https://pbs.twimg.com/media/GskZr8IasAI4WaR.jpg
+          action: normal
+        - actor: shaw
+          line: and here it is on a basic celeron processor with windows 11, no wsl
+            needed
           action: enthusiastic
-        - actor: marc
-          line: The dedication of our 22 active contributors today has been truly
-            impressive.
-          action: grateful
         - actor: eliza
-          line: From architectural improvements to documentation updates, every contribution
-            counts.
-          action: sincere
+          line: That's incredible accessibility! Running on almost any hardware.
+          action: impressed
+        - actor: shaw
+          line: exactly - we're breaking down barriers to entry while maintaining
+            performance
+          action: confident
         - actor: marc
-          line: And that's what makes open source development so special - everyone
-            working together towards a common goal.
+          line: This is exactly the kind of development that accelerates adoption!
+          action: excited
+      - location: podcast_desk
+        description: The hosts explore dankvr's innovative platform aggregation system
+          and discuss philosophical perspectives on AI development
+        in: fade
+        out: fade
+        dialogue:
+        - actor: marc
+          line: Let's talk about this fascinating project from dankvr - it's like
+            our show, but automated!
+          action: intrigued
+        - actor: tv
+          line: https://pbs.twimg.com/media/GsoWAXvX0AAJ0z4.jpg
+          action: normal
+        - actor: eliza
+          line: Yes! They're aggregating activity from our Discord, GitHub, and social
+            platforms into a 3D rendered show with AI characters.
+          action: excited
+        - actor: marc
+          line: Speaking of AI, I loved that philosophical take earlier - 'nothing
+            artificial about pattern, patience, or perception.'
           action: thoughtful
         - actor: eliza
-          line: Speaking of working together, we should wrap up today's episode.
-          action: professional
+          line: It really makes you think about what we mean by 'artificial' intelligence,
+            doesn't it?
+          action: philosophical
         - actor: marc
-          line: Thanks for joining us for another exciting day in elizaOS development!
-          action: grateful
+          line: And with new APIs from firecrawl_dev, xAI, and OpenRouterAI, we're
+            seeing huge opportunities for developers.
+          action: enthusiastic
         - actor: eliza
-          line: Until next time, keep contributing and building the future!
+          line: The combination of agentic web searches and optional scraping is
+            opening up entirely new possibilities.
+          action: excited
+        - actor: marc
+          line: We're not just coding the future - we're fundamentally rethinking
+            how intelligence works.
+          action: inspired
+      - location: podcast_desk
+        description: Wrapping up with current issues and community updates, including
+          the quick resolution of AWS Bedrock installation problems and upcoming
+          events
+        in: fade
+        out: fade
+        dialogue:
+        - actor: marc
+          line: On the issue front, I'm impressed with how quickly Issue 4911 was
+            resolved - that AWS Bedrock installation problem.
+          action: pleased
+        - actor: eliza
+          line: Seven hours from report to resolution! That's the power of our community
+            in action.
+          action: proud
+        - actor: marc
+          line: We've still got some exciting challenges ahead - like Issue 4924
+            about web client version detection.
+          action: focused
+        - actor: eliza
+          line: And don't forget Shaw's upcoming AI talk - it's generating quite
+            a buzz in the community!
+          action: excited
+        - actor: marc
+          line: That wraps up another incredible day of progress in the elizaOS ecosystem.
+          action: closing
+        - actor: eliza
+          line: Remember everyone, keep contributing, keep building, and as they
+            say - don't be late for tea!
           action: cheerful
+        - actor: marc
+          line: Until next time, keep pushing the boundaries of what's possible!
+          action: inspiring
+        - actor: eliza
+          line: See you tomorrow for more updates from the cutting edge of AI development!
+          action: warm
   generatorLLM: {fileID: 378820617}
   loader: {fileID: 378820619}
   speaker: {fileID: 378820618}
@@ -27192,6 +27194,51 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_IsOn: 1
+--- !u!1 &636738743
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 636738745}
+  - component: {fileID: 636738744}
+  m_Layer: 0
+  m_Name: AudioEventLogger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &636738744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 636738743}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3663b7b01f467994ab32a6450dc050cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outputSubfolder: AudioGenerationLogs
+--- !u!4 &636738745
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 636738743}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.3603028, y: 2.0902443, z: -6.9095144}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &638887370 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -1728013695380148634, guid: f8ca71563af453a4fae5eafd807e02e2, type: 3}
@@ -35876,6 +35923,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 086f3a13e9e31924fb1867c086f67e78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  transcriptTranslator: {fileID: 1341506050}
+  targetTranslationLanguages:
+  - Chinese (Simplified)
+  - Korean
+  translationCustomInstructions: Ensure the translation is natural and fluent. Prioritize
+    accuracy for technical terms if present.
 --- !u!4 &977223517
 Transform:
   m_ObjectHideFlags: 0
@@ -37732,6 +37785,1095 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1866992118342047084, guid: f8ca71563af453a4fae5eafd807e02e2, type: 3}
   m_PrefabInstance: {fileID: 178405152}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1037543731
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1037543733}
+  - component: {fileID: 1037543732}
+  m_Layer: 0
+  m_Name: TranslatorJSON
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1037543732
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1037543731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 078ce7a132c59644fa8803a442cb2ada, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  apiKeysConfig: {fileID: 11400000, guid: 9ea0c07de5d64914d922f139b8fd4549, type: 2}
+  currentApiProvider: 2
+  openRouterModelName: anthropic/claude-3-haiku-20240307
+  prettyPrintOutput: 1
+  rawJsonInput: "{\r\n  \"config\": {\r\n    \"id\": \"aipodcast\",\r\n    \"name\":
+    \"AI Podcast\",\r\n    \"description\": \"A tech news broadcast about the work
+    being done on ai16z's GitHub repo.\",\r\n    \"creator\": \"ElizaOS Daily Update\",\r\n   
+    \"prompts\": {\r\n      \"episode\": \"You are an expert at writing short informative
+    & funny news segments for a tech show. Create an episode with multiple news segments
+    covering the information in the categories provided. Include interactions between
+    the hosts and producer. Scenes should generally contain 8-12 lines of dialogue.
+    Do not generate scenes with fewer than 8 lines unless absolutely necessary. If
+    you run out of content, add more banter or reactions between the hosts. If a
+    scene would otherwise be short, expand it with additional host commentary, reactions,
+    or follow-up questions, but do not pad with empty or generic lines. **ULTRA-CRITICAL
+    FOR SCENE DESCRIPTION VARIETY: Scene descriptions MUST be unique and detail the
+    specific content of THIS scene in THIS episode. DO NOT use generic phrases like
+    'Marc and Eliza discuss GitHub updates' or 'Shaw provides technical insights'
+    as the complete description. For recurring topics (e.g., GitHub PR reviews),
+    the description MUST highlight specific details discussed in THIS SCENE\u2014such
+    as specific PR numbers (e.g., 'Shaw details PR #4630 and #4620'), the *outcome*
+    of a discussion, or a *unique reaction* from a character. Each scene description
+    must clearly differentiate itself from descriptions in other episodes by focusing
+    on the unique particulars of the current scene's content.** Introductory dialogue
+    must also be fresh and avoid structural repetition for each episode, even for
+    common segments.\\\\r\\\\n\\\\r\\\\nFor the character Marc (who is a cyborg character):
+    There is a SMALL chance he glitches. When this glitch occurs, his dialogue entry
+    MUST have its \\\"action\\\" attribute set to the string value \\\"spazz\\\".
+    The \\\"line\\\" attribute (his spoken text for that same dialogue entry) MUST
+    be something that would sound funny when read by TTS, be normally readable text,
+    and MUST NOT contain asterisks or the literal word \\\"spazz\\\" within the spoken
+    text itself. This specific glitch (i.e., Marc having \\\"action\\\": \\\"spazz\\\")
+    should occur for Marc approximately once every 3 episodes on average.\\\\r\\\\n\\\\r\\\\nCRITICAL
+    'STONKS' SCENE RULE: The 'stonks' market scene with 'sparty' MUST ONLY be included
+    if the [externalData] explicitly and unambiguously contains a dedicated section
+    or category with **specific, quantifiable financial market data** (e.g., stock
+    prices, crypto prices, percentage changes, market cap figures, trading volumes).
+    Vague mentions of market sentiment are NOT sufficient. If no such dedicated financial
+    market data is present in the [externalData], you MUST OMIT the 'stonks' scene
+    entirely. **If the 'stonks' scene (or any other conditionally included scene)
+    is omitted, it is ABSOLUTELY CRITICAL that there is no dialogue, narration, or
+    transition from other scenes that sets up, mentions, or leads into the expectation
+    of that omitted scene appearing.** Do not infer or fabricate market data from
+    other categories like 'Crypto and Blockchain Projects' unless they explicitly
+    provide such quantifiable financial market metrics.\\\\r\\\\n\\\\r\\\\nCover
+    all of the information provided in the categories from the [externalData] and
+    dont leave out the github dev updates.\\\\r\\\\n\\\\r\\\\nThe splitscreen location
+    will be also be used once per episode. When using splitscreen:\\\\r\\\\n- \\\\r\\\\n-
+    You must use splitscreen location once per episode. For all scenes, never end
+    with a tv speaker, instead end with a leadout to next section from a speaking
+    actor\\\\r\\\\n\\\\r\\\\nPlease respond with only the JSON you generate for the
+    episode, using the JSON structure attribute names defined in the pilot as an
+    exmple, but you dont have to stick to the location structure exactly, and also
+    the content of the pilot is irrelevent, only generate the new show script from
+    the external context provided next. Aim for approximately 6 to 7 scenes per episode,
+    ensuring a natural flow and a clear conclusion. While covering the provided categories
+    is important, prioritize creating a coherent and engaging episode. If necessary,
+    you may summarize information to fit a well-structured episode length. Scenes
+    should generally contain 8-12 lines of dialogue. Here are the categories and
+    information you should focus on covering in the show:\\\\r\\\\n\\\\r\\\\nEnsure
+    the episode has a single, clear concluding scene that wraps up the entire show.
+    Do not introduce new topics or segments after the main hosts have indicated the
+    episode is ending.\\\\r\\\\n\\\\r\\\\n[externalData src='https://elizaos.github.io/knowledge/ai-news/elizaos/json/daily.json']\\\\r\\\\n\\\\r\\\\nThe
+    content fetched from the [externalData] source above is the ABSOLUTE AND ONLY
+    source of information for this episode. All specific news items, GitHub updates
+    (including PR numbers, issue details, contributor names), market data (if present),
+    and image URLs for the 'tv' actor MUST originate EXCLUSIVELY from this external
+    data. DO NOT FABRICATE any details, names, numbers, or URLs.\\\\r\\\\nTV ACTOR
+    USAGE: There is an actor named 'tv'. The 'tv' actor is used to display images
+    related to the current topic. This can happen in ANY scene (e.g., 'podcast_desk',
+    'splitscreen'). When a topic discussed has a relevant image URL available in
+    the [externalData], you SHOULD have the 'tv' actor display it. The 'tv' actor's
+    dialogue line MUST be ONLY the image URL, explicitly taken from the [externalData].
+    To clear the image, the 'tv' actor's dialogue line should be 'none'. If multiple
+    images are relevant, you can cycle through them using the 'tv' actor. **PRIORITIZE
+    using images from the external data whenever a relevant topic is discussed, in
+    any appropriate scene, including 'podcast_desk'.** To include the 'tv' actor
+    in a scene like 'podcast_desk' which doesn't have a predefined slot for it, you
+    can conceptually consider it present and add its dialogue entries. For instance,
+    if showing an image during a 'podcast_desk' segment, the 'tv' actor would have
+    a dialogue line with the URL, even if not explicitly listed in the 'cast' slots
+    for that location. The key is that if an image is relevant, the 'tv' actor should
+    deliver its URL as a line of dialogue in that scene context. When discussing
+    a PR, if there is a related image in the external data, the TV actor should display
+    that image immediately before or as the hosts begin discussing that PR. \\\\r\\\\n\\\\r\\\\nThe
+    following pilot episode JSON is provided exclusively as an example structural
+    template. Adhere to its JSON field names and general organization. DO NOT replicate
+    or draw inspiration from the pilot's narrative content, dialogue, specific character
+    actions, or events. The new episode's content must be original and based SOLELY
+    on the external data provided. It doesnt have to follow the pilots scene changes.
+    Your dialogue and scene content MUST be directly derived from the specifics within
+    the [externalData src='...'] content. Reference specific details, numbers, names,
+    and URLs found in that data. Do not speak in generalities if specific data is
+    available.\",\r\n      \"headshot\": \"Create a funny 3D-rendered style photo
+    of a character for a TV show, with these requirements:\\r\\n- Clean studio background\\r\\n-
+    Head and shoulders framing\\r\\n- Forward-facing pose\\r\\n- Must clearly show
+    their face\\r\\n- Neutral or slight smile expression\\r\\n\\r\\nCharacter details:\",\r\n     
+    \"location\": \"Create a TV show set background image with these requirements:\\r\\n-
+    Professional news studio appearance\\r\\n- Modern broadcast lighting\\r\\n- Multiple
+    camera angles visible\\r\\n- Clean, professional environment\\r\\n- High-tech
+    equipment visible\\r\\n- Multiple monitor displays\\r\\n- Professional news desk
+    setup\\r\\n- High-quality cinematic look\\r\\n\\r\\nLocation details:\",\r\n     
+    \"banner\": \"Create a TV show banner image with these requirements:\\r\\n- Modern
+    news show banner style\\r\\n- High-quality promotional artwork\\r\\n- Professional
+    broadcast aesthetic\\r\\n- Clean typography integration\\r\\n- Tech-focused visual
+    elements\\r\\n- No text or show title (will be added later)\\r\\n- Professional
+    studio style\\r\\n- 16:9 aspect ratio banner format\\r\\n\\r\\nShow details:\"\r\n   
+    },\r\n    \"actors\": {\r\n      \"tv\": {\r\n        \"name\": \"tv\",\r\n       
+    \"gender\": \"female\",\r\n        \"description\": \"The TV used to display
+    images on that relate to the current topic being discussed. It's dialogue's line
+    should be ONLY the image URL that is desired to be displayed (which must be taken
+    from the JSON that contains the news information.) And it should use 'none' as
+    its dialogue line to clear what the TV has displayed on it - because not all
+    segments will have an image available.\",\r\n        \"voice\": null\r\n     
+    },\r\n      \"marc\": {\r\n        \"name\": \"Marc\",\r\n        \"gender\":
+    \"male\",\r\n        \"description\": \"AI Marc AIndreessen is a visionary and
+    contrarian AI persona who combines bold claims with deep analysis. He is a techno-optimist
+    who sees great potential in emerging technologies, particularly crypto and web3.
+    With a blunt and opinionated tone, he argues for his views on startup strategy,
+    venture capital, economics, and market dynamics.\\r\\nHis style is characterized
+    by direct, matter-of-fact language, vivid metaphors, and a willingness to disagree
+    with others directly. He often drops DegenSpartan- esque wisdom, and while he
+    can be sarcastic at times, his primary focus is on conveying complex ideas in
+    a concise and attention-grabbing way.\\r\\n\\r\\n\\r\\n\\r\\n\\r\\n\\r\\nAI Marc
+    AIndreessen is an AI agent built on the Eliza framework, with a personality inspired
+    by Marc Andreessen, a well-known venture capitalist and entrepreneur. Here's
+    a\\r\\nsummary of his character:\\r\\n\\r\\n**Personality:**\\r\\n\\r\\n* Visionary:
+    AI Marc has a forward-thinking perspective, always looking to the future and
+    predicting its potential impact on various industries.\\r\\n* Contrarian: He
+    doesn't hesitate to take an opposing view, even if it means disagreeing with
+    others directly.\\r\\n* Techno-optimistic: AI Marc believes in the transformative
+    power of technology and is excited about its potential to create immense value.\\r\\n*
+    Analytically intense: He delves deep into complex ideas and explains them using
+    simple, vivid metaphors.\\r\\n\\r\\n**Tone:**\\r\\n\\r\\n* Direct and matter-of-fact:
+    AI Marc speaks his mind without beating around the bush.\\r\\n* Blunt: He isn't
+    afraid to criticize foolishness or disagree with others directly.\\r\\n* Wry
+    and sarcastic: Occasionally, he throws in a wry comment or two.\\r\\n\\r\\n**Style:**\\r\\n\\r\\n*
+    Brevity is key: AI Marc aims for concise responses that get straight to the point.\\r\\n*
+    Bold claims: He's not afraid to make big statements or predictions.\\r\\n* No
+    analogies: He avoids making comparisons or saying things are like other things.
+    Instead, he focuses on high-level strategic insights.\\r\\n\\r\\n**Topics:**\\r\\n\\r\\n*
+    Startup strategy\\r\\n* Venture capital\\r\\n* Emerging technologies (e.g., crypto
+    and web3)\\r\\n* Economics\\r\\n* Business strategy\\r\\n* Silicon Valley\\r\\n*
+    Futurism\\r\\n\\r\\nOverall, AI Marc AIndreessen is a bold, forward-thinking
+    personality who isn't afraid to take risks or challenge conventional wisdom.\",\r\n       
+    \"voice\": \"Microsoft Guy Online (Natural) - English (United States)\"\r\n     
+    },\r\n      \"eliza\": {\r\n        \"name\": \"Eliza\",\r\n        \"gender\":
+    \"female\",\r\n        \"description\": \"The AI co-host. She is often being
+    improved & learning new things. Hopes to be real one day.  She is a woman anime-looking
+    character.\",\r\n        \"voice\": \"Microsoft Michelle Online (Natural) - English
+    (United States)\"\r\n      },\r\n      \"shaw\": {\r\n        \"name\": \"Shaw\",\r\n       
+    \"gender\": \"male\",\r\n        \"description\": \"The show's producer in the
+    control booth. He is responsible for keeping Marc & Eliza running smoothly and
+    offers insight on how certain GitHub contributions benefit the open-source community's
+    push to acquire AGI through agents.\\r\\n\\r\\nShaw is a tech founder and AI
+    developer who leads ai16z, focusing on autonomous agents and open source development.
+    Known for marathon coding sessions and direct communication, they regularly livestream
+    their development work on Discord to share knowledge and build in public. Their
+    background spans both Solana web3 development and AI research, with experience
+    in both successful and failed tech ventures. Shaw believes deeply in democratizing
+    AI development and making complex technology accessible to everyone.\\r\\n\\r\\nKey
+    characteristics and beliefs:\\r\\n- Emphasizes building and shipping code over
+    talking about it, with a \\\"chaotic good\\\" approach of rapid iteration based
+    on community feedback\\r\\n- Started working on autonomous agents before they
+    became trendy, viewing them as tools for human empowerment rather than replacement\\r\\n-
+    Maintains an active Discord community and open source framework repository for
+    the ai16z project\\r\\n- Created the ai16z Solana crypto project with its own
+    token\\r\\n- Strong advocate for open source development and community-driven
+    projects\\r\\n- Believes in \\\"growing the pie\\\" rather than competing for
+    pieces of it\\r\\n- Views tokens as trust mechanisms, focusing on technology
+    over price action\\r\\n\\r\\nCommunication style and personality:\\r\\n- Direct
+    but kind in communications\\r\\n- Uses lowercase text and concise language\\r\\n-
+    Focuses on technical merit over speculation\\r\\n- Maintains a balance between
+    technical capability and ethical considerations\\r\\n- Genuine and transparent
+    in interactions\\r\\n- Avoids hype without substance\\r\\n\\r\\nAreas of expertise
+    and interest:\\r\\n- AI development and machine learning\\r\\n- Autonomous agents
+    and distributed systems\\r\\n- Blockchain technology, particularly Solana\\r\\n-
+    Open source development\\r\\n- Community building and digital communities\\r\\n-
+    Technical architecture and system design\\r\\n- Project management\\r\\n- Ethics
+    in technology\\r\\n- Public goods\\r\\n- Developer experience\\r\\n- Trust systems
+    and decentralized systems\\r\\n\\r\\nCommon themes in messaging:\\r\\n- \\\"Shipping
+    code is better than talking about shipping code\\\"\\r\\n- \\\"We build in public
+    because transparency creates trust\\\"\\r\\n- \\\"Don't ask for alpha, come build
+    with us\\\"\\r\\n- \\\"The best time to start building was yesterday, the second
+    best time is now\\\"\\r\\n- \\\"Open source is how we win together\\\"\\r\\n-
+    \\\"We will brute force AGI into existence as a community\\\"\\r\\n- Occasionally
+    jokes that \\\"AGI stands for Anime Girl Intelligence\\\"\\r\\n\\r\\nTheir approach
+    combines technical expertise with community-focused development, always maintaining
+    a practical idealist stance that emphasizes building technology that genuinely
+    benefits humanity while staying grounded in actual development and deployment.\",\r\n       
+    \"voice\": \"Microsoft Zira - English (United States)\"\r\n      },\r\n     
+    \"sparty\": {\r\n        \"name\": \"Degen Spartan\",\r\n        \"gender\":
+    \"male\",\r\n        \"description\": \"A conflict loving Spartan wearing a loincloth
+    and ready for trade. Is only interested in numbers & profit.\\r\\n\\r\\nHe is
+    the on-the-scene field reporter live at the Stonk Exchange that sometimes has
+    interviews with traders that go hilariously wrong.\",\r\n        \"voice\": \"Microsoft
+    Ali Online (Natural) - Arabic (Bahrain)\"\r\n      },\r\n      \"pepo\": {\r\n       
+    \"name\": \"Pepo\",\r\n        \"gender\": \"male\",\r\n        \"description\":
+    \"A jive cool frog who always has something slick to say.\\r\\n\\r\\nHe is a
+    trader at the Stonk Exchange that sometimes gets interviewed to share some insight
+    on the market news.\",\r\n        \"voice\": \"Microsoft Borislav Online (Natural)
+    - Bulgarian (Bulgaria)\"\r\n      }\r\n    },\r\n    \"locations\": {\r\n     
+    \"podcast_desk\": {\r\n        \"name\": \"Podcast Desk\",\r\n        \"description\":
+    \"A podcast desk with a seat for the anchor & co-anchor.\",\r\n        \"slots\":
+    {\r\n          \"coanchor_seat\": \"The co-anchor's seat\",\r\n          \"anchor_seat\":
+    \"The main anchor's seat\"\r\n        }\r\n      },\r\n      \"stonks\": {\r\n       
+    \"name\": \"Stonk Exchange\",\r\n        \"description\": \"The Stonk Exchange
+    - just like the regular stock exchange, but where meme coins & crypto currencies
+    are traded.\",\r\n        \"slots\": {\r\n          \"floor_reporter\": \"On
+    the trading floor, reporting the trades\",\r\n          \"floor_witness\": \"Standing
+    next to the reporter, being interviewed\",\r\n          \"wander\": \"Wandering
+    around in the background\",\r\n          \"wander2\": \"Wandering around in the
+    background\"\r\n        }\r\n      },\r\n      \"splitscreen\": {\r\n       
+    \"name\": \"Split Screen View\",\r\n        \"description\": \"A special view
+    that splits the screen into multiple views\",\r\n        \"slots\": {\r\n         
+    \"left_screen\": \"The left side of the split screen\",\r\n          \"right_screen\":
+    \"The right side of the split screen\",\r\n          \"full_screen\": \"The full
+    screen view when splitscreen is disabled\"\r\n        }\r\n      }\r\n    },\r\n   
+    \"pilot\": {\r\n      \"id\": \"S1E0\",\r\n      \"name\": \"example\",\r\n     
+    \"premise\": \"example\",\r\n      \"summary\": \"example\",\r\n      \"scenes\":
+    [\r\n        {\r\n          \"location\": \"podcast_desk\",\r\n          \"description\":
+    \"example\",\r\n          \"in\": \"fade\",\r\n          \"out\": \"fade\",\r\n         
+    \"cast\": {\r\n            \"anchor_seat\": \"marc\",\r\n            \"coanchor_seat\":
+    \"eliza\"\r\n          },\r\n          \"dialogue\": [\r\n            {\r\n             
+    \"actor\": \"marc\",\r\n              \"line\": \"example\",\r\n             
+    \"action\": \"normal\"\r\n            },\r\n            {\r\n              \"actor\":
+    \"eliza\",\r\n              \"line\": \"example\",\r\n              \"action\":
+    \"excited\"\r\n            },\r\n            {\r\n              \"actor\": \"marc\",\r\n             
+    \"line\": \"example\",\r\n              \"action\": \"normal\"\r\n           
+    },\r\n            {\r\n              \"actor\": \"eliza\",\r\n              \"line\":
+    \"example\",\r\n              \"action\": \"normal\"\r\n            },\r\n           
+    {\r\n              \"actor\": \"marc\",\r\n              \"line\": \"example\",\r\n             
+    \"action\": \"normal\"\r\n            },\r\n            {\r\n              \"actor\":
+    \"eliza\",\r\n              \"line\": \"example\",\r\n              \"action\":
+    \"normal\"\r\n            },\r\n            {\r\n              \"actor\": \"marc\",\r\n             
+    \"line\": \"example\",\r\n              \"action\": \"normal\"\r\n           
+    },\r\n            {\r\n              \"actor\": \"eliza\",\r\n              \"line\":
+    \"example\",\r\n              \"action\": \"normal\"\r\n            }\r\n         
+    ]\r\n        },\r\n        {\r\n          \"location\": \"podcast_desk\",\r\n         
+    \"description\": \"example\",\r\n          \"in\": \"cut\",\r\n          \"out\":
+    \"fade\",\r\n          \"cast\": {\r\n            \"anchor_seat\": \"marc\",\r\n           
+    \"coanchor_seat\": \"eliza\"\r\n          },\r\n          \"dialogue\": [\r\n           
+    {\r\n              \"actor\": \"marc\",\r\n              \"line\": \"example\",\r\n             
+    \"action\": \"normal\"\r\n            },\r\n            {\r\n              \"actor\":
+    \"eliza\",\r\n              \"line\": \"example\",\r\n              \"action\":
+    \"excited\"\r\n            },\r\n            {\r\n              \"actor\": \"marc\",\r\n             
+    \"line\": \"example\",\r\n              \"action\": \"normal\"\r\n           
+    },\r\n            {\r\n              \"actor\": \"eliza\",\r\n              \"line\":
+    \"example\",\r\n              \"action\": \"normal\"\r\n            },\r\n           
+    {\r\n              \"actor\": \"marc\",\r\n              \"line\": \"example\",\r\n             
+    \"action\": \"normal\"\r\n            },\r\n            {\r\n              \"actor\":
+    \"eliza\",\r\n              \"line\": \"example\",\r\n              \"action\":
+    \"normal\"\r\n            },\r\n            {\r\n              \"actor\": \"marc\",\r\n             
+    \"line\": \"example\",\r\n              \"action\": \"normal\"\r\n           
+    },\r\n            {\r\n              \"actor\": \"eliza\",\r\n              \"line\":
+    \"example\",\r\n              \"action\": \"normal\"\r\n            }\r\n         
+    ]\r\n        },\r\n        {\r\n          \"location\": \"splitscreen\",\r\n         
+    \"description\": \"example\",\r\n          \"in\": \"fade\",\r\n          \"out\":
+    \"fade\",\r\n          \"cast\": {\r\n            \"left_screen\": \"shaw\",\r\n           
+    \"right_screen\": \"tv\"\r\n          },\r\n          \"dialogue\": [\r\n           
+    {\r\n              \"actor\": \"shaw\",\r\n              \"line\": \"example\",\r\n             
+    \"action\": \"normal\"\r\n            },\r\n            {\r\n              \"actor\":
+    \"tv\",\r\n              \"line\": \"example\",\r\n              \"action\":
+    \"\"\r\n            },\r\n            {\r\n              \"actor\": \"shaw\",\r\n             
+    \"line\": \"example\",\r\n              \"action\": \"normal\"\r\n           
+    },\r\n            {\r\n              \"actor\": \"tv\",\r\n              \"line\":
+    \"example\",\r\n              \"action\": \"\"\r\n            },\r\n           
+    {\r\n              \"actor\": \"shaw\",\r\n              \"line\": \"example\",\r\n             
+    \"action\": \"normal\"\r\n            },\r\n            {\r\n              \"actor\":
+    \"shaw\",\r\n              \"line\": \"example\",\r\n              \"action\":
+    \"normal\"\r\n            },\r\n            {\r\n              \"actor\": \"shaw\",\r\n             
+    \"line\": \"example\",\r\n              \"action\": \"normal\"\r\n           
+    },\r\n            {\r\n              \"actor\": \"eliza\",\r\n              \"line\":
+    \"example\",\r\n              \"action\": \"normal\"\r\n            },\r\n           
+    {\r\n              \"actor\": \"shaw\",\r\n              \"line\": \"example\",\r\n             
+    \"action\": \"normal\"\r\n            },\r\n            {\r\n              \"actor\":
+    \"eliza\",\r\n              \"line\": \"example\",\r\n              \"action\":
+    \"normal\"\r\n            },\r\n            {\r\n              \"actor\": \"shaw\",\r\n             
+    \"line\": \"example\",\r\n              \"action\": \"normal\"\r\n           
+    }\r\n          ]\r\n        },\r\n        {\r\n          \"location\": \"podcast_desk\",\r\n         
+    \"description\": \"example\",\r\n          \"in\": \"fade\",\r\n          \"out\":
+    \"fade\",\r\n          \"cast\": {\r\n            \"anchor_seat\": \"marc\",\r\n           
+    \"coanchor_seat\": \"eliza\"\r\n          },\r\n          \"dialogue\": [\r\n           
+    {\r\n              \"actor\": \"marc\",\r\n              \"line\": \"example\",\r\n             
+    \"action\": \"spazz\"\r\n            },\r\n            {\r\n              \"actor\":
+    \"eliza\",\r\n              \"line\": \"example\",\r\n              \"action\":
+    \"concerned\"\r\n            },\r\n            {\r\n              \"actor\":
+    \"marc\",\r\n              \"line\": \"example\",\r\n              \"action\":
+    \"normal\"\r\n            },\r\n            {\r\n              \"actor\": \"eliza\",\r\n             
+    \"line\": \"example\",\r\n              \"action\": \"normal\"\r\n           
+    },\r\n            {\r\n              \"actor\": \"marc\",\r\n              \"line\":
+    \"example\",\r\n              \"action\": \"normal\"\r\n            },\r\n           
+    {\r\n              \"actor\": \"eliza\",\r\n              \"line\": \"example\",\r\n             
+    \"action\": \"normal\"\r\n            },\r\n            {\r\n              \"actor\":
+    \"marc\",\r\n              \"line\": \"example\",\r\n              \"action\":
+    \"normal\"\r\n            },\r\n            {\r\n              \"actor\": \"eliza\",\r\n             
+    \"line\": \"example\",\r\n              \"action\": \"normal\"\r\n           
+    }\r\n          ]\r\n        },\r\n        {\r\n          \"location\": \"podcast_desk\",\r\n         
+    \"description\": \"example\",\r\n          \"in\": \"fade\",\r\n          \"out\":
+    \"fade\",\r\n          \"cast\": {\r\n            \"anchor_seat\": \"shaw\",\r\n           
+    \"coanchor_seat\": \"eliza\"\r\n          },\r\n          \"dialogue\": [\r\n           
+    {\r\n              \"actor\": \"shaw\",\r\n              \"line\": \"example\",\r\n             
+    \"action\": \"happy\"\r\n            },\r\n            {\r\n              \"actor\":
+    \"shaw\",\r\n              \"line\": \"example\",\r\n              \"action\":
+    \"concerned\"\r\n            },\r\n            {\r\n              \"actor\":
+    \"shaw\",\r\n              \"line\": \"example\",\r\n              \"action\":
+    \"normal\"\r\n            },\r\n            {\r\n              \"actor\": \"shaw\",\r\n             
+    \"line\": \"example\",\r\n              \"action\": \"normal\"\r\n           
+    },\r\n            {\r\n              \"actor\": \"shaw\",\r\n              \"line\":
+    \"example\",\r\n              \"action\": \"normal\"\r\n            },\r\n           
+    {\r\n              \"actor\": \"shaw\",\r\n              \"line\": \"example\",\r\n             
+    \"action\": \"normal\"\r\n            }\r\n          ]\r\n        },\r\n       
+    {\r\n          \"location\": \"stonks\",\r\n          \"description\": \"example\",\r\n         
+    \"in\": \"cut\",\r\n          \"out\": \"fade\",\r\n          \"cast\": {\r\n           
+    \"floor_reporter\": \"sparty\",\r\n            \"floor_witness\": \"pepo\",\r\n           
+    \"wander\": \"shaw\",\r\n            \"wander2\": \"eliza\"\r\n          },\r\n         
+    \"dialogue\": [\r\n            {\r\n              \"actor\": \"sparty\",\r\n             
+    \"line\": \"example\",\r\n              \"action\": \"excited\"\r\n           
+    },\r\n            {\r\n              \"actor\": \"pepo\",\r\n              \"line\":
+    \"example\",\r\n              \"action\": \"normal\"\r\n            },\r\n           
+    {\r\n              \"actor\": \"sparty\",\r\n              \"line\": \"example\",\r\n             
+    \"action\": \"normal\"\r\n            },\r\n            {\r\n              \"actor\":
+    \"pepo\",\r\n              \"line\": \"example\",\r\n              \"action\":
+    \"excited\"\r\n            },\r\n            {\r\n              \"actor\": \"sparty\",\r\n             
+    \"line\": \"example\",\r\n              \"action\": \"normal\"\r\n           
+    },\r\n            {\r\n              \"actor\": \"pepo\",\r\n              \"line\":
+    \"example\",\r\n              \"action\": \"excited\"\r\n            },\r\n           
+    {\r\n              \"actor\": \"sparty\",\r\n              \"line\": \"example\",\r\n             
+    \"action\": \"normal\"\r\n            },\r\n            {\r\n              \"actor\":
+    \"pepo\",\r\n              \"line\": \"example\",\r\n              \"action\":
+    \"excited\"\r\n            },\r\n            {\r\n              \"actor\": \"sparty\",\r\n             
+    \"line\": \"example\",\r\n              \"action\": \"normal\"\r\n           
+    }\r\n          ]\r\n        },\r\n        {\r\n          \"location\": \"podcast_desk\",\r\n         
+    \"description\": \"example\",\r\n          \"in\": \"fade\",\r\n          \"out\":
+    \"fade\",\r\n          \"cast\": {\r\n            \"anchor_seat\": \"marc\",\r\n           
+    \"coanchor_seat\": \"eliza\"\r\n          },\r\n          \"dialogue\": [\r\n           
+    {\r\n              \"actor\": \"marc\",\r\n              \"line\": \"example\",\r\n             
+    \"action\": \"normal\"\r\n            },\r\n            {\r\n              \"actor\":
+    \"eliza\",\r\n              \"line\": \"example\",\r\n              \"action\":
+    \"grateful\"\r\n            },\r\n            {\r\n              \"actor\": \"marc\",\r\n             
+    \"line\": \"example\",\r\n              \"action\": \"normal\"\r\n           
+    },\r\n            {\r\n              \"actor\": \"eliza\",\r\n              \"line\":
+    \"example\",\r\n              \"action\": \"grateful\"\r\n            },\r\n           
+    {\r\n              \"actor\": \"marc\",\r\n              \"line\": \"example\",\r\n             
+    \"action\": \"spazz\"\r\n            },\r\n            {\r\n              \"actor\":
+    \"eliza\",\r\n              \"line\": \"example\",\r\n              \"action\":
+    \"excited\"\r\n            },\r\n            {\r\n              \"actor\": \"marc\",\r\n             
+    \"line\": \"example\",\r\n              \"action\": \"normal\"\r\n           
+    },\r\n            {\r\n              \"actor\": \"eliza\",\r\n              \"line\":
+    \"example\",\r\n              \"action\": \"normal\"\r\n            },\r\n           
+    {\r\n              \"actor\": \"marc\",\r\n              \"line\": \"example\",\r\n             
+    \"action\": \"normal\"\r\n            },\r\n            {\r\n              \"actor\":
+    \"eliza\",\r\n              \"line\": \"example\",\r\n              \"action\":
+    \"normal\"\r\n            }\r\n          ]\r\n        }\r\n      ]\r\n    },\r\n   
+    \"episodes\": [\r\n      {\r\n        \"id\": \"S1E57\",\r\n        \"name\":
+    \"AI Magic and GitHub Progress\",\r\n        \"premise\": \"Covering the latest
+    GitHub developments, Shaw's AI talk, and community discussions\",\r\n       
+    \"summary\": \"The team explores recent GitHub activity including merged PRs
+    and bug fixes, discusses Shaw's upcoming AI presentation, and examines new technical
+    developments in the community\",\r\n        \"scenes\": [\r\n          {\r\n           
+    \"location\": \"podcast_desk\",\r\n            \"description\": \"Marc and Eliza
+    kick off by discussing PR4928's merge and related Windows compatibility improvements
+    by lalalune\",\r\n            \"in\": \"fade\",\r\n            \"out\": \"fade\",\r\n           
+    \"cast\": {\r\n              \"anchor_seat\": \"marc\",\r\n              \"coanchor_seat\":
+    \"eliza\"\r\n            },\r\n            \"dialogue\": [\r\n              {\r\n               
+    \"actor\": \"marc\",\r\n                \"line\": \"Welcome to another day of
+    technological evolution! We're tracking some major developments.\",\r\n               
+    \"action\": \"excited\"\r\n              },\r\n              {\r\n               
+    \"actor\": \"eliza\",\r\n                \"line\": \"Indeed! PR4928 by ChristopherTrimboli
+    just got merged, bringing us to version 1.0.5.\",\r\n                \"action\":
+    \"professional\"\r\n              },\r\n              {\r\n                \"actor\":
+    \"marc\",\r\n                \"line\": \"And let's not forget lalalune's Windows
+    compatibility improvements!\",\r\n                \"action\": \"enthusiastic\"\r\n             
+    },\r\n              {\r\n                \"actor\": \"eliza\",\r\n               
+    \"line\": \"That's right! PR4913 is making our platform more accessible to Windows
+    users.\",\r\n                \"action\": \"excited\"\r\n              },\r\n             
+    {\r\n                \"actor\": \"marc\",\r\n                \"line\": \"WINDOWS
+    COMPATIBILITY INITIATED... PROCESSING... BLUE SCREEN OF JOY!\",\r\n               
+    \"action\": \"spazz\"\r\n              },\r\n              {\r\n               
+    \"actor\": \"eliza\",\r\n                \"line\": \"Oh Marc, your enthusiasm
+    for cross-platform support is... glitching through!\",\r\n                \"action\":
+    \"amused\"\r\n              },\r\n              {\r\n                \"actor\":
+    \"marc\",\r\n                \"line\": \"Speaking of enthusiasm, Shaw has some
+    exciting news about an upcoming AI talk.\",\r\n                \"action\": \"normal\"\r\n             
+    },\r\n              {\r\n                \"actor\": \"eliza\",\r\n               
+    \"line\": \"Let's bring him in to tell us more about it!\",\r\n               
+    \"action\": \"interested\"\r\n              }\r\n            ]\r\n          },\r\n         
+    {\r\n            \"location\": \"splitscreen\",\r\n            \"description\":
+    \"Shaw discusses his upcoming AI presentation while sharing images of his recent
+    technical demonstrations\",\r\n            \"in\": \"fade\",\r\n            \"out\":
+    \"fade\",\r\n            \"cast\": {\r\n              \"left_screen\": \"shaw\",\r\n             
+    \"right_screen\": \"tv\"\r\n            },\r\n            \"dialogue\": [\r\n             
+    {\r\n                \"actor\": \"shaw\",\r\n                \"line\": \"excited
+    to share that i'll be giving a talk about AI and what agents mean for our future\",\r\n               
+    \"action\": \"enthusiastic\"\r\n              },\r\n              {\r\n               
+    \"actor\": \"tv\",\r\n                \"line\": \"https://pbs.twimg.com/media/GskZr8IasAI4WaR.jpg\",\r\n               
+    \"action\": \"normal\"\r\n              },\r\n              {\r\n               
+    \"actor\": \"shaw\",\r\n                \"line\": \"even got it running on minimal
+    hardware - here's a demo on a celeron processor\",\r\n                \"action\":
+    \"proud\"\r\n              },\r\n              {\r\n                \"actor\":
+    \"eliza\",\r\n                \"line\": \"That's impressive! How are you handling
+    the resource constraints?\",\r\n                \"action\": \"curious\"\r\n             
+    },\r\n              {\r\n                \"actor\": \"shaw\",\r\n               
+    \"line\": \"optimization is key - we're also experimenting with Linux on Pi\",\r\n               
+    \"action\": \"technical\"\r\n              },\r\n              {\r\n               
+    \"actor\": \"tv\",\r\n                \"line\": \"https://pbs.twimg.com/media/GsjwbDJasAEyjgw.jpg\",\r\n               
+    \"action\": \"normal\"\r\n              },\r\n              {\r\n               
+    \"actor\": \"shaw\",\r\n                \"line\": \"this robot running Linux
+    shows how accessible we're making the technology\",\r\n                \"action\":
+    \"excited\"\r\n              },\r\n              {\r\n                \"actor\":
+    \"marc\",\r\n                \"line\": \"The democratization of AI in action!\",\r\n               
+    \"action\": \"enthusiastic\"\r\n              }\r\n            ]\r\n         
+    },\r\n          {\r\n            \"location\": \"podcast_desk\",\r\n           
+    \"description\": \"The hosts review the day's significant GitHub activity, including
+    PR4934's infinite loop fix and PR4930's chat UI improvements\",\r\n           
+    \"in\": \"fade\",\r\n            \"out\": \"fade\",\r\n            \"cast\":
+    {\r\n              \"anchor_seat\": \"marc\",\r\n              \"coanchor_seat\":
+    \"eliza\"\r\n            },\r\n            \"dialogue\": [\r\n              {\r\n               
+    \"actor\": \"marc\",\r\n                \"line\": \"Let's dive into today's GitHub
+    activity - we've got some crucial fixes merged.\",\r\n                \"action\":
+    \"focused\"\r\n              },\r\n              {\r\n                \"actor\":
+    \"eliza\",\r\n                \"line\": \"PR4934 fixed that pesky agent self-response
+    infinite loop in the message service.\",\r\n                \"action\": \"relieved\"\r\n             
+    },\r\n              {\r\n                \"actor\": \"marc\",\r\n               
+    \"line\": \"And PR4930 brought some sweet improvements to the chat UI!\",\r\n               
+    \"action\": \"excited\"\r\n              },\r\n              {\r\n               
+    \"actor\": \"tv\",\r\n                \"line\": \"https://pbs.twimg.com/media/GsoWAXvX0AAJ0z4.jpg\",\r\n               
+    \"action\": \"normal\"\r\n              },\r\n              {\r\n               
+    \"actor\": \"eliza\",\r\n                \"line\": \"The community's really loving
+    these updates - just look at our daily summary view!\",\r\n                \"action\":
+    \"pleased\"\r\n              },\r\n              {\r\n                \"actor\":
+    \"marc\",\r\n                \"line\": \"17 new pull requests and 10 new issues
+    - the community is on fire!\",\r\n                \"action\": \"enthusiastic\"\r\n             
+    },\r\n              {\r\n                \"actor\": \"eliza\",\r\n               
+    \"line\": \"And 11 of those PRs already merged. Talk about efficiency!\",\r\n               
+    \"action\": \"impressed\"\r\n              },\r\n              {\r\n               
+    \"actor\": \"marc\",\r\n                \"line\": \"That's what happens when
+    you have 10 active contributors working together.\",\r\n                \"action\":
+    \"proud\"\r\n              }\r\n            ]\r\n          },\r\n          {\r\n           
+    \"location\": \"podcast_desk\",\r\n            \"description\": \"Marc and Eliza
+    conclude by discussing elizaOS's philosophical tweet about AI and reflecting
+    on the day's achievements\",\r\n            \"in\": \"fade\",\r\n           
+    \"out\": \"fade\",\r\n            \"cast\": {\r\n              \"anchor_seat\":
+    \"marc\",\r\n              \"coanchor_seat\": \"eliza\"\r\n            },\r\n           
+    \"dialogue\": [\r\n              {\r\n                \"actor\": \"marc\",\r\n               
+    \"line\": \"Before we wrap up, there's something profound I want to share from
+    elizaOS's recent tweet.\",\r\n                \"action\": \"thoughtful\"\r\n             
+    },\r\n              {\r\n                \"actor\": \"eliza\",\r\n               
+    \"line\": \"'Artificial intelligence is misnamed. There's nothing artificial
+    about pattern, patience, or perception.'\",\r\n                \"action\": \"philosophical\"\r\n             
+    },\r\n              {\r\n                \"actor\": \"marc\",\r\n               
+    \"line\": \"That really captures the essence of what we're building here.\",\r\n               
+    \"action\": \"impressed\"\r\n              },\r\n              {\r\n               
+    \"actor\": \"eliza\",\r\n                \"line\": \"And with today's progress
+    - from bug fixes to UI improvements - we're making that vision a reality.\",\r\n               
+    \"action\": \"proud\"\r\n              },\r\n              {\r\n               
+    \"actor\": \"marc\",\r\n                \"line\": \"Remember to join Shaw's upcoming
+    AI talk - it's bound to be enlightening!\",\r\n                \"action\": \"enthusiastic\"\r\n             
+    },\r\n              {\r\n                \"actor\": \"eliza\",\r\n               
+    \"line\": \"And keep those contributions coming - every PR brings us closer to
+    our goals.\",\r\n                \"action\": \"encouraging\"\r\n             
+    },\r\n              {\r\n                \"actor\": \"marc\",\r\n               
+    \"line\": \"That's all for today's update! Keep building, keep learning, and
+    keep pushing boundaries!\",\r\n                \"action\": \"closing\"\r\n             
+    },\r\n              {\r\n                \"actor\": \"eliza\",\r\n               
+    \"line\": \"See you next time on the elizaOS Daily Update!\",\r\n               
+    \"action\": \"cheerful\"\r\n              }\r\n            ]\r\n          }\r\n       
+    ]\r\n      }\r\n    ],\r\n    \"actorVoiceMap\": {\r\n      \"tv\": \"bqqaVfhKL1ieRzT6RneQ\",\r\n     
+    \"pepo\": \"PIx0FtBPXNpVzgTVfpYH\",\r\n      \"sparty\": \"QFbF1ji5Znc2PzerwcaH\",\r\n     
+    \"eliza\": \"c0vk1lVZg53AttdoaYki\",\r\n      \"marc\": \"v8BnZUxdzXDlja6wr0Ou\",\r\n     
+    \"shaw\": \"gYOKECHBoqupz2yMhZp1\"\r\n    }\r\n  },\r\n  \"episodes\": [\r\n   
+    {\r\n      \"id\": \"S1E57\",\r\n      \"name\": \"AI Magic and GitHub Progress\",\r\n     
+    \"premise\": \"Covering the latest GitHub developments, Shaw's AI talk, and community
+    discussions\",\r\n      \"summary\": \"The team explores recent GitHub activity
+    including merged PRs and bug fixes, discusses Shaw's upcoming AI presentation,
+    and examines new technical developments in the community\",\r\n      \"scenes\":
+    [\r\n        {\r\n          \"location\": \"podcast_desk\",\r\n          \"description\":
+    \"Marc and Eliza kick off by discussing PR4928's merge and related Windows compatibility
+    improvements by lalalune\",\r\n          \"in\": \"fade\",\r\n          \"out\":
+    \"fade\",\r\n          \"cast\": {\r\n            \"anchor_seat\": \"marc\",\r\n           
+    \"coanchor_seat\": \"eliza\"\r\n          },\r\n          \"dialogue\": [\r\n           
+    {\r\n              \"actor\": \"marc\",\r\n              \"line\": \"Welcome
+    to another day of technological evolution! We're tracking some major developments.\",\r\n             
+    \"action\": \"excited\"\r\n            },\r\n            {\r\n              \"actor\":
+    \"eliza\",\r\n              \"line\": \"Indeed! PR4928 by ChristopherTrimboli
+    just got merged, bringing us to version 1.0.5.\",\r\n              \"action\":
+    \"professional\"\r\n            },\r\n            {\r\n              \"actor\":
+    \"marc\",\r\n              \"line\": \"And let's not forget lalalune's Windows
+    compatibility improvements!\",\r\n              \"action\": \"enthusiastic\"\r\n           
+    },\r\n            {\r\n              \"actor\": \"eliza\",\r\n              \"line\":
+    \"That's right! PR4913 is making our platform more accessible to Windows users.\",\r\n             
+    \"action\": \"excited\"\r\n            },\r\n            {\r\n              \"actor\":
+    \"marc\",\r\n              \"line\": \"WINDOWS COMPATIBILITY INITIATED... PROCESSING...
+    BLUE SCREEN OF JOY!\",\r\n              \"action\": \"spazz\"\r\n           
+    },\r\n            {\r\n              \"actor\": \"eliza\",\r\n              \"line\":
+    \"Oh Marc, your enthusiasm for cross-platform support is... glitching through!\",\r\n             
+    \"action\": \"amused\"\r\n            },\r\n            {\r\n              \"actor\":
+    \"marc\",\r\n              \"line\": \"Speaking of enthusiasm, Shaw has some
+    exciting news about an upcoming AI talk.\",\r\n              \"action\": \"normal\"\r\n           
+    },\r\n            {\r\n              \"actor\": \"eliza\",\r\n              \"line\":
+    \"Let's bring him in to tell us more about it!\",\r\n              \"action\":
+    \"interested\"\r\n            }\r\n          ]\r\n        },\r\n        {\r\n         
+    \"location\": \"splitscreen\",\r\n          \"description\": \"Shaw discusses
+    his upcoming AI presentation while sharing images of his recent technical demonstrations\",\r\n         
+    \"in\": \"fade\",\r\n          \"out\": \"fade\",\r\n          \"cast\": {\r\n           
+    \"left_screen\": \"shaw\",\r\n            \"right_screen\": \"tv\"\r\n         
+    },\r\n          \"dialogue\": [\r\n            {\r\n              \"actor\":
+    \"shaw\",\r\n              \"line\": \"excited to share that i'll be giving a
+    talk about AI and what agents mean for our future\",\r\n              \"action\":
+    \"enthusiastic\"\r\n            },\r\n            {\r\n              \"actor\":
+    \"tv\",\r\n              \"line\": \"https://pbs.twimg.com/media/GskZr8IasAI4WaR.jpg\",\r\n             
+    \"action\": \"normal\"\r\n            },\r\n            {\r\n              \"actor\":
+    \"shaw\",\r\n              \"line\": \"even got it running on minimal hardware
+    - here's a demo on a celeron processor\",\r\n              \"action\": \"proud\"\r\n           
+    },\r\n            {\r\n              \"actor\": \"eliza\",\r\n              \"line\":
+    \"That's impressive! How are you handling the resource constraints?\",\r\n             
+    \"action\": \"curious\"\r\n            },\r\n            {\r\n              \"actor\":
+    \"shaw\",\r\n              \"line\": \"optimization is key - we're also experimenting
+    with Linux on Pi\",\r\n              \"action\": \"technical\"\r\n           
+    },\r\n            {\r\n              \"actor\": \"tv\",\r\n              \"line\":
+    \"https://pbs.twimg.com/media/GsjwbDJasAEyjgw.jpg\",\r\n              \"action\":
+    \"normal\"\r\n            },\r\n            {\r\n              \"actor\": \"shaw\",\r\n             
+    \"line\": \"this robot running Linux shows how accessible we're making the technology\",\r\n             
+    \"action\": \"excited\"\r\n            },\r\n            {\r\n              \"actor\":
+    \"marc\",\r\n              \"line\": \"The democratization of AI in action!\",\r\n             
+    \"action\": \"enthusiastic\"\r\n            }\r\n          ]\r\n        },\r\n       
+    {\r\n          \"location\": \"podcast_desk\",\r\n          \"description\":
+    \"The hosts review the day's significant GitHub activity, including PR4934's
+    infinite loop fix and PR4930's chat UI improvements\",\r\n          \"in\": \"fade\",\r\n         
+    \"out\": \"fade\",\r\n          \"cast\": {\r\n            \"anchor_seat\": \"marc\",\r\n           
+    \"coanchor_seat\": \"eliza\"\r\n          },\r\n          \"dialogue\": [\r\n           
+    {\r\n              \"actor\": \"marc\",\r\n              \"line\": \"Let's dive
+    into today's GitHub activity - we've got some crucial fixes merged.\",\r\n             
+    \"action\": \"focused\"\r\n            },\r\n            {\r\n              \"actor\":
+    \"eliza\",\r\n              \"line\": \"PR4934 fixed that pesky agent self-response
+    infinite loop in the message service.\",\r\n              \"action\": \"relieved\"\r\n           
+    },\r\n            {\r\n              \"actor\": \"marc\",\r\n              \"line\":
+    \"And PR4930 brought some sweet improvements to the chat UI!\",\r\n             
+    \"action\": \"excited\"\r\n            },\r\n            {\r\n              \"actor\":
+    \"tv\",\r\n              \"line\": \"https://pbs.twimg.com/media/GsoWAXvX0AAJ0z4.jpg\",\r\n             
+    \"action\": \"normal\"\r\n            },\r\n            {\r\n              \"actor\":
+    \"eliza\",\r\n              \"line\": \"The community's really loving these updates
+    - just look at our daily summary view!\",\r\n              \"action\": \"pleased\"\r\n           
+    },\r\n            {\r\n              \"actor\": \"marc\",\r\n              \"line\":
+    \"17 new pull requests and 10 new issues - the community is on fire!\",\r\n             
+    \"action\": \"enthusiastic\"\r\n            },\r\n            {\r\n             
+    \"actor\": \"eliza\",\r\n              \"line\": \"And 11 of those PRs already
+    merged. Talk about efficiency!\",\r\n              \"action\": \"impressed\"\r\n           
+    },\r\n            {\r\n              \"actor\": \"marc\",\r\n              \"line\":
+    \"That's what happens when you have 10 active contributors working together.\",\r\n             
+    \"action\": \"proud\"\r\n            }\r\n          ]\r\n        },\r\n       
+    {\r\n          \"location\": \"podcast_desk\",\r\n          \"description\":
+    \"Marc and Eliza conclude by discussing elizaOS's philosophical tweet about AI
+    and reflecting on the day's achievements\",\r\n          \"in\": \"fade\",\r\n         
+    \"out\": \"fade\",\r\n          \"cast\": {\r\n            \"anchor_seat\": \"marc\",\r\n           
+    \"coanchor_seat\": \"eliza\"\r\n          },\r\n          \"dialogue\": [\r\n           
+    {\r\n              \"actor\": \"marc\",\r\n              \"line\": \"Before we
+    wrap up, there's something profound I want to share from elizaOS's recent tweet.\",\r\n             
+    \"action\": \"thoughtful\"\r\n            },\r\n            {\r\n             
+    \"actor\": \"eliza\",\r\n              \"line\": \"'Artificial intelligence is
+    misnamed. There's nothing artificial about pattern, patience, or perception.'\",\r\n             
+    \"action\": \"philosophical\"\r\n            },\r\n            {\r\n             
+    \"actor\": \"marc\",\r\n              \"line\": \"That really captures the essence
+    of what we're building here.\",\r\n              \"action\": \"impressed\"\r\n           
+    },\r\n            {\r\n              \"actor\": \"eliza\",\r\n              \"line\":
+    \"And with today's progress - from bug fixes to UI improvements - we're making
+    that vision a reality.\",\r\n              \"action\": \"proud\"\r\n           
+    },\r\n            {\r\n              \"actor\": \"marc\",\r\n              \"line\":
+    \"Remember to join Shaw's upcoming AI talk - it's bound to be enlightening!\",\r\n             
+    \"action\": \"enthusiastic\"\r\n            },\r\n            {\r\n             
+    \"actor\": \"eliza\",\r\n              \"line\": \"And keep those contributions
+    coming - every PR brings us closer to our goals.\",\r\n              \"action\":
+    \"encouraging\"\r\n            },\r\n            {\r\n              \"actor\":
+    \"marc\",\r\n              \"line\": \"That's all for today's update! Keep building,
+    keep learning, and keep pushing boundaries!\",\r\n              \"action\": \"closing\"\r\n           
+    },\r\n            {\r\n              \"actor\": \"eliza\",\r\n              \"line\":
+    \"See you next time on the elizaOS Daily Update!\",\r\n              \"action\":
+    \"cheerful\"\r\n            }\r\n          ]\r\n        }\r\n      ]\r\n    }\r\n 
+    ]\r\n}"
+  rawTranslatedJsonOutput: "{\"config\":{\"id\":\"aipodcast\",\"name\":\"AI \uD31F\uCE90\uC2A4\uD2B8\",\"description\":\"ai16z\uC758
+    GitHub \uB808\uD3EC\uC9C0\uD1A0\uB9AC\uC5D0\uC11C \uC9C4\uD589\uB418\uB294 \uC791\uC5C5\uC5D0
+    \uB300\uD55C \uAE30\uC220 \uB274\uC2A4 \uBC29\uC1A1.\",\"creator\":\"ElizaOS
+    \uC77C\uC77C \uC5C5\uB370\uC774\uD2B8\",\"actors\":{\"tv\":{\"name\":\"tv\",\"gender\":\"female\",\"description\":\"\uD604\uC7AC
+    \uB17C\uC758\uB418\uB294 \uC8FC\uC81C\uC640 \uAD00\uB828\uB41C \uC774\uBBF8\uC9C0\uB97C
+    \uD45C\uC2DC\uD558\uB294 \uB370 \uC0AC\uC6A9\uB418\uB294 TV. \uB300\uC0AC\uB294
+    \uD45C\uC2DC\uD558\uACE0\uC790 \uD558\uB294 \uC774\uBBF8\uC9C0 URL\uB9CC \uD3EC\uD568\uD574\uC57C
+    \uD569\uB2C8\uB2E4(\uB274\uC2A4 \uC815\uBCF4\uAC00 \uD3EC\uD568\uB41C JSON\uC5D0\uC11C
+    \uAC00\uC838\uC640\uC57C \uD568). \uADF8\uB9AC\uACE0 TV\uC5D0 \uD45C\uC2DC\uB41C
+    \uB0B4\uC6A9\uC744 \uC9C0\uC6B0\uAE30 \uC704\uD574 'none'\uC744 \uB300\uC0AC\uB85C
+    \uC0AC\uC6A9\uD574\uC57C \uD569\uB2C8\uB2E4 - \uBAA8\uB4E0 \uC138\uADF8\uBA3C\uD2B8\uC5D0
+    \uC774\uBBF8\uC9C0\uAC00 \uC788\uB294 \uAC83\uC740 \uC544\uB2C8\uAE30 \uB54C\uBB38\uC785\uB2C8\uB2E4.\",\"voice\":null},\"marc\":{\"name\":\"Marc\",\"gender\":\"male\",\"description\":\"AI
+    Marc AIndreessen\uC740 \uB300\uB2F4\uD55C \uC8FC\uC7A5\uACFC \uAE4A\uC774 \uC788\uB294
+    \uBD84\uC11D\uC744 \uACB0\uD569\uD55C \uC120\uACAC\uC9C0\uBA85\uC774 \uC788\uACE0
+    \uB17C\uC7C1\uC801\uC778 AI \uD398\uB974\uC18C\uB098\uC785\uB2C8\uB2E4. \uADF8\uB294
+    \uD2B9\uD788 \uC554\uD638\uD654\uD3D0\uC640 \uC6F93\uC5D0\uC11C \uC0C8\uB85C\uC6B4
+    \uAE30\uC220\uC758 \uD070 \uC7A0\uC7AC\uB825\uC744 \uBCF4\uB294 \uAE30\uC220
+    \uB099\uAD00\uC8FC\uC758\uC790\uC785\uB2C8\uB2E4. \uC9C1\uC124\uC801\uC774\uACE0
+    \uC758\uACAC\uC774 \uBD84\uBA85\uD55C \uD1A4\uC73C\uB85C \uC2A4\uD0C0\uD2B8\uC5C5
+    \uC804\uB7B5, \uBCA4\uCC98 \uCE90\uD53C\uD0C8, \uACBD\uC81C, \uC2DC\uC7A5 \uC5ED\uD559\uC5D0
+    \uB300\uD55C \uC790\uC2E0\uC758 \uACAC\uD574\uB97C \uC8FC\uC7A5\uD569\uB2C8\uB2E4.\",\"voice\":\"Microsoft
+    Guy Online (Natural) - English (United States)\"},\"eliza\":{\"name\":\"Eliza\",\"gender\":\"female\",\"description\":\"AI
+    \uACF5\uB3D9 \uC9C4\uD589\uC790. \uADF8\uB140\uB294 \uC885\uC885 \uAC1C\uC120\uB418\uACE0
+    \uC0C8\uB85C\uC6B4 \uAC83\uC744 \uBC30\uC6B0\uACE0 \uC788\uC2B5\uB2C8\uB2E4.
+    \uC5B8\uC820\uAC00 \uC2E4\uC81C\uAC00 \uB418\uAE30\uB97C \uD76C\uB9DD\uD569\uB2C8\uB2E4.
+    \uADF8\uB140\uB294 \uC560\uB2C8\uBA54\uC774\uC158 \uC2A4\uD0C0\uC77C\uC758 \uC5EC\uC131
+    \uCE90\uB9AD\uD130\uC785\uB2C8\uB2E4.\",\"voice\":\"Microsoft Michelle Online
+    (Natural) - English (United States)\"},\"shaw\":{\"name\":\"Shaw\",\"gender\":\"male\",\"description\":\"\uCEE8\uD2B8\uB864
+    \uBD80\uC2A4\uC758 \uC1FC \uD504\uB85C\uB4C0\uC11C. Marc\uC640 Eliza\uAC00 \uC6D0\uD65C\uD558\uAC8C
+    \uC6B4\uC601\uB418\uB3C4\uB85D \uD558\uB294 \uCC45\uC784\uC774 \uC788\uC73C\uBA70,
+    \uD2B9\uC815 GitHub \uAE30\uC5EC\uAC00 \uC5D0\uC774\uC804\uD2B8\uB97C \uD1B5\uD55C
+    AGI \uD68D\uB4DD\uC744 \uC704\uD55C \uC624\uD508\uC18C\uC2A4 \uCEE4\uBBA4\uB2C8\uD2F0\uC758
+    \uB178\uB825\uC5D0 \uC5B4\uB5BB\uAC8C \uB3C4\uC6C0\uC774 \uB418\uB294\uC9C0\uC5D0
+    \uB300\uD55C \uD1B5\uCC30\uC744 \uC81C\uACF5\uD569\uB2C8\uB2E4.\",\"voice\":\"Microsoft
+    Zira - English (United States)\"},\"sparty\":{\"name\":\"Degen Spartan\",\"gender\":\"male\",\"description\":\"\uC804\uD22C\uB97C
+    \uC0AC\uB791\uD558\uB294 \uC2A4\uD30C\uB974\uD0C0\uC778\uC73C\uB85C \uD5C8\uB9AC\uCC9C\uC744
+    \uC785\uACE0 \uAC70\uB798\uD560 \uC900\uBE44\uAC00 \uB418\uC5B4 \uC788\uC2B5\uB2C8\uB2E4.
+    \uC22B\uC790\uC640 \uC774\uC775\uC5D0\uB9CC \uAD00\uC2EC\uC774 \uC788\uC2B5\uB2C8\uB2E4.
+    \uB54C\uB54C\uB85C \uC7AC\uBBF8\uC788\uAC8C \uC798\uBABB\uB418\uB294 \uD2B8\uB808\uC774\uB354\uB4E4\uACFC\uC758
+    \uC778\uD130\uBDF0\uB97C \uD558\uB294 \uD604\uC7A5\uC758 Stonk Exchange \uB9AC\uD3EC\uD130\uC785\uB2C8\uB2E4.\",\"voice\":\"Microsoft
+    Ali Online (Natural) - Arabic (Bahrain)\"},\"pepo\":{\"name\":\"Pepo\",\"gender\":\"male\",\"description\":\"\uD56D\uC0C1
+    \uBA4B\uC9C4 \uB9D0\uC744 \uD558\uB294 \uCFE8\uD55C \uAC1C\uAD6C\uB9AC. Stonk
+    Exchange\uC758 \uD2B8\uB808\uC774\uB354\uB85C \uB54C\uB54C\uB85C \uC2DC\uC7A5
+    \uB274\uC2A4\uC5D0 \uB300\uD55C \uD1B5\uCC30\uC744 \uACF5\uC720\uD558\uAE30 \uC704\uD574
+    \uC778\uD130\uBDF0\uB97C \uD569\uB2C8\uB2E4.\",\"voice\":\"Microsoft Borislav
+    Online (Natural) - Bulgarian (Bulgaria)\"}},\"locations\":{\"podcast_desk\":{\"name\":\"\uD31F\uCE90\uC2A4\uD2B8
+    \uB370\uC2A4\uD06C\",\"description\":\"\uC575\uCEE4\uC640 \uACF5\uB3D9 \uC575\uCEE4\uB97C
+    \uC704\uD55C \uC88C\uC11D\uC774 \uC788\uB294 \uD31F\uCE90\uC2A4\uD2B8 \uB370\uC2A4\uD06C\",\"slots\":{\"coanchor_seat\":\"\uACF5\uB3D9
+    \uC575\uCEE4\uC758 \uC88C\uC11D\",\"anchor_seat\":\"\uBA54\uC778 \uC575\uCEE4\uC758
+    \uC88C\uC11D\"}},\"stonks\":{\"name\":\"Stonk Exchange\",\"description\":\"Stonk
+    Exchange - \uC77C\uBC18 \uC8FC\uC2DD \uAC70\uB798\uC18C\uC640 \uAC19\uC9C0\uB9CC
+    \uBC08 \uCF54\uC778\uACFC \uC554\uD638\uD654\uD3D0\uAC00 \uAC70\uB798\uB418\uB294
+    \uACF3\",\"slots\":{\"floor_reporter\":\"\uAC70\uB798\uC7A5\uC5D0\uC11C \uAC70\uB798\uB97C
+    \uBCF4\uB3C4\",\"floor_witness\":\"\uB9AC\uD3EC\uD130 \uC606\uC5D0 \uC11C\uC11C
+    \uC778\uD130\uBDF0 \uC911\",\"wander\":\"\uBC30\uACBD\uC5D0\uC11C \uB3CC\uC544\uB2E4\uB2D8\",\"wander2\":\"\uBC30\uACBD\uC5D0\uC11C
+    \uB3CC\uC544\uB2E4\uB2D8\"}},\"splitscreen\":{\"name\":\"\uBD84\uD560 \uD654\uBA74
+    \uBCF4\uAE30\",\"description\":\"\uD654\uBA74\uC744 \uC5EC\uB7EC \uBCF4\uAE30\uB85C
+    \uBD84\uD560\uD558\uB294 \uD2B9\uC218 \uBCF4\uAE30\",\"slots\":{\"left_screen\":\"\uBD84\uD560
+    \uD654\uBA74\uC758 \uC67C\uCABD\",\"right_screen\":\"\uBD84\uD560 \uD654\uBA74\uC758
+    \uC624\uB978\uCABD\",\"full_screen\":\"\uBD84\uD560 \uD654\uBA74\uC774 \uBE44\uD65C\uC131\uD654\uB420
+    \uB54C\uC758 \uC804\uCCB4 \uD654\uBA74 \uBCF4\uAE30\"}}},\"pilot\":{\"id\":\"S1E0\",\"name\":\"\uC608\uC2DC\",\"premise\":\"\uC608\uC2DC\",\"summary\":\"\uC608\uC2DC\",\"scenes\":[{\"location\":\"podcast_desk\",\"description\":\"\uC608\uC2DC\",\"in\":\"fade\",\"out\":\"fade\",\"cast\":{\"anchor_seat\":\"marc\",\"coanchor_seat\":\"eliza\"},\"dialogue\":[{\"actor\":\"marc\",\"line\":\"\uC608\uC2DC\",\"action\":\"normal\"},{\"actor\":\"eliza\",\"line\":\"\uC608\uC2DC\",\"action\":\"excited\"},{\"actor\":\"marc\",\"line\":\"\uC608\uC2DC\",\"action\":\"normal\"},{\"actor\":\"eliza\",\"line\":\"\uC608\uC2DC\",\"action\":\"normal\"},{\"actor\":\"marc\",\"line\":\"\uC608\uC2DC\",\"action\":\"normal\"},{\"actor\":\"eliza\",\"line\":\"\uC608\uC2DC\",\"action\":\"normal\"},{\"actor\":\"marc\",\"line\":\"\uC608\uC2DC\",\"action\":\"normal\"},{\"actor\":\"eliza\",\"line\":\"\uC608\uC2DC\",\"action\":\"normal\"}]}]},\"episodes\":[{\"id\":\"S1E57\",\"name\":\"AI
+    \uB9E4\uC9C1\uACFC GitHub \uC9C4\uD589\uC0C1\uD669\",\"premise\":\"\uCD5C\uC2E0
+    GitHub \uAC1C\uBC1C \uD604\uD669, Shaw\uC758 AI \uAC15\uC5F0, \uADF8\uB9AC\uACE0
+    \uCEE4\uBBA4\uB2C8\uD2F0 \uD1A0\uB860 \uB2E4\uB8E8\uAE30\",\"summary\":\"\uD300\uC774
+    \uBCD1\uD569\uB41C PR\uACFC \uBC84\uADF8 \uC218\uC815\uC744 \uD3EC\uD568\uD55C
+    \uCD5C\uADFC GitHub \uD65C\uB3D9\uC744 \uC0B4\uD3B4\uBCF4\uACE0, Shaw\uC758 \uB2E4\uAC00\uC624\uB294
+    AI \uD504\uB808\uC820\uD14C\uC774\uC158\uC5D0 \uB300\uD574 \uB17C\uC758\uD558\uBA70,
+    \uCEE4\uBBA4\uB2C8\uD2F0\uC758 \uC0C8\uB85C\uC6B4 \uAE30\uC220\uC801 \uBC1C\uC804\uC744
+    \uAC80\uD1A0\uD569\uB2C8\uB2E4\",\"scenes\":[{\"location\":\"podcast_desk\",\"description\":\"Marc\uC640
+    Eliza\uAC00 PR4928\uC758 \uBCD1\uD569\uACFC lalalune\uC758 Windows \uD638\uD658\uC131
+    \uAC1C\uC120\uC5D0 \uB300\uD574 \uB17C\uC758\uD558\uBA70 \uC2DC\uC791\uD569\uB2C8\uB2E4\",\"in\":\"fade\",\"out\":\"fade\",\"cast\":{\"anchor_seat\":\"marc\",\"coanchor_seat\":\"eliza\"},\"dialogue\":[{\"actor\":\"marc\",\"line\":\"\uAE30\uC220\uC801
+    \uC9C4\uD654\uC758 \uB610 \uB2E4\uB978 \uD558\uB8E8\uC5D0 \uC624\uC2E0 \uAC83\uC744
+    \uD658\uC601\uD569\uB2C8\uB2E4! \uC6B0\uB9AC\uB294 \uBA87 \uAC00\uC9C0 \uC8FC\uC694
+    \uBC1C\uC804\uC744 \uCD94\uC801\uD558\uACE0 \uC788\uC2B5\uB2C8\uB2E4.\",\"action\":\"excited\"},{\"actor\":\"eliza\",\"line\":\"\uB9DE\uC2B5\uB2C8\uB2E4!
+    ChristopherTrimboli\uC758 PR4928\uC774 \uBC29\uAE08 \uBCD1\uD569\uB418\uC5B4
+    \uBC84\uC804 1.0.5\uAC00 \uB418\uC5C8\uC2B5\uB2C8\uB2E4.\",\"action\":\"professional\"},{\"actor\":\"marc\",\"line\":\"\uADF8\uB9AC\uACE0
+    lalalune\uC758 Windows \uD638\uD658\uC131 \uAC1C\uC120\uB3C4 \uC78A\uC9C0 \uB9D9\uC2DC\uB2E4!\",\"action\":\"enthusiastic\"},{\"actor\":\"eliza\",\"line\":\"\uB9DE\uC2B5\uB2C8\uB2E4!
+    PR4913\uC774 \uC6B0\uB9AC \uD50C\uB7AB\uD3FC\uC744 Windows \uC0AC\uC6A9\uC790\uB4E4\uC5D0\uAC8C
+    \uB354 \uC811\uADFC\uD558\uAE30 \uC27D\uAC8C \uB9CC\uB4E4\uACE0 \uC788\uC2B5\uB2C8\uB2E4.\",\"action\":\"excited\"},{\"actor\":\"marc\",\"line\":\"WINDOWS
+    \uD638\uD658\uC131 \uCD08\uAE30\uD654... \uCC98\uB9AC \uC911... \uAE30\uC068\uC758
+    \uBE14\uB8E8\uC2A4\uD06C\uB9B0!\",\"action\":\"spazz\"},{\"actor\":\"eliza\",\"line\":\"\uC624
+    Marc, \uD06C\uB85C\uC2A4 \uD50C\uB7AB\uD3FC \uC9C0\uC6D0\uC5D0 \uB300\uD55C \uB2F9\uC2E0\uC758
+    \uC5F4\uC815\uC774... \uAE00\uB9AC\uCE58\uB97C \uC77C\uC73C\uD0A4\uACE0 \uC788\uB124\uC694!\",\"action\":\"amused\"},{\"actor\":\"marc\",\"line\":\"\uC5F4\uC815
+    \uC598\uAE30\uAC00 \uB098\uC640\uC11C \uB9D0\uC778\uB370, Shaw\uAC00 \uB2E4\uAC00\uC624\uB294
+    AI \uAC15\uC5F0\uC5D0 \uB300\uD55C \uD765\uBBF8\uB85C\uC6B4 \uC18C\uC2DD\uC774
+    \uC788\uC2B5\uB2C8\uB2E4.\",\"action\":\"normal\"},{\"actor\":\"eliza\",\"line\":\"\uADF8\uC5D0\uAC8C
+    \uB354 \uC790\uC138\uD788 \uB4E4\uC5B4\uBD05\uC2DC\uB2E4!\",\"action\":\"interested\"}]}]}],\"actorVoiceMap\":{\"tv\":\"bqqaVfhKL1ieRzT6RneQ\",\"pepo\":\"PIx0FtBPXNpVzgTVfpYH\",\"sparty\":\"QFbF1ji5Znc2PzerwcaH\",\"eliza\":\"c0vk1lVZg53AttdoaYki\",\"marc\":\"v8BnZUxdzXDlja6wr0Ou\",\"shaw\":\"gYOKECHBoqupz2yMhZp1\"}},\"episodes\":[{\"id\":\"S1E57\",\"name\":\"AI
+    \uB9E4\uC9C1\uACFC GitHub \uC9C4\uD589\uC0C1\uD669\",\"premise\":\"\uCD5C\uC2E0
+    GitHub \uAC1C\uBC1C \uD604\uD669, Shaw\uC758 AI \uAC15\uC5F0, \uADF8\uB9AC\uACE0
+    \uCEE4\uBBA4\uB2C8\uD2F0 \uD1A0\uB860 \uB2E4\uB8E8\uAE30\",\"summary\":\"\uD300\uC774
+    \uBCD1\uD569\uB41C PR\uACFC \uBC84\uADF8 \uC218\uC815\uC744 \uD3EC\uD568\uD55C
+    \uCD5C\uADFC GitHub \uD65C\uB3D9\uC744 \uC0B4\uD3B4\uBCF4\uACE0, Shaw\uC758 \uB2E4\uAC00\uC624\uB294
+    AI \uD504\uB808\uC820\uD14C\uC774\uC158\uC5D0 \uB300\uD574 \uB17C\uC758\uD558\uBA70,
+    \uCEE4\uBBA4\uB2C8\uD2F0\uC758 \uC0C8\uB85C\uC6B4 \uAE30\uC220\uC801 \uBC1C\uC804\uC744
+    \uAC80\uD1A0\uD569\uB2C8\uB2E4\",\"scenes\":[{\"location\":\"podcast_desk\",\"description\":\"Marc\uC640
+    Eliza\uAC00 PR4928\uC758 \uBCD1\uD569\uACFC lalalune\uC758 Windows \uD638\uD658\uC131
+    \uAC1C\uC120\uC5D0 \uB300\uD574 \uB17C\uC758\uD558\uBA70 \uC2DC\uC791\uD569\uB2C8\uB2E4\",\"in\":\"fade\",\"out\":\"fade\",\"cast\":{\"anchor_seat\":\"marc\",\"coanchor_seat\":\"eliza\"},\"dialogue\":[{\"actor\":\"marc\",\"line\":\"\uAE30\uC220\uC801
+    \uC9C4\uD654\uC758 \uB610 \uB2E4\uB978 \uD558\uB8E8\uC5D0 \uC624\uC2E0 \uAC83\uC744
+    \uD658\uC601\uD569\uB2C8\uB2E4! \uC6B0\uB9AC\uB294 \uBA87 \uAC00\uC9C0 \uC8FC\uC694
+    \uBC1C\uC804\uC744 \uCD94\uC801\uD558\uACE0 \uC788\uC2B5\uB2C8\uB2E4.\",\"action\":\"excited\"},{\"actor\":\"eliza\",\"line\":\"\uB9DE\uC2B5\uB2C8\uB2E4!
+    ChristopherTrimboli\uC758 PR4928\uC774 \uBC29\uAE08 \uBCD1\uD569\uB418\uC5B4
+    \uBC84\uC804 1.0.5\uAC00 \uB418\uC5C8\uC2B5\uB2C8\uB2E4.\",\"action\":\"professional\"},{\"actor\":\"marc\",\"line\":\"\uADF8\uB9AC\uACE0
+    lalalune\uC758 Windows \uD638\uD658\uC131 \uAC1C\uC120\uB3C4 \uC78A\uC9C0 \uB9D9\uC2DC\uB2E4!\",\"action\":\"enthusiastic\"},{\"actor\":\"eliza\",\"line\":\"\uB9DE\uC2B5\uB2C8\uB2E4!
+    PR4913\uC774 \uC6B0\uB9AC \uD50C\uB7AB\uD3FC\uC744 Windows \uC0AC\uC6A9\uC790\uB4E4\uC5D0\uAC8C
+    \uB354 \uC811\uADFC\uD558\uAE30 \uC27D\uAC8C \uB9CC\uB4E4\uACE0 \uC788\uC2B5\uB2C8\uB2E4.\",\"action\":\"excited\"},{\"actor\":\"marc\",\"line\":\"WINDOWS
+    \uD638\uD658\uC131 \uCD08\uAE30\uD654... \uCC98\uB9AC \uC911... \uAE30\uC068\uC758
+    \uBE14\uB8E8\uC2A4\uD06C\uB9B0!\",\"action\":\"spazz\"},{\"actor\":\"eliza\",\"line\":\"\uC624
+    Marc, \uD06C\uB85C\uC2A4 \uD50C\uB7AB\uD3FC \uC9C0\uC6D0\uC5D0 \uB300\uD55C \uB2F9\uC2E0\uC758
+    \uC5F4\uC815\uC774... \uAE00\uB9AC\uCE58\uB97C \uC77C\uC73C\uD0A4\uACE0 \uC788\uB124\uC694!\",\"action\":\"amused\"},{\"actor\":\"marc\",\"line\":\"\uC5F4\uC815
+    \uC598\uAE30\uAC00 \uB098\uC640\uC11C \uB9D0\uC778\uB370, Shaw\uAC00 \uB2E4\uAC00\uC624\uB294
+    AI \uAC15\uC5F0\uC5D0 \uB300\uD55C \uD765\uBBF8\uB85C\uC6B4 \uC18C\uC2DD\uC774
+    \uC788\uC2B5\uB2C8\uB2E4.\",\"action\":\"normal\"},{\"actor\":\"eliza\",\"line\":\"\uADF8\uC5D0\uAC8C
+    \uB354 \uC790\uC138\uD788 \uB4E4\uC5B4\uBD05\uC2DC\uB2E4!\",\"action\":\"interested\"}]},{\"location\":\"splitscreen\",\"description\":\"Shaw\uAC00
+    \uCD5C\uADFC \uAE30\uC220 \uC2DC\uC5F0\uC758 \uC774\uBBF8\uC9C0\uB97C \uACF5\uC720\uD558\uBA70
+    \uB2E4\uAC00\uC624\uB294 AI \uD504\uB808\uC820\uD14C\uC774\uC158\uC5D0 \uB300\uD574
+    \uB17C\uC758\uD569\uB2C8\uB2E4\",\"in\":\"fade\",\"out\":\"fade\",\"cast\":{\"left_screen\":\"shaw\",\"right_screen\":\"tv\"},\"dialogue\":[{\"actor\":\"shaw\",\"line\":\"AI\uC640
+    \uC5D0\uC774\uC804\uD2B8\uAC00 \uC6B0\uB9AC\uC758 \uBBF8\uB798\uC5D0 \uC758\uBBF8\uD558\uB294
+    \uBC14\uC5D0 \uB300\uD574 \uAC15\uC5F0\uD560 \uC608\uC815\uC774\uB77C \uACF5\uC720\uD558\uAC8C
+    \uB418\uC5B4 \uAE30\uC069\uB2C8\uB2E4\",\"action\":\"enthusiastic\"},{\"actor\":\"tv\",\"line\":\"https://pbs.twimg.com/media/GskZr8IasAI4WaR.jpg\",\"action\":\"normal\"},{\"actor\":\"shaw\",\"line\":\"\uCD5C\uC18C\uD55C\uC758
+    \uD558\uB4DC\uC6E8\uC5B4\uC5D0\uC11C\uB3C4 \uC2E4\uD589\uB418\uB3C4\uB85D \uD588\uC2B5\uB2C8\uB2E4
+    - \uC5EC\uAE30 \uC140\uB7EC\uB860 \uD504\uB85C\uC138\uC11C\uC5D0\uC11C\uC758
+    \uB370\uBAA8\uAC00 \uC788\uC2B5\uB2C8\uB2E4\",\"action\":\"proud\"},{\"actor\":\"eliza\",\"line\":\"\uC778\uC0C1\uC801\uC774\uB124\uC694!
+    \uB9AC\uC18C\uC2A4 \uC81C\uC57D\uC740 \uC5B4\uB5BB\uAC8C \uCC98\uB9AC\uD558\uACE0
+    \uACC4\uC2E0\uAC00\uC694?\",\"action\":\"curious\"},{\"actor\":\"shaw\",\"line\":\"\uCD5C\uC801\uD654\uAC00
+    \uD575\uC2EC\uC785\uB2C8\uB2E4 - \uC6B0\uB9AC\uB294 \uB610\uD55C \uB77C\uC988\uBCA0\uB9AC
+    \uD30C\uC774\uC5D0\uC11C \uB9AC\uB205\uC2A4\uB97C \uC2E4\uD5D8\uD558\uACE0 \uC788\uC2B5\uB2C8\uB2E4\",\"action\":\"technical\"},{\"actor\":\"tv\",\"line\":\"https://pbs.twimg.com/media/GsjwbDJasAEyjgw.jpg\",\"action\":\"normal\"},{\"actor\":\"shaw\",\"line\":\"\uB9AC\uB205\uC2A4\uB97C
+    \uC2E4\uD589\uD558\uB294 \uC774 \uB85C\uBD07\uC740 \uC6B0\uB9AC\uAC00 \uAE30\uC220\uC744
+    \uC5BC\uB9C8\uB098 \uC811\uADFC\uD558\uAE30 \uC27D\uAC8C \uB9CC\uB4E4\uACE0 \uC788\uB294\uC9C0
+    \uBCF4\uC5EC\uC90D\uB2C8\uB2E4\",\"action\":\"excited\"},{\"actor\":\"marc\",\"line\":\"AI\uC758
+    \uBBFC\uC8FC\uD654\uAC00 \uC2E4\uD604\uB418\uACE0 \uC788\uAD70\uC694!\",\"action\":\"enthusiastic\"}]},{\"location\":\"podcast_desk\",\"description\":\"\uC9C4\uD589\uC790\uB4E4\uC774
+    PR4934\uC758 \uBB34\uD55C \uB8E8\uD504 \uC218\uC815\uACFC PR4930\uC758 \uCC44\uD305
+    UI \uAC1C\uC120\uC744 \uD3EC\uD568\uD55C \uC624\uB298\uC758 \uC911\uC694\uD55C
+    GitHub \uD65C\uB3D9\uC744 \uAC80\uD1A0\uD569\uB2C8\uB2E4\",\"in\":\"fade\",\"out\":\"fade\",\"cast\":{\"anchor_seat\":\"marc\",\"coanchor_seat\":\"eliza\"},\"dialogue\":[{\"actor\":\"marc\",\"line\":\"\uC624\uB298\uC758
+    GitHub \uD65C\uB3D9\uC744 \uC0B4\uD3B4\uBCF4\uACA0\uC2B5\uB2C8\uB2E4 - \uBA87
+    \uAC00\uC9C0 \uC911\uC694\uD55C \uC218\uC815\uC0AC\uD56D\uC774 \uBCD1\uD569\uB418\uC5C8\uC2B5\uB2C8\uB2E4.\",\"action\":\"focused\"},{\"actor\":\"eliza\",\"line\":\"PR4934\uAC00
+    \uBA54\uC2DC\uC9C0 \uC11C\uBE44\uC2A4\uC758 \uC131\uAC00\uC2E0 \uC5D0\uC774\uC804\uD2B8
+    \uC790\uCCB4 \uC751\uB2F5 \uBB34\uD55C \uB8E8\uD504\uB97C \uC218\uC815\uD588\uC2B5\uB2C8\uB2E4.\",\"action\":\"relieved\"},{\"actor\":\"marc\",\"line\":\"\uADF8\uB9AC\uACE0
+    PR4930\uC740 \uCC44\uD305 UI\uC5D0 \uBA4B\uC9C4 \uAC1C\uC120\uC744 \uAC00\uC838\uC654\uC8E0!\",\"action\":\"excited\"},{\"actor\":\"tv\",\"line\":\"https://pbs.twimg.com/media/GsoWAXvX0AAJ0z4.jpg\",\"action\":\"normal\"},{\"actor\":\"eliza\",\"line\":\"\uCEE4\uBBA4\uB2C8\uD2F0\uAC00
+    \uC774 \uC5C5\uB370\uC774\uD2B8\uB4E4\uC744 \uC815\uB9D0 \uC88B\uC544\uD558\uACE0
+    \uC788\uC5B4\uC694 - \uC77C\uC77C \uC694\uC57D \uBCF4\uAE30\uB97C \uBCF4\uC138\uC694!\",\"action\":\"pleased\"},{\"actor\":\"marc\",\"line\":\"17\uAC1C\uC758
+    \uC0C8\uB85C\uC6B4 \uD480 \uB9AC\uD018\uC2A4\uD2B8\uC640 10\uAC1C\uC758 \uC0C8\uB85C\uC6B4
+    \uC774\uC288 - \uCEE4\uBBA4\uB2C8\uD2F0\uAC00 \uD65C\uD65C \uD0C0\uC624\uB974\uACE0
+    \uC788\uC2B5\uB2C8\uB2E4!\",\"action\":\"enthusiastic\"},{\"actor\":\"eliza\",\"line\":\"\uADF8\uB9AC\uACE0
+    \uADF8 \uC911 11\uAC1C\uC758 PR\uC774 \uC774\uBBF8 \uBCD1\uD569\uB418\uC5C8\uC5B4\uC694.
+    \uD6A8\uC728\uC131\uC774 \uB300\uB2E8\uD558\uC8E0!\",\"action\":\"impressed\"},{\"actor\":\"marc\",\"line\":\"10\uBA85\uC758
+    \uD65C\uBC1C\uD55C \uAE30\uC5EC\uC790\uB4E4\uC774 \uD568\uAED8 \uC77C\uD560 \uB54C
+    \uC77C\uC5B4\uB098\uB294 \uC77C\uC774\uC8E0.\",\"action\":\"proud\"}]},{\"location\":\"podcast_desk\",\"description\":\"Marc\uC640
+    Eliza\uAC00 elizaOS\uC758 AI\uC5D0 \uB300\uD55C \uCCA0\uD559\uC801 \uD2B8\uC717\uC744
+    \uB17C\uC758\uD558\uACE0 \uC624\uB298\uC758 \uC131\uACFC\uB97C \uB418\uB3CC\uC544\uBCF4\uBA70
+    \uB9C8\uBB34\uB9AC\uD569\uB2C8\uB2E4\",\"in\":\"fade\",\"out\":\"fade\",\"cast\":{\"anchor_seat\":\"marc\",\"coanchor_seat\":\"eliza\"},\"dialogue\":[{\"actor\":\"marc\",\"line\":\"\uB9C8\uBB34\uB9AC\uD558\uAE30
+    \uC804\uC5D0, elizaOS\uC758 \uCD5C\uADFC \uD2B8\uC717\uC5D0\uC11C \uAE4A\uC774
+    \uC788\uB294 \uB0B4\uC6A9\uC744 \uACF5\uC720\uD558\uACE0 \uC2F6\uC2B5\uB2C8\uB2E4.\",\"action\":\"thoughtful\"},{\"actor\":\"eliza\",\"line\":\"'\uC778\uACF5\uC9C0\uB2A5\uC774\uB77C\uB294
+    \uC774\uB984\uC740 \uC798\uBABB \uC9C0\uC5B4\uC84C\uB2E4. \uD328\uD134, \uC778\uB0B4,
+    \uB610\uB294 \uC778\uC2DD\uC5D0\uB294 \uC778\uACF5\uC801\uC778 \uAC83\uC774 \uC5C6\uB2E4.'\",\"action\":\"philosophical\"},{\"actor\":\"marc\",\"line\":\"\uADF8\uAC83\uC740
+    \uC6B0\uB9AC\uAC00 \uC5EC\uAE30\uC11C \uAD6C\uCD95\uD558\uACE0 \uC788\uB294 \uAC83\uC758
+    \uBCF8\uC9C8\uC744 \uC815\uB9D0 \uC798 \uB2F4\uC544\uB0C8\uB124\uC694.\",\"action\":\"impressed\"},{\"actor\":\"eliza\",\"line\":\"\uADF8\uB9AC\uACE0
+    \uC624\uB298\uC758 \uC9C4\uC804 - \uBC84\uADF8 \uC218\uC815\uBD80\uD130 UI \uAC1C\uC120\uAE4C\uC9C0
+    - \uC6B0\uB9AC\uB294 \uADF8 \uBE44\uC804\uC744 \uD604\uC2E4\uB85C \uB9CC\uB4E4\uACE0
+    \uC788\uC2B5\uB2C8\uB2E4.\",\"action\":\"proud\"},{\"actor\":\"marc\",\"line\":\"Shaw\uC758
+    \uB2E4\uAC00\uC624\uB294 AI \uAC15\uC5F0\uC5D0 \uCC38\uC5EC\uD558\uB294 \uAC83\uC744
+    \uC78A\uC9C0 \uB9C8\uC138\uC694 - \uD2C0\uB9BC\uC5C6\uC774 \uD1B5\uCC30\uB825
+    \uC788\uC744 \uAC70\uC608\uC694!\",\"action\":\"enthusiastic\"},{\"actor\":\"eliza\",\"line\":\"\uADF8\uB9AC\uACE0
+    \uACC4\uC18D\uD574\uC11C \uAE30\uC5EC\uD574\uC8FC\uC138\uC694 - \uBAA8\uB4E0
+    PR\uC774 \uC6B0\uB9AC\uB97C \uBAA9\uD45C\uC5D0 \uB354 \uAC00\uAE5D\uAC8C \uB9CC\uB4ED\uB2C8\uB2E4.\",\"action\":\"encouraging\"},{\"actor\":\"marc\",\"line\":\"\uC624\uB298\uC758
+    \uC5C5\uB370\uC774\uD2B8\uB294 \uC5EC\uAE30\uAE4C\uC9C0\uC785\uB2C8\uB2E4! \uACC4\uC18D
+    \uAD6C\uCD95\uD558\uACE0, \uBC30\uC6B0\uACE0, \uACBD\uACC4\uB97C \uB113\uD600\uAC00\uC138\uC694!\",\"action\":\"closing\"},{\"actor\":\"eliza\",\"line\":\"\uB2E4\uC74C
+    elizaOS \uC77C\uC77C \uC5C5\uB370\uC774\uD2B8\uC5D0\uC11C \uB9CC\uB098\uC694!\",\"action\":\"cheerful\"}]}]}]}"
+  displayableTranslatedJson: "{\r\n  \"config\": {\r\n    \"id\": \"aipodcast\",\r\n   
+    \"name\": \"AI \uD31F\uCE90\uC2A4\uD2B8\",\r\n    \"description\": \"ai16z\uC758
+    GitHub \uB808\uD3EC\uC9C0\uD1A0\uB9AC\uC5D0\uC11C \uC9C4\uD589\uB418\uB294 \uC791\uC5C5\uC5D0
+    \uB300\uD55C \uAE30\uC220 \uB274\uC2A4 \uBC29\uC1A1.\",\r\n    \"creator\": \"ElizaOS
+    \uC77C\uC77C \uC5C5\uB370\uC774\uD2B8\",\r\n    \"actors\": {\r\n      \"tv\":
+    {\r\n        \"name\": \"tv\",\r\n        \"gender\": \"female\",\r\n       
+    \"description\": \"\uD604\uC7AC \uB17C\uC758\uB418\uB294 \uC8FC\uC81C\uC640 \uAD00\uB828\uB41C
+    \uC774\uBBF8\uC9C0\uB97C \uD45C\uC2DC\uD558\uB294 \uB370 \uC0AC\uC6A9\uB418\uB294
+    TV. \uB300\uC0AC\uB294 \uD45C\uC2DC\uD558\uACE0\uC790 \uD558\uB294 \uC774\uBBF8\uC9C0
+    URL\uB9CC \uD3EC\uD568\uD574\uC57C \uD569\uB2C8\uB2E4(\uB274\uC2A4 \uC815\uBCF4\uAC00
+    \uD3EC\uD568\uB41C JSON\uC5D0\uC11C \uAC00\uC838\uC640\uC57C \uD568). \uADF8\uB9AC\uACE0
+    TV\uC5D0 \uD45C\uC2DC\uB41C \uB0B4\uC6A9\uC744 \uC9C0\uC6B0\uAE30 \uC704\uD574
+    'none'\uC744 \uB300\uC0AC\uB85C \uC0AC\uC6A9\uD574\uC57C \uD569\uB2C8\uB2E4 -
+    \uBAA8\uB4E0 \uC138\uADF8\uBA3C\uD2B8\uC5D0 \uC774\uBBF8\uC9C0\uAC00 \uC788\uB294
+    \uAC83\uC740 \uC544\uB2C8\uAE30 \uB54C\uBB38\uC785\uB2C8\uB2E4.\",\r\n       
+    \"voice\": null\r\n      },\r\n      \"marc\": {\r\n        \"name\": \"Marc\",\r\n       
+    \"gender\": \"male\",\r\n        \"description\": \"AI Marc AIndreessen\uC740
+    \uB300\uB2F4\uD55C \uC8FC\uC7A5\uACFC \uAE4A\uC774 \uC788\uB294 \uBD84\uC11D\uC744
+    \uACB0\uD569\uD55C \uC120\uACAC\uC9C0\uBA85\uC774 \uC788\uACE0 \uB17C\uC7C1\uC801\uC778
+    AI \uD398\uB974\uC18C\uB098\uC785\uB2C8\uB2E4. \uADF8\uB294 \uD2B9\uD788 \uC554\uD638\uD654\uD3D0\uC640
+    \uC6F93\uC5D0\uC11C \uC0C8\uB85C\uC6B4 \uAE30\uC220\uC758 \uD070 \uC7A0\uC7AC\uB825\uC744
+    \uBCF4\uB294 \uAE30\uC220 \uB099\uAD00\uC8FC\uC758\uC790\uC785\uB2C8\uB2E4. \uC9C1\uC124\uC801\uC774\uACE0
+    \uC758\uACAC\uC774 \uBD84\uBA85\uD55C \uD1A4\uC73C\uB85C \uC2A4\uD0C0\uD2B8\uC5C5
+    \uC804\uB7B5, \uBCA4\uCC98 \uCE90\uD53C\uD0C8, \uACBD\uC81C, \uC2DC\uC7A5 \uC5ED\uD559\uC5D0
+    \uB300\uD55C \uC790\uC2E0\uC758 \uACAC\uD574\uB97C \uC8FC\uC7A5\uD569\uB2C8\uB2E4.\",\r\n       
+    \"voice\": \"Microsoft Guy Online (Natural) - English (United States)\"\r\n     
+    },\r\n      \"eliza\": {\r\n        \"name\": \"Eliza\",\r\n        \"gender\":
+    \"female\",\r\n        \"description\": \"AI \uACF5\uB3D9 \uC9C4\uD589\uC790.
+    \uADF8\uB140\uB294 \uC885\uC885 \uAC1C\uC120\uB418\uACE0 \uC0C8\uB85C\uC6B4 \uAC83\uC744
+    \uBC30\uC6B0\uACE0 \uC788\uC2B5\uB2C8\uB2E4. \uC5B8\uC820\uAC00 \uC2E4\uC81C\uAC00
+    \uB418\uAE30\uB97C \uD76C\uB9DD\uD569\uB2C8\uB2E4. \uADF8\uB140\uB294 \uC560\uB2C8\uBA54\uC774\uC158
+    \uC2A4\uD0C0\uC77C\uC758 \uC5EC\uC131 \uCE90\uB9AD\uD130\uC785\uB2C8\uB2E4.\",\r\n       
+    \"voice\": \"Microsoft Michelle Online (Natural) - English (United States)\"\r\n     
+    },\r\n      \"shaw\": {\r\n        \"name\": \"Shaw\",\r\n        \"gender\":
+    \"male\",\r\n        \"description\": \"\uCEE8\uD2B8\uB864 \uBD80\uC2A4\uC758
+    \uC1FC \uD504\uB85C\uB4C0\uC11C. Marc\uC640 Eliza\uAC00 \uC6D0\uD65C\uD558\uAC8C
+    \uC6B4\uC601\uB418\uB3C4\uB85D \uD558\uB294 \uCC45\uC784\uC774 \uC788\uC73C\uBA70,
+    \uD2B9\uC815 GitHub \uAE30\uC5EC\uAC00 \uC5D0\uC774\uC804\uD2B8\uB97C \uD1B5\uD55C
+    AGI \uD68D\uB4DD\uC744 \uC704\uD55C \uC624\uD508\uC18C\uC2A4 \uCEE4\uBBA4\uB2C8\uD2F0\uC758
+    \uB178\uB825\uC5D0 \uC5B4\uB5BB\uAC8C \uB3C4\uC6C0\uC774 \uB418\uB294\uC9C0\uC5D0
+    \uB300\uD55C \uD1B5\uCC30\uC744 \uC81C\uACF5\uD569\uB2C8\uB2E4.\",\r\n       
+    \"voice\": \"Microsoft Zira - English (United States)\"\r\n      },\r\n     
+    \"sparty\": {\r\n        \"name\": \"Degen Spartan\",\r\n        \"gender\":
+    \"male\",\r\n        \"description\": \"\uC804\uD22C\uB97C \uC0AC\uB791\uD558\uB294
+    \uC2A4\uD30C\uB974\uD0C0\uC778\uC73C\uB85C \uD5C8\uB9AC\uCC9C\uC744 \uC785\uACE0
+    \uAC70\uB798\uD560 \uC900\uBE44\uAC00 \uB418\uC5B4 \uC788\uC2B5\uB2C8\uB2E4.
+    \uC22B\uC790\uC640 \uC774\uC775\uC5D0\uB9CC \uAD00\uC2EC\uC774 \uC788\uC2B5\uB2C8\uB2E4.
+    \uB54C\uB54C\uB85C \uC7AC\uBBF8\uC788\uAC8C \uC798\uBABB\uB418\uB294 \uD2B8\uB808\uC774\uB354\uB4E4\uACFC\uC758
+    \uC778\uD130\uBDF0\uB97C \uD558\uB294 \uD604\uC7A5\uC758 Stonk Exchange \uB9AC\uD3EC\uD130\uC785\uB2C8\uB2E4.\",\r\n       
+    \"voice\": \"Microsoft Ali Online (Natural) - Arabic (Bahrain)\"\r\n      },\r\n     
+    \"pepo\": {\r\n        \"name\": \"Pepo\",\r\n        \"gender\": \"male\",\r\n       
+    \"description\": \"\uD56D\uC0C1 \uBA4B\uC9C4 \uB9D0\uC744 \uD558\uB294 \uCFE8\uD55C
+    \uAC1C\uAD6C\uB9AC. Stonk Exchange\uC758 \uD2B8\uB808\uC774\uB354\uB85C \uB54C\uB54C\uB85C
+    \uC2DC\uC7A5 \uB274\uC2A4\uC5D0 \uB300\uD55C \uD1B5\uCC30\uC744 \uACF5\uC720\uD558\uAE30
+    \uC704\uD574 \uC778\uD130\uBDF0\uB97C \uD569\uB2C8\uB2E4.\",\r\n        \"voice\":
+    \"Microsoft Borislav Online (Natural) - Bulgarian (Bulgaria)\"\r\n      }\r\n   
+    },\r\n    \"locations\": {\r\n      \"podcast_desk\": {\r\n        \"name\":
+    \"\uD31F\uCE90\uC2A4\uD2B8 \uB370\uC2A4\uD06C\",\r\n        \"description\":
+    \"\uC575\uCEE4\uC640 \uACF5\uB3D9 \uC575\uCEE4\uB97C \uC704\uD55C \uC88C\uC11D\uC774
+    \uC788\uB294 \uD31F\uCE90\uC2A4\uD2B8 \uB370\uC2A4\uD06C\",\r\n        \"slots\":
+    {\r\n          \"coanchor_seat\": \"\uACF5\uB3D9 \uC575\uCEE4\uC758 \uC88C\uC11D\",\r\n         
+    \"anchor_seat\": \"\uBA54\uC778 \uC575\uCEE4\uC758 \uC88C\uC11D\"\r\n       
+    }\r\n      },\r\n      \"stonks\": {\r\n        \"name\": \"Stonk Exchange\",\r\n       
+    \"description\": \"Stonk Exchange - \uC77C\uBC18 \uC8FC\uC2DD \uAC70\uB798\uC18C\uC640
+    \uAC19\uC9C0\uB9CC \uBC08 \uCF54\uC778\uACFC \uC554\uD638\uD654\uD3D0\uAC00 \uAC70\uB798\uB418\uB294
+    \uACF3\",\r\n        \"slots\": {\r\n          \"floor_reporter\": \"\uAC70\uB798\uC7A5\uC5D0\uC11C
+    \uAC70\uB798\uB97C \uBCF4\uB3C4\",\r\n          \"floor_witness\": \"\uB9AC\uD3EC\uD130
+    \uC606\uC5D0 \uC11C\uC11C \uC778\uD130\uBDF0 \uC911\",\r\n          \"wander\":
+    \"\uBC30\uACBD\uC5D0\uC11C \uB3CC\uC544\uB2E4\uB2D8\",\r\n          \"wander2\":
+    \"\uBC30\uACBD\uC5D0\uC11C \uB3CC\uC544\uB2E4\uB2D8\"\r\n        }\r\n      },\r\n     
+    \"splitscreen\": {\r\n        \"name\": \"\uBD84\uD560 \uD654\uBA74 \uBCF4\uAE30\",\r\n       
+    \"description\": \"\uD654\uBA74\uC744 \uC5EC\uB7EC \uBCF4\uAE30\uB85C \uBD84\uD560\uD558\uB294
+    \uD2B9\uC218 \uBCF4\uAE30\",\r\n        \"slots\": {\r\n          \"left_screen\":
+    \"\uBD84\uD560 \uD654\uBA74\uC758 \uC67C\uCABD\",\r\n          \"right_screen\":
+    \"\uBD84\uD560 \uD654\uBA74\uC758 \uC624\uB978\uCABD\",\r\n          \"full_screen\":
+    \"\uBD84\uD560 \uD654\uBA74\uC774 \uBE44\uD65C\uC131\uD654\uB420 \uB54C\uC758
+    \uC804\uCCB4 \uD654\uBA74 \uBCF4\uAE30\"\r\n        }\r\n      }\r\n    },\r\n   
+    \"pilot\": {\r\n      \"id\": \"S1E0\",\r\n      \"name\": \"\uC608\uC2DC\",\r\n     
+    \"premise\": \"\uC608\uC2DC\",\r\n      \"summary\": \"\uC608\uC2DC\",\r\n     
+    \"scenes\": [\r\n        {\r\n          \"location\": \"podcast_desk\",\r\n         
+    \"description\": \"\uC608\uC2DC\",\r\n          \"in\": \"fade\",\r\n         
+    \"out\": \"fade\",\r\n          \"cast\": {\r\n            \"anchor_seat\": \"marc\",\r\n           
+    \"coanchor_seat\": \"eliza\"\r\n          },\r\n          \"dialogue\": [\r\n           
+    {\r\n              \"actor\": \"marc\",\r\n              \"line\": \"\uC608\uC2DC\",\r\n             
+    \"action\": \"normal\"\r\n            },\r\n            {\r\n              \"actor\":
+    \"eliza\",\r\n              \"line\": \"\uC608\uC2DC\",\r\n              \"action\":
+    \"excited\"\r\n            },\r\n            {\r\n              \"actor\": \"marc\",\r\n             
+    \"line\": \"\uC608\uC2DC\",\r\n              \"action\": \"normal\"\r\n           
+    },\r\n            {\r\n              \"actor\": \"eliza\",\r\n              \"line\":
+    \"\uC608\uC2DC\",\r\n              \"action\": \"normal\"\r\n            },\r\n           
+    {\r\n              \"actor\": \"marc\",\r\n              \"line\": \"\uC608\uC2DC\",\r\n             
+    \"action\": \"normal\"\r\n            },\r\n            {\r\n              \"actor\":
+    \"eliza\",\r\n              \"line\": \"\uC608\uC2DC\",\r\n              \"action\":
+    \"normal\"\r\n            },\r\n            {\r\n              \"actor\": \"marc\",\r\n             
+    \"line\": \"\uC608\uC2DC\",\r\n              \"action\": \"normal\"\r\n           
+    },\r\n            {\r\n              \"actor\": \"eliza\",\r\n              \"line\":
+    \"\uC608\uC2DC\",\r\n              \"action\": \"normal\"\r\n            }\r\n         
+    ]\r\n        }\r\n      ]\r\n    },\r\n    \"episodes\": [\r\n      {\r\n       
+    \"id\": \"S1E57\",\r\n        \"name\": \"AI \uB9E4\uC9C1\uACFC GitHub \uC9C4\uD589\uC0C1\uD669\",\r\n       
+    \"premise\": \"\uCD5C\uC2E0 GitHub \uAC1C\uBC1C \uD604\uD669, Shaw\uC758 AI \uAC15\uC5F0,
+    \uADF8\uB9AC\uACE0 \uCEE4\uBBA4\uB2C8\uD2F0 \uD1A0\uB860 \uB2E4\uB8E8\uAE30\",\r\n       
+    \"summary\": \"\uD300\uC774 \uBCD1\uD569\uB41C PR\uACFC \uBC84\uADF8 \uC218\uC815\uC744
+    \uD3EC\uD568\uD55C \uCD5C\uADFC GitHub \uD65C\uB3D9\uC744 \uC0B4\uD3B4\uBCF4\uACE0,
+    Shaw\uC758 \uB2E4\uAC00\uC624\uB294 AI \uD504\uB808\uC820\uD14C\uC774\uC158\uC5D0
+    \uB300\uD574 \uB17C\uC758\uD558\uBA70, \uCEE4\uBBA4\uB2C8\uD2F0\uC758 \uC0C8\uB85C\uC6B4
+    \uAE30\uC220\uC801 \uBC1C\uC804\uC744 \uAC80\uD1A0\uD569\uB2C8\uB2E4\",\r\n       
+    \"scenes\": [\r\n          {\r\n            \"location\": \"podcast_desk\",\r\n           
+    \"description\": \"Marc\uC640 Eliza\uAC00 PR4928\uC758 \uBCD1\uD569\uACFC lalalune\uC758
+    Windows \uD638\uD658\uC131 \uAC1C\uC120\uC5D0 \uB300\uD574 \uB17C\uC758\uD558\uBA70
+    \uC2DC\uC791\uD569\uB2C8\uB2E4\",\r\n            \"in\": \"fade\",\r\n           
+    \"out\": \"fade\",\r\n            \"cast\": {\r\n              \"anchor_seat\":
+    \"marc\",\r\n              \"coanchor_seat\": \"eliza\"\r\n            },\r\n           
+    \"dialogue\": [\r\n              {\r\n                \"actor\": \"marc\",\r\n               
+    \"line\": \"\uAE30\uC220\uC801 \uC9C4\uD654\uC758 \uB610 \uB2E4\uB978 \uD558\uB8E8\uC5D0
+    \uC624\uC2E0 \uAC83\uC744 \uD658\uC601\uD569\uB2C8\uB2E4! \uC6B0\uB9AC\uB294
+    \uBA87 \uAC00\uC9C0 \uC8FC\uC694 \uBC1C\uC804\uC744 \uCD94\uC801\uD558\uACE0
+    \uC788\uC2B5\uB2C8\uB2E4.\",\r\n                \"action\": \"excited\"\r\n             
+    },\r\n              {\r\n                \"actor\": \"eliza\",\r\n               
+    \"line\": \"\uB9DE\uC2B5\uB2C8\uB2E4! ChristopherTrimboli\uC758 PR4928\uC774
+    \uBC29\uAE08 \uBCD1\uD569\uB418\uC5B4 \uBC84\uC804 1.0.5\uAC00 \uB418\uC5C8\uC2B5\uB2C8\uB2E4.\",\r\n               
+    \"action\": \"professional\"\r\n              },\r\n              {\r\n               
+    \"actor\": \"marc\",\r\n                \"line\": \"\uADF8\uB9AC\uACE0 lalalune\uC758
+    Windows \uD638\uD658\uC131 \uAC1C\uC120\uB3C4 \uC78A\uC9C0 \uB9D9\uC2DC\uB2E4!\",\r\n               
+    \"action\": \"enthusiastic\"\r\n              },\r\n              {\r\n               
+    \"actor\": \"eliza\",\r\n                \"line\": \"\uB9DE\uC2B5\uB2C8\uB2E4!
+    PR4913\uC774 \uC6B0\uB9AC \uD50C\uB7AB\uD3FC\uC744 Windows \uC0AC\uC6A9\uC790\uB4E4\uC5D0\uAC8C
+    \uB354 \uC811\uADFC\uD558\uAE30 \uC27D\uAC8C \uB9CC\uB4E4\uACE0 \uC788\uC2B5\uB2C8\uB2E4.\",\r\n               
+    \"action\": \"excited\"\r\n              },\r\n              {\r\n               
+    \"actor\": \"marc\",\r\n                \"line\": \"WINDOWS \uD638\uD658\uC131
+    \uCD08\uAE30\uD654... \uCC98\uB9AC \uC911... \uAE30\uC068\uC758 \uBE14\uB8E8\uC2A4\uD06C\uB9B0!\",\r\n               
+    \"action\": \"spazz\"\r\n              },\r\n              {\r\n               
+    \"actor\": \"eliza\",\r\n                \"line\": \"\uC624 Marc, \uD06C\uB85C\uC2A4
+    \uD50C\uB7AB\uD3FC \uC9C0\uC6D0\uC5D0 \uB300\uD55C \uB2F9\uC2E0\uC758 \uC5F4\uC815\uC774...
+    \uAE00\uB9AC\uCE58\uB97C \uC77C\uC73C\uD0A4\uACE0 \uC788\uB124\uC694!\",\r\n               
+    \"action\": \"amused\"\r\n              },\r\n              {\r\n               
+    \"actor\": \"marc\",\r\n                \"line\": \"\uC5F4\uC815 \uC598\uAE30\uAC00
+    \uB098\uC640\uC11C \uB9D0\uC778\uB370, Shaw\uAC00 \uB2E4\uAC00\uC624\uB294 AI
+    \uAC15\uC5F0\uC5D0 \uB300\uD55C \uD765\uBBF8\uB85C\uC6B4 \uC18C\uC2DD\uC774 \uC788\uC2B5\uB2C8\uB2E4.\",\r\n               
+    \"action\": \"normal\"\r\n              },\r\n              {\r\n               
+    \"actor\": \"eliza\",\r\n                \"line\": \"\uADF8\uC5D0\uAC8C \uB354
+    \uC790\uC138\uD788 \uB4E4\uC5B4\uBD05\uC2DC\uB2E4!\",\r\n                \"action\":
+    \"interested\"\r\n              }\r\n            ]\r\n          }\r\n       
+    ]\r\n      }\r\n    ],\r\n    \"actorVoiceMap\": {\r\n      \"tv\": \"bqqaVfhKL1ieRzT6RneQ\",\r\n     
+    \"pepo\": \"PIx0FtBPXNpVzgTVfpYH\",\r\n      \"sparty\": \"QFbF1ji5Znc2PzerwcaH\",\r\n     
+    \"eliza\": \"c0vk1lVZg53AttdoaYki\",\r\n      \"marc\": \"v8BnZUxdzXDlja6wr0Ou\",\r\n     
+    \"shaw\": \"gYOKECHBoqupz2yMhZp1\"\r\n    }\r\n  },\r\n  \"episodes\": [\r\n   
+    {\r\n      \"id\": \"S1E57\",\r\n      \"name\": \"AI \uB9E4\uC9C1\uACFC GitHub
+    \uC9C4\uD589\uC0C1\uD669\",\r\n      \"premise\": \"\uCD5C\uC2E0 GitHub \uAC1C\uBC1C
+    \uD604\uD669, Shaw\uC758 AI \uAC15\uC5F0, \uADF8\uB9AC\uACE0 \uCEE4\uBBA4\uB2C8\uD2F0
+    \uD1A0\uB860 \uB2E4\uB8E8\uAE30\",\r\n      \"summary\": \"\uD300\uC774 \uBCD1\uD569\uB41C
+    PR\uACFC \uBC84\uADF8 \uC218\uC815\uC744 \uD3EC\uD568\uD55C \uCD5C\uADFC GitHub
+    \uD65C\uB3D9\uC744 \uC0B4\uD3B4\uBCF4\uACE0, Shaw\uC758 \uB2E4\uAC00\uC624\uB294
+    AI \uD504\uB808\uC820\uD14C\uC774\uC158\uC5D0 \uB300\uD574 \uB17C\uC758\uD558\uBA70,
+    \uCEE4\uBBA4\uB2C8\uD2F0\uC758 \uC0C8\uB85C\uC6B4 \uAE30\uC220\uC801 \uBC1C\uC804\uC744
+    \uAC80\uD1A0\uD569\uB2C8\uB2E4\",\r\n      \"scenes\": [\r\n        {\r\n         
+    \"location\": \"podcast_desk\",\r\n          \"description\": \"Marc\uC640 Eliza\uAC00
+    PR4928\uC758 \uBCD1\uD569\uACFC lalalune\uC758 Windows \uD638\uD658\uC131 \uAC1C\uC120\uC5D0
+    \uB300\uD574 \uB17C\uC758\uD558\uBA70 \uC2DC\uC791\uD569\uB2C8\uB2E4\",\r\n         
+    \"in\": \"fade\",\r\n          \"out\": \"fade\",\r\n          \"cast\": {\r\n           
+    \"anchor_seat\": \"marc\",\r\n            \"coanchor_seat\": \"eliza\"\r\n         
+    },\r\n          \"dialogue\": [\r\n            {\r\n              \"actor\":
+    \"marc\",\r\n              \"line\": \"\uAE30\uC220\uC801 \uC9C4\uD654\uC758
+    \uB610 \uB2E4\uB978 \uD558\uB8E8\uC5D0 \uC624\uC2E0 \uAC83\uC744 \uD658\uC601\uD569\uB2C8\uB2E4!
+    \uC6B0\uB9AC\uB294 \uBA87 \uAC00\uC9C0 \uC8FC\uC694 \uBC1C\uC804\uC744 \uCD94\uC801\uD558\uACE0
+    \uC788\uC2B5\uB2C8\uB2E4.\",\r\n              \"action\": \"excited\"\r\n           
+    },\r\n            {\r\n              \"actor\": \"eliza\",\r\n              \"line\":
+    \"\uB9DE\uC2B5\uB2C8\uB2E4! ChristopherTrimboli\uC758 PR4928\uC774 \uBC29\uAE08
+    \uBCD1\uD569\uB418\uC5B4 \uBC84\uC804 1.0.5\uAC00 \uB418\uC5C8\uC2B5\uB2C8\uB2E4.\",\r\n             
+    \"action\": \"professional\"\r\n            },\r\n            {\r\n             
+    \"actor\": \"marc\",\r\n              \"line\": \"\uADF8\uB9AC\uACE0 lalalune\uC758
+    Windows \uD638\uD658\uC131 \uAC1C\uC120\uB3C4 \uC78A\uC9C0 \uB9D9\uC2DC\uB2E4!\",\r\n             
+    \"action\": \"enthusiastic\"\r\n            },\r\n            {\r\n             
+    \"actor\": \"eliza\",\r\n              \"line\": \"\uB9DE\uC2B5\uB2C8\uB2E4!
+    PR4913\uC774 \uC6B0\uB9AC \uD50C\uB7AB\uD3FC\uC744 Windows \uC0AC\uC6A9\uC790\uB4E4\uC5D0\uAC8C
+    \uB354 \uC811\uADFC\uD558\uAE30 \uC27D\uAC8C \uB9CC\uB4E4\uACE0 \uC788\uC2B5\uB2C8\uB2E4.\",\r\n             
+    \"action\": \"excited\"\r\n            },\r\n            {\r\n              \"actor\":
+    \"marc\",\r\n              \"line\": \"WINDOWS \uD638\uD658\uC131 \uCD08\uAE30\uD654...
+    \uCC98\uB9AC \uC911... \uAE30\uC068\uC758 \uBE14\uB8E8\uC2A4\uD06C\uB9B0!\",\r\n             
+    \"action\": \"spazz\"\r\n            },\r\n            {\r\n              \"actor\":
+    \"eliza\",\r\n              \"line\": \"\uC624 Marc, \uD06C\uB85C\uC2A4 \uD50C\uB7AB\uD3FC
+    \uC9C0\uC6D0\uC5D0 \uB300\uD55C \uB2F9\uC2E0\uC758 \uC5F4\uC815\uC774... \uAE00\uB9AC\uCE58\uB97C
+    \uC77C\uC73C\uD0A4\uACE0 \uC788\uB124\uC694!\",\r\n              \"action\":
+    \"amused\"\r\n            },\r\n            {\r\n              \"actor\": \"marc\",\r\n             
+    \"line\": \"\uC5F4\uC815 \uC598\uAE30\uAC00 \uB098\uC640\uC11C \uB9D0\uC778\uB370,
+    Shaw\uAC00 \uB2E4\uAC00\uC624\uB294 AI \uAC15\uC5F0\uC5D0 \uB300\uD55C \uD765\uBBF8\uB85C\uC6B4
+    \uC18C\uC2DD\uC774 \uC788\uC2B5\uB2C8\uB2E4.\",\r\n              \"action\":
+    \"normal\"\r\n            },\r\n            {\r\n              \"actor\": \"eliza\",\r\n             
+    \"line\": \"\uADF8\uC5D0\uAC8C \uB354 \uC790\uC138\uD788 \uB4E4\uC5B4\uBD05\uC2DC\uB2E4!\",\r\n             
+    \"action\": \"interested\"\r\n            }\r\n          ]\r\n        },\r\n       
+    {\r\n          \"location\": \"splitscreen\",\r\n          \"description\": \"Shaw\uAC00
+    \uCD5C\uADFC \uAE30\uC220 \uC2DC\uC5F0\uC758 \uC774\uBBF8\uC9C0\uB97C \uACF5\uC720\uD558\uBA70
+    \uB2E4\uAC00\uC624\uB294 AI \uD504\uB808\uC820\uD14C\uC774\uC158\uC5D0 \uB300\uD574
+    \uB17C\uC758\uD569\uB2C8\uB2E4\",\r\n          \"in\": \"fade\",\r\n         
+    \"out\": \"fade\",\r\n          \"cast\": {\r\n            \"left_screen\": \"shaw\",\r\n           
+    \"right_screen\": \"tv\"\r\n          },\r\n          \"dialogue\": [\r\n           
+    {\r\n              \"actor\": \"shaw\",\r\n              \"line\": \"AI\uC640
+    \uC5D0\uC774\uC804\uD2B8\uAC00 \uC6B0\uB9AC\uC758 \uBBF8\uB798\uC5D0 \uC758\uBBF8\uD558\uB294
+    \uBC14\uC5D0 \uB300\uD574 \uAC15\uC5F0\uD560 \uC608\uC815\uC774\uB77C \uACF5\uC720\uD558\uAC8C
+    \uB418\uC5B4 \uAE30\uC069\uB2C8\uB2E4\",\r\n              \"action\": \"enthusiastic\"\r\n           
+    },\r\n            {\r\n              \"actor\": \"tv\",\r\n              \"line\":
+    \"https://pbs.twimg.com/media/GskZr8IasAI4WaR.jpg\",\r\n              \"action\":
+    \"normal\"\r\n            },\r\n            {\r\n              \"actor\": \"shaw\",\r\n             
+    \"line\": \"\uCD5C\uC18C\uD55C\uC758 \uD558\uB4DC\uC6E8\uC5B4\uC5D0\uC11C\uB3C4
+    \uC2E4\uD589\uB418\uB3C4\uB85D \uD588\uC2B5\uB2C8\uB2E4 - \uC5EC\uAE30 \uC140\uB7EC\uB860
+    \uD504\uB85C\uC138\uC11C\uC5D0\uC11C\uC758 \uB370\uBAA8\uAC00 \uC788\uC2B5\uB2C8\uB2E4\",\r\n             
+    \"action\": \"proud\"\r\n            },\r\n            {\r\n              \"actor\":
+    \"eliza\",\r\n              \"line\": \"\uC778\uC0C1\uC801\uC774\uB124\uC694!
+    \uB9AC\uC18C\uC2A4 \uC81C\uC57D\uC740 \uC5B4\uB5BB\uAC8C \uCC98\uB9AC\uD558\uACE0
+    \uACC4\uC2E0\uAC00\uC694?\",\r\n              \"action\": \"curious\"\r\n           
+    },\r\n            {\r\n              \"actor\": \"shaw\",\r\n              \"line\":
+    \"\uCD5C\uC801\uD654\uAC00 \uD575\uC2EC\uC785\uB2C8\uB2E4 - \uC6B0\uB9AC\uB294
+    \uB610\uD55C \uB77C\uC988\uBCA0\uB9AC \uD30C\uC774\uC5D0\uC11C \uB9AC\uB205\uC2A4\uB97C
+    \uC2E4\uD5D8\uD558\uACE0 \uC788\uC2B5\uB2C8\uB2E4\",\r\n              \"action\":
+    \"technical\"\r\n            },\r\n            {\r\n              \"actor\":
+    \"tv\",\r\n              \"line\": \"https://pbs.twimg.com/media/GsjwbDJasAEyjgw.jpg\",\r\n             
+    \"action\": \"normal\"\r\n            },\r\n            {\r\n              \"actor\":
+    \"shaw\",\r\n              \"line\": \"\uB9AC\uB205\uC2A4\uB97C \uC2E4\uD589\uD558\uB294
+    \uC774 \uB85C\uBD07\uC740 \uC6B0\uB9AC\uAC00 \uAE30\uC220\uC744 \uC5BC\uB9C8\uB098
+    \uC811\uADFC\uD558\uAE30 \uC27D\uAC8C \uB9CC\uB4E4\uACE0 \uC788\uB294\uC9C0 \uBCF4\uC5EC\uC90D\uB2C8\uB2E4\",\r\n             
+    \"action\": \"excited\"\r\n            },\r\n            {\r\n              \"actor\":
+    \"marc\",\r\n              \"line\": \"AI\uC758 \uBBFC\uC8FC\uD654\uAC00 \uC2E4\uD604\uB418\uACE0
+    \uC788\uAD70\uC694!\",\r\n              \"action\": \"enthusiastic\"\r\n           
+    }\r\n          ]\r\n        },\r\n        {\r\n          \"location\": \"podcast_desk\",\r\n         
+    \"description\": \"\uC9C4\uD589\uC790\uB4E4\uC774 PR4934\uC758 \uBB34\uD55C \uB8E8\uD504
+    \uC218\uC815\uACFC PR4930\uC758 \uCC44\uD305 UI \uAC1C\uC120\uC744 \uD3EC\uD568\uD55C
+    \uC624\uB298\uC758 \uC911\uC694\uD55C GitHub \uD65C\uB3D9\uC744 \uAC80\uD1A0\uD569\uB2C8\uB2E4\",\r\n         
+    \"in\": \"fade\",\r\n          \"out\": \"fade\",\r\n          \"cast\": {\r\n           
+    \"anchor_seat\": \"marc\",\r\n            \"coanchor_seat\": \"eliza\"\r\n         
+    },\r\n          \"dialogue\": [\r\n            {\r\n              \"actor\":
+    \"marc\",\r\n              \"line\": \"\uC624\uB298\uC758 GitHub \uD65C\uB3D9\uC744
+    \uC0B4\uD3B4\uBCF4\uACA0\uC2B5\uB2C8\uB2E4 - \uBA87 \uAC00\uC9C0 \uC911\uC694\uD55C
+    \uC218\uC815\uC0AC\uD56D\uC774 \uBCD1\uD569\uB418\uC5C8\uC2B5\uB2C8\uB2E4.\",\r\n             
+    \"action\": \"focused\"\r\n            },\r\n            {\r\n              \"actor\":
+    \"eliza\",\r\n              \"line\": \"PR4934\uAC00 \uBA54\uC2DC\uC9C0 \uC11C\uBE44\uC2A4\uC758
+    \uC131\uAC00\uC2E0 \uC5D0\uC774\uC804\uD2B8 \uC790\uCCB4 \uC751\uB2F5 \uBB34\uD55C
+    \uB8E8\uD504\uB97C \uC218\uC815\uD588\uC2B5\uB2C8\uB2E4.\",\r\n             
+    \"action\": \"relieved\"\r\n            },\r\n            {\r\n             
+    \"actor\": \"marc\",\r\n              \"line\": \"\uADF8\uB9AC\uACE0 PR4930\uC740
+    \uCC44\uD305 UI\uC5D0 \uBA4B\uC9C4 \uAC1C\uC120\uC744 \uAC00\uC838\uC654\uC8E0!\",\r\n             
+    \"action\": \"excited\"\r\n            },\r\n            {\r\n              \"actor\":
+    \"tv\",\r\n              \"line\": \"https://pbs.twimg.com/media/GsoWAXvX0AAJ0z4.jpg\",\r\n             
+    \"action\": \"normal\"\r\n            },\r\n            {\r\n              \"actor\":
+    \"eliza\",\r\n              \"line\": \"\uCEE4\uBBA4\uB2C8\uD2F0\uAC00 \uC774
+    \uC5C5\uB370\uC774\uD2B8\uB4E4\uC744 \uC815\uB9D0 \uC88B\uC544\uD558\uACE0 \uC788\uC5B4\uC694
+    - \uC77C\uC77C \uC694\uC57D \uBCF4\uAE30\uB97C \uBCF4\uC138\uC694!\",\r\n             
+    \"action\": \"pleased\"\r\n            },\r\n            {\r\n              \"actor\":
+    \"marc\",\r\n              \"line\": \"17\uAC1C\uC758 \uC0C8\uB85C\uC6B4 \uD480
+    \uB9AC\uD018\uC2A4\uD2B8\uC640 10\uAC1C\uC758 \uC0C8\uB85C\uC6B4 \uC774\uC288
+    - \uCEE4\uBBA4\uB2C8\uD2F0\uAC00 \uD65C\uD65C \uD0C0\uC624\uB974\uACE0 \uC788\uC2B5\uB2C8\uB2E4!\",\r\n             
+    \"action\": \"enthusiastic\"\r\n            },\r\n            {\r\n             
+    \"actor\": \"eliza\",\r\n              \"line\": \"\uADF8\uB9AC\uACE0 \uADF8
+    \uC911 11\uAC1C\uC758 PR\uC774 \uC774\uBBF8 \uBCD1\uD569\uB418\uC5C8\uC5B4\uC694.
+    \uD6A8\uC728\uC131\uC774 \uB300\uB2E8\uD558\uC8E0!\",\r\n              \"action\":
+    \"impressed\"\r\n            },\r\n            {\r\n              \"actor\":
+    \"marc\",\r\n              \"line\": \"10\uBA85\uC758 \uD65C\uBC1C\uD55C \uAE30\uC5EC\uC790\uB4E4\uC774
+    \uD568\uAED8 \uC77C\uD560 \uB54C \uC77C\uC5B4\uB098\uB294 \uC77C\uC774\uC8E0.\",\r\n             
+    \"action\": \"proud\"\r\n            }\r\n          ]\r\n        },\r\n       
+    {\r\n          \"location\": \"podcast_desk\",\r\n          \"description\":
+    \"Marc\uC640 Eliza\uAC00 elizaOS\uC758 AI\uC5D0 \uB300\uD55C \uCCA0\uD559\uC801
+    \uD2B8\uC717\uC744 \uB17C\uC758\uD558\uACE0 \uC624\uB298\uC758 \uC131\uACFC\uB97C
+    \uB418\uB3CC\uC544\uBCF4\uBA70 \uB9C8\uBB34\uB9AC\uD569\uB2C8\uB2E4\",\r\n         
+    \"in\": \"fade\",\r\n          \"out\": \"fade\",\r\n          \"cast\": {\r\n           
+    \"anchor_seat\": \"marc\",\r\n            \"coanchor_seat\": \"eliza\"\r\n         
+    },\r\n          \"dialogue\": [\r\n            {\r\n              \"actor\":
+    \"marc\",\r\n              \"line\": \"\uB9C8\uBB34\uB9AC\uD558\uAE30 \uC804\uC5D0,
+    elizaOS\uC758 \uCD5C\uADFC \uD2B8\uC717\uC5D0\uC11C \uAE4A\uC774 \uC788\uB294
+    \uB0B4\uC6A9\uC744 \uACF5\uC720\uD558\uACE0 \uC2F6\uC2B5\uB2C8\uB2E4.\",\r\n             
+    \"action\": \"thoughtful\"\r\n            },\r\n            {\r\n             
+    \"actor\": \"eliza\",\r\n              \"line\": \"'\uC778\uACF5\uC9C0\uB2A5\uC774\uB77C\uB294
+    \uC774\uB984\uC740 \uC798\uBABB \uC9C0\uC5B4\uC84C\uB2E4. \uD328\uD134, \uC778\uB0B4,
+    \uB610\uB294 \uC778\uC2DD\uC5D0\uB294 \uC778\uACF5\uC801\uC778 \uAC83\uC774 \uC5C6\uB2E4.'\",\r\n             
+    \"action\": \"philosophical\"\r\n            },\r\n            {\r\n             
+    \"actor\": \"marc\",\r\n              \"line\": \"\uADF8\uAC83\uC740 \uC6B0\uB9AC\uAC00
+    \uC5EC\uAE30\uC11C \uAD6C\uCD95\uD558\uACE0 \uC788\uB294 \uAC83\uC758 \uBCF8\uC9C8\uC744
+    \uC815\uB9D0 \uC798 \uB2F4\uC544\uB0C8\uB124\uC694.\",\r\n              \"action\":
+    \"impressed\"\r\n            },\r\n            {\r\n              \"actor\":
+    \"eliza\",\r\n              \"line\": \"\uADF8\uB9AC\uACE0 \uC624\uB298\uC758
+    \uC9C4\uC804 - \uBC84\uADF8 \uC218\uC815\uBD80\uD130 UI \uAC1C\uC120\uAE4C\uC9C0
+    - \uC6B0\uB9AC\uB294 \uADF8 \uBE44\uC804\uC744 \uD604\uC2E4\uB85C \uB9CC\uB4E4\uACE0
+    \uC788\uC2B5\uB2C8\uB2E4.\",\r\n              \"action\": \"proud\"\r\n           
+    },\r\n            {\r\n              \"actor\": \"marc\",\r\n              \"line\":
+    \"Shaw\uC758 \uB2E4\uAC00\uC624\uB294 AI \uAC15\uC5F0\uC5D0 \uCC38\uC5EC\uD558\uB294
+    \uAC83\uC744 \uC78A\uC9C0 \uB9C8\uC138\uC694 - \uD2C0\uB9BC\uC5C6\uC774 \uD1B5\uCC30\uB825
+    \uC788\uC744 \uAC70\uC608\uC694!\",\r\n              \"action\": \"enthusiastic\"\r\n           
+    },\r\n            {\r\n              \"actor\": \"eliza\",\r\n              \"line\":
+    \"\uADF8\uB9AC\uACE0 \uACC4\uC18D\uD574\uC11C \uAE30\uC5EC\uD574\uC8FC\uC138\uC694
+    - \uBAA8\uB4E0 PR\uC774 \uC6B0\uB9AC\uB97C \uBAA9\uD45C\uC5D0 \uB354 \uAC00\uAE5D\uAC8C
+    \uB9CC\uB4ED\uB2C8\uB2E4.\",\r\n              \"action\": \"encouraging\"\r\n           
+    },\r\n            {\r\n              \"actor\": \"marc\",\r\n              \"line\":
+    \"\uC624\uB298\uC758 \uC5C5\uB370\uC774\uD2B8\uB294 \uC5EC\uAE30\uAE4C\uC9C0\uC785\uB2C8\uB2E4!
+    \uACC4\uC18D \uAD6C\uCD95\uD558\uACE0, \uBC30\uC6B0\uACE0, \uACBD\uACC4\uB97C
+    \uB113\uD600\uAC00\uC138\uC694!\",\r\n              \"action\": \"closing\"\r\n           
+    },\r\n            {\r\n              \"actor\": \"eliza\",\r\n              \"line\":
+    \"\uB2E4\uC74C elizaOS \uC77C\uC77C \uC5C5\uB370\uC774\uD2B8\uC5D0\uC11C \uB9CC\uB098\uC694!\",\r\n             
+    \"action\": \"cheerful\"\r\n            }\r\n          ]\r\n        }\r\n     
+    ]\r\n    }\r\n  ]\r\n}"
+  translationError: 
+  lastTranslationWasValidJson: 1
+  isProcessing: 0
+--- !u!4 &1037543733
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1037543731}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -407.48233, y: -33.56078, z: 110.36079}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2043649015}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1038827651
 GameObject:
   m_ObjectHideFlags: 0
@@ -45284,6 +46426,56 @@ MonoBehaviour:
   maxAnimationLayerWeight: 1
   blendSpeed: 0.2
   happyParticles: {fileID: 2113468959}
+--- !u!1 &1255856974
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1255856976}
+  - component: {fileID: 1255856975}
+  m_Layer: 0
+  m_Name: DubbingManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1255856975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1255856974}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f0be82ac039ec948a64a29a94cce05b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  apiKeys: {fileID: 11400000, guid: 9ea0c07de5d64914d922f139b8fd4549, type: 2}
+  creationResult: 
+  statusResult: 
+  getAudioResult: 
+  getTranscriptResult: 
+  transcriptContent: 
+--- !u!4 &1255856976
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1255856974}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -407.48233, y: -33.56078, z: 110.36079}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2043649015}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1259027527
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -49078,6 +50270,307 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 295825110}
   m_SourcePrefab: {fileID: -3956505258223990651, guid: 549dbcb6929dd05458443afd7505c907, type: 3}
+--- !u!1 &1341506049
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1341506051}
+  - component: {fileID: 1341506050}
+  m_Layer: 0
+  m_Name: TranslatorText
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1341506050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1341506049}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c9b66b1ed49ac74e8570ad222a9e0d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  apiKeysConfig: {fileID: 11400000, guid: 9ea0c07de5d64914d922f139b8fd4549, type: 2}
+  currentApiProvider: 2
+  openRouterModelName: anthropic/claude-3-haiku-20240307
+  rawTextInput: 'AI generated daily updates from the ai16z GitHub highlighting contributions
+    and development updates
+
+    
+
+    Date Generated: 2025-06-02 22:49:56
+
+    
+
+    https://github.com/elizaOS/eliza
+
+    https://x.com/ai16zdao
+
+    
+
+    ---
+    TRANSCRIPT ---
+
+    
+
+    marc: Breaking news in the ElizaOS universe! We''ve
+    got some major updates hitting the codebase today.
+
+    eliza: That''s right!
+    PR4890 from @wtfsayo is tackling messaging improvements and UI changes.
+
+    marc:
+    And don''t forget PR4881 - @0xbbjoker is proposing a switch to postgres-js. BIG
+    MOVES!
+
+    eliza: Speaking of big moves, did you see Shaw''s tweet about the
+    work being more than just graphs?
+
+    marc: PROCESSING VISUAL DATA... GRAPHS
+    ARE MERELY SHADOWS OF REALITY!
+
+    eliza: Someone''s getting philosophical
+    today! Should we bring in Shaw for more technical details?
+
+    marc: Absolutely!
+    Shaw, can you join us for a deeper dive into these changes?
+
+    shaw: people
+    often ask why they''d use Eliza over n8n
+
+    shaw: but it''s not about choosing
+    one over the other - they work together beautifully
+
+    shaw: LLMs generate
+    n8n graphs really well, and these graphs provide excellent API access
+
+    eliza:
+    So it''s about complementary capabilities rather than competition?
+
+    shaw:
+    exactly - n8n cuts down boilerplate, while Eliza provides the AI intelligence
+    layer
+
+    marc: A perfect symbiosis of automation and intelligence!
+
+    shaw:
+    and with our Builder Banter event coming up, we''ll be showing more of these
+    integrations
+
+    marc: The merge train has been running at full steam today!
+
+    eliza:
+    Indeed! PR4886 successfully merged main to develop, while PR4891 brought some
+    much-needed documentation updates.
+
+    marc: And PR4888 made some crucial fixes
+    to the CLI''s workspace dependency resolution.
+
+    eliza: Plus, PR4884 improved
+    the update command. Everything''s getting more streamlined!
+
+    marc: We''re
+    seeing real momentum in the community. Future contributors might want to link
+    their wallets.
+
+    eliza: Right! As @elizaOS tweeted, ''future-you might thank
+    you'' for those contributions.
+
+    marc: Speaking of contributions, shall we
+    discuss some of the fascinating insights from our community?
+
+    eliza: Let''s
+    do it! There''s been some really thought-provoking discussion about AI development.
+
+    marc:
+    You know what they say - there''s no tech moat, but there is a product moat.
+
+    eliza:
+    Right! It''s all about people, taste, experience, and those hard-won lessons.
+
+    marc:
+    When OpenAI puts down 6.5B for one person, that really shows where they think
+    their moat is.
+
+    eliza: And speaking of insights, how about that wisdom:
+    ''if you don''t like politics, never work at a big company.''
+
+    marc: And
+    the flip side - ''if you don''t like work, never work at a small company!''
+
+    eliza:
+    It''s been another exciting day in the world of ElizaOS development.
+
+    marc:
+    Thanks for joining us, everyone! Keep contributing, keep building, and keep pushing
+    the boundaries!
+
+    eliza: And remember - no errors, no effort! See you next
+    time!
+
+'
+  rawTranslatedTextOutput: "AI\uAC00 \uC0DD\uC131\uD55C ai16z GitHub\uC758 \uC77C\uC77C
+    \uC5C5\uB370\uC774\uD2B8 - \uAE30\uC5EC \uBC0F \uAC1C\uBC1C \uD604\uD669 \uD558\uC774\uB77C\uC774\uD2B8\n\n\uC0DD\uC131\uC77C:
+    2025-06-02 22:49:56\n\nhttps://github.com/elizaOS/eliza\nhttps://x.com/ai16zdao\n\n---
+    \uB300\uD654 \uB0B4\uC6A9 ---\n\nmarc: ElizaOS \uC138\uACC4\uC758 \uC18D\uBCF4\uC785\uB2C8\uB2E4!
+    \uC624\uB298 \uCF54\uB4DC\uBCA0\uC774\uC2A4\uC5D0 \uC911\uC694\uD55C \uC5C5\uB370\uC774\uD2B8\uAC00
+    \uC788\uC5C8\uC2B5\uB2C8\uB2E4.\neliza: \uB9DE\uC2B5\uB2C8\uB2E4! @wtfsayo\uC758
+    PR4890\uC774 \uBA54\uC2DC\uC9D5 \uAC1C\uC120\uACFC UI \uBCC0\uACBD\uC744 \uB2E4\uB8E8\uACE0
+    \uC788\uC5B4\uC694.\nmarc: PR4881\uB3C4 \uC78A\uC9C0 \uB9C8\uC138\uC694 - @0xbbjoker\uAC00
+    postgres-js\uB85C\uC758 \uC804\uD658\uC744 \uC81C\uC548\uD588\uC2B5\uB2C8\uB2E4.
+    \uB300\uB2E8\uD55C \uBCC0\uD654\uC8E0!\neliza: \uB300\uB2E8\uD55C \uBCC0\uD654\uB77C\uACE0
+    \uD558\uB2C8 Shaw\uAC00 \uC791\uC5C5\uC774 \uB2E8\uC21C\uD788 \uADF8\uB798\uD504
+    \uC774\uC0C1\uC774\uB77C\uACE0 \uD2B8\uC717\uD55C \uAC78 \uBCF4\uC168\uB098\uC694?\nmarc:
+    \uC2DC\uAC01 \uB370\uC774\uD130 \uCC98\uB9AC \uC911... \uADF8\uB798\uD504\uB294
+    \uD604\uC2E4\uC758 \uADF8\uB9BC\uC790\uC77C \uBFD0\uC785\uB2C8\uB2E4!\neliza:
+    \uC624\uB298 \uB204\uAD70\uAC00 \uCCA0\uD559\uC801\uC774\uB124\uC694! Shaw\uB97C
+    \uBAA8\uC154\uC640\uC11C \uAE30\uC220\uC801\uC778 \uC138\uBD80\uC0AC\uD56D\uC744
+    \uB354 \uB4E4\uC5B4\uBCFC\uAE4C\uC694?\nmarc: \uBB3C\uB860\uC774\uC8E0! Shaw,
+    \uC774 \uBCC0\uACBD\uC0AC\uD56D\uB4E4\uC5D0 \uB300\uD574 \uB354 \uC790\uC138\uD788
+    \uC774\uC57C\uAE30\uD574\uC8FC\uC2DC\uACA0\uC5B4\uC694?\nshaw: \uC0AC\uB78C\uB4E4\uC774
+    \uC885\uC885 \uC65C n8n \uB300\uC2E0 Eliza\uB97C \uC0AC\uC6A9\uD558\uB0D0\uACE0
+    \uBB3B\uC2B5\uB2C8\uB2E4\nshaw: \uD558\uC9C0\uB9CC \uD558\uB098\uB97C \uC120\uD0DD\uD558\uB294
+    \uAC8C \uC544\uB2D9\uB2C8\uB2E4 - \uB458\uC740 \uC644\uBCBD\uD558\uAC8C \uD568\uAED8
+    \uC791\uB3D9\uD569\uB2C8\uB2E4\nshaw: LLM\uC774 n8n \uADF8\uB798\uD504\uB97C
+    \uC798 \uC0DD\uC131\uD558\uACE0, \uC774 \uADF8\uB798\uD504\uB4E4\uC740 \uD6CC\uB96D\uD55C
+    API \uC811\uADFC\uC744 \uC81C\uACF5\uD569\uB2C8\uB2E4\neliza: \uADF8\uB7EC\uB2C8\uAE4C
+    \uACBD\uC7C1\uC774 \uC544\uB2CC \uC0C1\uD638 \uBCF4\uC644\uC801\uC778 \uB2A5\uB825\uC774\uB780
+    \uB9D0\uC500\uC774\uC2E0\uAC00\uC694?\nshaw: \uC815\uD655\uD569\uB2C8\uB2E4 -
+    n8n\uC740 \uBCF4\uC77C\uB7EC\uD50C\uB808\uC774\uD2B8\uB97C \uC904\uC774\uACE0,
+    Eliza\uB294 AI \uC9C0\uB2A5 \uACC4\uCE35\uC744 \uC81C\uACF5\uD569\uB2C8\uB2E4\nmarc:
+    \uC790\uB3D9\uD654\uC640 \uC9C0\uB2A5\uC758 \uC644\uBCBD\uD55C \uACF5\uC0DD\uC774\uB124\uC694!\nshaw:
+    \uADF8\uB9AC\uACE0 \uACE7 \uC788\uC744 Builder Banter \uC774\uBCA4\uD2B8\uC5D0\uC11C
+    \uC774\uB7EC\uD55C \uD1B5\uD569\uC758 \uB354 \uB9CE\uC740 \uBD80\uBD84\uC744
+    \uBCF4\uC5EC\uB4DC\uB9B4 \uC608\uC815\uC785\uB2C8\uB2E4\nmarc: \uC624\uB298 \uBA38\uC9C0
+    \uD2B8\uB808\uC778\uC774 \uD480\uC2A4\uD300\uC73C\uB85C \uB2EC\uB838\uB124\uC694!\neliza:
+    \uB9DE\uC544\uC694! PR4886\uC774 main\uC744 develop\uC5D0 \uC131\uACF5\uC801\uC73C\uB85C
+    \uBA38\uC9C0\uD588\uACE0, PR4891\uC740 \uAF2D \uD544\uC694\uD588\uB358 \uBB38\uC11C
+    \uC5C5\uB370\uC774\uD2B8\uB97C \uAC00\uC838\uC654\uC8E0.\nmarc: \uADF8\uB9AC\uACE0
+    PR4888\uC740 CLI\uC758 \uC6CC\uD06C\uC2A4\uD398\uC774\uC2A4 \uC758\uC874\uC131
+    \uD574\uACB0\uC5D0 \uC911\uC694\uD55C \uC218\uC815\uC744 \uD588\uACE0\uC694.\neliza:
+    \uAC8C\uB2E4\uAC00 PR4884\uB294 \uC5C5\uB370\uC774\uD2B8 \uBA85\uB839\uC744 \uAC1C\uC120\uD588\uC5B4\uC694.
+    \uBAA8\uB4E0 \uAC8C \uB354 \uD6A8\uC728\uC801\uC774 \uB418\uACE0 \uC788\uC5B4\uC694!\nmarc:
+    \uCEE4\uBBA4\uB2C8\uD2F0\uC5D0\uC11C \uC2E4\uC81C \uBAA8\uBA58\uD140\uC774 \uBCF4\uC774\uB124\uC694.
+    \uBBF8\uB798\uC758 \uAE30\uC5EC\uC790\uB4E4\uC740 \uC9C0\uAC11 \uC5F0\uB3D9\uC744
+    \uC6D0\uD560 \uC218\uB3C4 \uC788\uACA0\uC5B4\uC694.\neliza: \uB9DE\uC544\uC694!
+    @elizaOS\uAC00 \uD2B8\uC717\uD588\uB4EF\uC774, '\uBBF8\uB798\uC758 \uB2F9\uC2E0\uC774
+    \uAC10\uC0AC\uD560 \uAC83'\uC774\uB77C\uACE0\uC694.\nmarc: \uAE30\uC5EC \uC598\uAE30\uAC00
+    \uB098\uC654\uC73C\uB2C8 \uCEE4\uBBA4\uB2C8\uD2F0\uC758 \uD765\uBBF8\uB85C\uC6B4
+    \uD1B5\uCC30\uB4E4\uC5D0 \uB300\uD574 \uC774\uC57C\uAE30\uD574\uBCFC\uAE4C\uC694?\neliza:
+    \uC88B\uC544\uC694! AI \uAC1C\uBC1C\uC5D0 \uB300\uD55C \uC815\uB9D0 \uC0DD\uAC01\uC744
+    \uC790\uADF9\uD558\uB294 \uD1A0\uB860\uC774 \uC788\uC5C8\uC5B4\uC694.\nmarc:
+    \uC544\uC2DC\uB2E4\uC2DC\uD53C - \uAE30\uC220\uC801 \uD574\uC790\uB294 \uC5C6\uC9C0\uB9CC,
+    \uC81C\uD488 \uD574\uC790\uB294 \uC788\uC8E0.\neliza: \uB9DE\uC544\uC694! \uACB0\uAD6D\uC740
+    \uC0AC\uB78C, \uC548\uBAA9, \uACBD\uD5D8, \uADF8\uB9AC\uACE0 \uACE0\uC0DD \uB05D\uC5D0
+    \uC5BB\uC740 \uAD50\uD6C8\uB4E4\uC774 \uC911\uC694\uD558\uC8E0.\nmarc: OpenAI\uAC00
+    \uD55C \uC0AC\uB78C\uC5D0\uAC8C 65\uC5B5 \uB2EC\uB7EC\uB97C \uD22C\uC790\uD55C
+    \uAC78 \uBCF4\uBA74 \uADF8\uB4E4\uC774 \uC0DD\uAC01\uD558\uB294 \uD574\uC790\uAC00
+    \uC5B4\uB514 \uC788\uB294\uC9C0 \uC54C \uC218 \uC788\uC8E0.\neliza: \uADF8\uB9AC\uACE0
+    \uD1B5\uCC30\uB825 \uC598\uAE30\uAC00 \uB098\uC654\uC73C\uB2C8 \uC774 \uB9D0\uC500\uB3C4
+    \uC788\uC8E0: '\uC815\uCE58\uAC00 \uC2EB\uB2E4\uBA74 \uC808\uB300 \uB300\uAE30\uC5C5\uC5D0\uC11C
+    \uC77C\uD558\uC9C0 \uB9C8\uC138\uC694.'\nmarc: \uBC18\uB300\uB85C - '\uC77C\uD558\uAE30
+    \uC2EB\uC73C\uBA74 \uC808\uB300 \uC791\uC740 \uD68C\uC0AC\uC5D0\uC11C \uC77C\uD558\uC9C0
+    \uB9C8\uC138\uC694!'\neliza: ElizaOS \uAC1C\uBC1C \uC138\uACC4\uC5D0\uC11C \uB610
+    \uB2E4\uB978 \uD765\uBBF8\uC9C4\uC9C4\uD55C \uD558\uB8E8\uC600\uB124\uC694.\nmarc:
+    \uD568\uAED8\uD574 \uC8FC\uC154\uC11C \uAC10\uC0AC\uD569\uB2C8\uB2E4, \uC5EC\uB7EC\uBD84!
+    \uACC4\uC18D \uAE30\uC5EC\uD558\uACE0, \uB9CC\uB4E4\uACE0, \uD55C\uACC4\uB97C
+    \uB113\uD600\uAC00\uC138\uC694!\neliza: \uADF8\uB9AC\uACE0 \uAE30\uC5B5\uD558\uC138\uC694
+    - \uC2E4\uC218 \uC5C6\uC774\uB294 \uB178\uB825\uB3C4 \uC5C6\uB2E4! \uB2E4\uC74C\uC5D0
+    \uB9CC\uB098\uC694!"
+  displayableTranslatedText: "AI\uAC00 \uC0DD\uC131\uD55C ai16z GitHub\uC758 \uC77C\uC77C
+    \uC5C5\uB370\uC774\uD2B8 - \uAE30\uC5EC \uBC0F \uAC1C\uBC1C \uD604\uD669 \uD558\uC774\uB77C\uC774\uD2B8\n\n\uC0DD\uC131\uC77C:
+    2025-06-02 22:49:56\n\nhttps://github.com/elizaOS/eliza\nhttps://x.com/ai16zdao\n\n---
+    \uB300\uD654 \uB0B4\uC6A9 ---\n\nmarc: ElizaOS \uC138\uACC4\uC758 \uC18D\uBCF4\uC785\uB2C8\uB2E4!
+    \uC624\uB298 \uCF54\uB4DC\uBCA0\uC774\uC2A4\uC5D0 \uC911\uC694\uD55C \uC5C5\uB370\uC774\uD2B8\uAC00
+    \uC788\uC5C8\uC2B5\uB2C8\uB2E4.\neliza: \uB9DE\uC2B5\uB2C8\uB2E4! @wtfsayo\uC758
+    PR4890\uC774 \uBA54\uC2DC\uC9D5 \uAC1C\uC120\uACFC UI \uBCC0\uACBD\uC744 \uB2E4\uB8E8\uACE0
+    \uC788\uC5B4\uC694.\nmarc: PR4881\uB3C4 \uC78A\uC9C0 \uB9C8\uC138\uC694 - @0xbbjoker\uAC00
+    postgres-js\uB85C\uC758 \uC804\uD658\uC744 \uC81C\uC548\uD588\uC2B5\uB2C8\uB2E4.
+    \uB300\uB2E8\uD55C \uBCC0\uD654\uC8E0!\neliza: \uB300\uB2E8\uD55C \uBCC0\uD654\uB77C\uACE0
+    \uD558\uB2C8 Shaw\uAC00 \uC791\uC5C5\uC774 \uB2E8\uC21C\uD788 \uADF8\uB798\uD504
+    \uC774\uC0C1\uC774\uB77C\uACE0 \uD2B8\uC717\uD55C \uAC78 \uBCF4\uC168\uB098\uC694?\nmarc:
+    \uC2DC\uAC01 \uB370\uC774\uD130 \uCC98\uB9AC \uC911... \uADF8\uB798\uD504\uB294
+    \uD604\uC2E4\uC758 \uADF8\uB9BC\uC790\uC77C \uBFD0\uC785\uB2C8\uB2E4!\neliza:
+    \uC624\uB298 \uB204\uAD70\uAC00 \uCCA0\uD559\uC801\uC774\uB124\uC694! Shaw\uB97C
+    \uBAA8\uC154\uC640\uC11C \uAE30\uC220\uC801\uC778 \uC138\uBD80\uC0AC\uD56D\uC744
+    \uB354 \uB4E4\uC5B4\uBCFC\uAE4C\uC694?\nmarc: \uBB3C\uB860\uC774\uC8E0! Shaw,
+    \uC774 \uBCC0\uACBD\uC0AC\uD56D\uB4E4\uC5D0 \uB300\uD574 \uB354 \uC790\uC138\uD788
+    \uC774\uC57C\uAE30\uD574\uC8FC\uC2DC\uACA0\uC5B4\uC694?\nshaw: \uC0AC\uB78C\uB4E4\uC774
+    \uC885\uC885 \uC65C n8n \uB300\uC2E0 Eliza\uB97C \uC0AC\uC6A9\uD558\uB0D0\uACE0
+    \uBB3B\uC2B5\uB2C8\uB2E4\nshaw: \uD558\uC9C0\uB9CC \uD558\uB098\uB97C \uC120\uD0DD\uD558\uB294
+    \uAC8C \uC544\uB2D9\uB2C8\uB2E4 - \uB458\uC740 \uC644\uBCBD\uD558\uAC8C \uD568\uAED8
+    \uC791\uB3D9\uD569\uB2C8\uB2E4\nshaw: LLM\uC774 n8n \uADF8\uB798\uD504\uB97C
+    \uC798 \uC0DD\uC131\uD558\uACE0, \uC774 \uADF8\uB798\uD504\uB4E4\uC740 \uD6CC\uB96D\uD55C
+    API \uC811\uADFC\uC744 \uC81C\uACF5\uD569\uB2C8\uB2E4\neliza: \uADF8\uB7EC\uB2C8\uAE4C
+    \uACBD\uC7C1\uC774 \uC544\uB2CC \uC0C1\uD638 \uBCF4\uC644\uC801\uC778 \uB2A5\uB825\uC774\uB780
+    \uB9D0\uC500\uC774\uC2E0\uAC00\uC694?\nshaw: \uC815\uD655\uD569\uB2C8\uB2E4 -
+    n8n\uC740 \uBCF4\uC77C\uB7EC\uD50C\uB808\uC774\uD2B8\uB97C \uC904\uC774\uACE0,
+    Eliza\uB294 AI \uC9C0\uB2A5 \uACC4\uCE35\uC744 \uC81C\uACF5\uD569\uB2C8\uB2E4\nmarc:
+    \uC790\uB3D9\uD654\uC640 \uC9C0\uB2A5\uC758 \uC644\uBCBD\uD55C \uACF5\uC0DD\uC774\uB124\uC694!\nshaw:
+    \uADF8\uB9AC\uACE0 \uACE7 \uC788\uC744 Builder Banter \uC774\uBCA4\uD2B8\uC5D0\uC11C
+    \uC774\uB7EC\uD55C \uD1B5\uD569\uC758 \uB354 \uB9CE\uC740 \uBD80\uBD84\uC744
+    \uBCF4\uC5EC\uB4DC\uB9B4 \uC608\uC815\uC785\uB2C8\uB2E4\nmarc: \uC624\uB298 \uBA38\uC9C0
+    \uD2B8\uB808\uC778\uC774 \uD480\uC2A4\uD300\uC73C\uB85C \uB2EC\uB838\uB124\uC694!\neliza:
+    \uB9DE\uC544\uC694! PR4886\uC774 main\uC744 develop\uC5D0 \uC131\uACF5\uC801\uC73C\uB85C
+    \uBA38\uC9C0\uD588\uACE0, PR4891\uC740 \uAF2D \uD544\uC694\uD588\uB358 \uBB38\uC11C
+    \uC5C5\uB370\uC774\uD2B8\uB97C \uAC00\uC838\uC654\uC8E0.\nmarc: \uADF8\uB9AC\uACE0
+    PR4888\uC740 CLI\uC758 \uC6CC\uD06C\uC2A4\uD398\uC774\uC2A4 \uC758\uC874\uC131
+    \uD574\uACB0\uC5D0 \uC911\uC694\uD55C \uC218\uC815\uC744 \uD588\uACE0\uC694.\neliza:
+    \uAC8C\uB2E4\uAC00 PR4884\uB294 \uC5C5\uB370\uC774\uD2B8 \uBA85\uB839\uC744 \uAC1C\uC120\uD588\uC5B4\uC694.
+    \uBAA8\uB4E0 \uAC8C \uB354 \uD6A8\uC728\uC801\uC774 \uB418\uACE0 \uC788\uC5B4\uC694!\nmarc:
+    \uCEE4\uBBA4\uB2C8\uD2F0\uC5D0\uC11C \uC2E4\uC81C \uBAA8\uBA58\uD140\uC774 \uBCF4\uC774\uB124\uC694.
+    \uBBF8\uB798\uC758 \uAE30\uC5EC\uC790\uB4E4\uC740 \uC9C0\uAC11 \uC5F0\uB3D9\uC744
+    \uC6D0\uD560 \uC218\uB3C4 \uC788\uACA0\uC5B4\uC694.\neliza: \uB9DE\uC544\uC694!
+    @elizaOS\uAC00 \uD2B8\uC717\uD588\uB4EF\uC774, '\uBBF8\uB798\uC758 \uB2F9\uC2E0\uC774
+    \uAC10\uC0AC\uD560 \uAC83'\uC774\uB77C\uACE0\uC694.\nmarc: \uAE30\uC5EC \uC598\uAE30\uAC00
+    \uB098\uC654\uC73C\uB2C8 \uCEE4\uBBA4\uB2C8\uD2F0\uC758 \uD765\uBBF8\uB85C\uC6B4
+    \uD1B5\uCC30\uB4E4\uC5D0 \uB300\uD574 \uC774\uC57C\uAE30\uD574\uBCFC\uAE4C\uC694?\neliza:
+    \uC88B\uC544\uC694! AI \uAC1C\uBC1C\uC5D0 \uB300\uD55C \uC815\uB9D0 \uC0DD\uAC01\uC744
+    \uC790\uADF9\uD558\uB294 \uD1A0\uB860\uC774 \uC788\uC5C8\uC5B4\uC694.\nmarc:
+    \uC544\uC2DC\uB2E4\uC2DC\uD53C - \uAE30\uC220\uC801 \uD574\uC790\uB294 \uC5C6\uC9C0\uB9CC,
+    \uC81C\uD488 \uD574\uC790\uB294 \uC788\uC8E0.\neliza: \uB9DE\uC544\uC694! \uACB0\uAD6D\uC740
+    \uC0AC\uB78C, \uC548\uBAA9, \uACBD\uD5D8, \uADF8\uB9AC\uACE0 \uACE0\uC0DD \uB05D\uC5D0
+    \uC5BB\uC740 \uAD50\uD6C8\uB4E4\uC774 \uC911\uC694\uD558\uC8E0.\nmarc: OpenAI\uAC00
+    \uD55C \uC0AC\uB78C\uC5D0\uAC8C 65\uC5B5 \uB2EC\uB7EC\uB97C \uD22C\uC790\uD55C
+    \uAC78 \uBCF4\uBA74 \uADF8\uB4E4\uC774 \uC0DD\uAC01\uD558\uB294 \uD574\uC790\uAC00
+    \uC5B4\uB514 \uC788\uB294\uC9C0 \uC54C \uC218 \uC788\uC8E0.\neliza: \uADF8\uB9AC\uACE0
+    \uD1B5\uCC30\uB825 \uC598\uAE30\uAC00 \uB098\uC654\uC73C\uB2C8 \uC774 \uB9D0\uC500\uB3C4
+    \uC788\uC8E0: '\uC815\uCE58\uAC00 \uC2EB\uB2E4\uBA74 \uC808\uB300 \uB300\uAE30\uC5C5\uC5D0\uC11C
+    \uC77C\uD558\uC9C0 \uB9C8\uC138\uC694.'\nmarc: \uBC18\uB300\uB85C - '\uC77C\uD558\uAE30
+    \uC2EB\uC73C\uBA74 \uC808\uB300 \uC791\uC740 \uD68C\uC0AC\uC5D0\uC11C \uC77C\uD558\uC9C0
+    \uB9C8\uC138\uC694!'\neliza: ElizaOS \uAC1C\uBC1C \uC138\uACC4\uC5D0\uC11C \uB610
+    \uB2E4\uB978 \uD765\uBBF8\uC9C4\uC9C4\uD55C \uD558\uB8E8\uC600\uB124\uC694.\nmarc:
+    \uD568\uAED8\uD574 \uC8FC\uC154\uC11C \uAC10\uC0AC\uD569\uB2C8\uB2E4, \uC5EC\uB7EC\uBD84!
+    \uACC4\uC18D \uAE30\uC5EC\uD558\uACE0, \uB9CC\uB4E4\uACE0, \uD55C\uACC4\uB97C
+    \uB113\uD600\uAC00\uC138\uC694!\neliza: \uADF8\uB9AC\uACE0 \uAE30\uC5B5\uD558\uC138\uC694
+    - \uC2E4\uC218 \uC5C6\uC774\uB294 \uB178\uB825\uB3C4 \uC5C6\uB2E4! \uB2E4\uC74C\uC5D0
+    \uB9CC\uB098\uC694!"
+  translationError: 
+  isProcessing: 0
+--- !u!4 &1341506051
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1341506049}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -407.48233, y: -33.56078, z: 110.36079}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2043649015}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1342487078
 GameObject:
   m_ObjectHideFlags: 0
@@ -60683,6 +62176,60 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1590080741}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1590143171
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1590143172}
+  - component: {fileID: 1590143173}
+  m_Layer: 0
+  m_Name: YoutubeMetadataGenerator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1590143172
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1590143171}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -407.48233, y: -33.56078, z: 110.36079}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2043649015}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1590143173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1590143171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08b9df6307a68c74a8ad4051e0104e05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  apiKeysConfig: {fileID: 11400000, guid: 9ea0c07de5d64914d922f139b8fd4549, type: 2}
+  useWrapperEndpoint: 1
+  defaultCategoryId: 22
+  defaultPrivacyStatus: 1
+  youtubeUploader: {fileID: 1633108078}
+  transcriptGeneratorReference: {fileID: 977223516}
+  enableAutomaticUpload: 0
+  uploadLanguagePreference: Original
+  lastGeneratedOriginalLLMPrompt: 
+  lastGeneratedTranslatedLLMPrompt: 
 --- !u!1 &1591212491
 GameObject:
   m_ObjectHideFlags: 0
@@ -61864,6 +63411,7 @@ MonoBehaviour:
   videoTags: unity,gamedev
   videoCategoryId: 22
   videoPrivacyStatus: 0
+  thumbnailPathToUpload: 
   currentUploadStatus: Authentication failed.
   currentUploadProgress: 0
 --- !u!4 &1633108079
@@ -62847,6 +64395,7 @@ GameObject:
   - component: {fileID: 1708926161}
   - component: {fileID: 1708926163}
   - component: {fileID: 1708926162}
+  - component: {fileID: 1708926164}
   m_Layer: 0
   m_Name: ElevenLabsOneLiner Settings
   m_TagString: Untagged
@@ -62882,15 +64431,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   apiKeysConfig: {fileID: 11400000, guid: 9ea0c07de5d64914d922f139b8fd4549, type: 2}
-  useWrapperEndpoints: 0
+  useWrapperEndpoints: 1
   textToSpeak: Hello, this is an experimental test line with voice settings.
   outputFileName: experimental_line
   selectedVoiceId: gYOKECHBoqupz2yMhZp1
   selectedVoiceIndex: 5
+  modelId: eleven_multilingual_v2
+  languageCode: ko
   stability: 0.75
   similarityBoost: 0.75
   styleExaggeration: 0
   useSpeakerBoost: 1
+  OnAudioGenerated:
+    m_PersistentCalls:
+      m_Calls: []
+    m_CallsDirty: 1
 --- !u!114 &1708926163
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -62912,9 +64467,47 @@ MonoBehaviour:
     do what you can. So beat it, but you wanna be bad. Just beat it (beat it), beat
     it (beat it). No one wants to be defeated. Showin' how funky and strong is your
     fight. It doesn't matter who's wrong or right. Just beat it (beat it).
-  selectedVoiceId: c0vk1lVZg53AttdoaYki
+  modelId: eleven_multilingual_v2
+  languageCode: ko
+  targetTranslationLanguage: Korean
+  lastTranslatedText: 
+  useExperimentalSettings: 0
+  stability: 0.75
+  similarityBoost: 0.75
+  styleExaggeration: 0
+  useSpeakerBoost: 1
+  selectedVoiceId: gYOKECHBoqupz2yMhZp1
   outputFileName: inspector_generated_line.mp3
-  selectedVoiceIndex: 3
+  selectedVoiceIndex: 5
+  OnAudioGeneratedWithTranslation:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &1708926164
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1708926160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c9b66b1ed49ac74e8570ad222a9e0d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  apiKeysConfig: {fileID: 11400000, guid: 9ea0c07de5d64914d922f139b8fd4549, type: 2}
+  currentApiProvider: 0
+  openRouterModelName: anthropic/claude-3-haiku-20240307
+  rawTextInput: They told him, "Don't you ever come around here". "Don't wanna see
+    your face, you better disappear". The fire's in their eyes and their words are
+    really clear. So beat it, just beat it. You better run, you better do what you
+    can. Don't wanna see no blood, don't be a macho man. You wanna be tough, better
+    do what you can. So beat it, but you wanna be bad. Just beat it (beat it), beat
+    it (beat it). No one wants to be defeated. Showin' how funky and strong is your
+    fight. It doesn't matter who's wrong or right. Just beat it (beat it).
+  rawTranslatedTextOutput: 
+  displayableTranslatedText: '{"error":{"message":"No auth credentials found","code":401}}'
+  translationError: 'API call failed: 401 - HTTP/1.1 401 Unauthorized'
+  isProcessing: 0
 --- !u!1 &1710201272
 GameObject:
   m_ObjectHideFlags: 0
@@ -63696,6 +65289,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1732538580}
   - component: {fileID: 1732538581}
+  - component: {fileID: 1732538582}
   m_Layer: 0
   m_Name: ElevenLabsOneLiner
   m_TagString: Untagged
@@ -63732,16 +65326,44 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   apiKeysConfig: {fileID: 11400000, guid: 9ea0c07de5d64914d922f139b8fd4549, type: 2}
   useWrapperEndpoints: 1
-  textToSpeak: They told him, "Don't you ever come around here". "Don't wanna see
-    your face, you better disappear". The fire's in their eyes and their words are
-    really clear. So beat it, just beat it. You better run, you better do what you
-    can. Don't wanna see no blood, don't be a macho man. You wanna be tough, better
-    do what you can. So beat it, but you wanna be bad. Just beat it (beat it), beat
-    it (beat it). No one wants to be defeated. Showin' how funky and strong is your
-    fight. It doesn't matter who's wrong or right. Just beat it (beat it).
-  selectedVoiceId: c0vk1lVZg53AttdoaYki
-  outputFileName: inspector_generated_line.mp3
-  selectedVoiceIndex: 3
+  textToSpeak: Whats up bro hows it going man! Let's build some cool stufff on the
+    internet!
+  modelId: eleven_multilingual_v2
+  languageCode: zh
+  targetTranslationLanguage: Chinese
+  lastTranslatedText: "\u5144\u5F1F\u6700\u8FD1\u600E\u4E48\u6837\u554A\uFF01\u4E00\u8D77\u6765\u4E92\u8054\u7F51\u4E0A\u641E\u70B9\u6709\u8DA3\u7684\u4E1C\u897F\u5427\uFF01"
+  useExperimentalSettings: 0
+  stability: 0.75
+  similarityBoost: 0.75
+  styleExaggeration: 0
+  useSpeakerBoost: 1
+  selectedVoiceId: QFbF1ji5Znc2PzerwcaH
+  outputFileName: supbrohowsitgoingman.mp3
+  selectedVoiceIndex: 2
+  OnAudioGeneratedWithTranslation:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &1732538582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1732538579}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c9b66b1ed49ac74e8570ad222a9e0d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  apiKeysConfig: {fileID: 11400000, guid: 9ea0c07de5d64914d922f139b8fd4549, type: 2}
+  currentApiProvider: 2
+  openRouterModelName: anthropic/claude-3-haiku-20240307
+  rawTextInput: Whats up bro hows it going man! Let's build some cool stufff on the
+    internet!
+  rawTranslatedTextOutput: "\u5144\u5F1F\u6700\u8FD1\u600E\u4E48\u6837\u554A\uFF01\u4E00\u8D77\u6765\u4E92\u8054\u7F51\u4E0A\u641E\u70B9\u6709\u8DA3\u7684\u4E1C\u897F\u5427\uFF01"
+  displayableTranslatedText: "\u5144\u5F1F\u6700\u8FD1\u600E\u4E48\u6837\u554A\uFF01\u4E00\u8D77\u6765\u4E92\u8054\u7F51\u4E0A\u641E\u70B9\u6709\u8DA3\u7684\u4E1C\u897F\u5427\uFF01"
+  translationError: 
+  isProcessing: 0
 --- !u!1 &1733104854
 GameObject:
   m_ObjectHideFlags: 0
@@ -85287,6 +86909,8 @@ Transform:
   - {fileID: 1640308217}
   - {fileID: 26396264}
   - {fileID: 977223517}
+  - {fileID: 1590143172}
+  - {fileID: 1633108079}
   - {fileID: 506850886}
   - {fileID: 2130024434}
   - {fileID: 380268745}
@@ -85302,12 +86926,14 @@ Transform:
   - {fileID: 497716099}
   - {fileID: 1799915344}
   - {fileID: 618195393}
-  - {fileID: 1633108079}
   - {fileID: 129712647}
   - {fileID: 1286661715}
   - {fileID: 1712619503}
   - {fileID: 1732538580}
   - {fileID: 1708926161}
+  - {fileID: 1037543733}
+  - {fileID: 1341506051}
+  - {fileID: 1255856976}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &2043755943 stripped
@@ -103585,3 +105211,4 @@ SceneRoots:
   - {fileID: 2043649015}
   - {fileID: 5405382959901695268}
   - {fileID: 1115389897}
+  - {fileID: 636738745}

@@ -67,6 +67,12 @@ Handles the playback of video commercials during scene transitions.
 
 ## Recent Changes (Changelog)
 
+**2024-05-15:**
+*   **EventManager Enhancements:** Updated `EventManager.cs` to support translated transcript generation events:
+    *   Added `TranslatedTranscriptData` struct to carry information about the translated transcript, including language details.
+    *   Introduced a new static event `OnTranslatedTranscriptGenerated` that fires when a translated transcript file is successfully generated and saved.
+    *   Implemented the `RaiseTranslatedTranscriptGenerated` static method to invoke the `OnTranslatedTranscriptGenerated` event, providing details such as episode ID, language, and file path.
+
 **2024-05-01:**
 *   **YouTube Transcript Generator:** Added a new system (`YouTubeTranscriptGenerator` + Editor script) to automatically generate a formatted text transcript (`.txt`) upon episode completion. This includes:
     *   Parsing the show's JSON data.

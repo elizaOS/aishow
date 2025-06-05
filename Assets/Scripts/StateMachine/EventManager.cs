@@ -2,6 +2,26 @@ using System;
 using UnityEngine;
 using ShowRunner;
 
+// Define the data structure for the original transcript generated event
+// This is placed outside the EventManager class to be globally accessible
+// or can be placed inside if preferred and accessed via EventManager.OriginalTranscriptData
+public struct OriginalTranscriptData
+{
+    public string EpisodeId;
+    public string OriginalTranscriptFilePath; // Full path to the base transcript (e.g., _youtubetranscript.txt)
+    public string EpisodeJsonFilePath;      // Full path to the episode JSON file that was used to generate the transcript
+}
+
+// New: Define the data structure for the translated transcript generated event
+public struct TranslatedTranscriptData
+{
+    public string EpisodeId;
+    public string TranslatedTranscriptFilePath;
+    public string EpisodeJsonFilePath;
+    public string LanguageName; // e.g., "Chinese (Simplified)"
+    public string LanguageCode; // e.g., "ch"
+}
+
 public class EventManager
 {
     public static event Action<Transform> OnSpeakerChange;
@@ -14,6 +34,12 @@ public class EventManager
     /// Passes the path to the source JSON and the Episode ID.
     /// </summary>
     public static event Action<ShowRunner.EpisodeCompletionData> OnEpisodeComplete;
+
+    // New Event: Fired when the original (e.g., English) transcript is generated and saved
+    public static event System.Action<OriginalTranscriptData> OnOriginalTranscriptGenerated;
+
+    // New Event: Fired when a translated transcript is generated and saved
+    public static event System.Action<TranslatedTranscriptData> OnTranslatedTranscriptGenerated;
 
     private Transform currentSpeaker;
 
@@ -54,7 +80,24 @@ public class EventManager
     /// <param name="completionData">Data about the completed episode.</param>
     public static void InvokeEpisodeComplete(ShowRunner.EpisodeCompletionData completionData)
     {
-        Debug.Log($"Invoking OnEpisodeComplete for Episode: {completionData.EpisodeId} from path: {completionData.JsonFilePath}");
+        Debug.Log($"[EventManager] Invoking OnEpisodeComplete for Episode: {completionData.EpisodeId} from path: {completionData.JsonFilePath}");
         OnEpisodeComplete?.Invoke(completionData);
+    }
+
+    /// <summary>
+    /// Invokes the OnOriginalTranscriptGenerated event.
+    /// </summary>
+    /// <param name="data">Data about the generated original transcript.</param>
+    public static void RaiseOriginalTranscriptGenerated(OriginalTranscriptData data)
+    {
+        Debug.Log($"[EventManager] Invoking OnOriginalTranscriptGenerated for Episode: {data.EpisodeId}, TranscriptPath: {data.OriginalTranscriptFilePath}");
+        OnOriginalTranscriptGenerated?.Invoke(data);
+    }
+
+    // New: Invoker for the translated transcript event
+    public static void RaiseTranslatedTranscriptGenerated(TranslatedTranscriptData data)
+    {
+        Debug.Log($"[EventManager] Invoking OnTranslatedTranscriptGenerated for Episode: {data.EpisodeId}, Lang: {data.LanguageCode}, TranscriptPath: {data.TranslatedTranscriptFilePath}");
+        OnTranslatedTranscriptGenerated?.Invoke(data);
     }
 }

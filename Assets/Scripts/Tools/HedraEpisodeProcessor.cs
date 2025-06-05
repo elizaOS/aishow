@@ -873,9 +873,7 @@ public class HedraEpisodeProcessor : MonoBehaviour // Base class changed
                 baseSegmentFileName = $"unknown_segment_{segmentIdx}"; // Fallback
             }
             // Now baseSegmentFileName is guaranteed to be non-null by prior assignments
-            #pragma warning disable CS8601 // Suppressing as requested, logic deemed safe.
             baseSegmentFileName = SanitizeFileName(baseSegmentFileName);
-            #pragma warning restore CS8601
             
             string pollingSegmentIdentifier = $"{currentSegmentIdentifier} GenID: {generationIdForPolling}";
             if (!string.IsNullOrEmpty(generationIdForPolling))
@@ -1060,15 +1058,19 @@ public class HedraEpisodeProcessor : MonoBehaviour // Base class changed
 
             if (uploadImageError != null || imageUrlResponse?.url == null)
             { Debug.LogError($"[ProcessSegments_LegacyAPI - {currentSegmentIdentifier}] Failed to upload image: {uploadImageError ?? "Image URL response or URL itself was null"}. Skipping.", this); segmentIdx++; continue; }
-            uploadedImageUrl = imageUrlResponse.url; // Now we know uploadedImageUrl is not null
-            Debug.Log($"[ProcessSegments_LegacyAPI - {currentSegmentIdentifier}] Image uploaded. URL: {uploadedImageUrl}", this);
+            
+            // Ensure non-null before assignment to payload
+            string finalUploadedAudioUrl = uploadedAudioUrl!;
+            string finalUploadedImageUrl = imageUrlResponse.url; // imageUrlResponse.url is confirmed non-null by the check above
+
+            Debug.Log($"[ProcessSegments_LegacyAPI - {currentSegmentIdentifier}] Image uploaded. URL: {finalUploadedImageUrl}", this);
 
             // Step 3: Call /v1/characters
             Legacy_HedraCharacterRequestPayload characterPayload = new Legacy_HedraCharacterRequestPayload
             {
                 text = segment.text,
-                voiceUrl = uploadedAudioUrl!, // CS8601 fix: Known to be non-null here
-                avatarImage = uploadedImageUrl!, // CS8601 fix: Known to be non-null here
+                voiceUrl = finalUploadedAudioUrl, 
+                avatarImage = finalUploadedImageUrl, 
                 aspectRatio = segment.aspectRatio, 
                 audioSource = segment.audioSource,
                 voiceId = string.IsNullOrEmpty(segment.voiceId) ? null : segment.voiceId,
@@ -1099,9 +1101,7 @@ public class HedraEpisodeProcessor : MonoBehaviour // Base class changed
                 baseSegmentFileName = $"unknown_segment_{segmentIdx}"; // Fallback
             }
             // Now baseSegmentFileName is guaranteed to be non-null by prior assignments
-            #pragma warning disable CS8601 // Suppressing as requested, logic deemed safe.
             baseSegmentFileName = SanitizeFileName(baseSegmentFileName);
-            #pragma warning restore CS8601
             
             string pollingSegmentIdentifier = $"{currentSegmentIdentifier} ProjID: {projectIdForPolling}";
             if (!string.IsNullOrEmpty(projectIdForPolling))

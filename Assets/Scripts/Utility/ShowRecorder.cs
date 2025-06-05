@@ -18,7 +18,7 @@ namespace ShowRunner.Utility
     /// </summary>
     public class ShowRecorder : MonoBehaviour
     {
-        [Header("Recording Settings")]
+        [Header("Recording Settings")] 
         [Tooltip("Width of the output video in pixels.")]
         public int outputWidth = 1920;
         [Tooltip("Height of the output video in pixels.")]
@@ -136,7 +136,7 @@ namespace ShowRunner.Utility
             }
             
             // Define the new path structure
-            var mediaOutputFolder = new DirectoryInfo(Path.Combine(Application.dataPath, "Resources", "Episodes", episodeId, "realtime-recording"));
+            var mediaOutputFolder = new DirectoryInfo(Path.Combine(Application.dataPath, "Resources", "Episodes", episodeId, "recordings"));
             
             if (!mediaOutputFolder.Exists)
             {

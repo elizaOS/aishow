@@ -9,8 +9,11 @@ namespace ShowGenerator
         private const string DefaultElevenLabsWrapperUrl = "";
 
         [Header("Direct API Keys")]
-        [Tooltip("API Key for direct LLM access (e.g., Claude, OpenAI). Used if 'Use Wrapper Endpoints' is false.")]
-        public string llmApiKey = "";
+        [Tooltip("API Key for direct LLM access (e.g., Anthropic Claude). Used if 'Use Wrapper Endpoints' is false.")]
+        public string anthropicApiKey = "";
+
+        [Tooltip("API Key for OpenRouter access.")]
+        public string openRouterApiKey = "";
 
         [Tooltip("API Key for direct ElevenLabs TTS access. Used if 'Use Wrapper Endpoints' is false.")]
         public string elevenLabsApiKey = "";
@@ -46,13 +49,14 @@ namespace ShowGenerator
         // Reset is called when the ScriptableObject is first created or when the user selects "Reset" from the context menu.
         private void Reset()
         {
-            llmApiKey = ""; // Default to empty for keys
-            elevenLabsApiKey = ""; // Default to empty for keys
-            hedraApiKey = ""; // Default to empty for Hedra key
-            hedraApiKeyNewApi = ""; // Initialize new API key field
-            hedraBaseUrl = "https://api.hedra.com"; // Initialize in Reset
-            hedraBaseUrlNewApi = ""; // Initialize new field in Reset
-            x23ApiKey = ""; // Default to empty for x23.ai key
+            anthropicApiKey = "";
+            openRouterApiKey = "";
+            elevenLabsApiKey = "";
+            hedraApiKey = "";
+            hedraApiKeyNewApi = "";
+            hedraBaseUrl = "https://api.hedra.com";
+            hedraBaseUrlNewApi = "";
+            x23ApiKey = "";
             claudeWrapperUrl = DefaultClaudeWrapperUrl;
             elevenLabsWrapperUrl = DefaultElevenLabsWrapperUrl;
         }

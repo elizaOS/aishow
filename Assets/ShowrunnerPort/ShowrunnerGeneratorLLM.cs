@@ -368,12 +368,12 @@ namespace ShowGenerator
 
                 if (!useWrapper)
                 {
-                    if (string.IsNullOrEmpty(apiKeys.llmApiKey))
+                    if (string.IsNullOrEmpty(apiKeys.anthropicApiKey))
                     {
-                        Debug.LogError("LLM API Key is missing");
+                        Debug.LogError("Anthropic API Key is not set for direct API call.");
                         return null;
                     }
-                    req.SetRequestHeader("x-api-key", apiKeys.llmApiKey);
+                    req.SetRequestHeader("x-api-key", apiKeys.anthropicApiKey);
                     req.SetRequestHeader("anthropic-version", ClaudeApiVersion);
                 }
 
@@ -429,78 +429,59 @@ namespace ShowGenerator
             }
         }
 
-        // New method to test the Claude endpoint with a simple "Hi" message
-        public async Task<string> TestClaudeEndpointAsync(string wrapperUrlFromManager, string llmApiKey, bool useWrapper, ShowGenerator.ShowGeneratorApiKeys apiKeys)
+        // Method to test Claude endpoint (direct or wrapper)
+        public async Task<string> TestClaudeEndpointAsync(string wrapperUrlFromManager, string anthropicApiKeyToUse, bool useWrapper, ShowGenerator.ShowGeneratorApiKeys apiKeys)
         {
-            string? effectiveApiUrl;
+            string testJsonPayload = "{\"model\": \"" + (apiKeys != null ? apiKeys.claudeModelName : "claude-3-opus-20240229") + "\", \"max_tokens\": 10, \"messages\": [{\"role\": \"user\", \"content\": \"Test: Hello, Claude!\"}]}";
+            byte[] bodyRaw = Encoding.UTF8.GetBytes(testJsonPayload);
+            string url;
+            UnityWebRequest req;
+
             if (useWrapper)
             {
-                effectiveApiUrl = wrapperUrlFromManager;
-                if (string.IsNullOrEmpty(effectiveApiUrl))
+                if (string.IsNullOrEmpty(wrapperUrlFromManager))
                 {
-                    Debug.LogError("Wrapper URL is not configured");
-                    return "Error: Wrapper URL not configured";
+                    return "Error: Wrapper URL is not configured for Claude.";
                 }
+                url = wrapperUrlFromManager;
+                req = new UnityWebRequest(url, "POST");
             }
             else
             {
-                effectiveApiUrl = DirectClaudeApiUrl; // Use internal constant for direct calls
+                // Direct API call
+                if (string.IsNullOrEmpty(anthropicApiKeyToUse))
+                {
+                    return "Error: Anthropic API Key is not provided for direct test.";
+                }
+                url = "https://api.anthropic.com/v1/messages";
+                req = new UnityWebRequest(url, "POST");
+                req.SetRequestHeader("x-api-key", anthropicApiKeyToUse);
+                req.SetRequestHeader("anthropic-version", "2023-06-01");
             }
-            
-            var messages = new List<ClaudeMessage> { new ClaudeMessage { role = "user", content = "Hi" } };
-            // For testing, always use a small max_tokens, but respect model choice from config if available
-            var requestPayload = new ClaudeApiRequestPayload { messages = messages, max_tokens = 25 }; // Minimal tokens for a test response
-            
-            // Override model from ApiKeysConfig if provided for the test
-            if (apiKeys != null && !string.IsNullOrEmpty(apiKeys.claudeModelName))
+
+            req.uploadHandler = new UploadHandlerRaw(bodyRaw);
+            req.downloadHandler = new DownloadHandlerBuffer();
+            req.SetRequestHeader("Content-Type", "application/json");
+
+            var operation = req.SendWebRequest();
+            while (!operation.isDone)
             {
-                requestPayload.model = apiKeys.claudeModelName;
+                await Task.Yield();
             }
-            // max_tokens is kept low for testing regardless of config for this specific test method.
 
-            string payloadJson = JsonConvert.SerializeObject(requestPayload);
-
-            Debug.Log($"[LLM Test] Sending test request to: {effectiveApiUrl} using model {requestPayload.model} with payload: {payloadJson}");
-
-            using (UnityWebRequest req = new UnityWebRequest(effectiveApiUrl, "POST"))
+            if (req.result == UnityWebRequest.Result.Success)
             {
-                req.timeout = 60; // 60 seconds timeout for the test request
-                byte[] bodyRaw = System.Text.Encoding.UTF8.GetBytes(payloadJson);
-                req.uploadHandler = new UploadHandlerRaw(bodyRaw);
-                req.downloadHandler = new DownloadHandlerBuffer();
-                req.SetRequestHeader("Content-Type", "application/json");
-
-                if (!useWrapper)
-                {
-                    if (string.IsNullOrEmpty(llmApiKey))
-                    {
-                        Debug.LogError("LLM API Key is missing");
-                        return "Error: LLM API Key missing";
-                    }
-                    req.SetRequestHeader("x-api-key", llmApiKey);
-                    req.SetRequestHeader("anthropic-version", ClaudeApiVersion);
-                }
-
-                var operation = req.SendWebRequest();
-                while (!operation.isDone)
-                {
-                    await Task.Yield();
-                }
-
-                if (req.result == UnityWebRequest.Result.Success)
-                {
-                    string responseText = req.downloadHandler.text;
-                    Debug.Log($"[LLM Test] Success! Response: {responseText}");
-                    return responseText;
-                }
-                else
-                {
-                    Debug.LogError($"[LLM Test] Error: {req.error}");
-                    Debug.LogError($"[LLM Test] Status Code: {req.responseCode}");
-                    string responseBody = req.downloadHandler?.text ?? "N/A";
-                    Debug.LogError($"[LLM Test] Body: {responseBody}");
-                    return $"Error: {req.responseCode} - {req.error}. Body: {responseBody}";
-                }
+                string responseText = req.downloadHandler.text;
+                Debug.Log($"[LLM Test] Success! Response: {responseText}");
+                return responseText;
+            }
+            else
+            {
+                Debug.LogError($"[LLM Test] Error: {req.error}");
+                Debug.LogError($"[LLM Test] Status Code: {req.responseCode}");
+                string responseBody = req.downloadHandler?.text ?? "N/A";
+                Debug.LogError($"[LLM Test] Body: {responseBody}");
+                return $"Error: {req.responseCode} - {req.error}. Body: {responseBody}";
             }
         }
     }

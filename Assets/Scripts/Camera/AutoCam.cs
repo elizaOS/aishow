@@ -43,6 +43,13 @@ public class AutoCam : MonoBehaviour
 
     public void ActivateAutoCam()
     {
+        // To disable AutoCam, we simply make this method do nothing other than log.
+        Debug.LogWarning("AutoCam.ActivateAutoCam() called, but AutoCam is intentionally disabled in code.");
+        isActive = false; // Ensure it's marked as inactive if it somehow became active
+        CancelInvoke(nameof(SwitchToNextCamera)); // Ensure any existing invokes are cancelled
+        // The rest of the original activation logic is now effectively skipped.
+
+        /* --- Original logic commented out for disabling purposes ---
         if (fallbackCameras.Count == 0)
         {
             Debug.LogWarning("No fallback cameras set for AutoCam.");
@@ -57,6 +64,7 @@ public class AutoCam : MonoBehaviour
             InvokeRepeating(nameof(SwitchToNextCamera), switchInterval, switchInterval);
             Debug.Log("AutoCam activated.");
         }
+        */
     }
 
     public void DeactivateAutoCam()

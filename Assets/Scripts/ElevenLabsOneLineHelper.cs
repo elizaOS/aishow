@@ -1,5 +1,6 @@
 using UnityEngine;
 using ShowGenerator; // For ShowGeneratorApiKeys
+using UnityEngine.Events; // Added for UnityEvent
 
 /// <summary>
 /// Helper component to provide an Inspector UI for generating single lines of audio via ElevenLabs.
@@ -16,6 +17,37 @@ public class ElevenLabsOneLineHelper : MonoBehaviour
     [Tooltip("The text you want to convert to speech.")]
     public string textToSpeak = "Hello, this is a test line generated from the Inspector.";
     
+    [Tooltip("Identifier of the ElevenLabs model to use (e.g., eleven_multilingual_v2, eleven_turbo_v2_5).")]
+    public string modelId = "eleven_multilingual_v2"; // Default model
+
+    [Tooltip("Optional ISO 639-1 language code for ElevenLabs API (e.g., en, es, fr). This also guides the target translation language if different from English.")]
+    public string languageCode = "en"; // Default to English
+    
+    [Tooltip("The target language for translation before sending to ElevenLabs (e.g., Chinese, Spanish). If 'English' or empty, no translation is performed.")]
+    public string targetTranslationLanguage = "English";
+    
+    [HideInInspector]
+    public string lastTranslatedText = "";
+
+    [Header("Experimental Settings")]
+    [Tooltip("Enable to use experimental voice settings like stability and style.")]
+    public bool useExperimentalSettings = false;
+
+    [Tooltip("Stability: Lower values = more varied emotion, higher = more monotonous. Default: 0.75")]
+    [Range(0f, 1f)]
+    public float stability = 0.75f;
+
+    [Tooltip("Similarity Boost: How closely to match the original voice. Higher = more similar. Default: 0.75")]
+    [Range(0f, 1f)]
+    public float similarityBoost = 0.75f;
+
+    [Tooltip("Style Exaggeration: Amplifies the voice's style. 0 = none. Can increase latency. Default: 0.0")]
+    [Range(0f, 1f)]
+    public float styleExaggeration = 0.0f;
+
+    [Tooltip("Use Speaker Boost: Boosts similarity to original speaker. Can increase latency. Default: true")]
+    public bool useSpeakerBoost = true;
+
     // This will be set by the editor script via the dropdown based on ShowrunnerManager.DefaultVoiceMap
     [HideInInspector] // Hide this as it's controlled by the dropdown
     public string selectedVoiceId = ""; 
@@ -26,6 +58,10 @@ public class ElevenLabsOneLineHelper : MonoBehaviour
     // Used by the editor script to manage the dropdown selection state
     [HideInInspector]
     public int selectedVoiceIndex = 0;
+
+    // Event to notify when audio generation (and optional translation) is complete or fails.
+    // Parameters: originalText, translatedText (or original if no translation), audioData (or null on failure), errorMessage (or null on success)
+    public UnityEvent<string, string, byte[], string> OnAudioGeneratedWithTranslation;
 
     // Optional: Add a default voice ID from the map if desired, e.g., the first one.
     private void Awake()

@@ -133,6 +133,8 @@ namespace ShowGenerator
             const int MAX_RETRIES = 5;
             const int BASE_DELAY_MS = 2000;
             int attempt = 0;
+            
+            Debug.Log($"Generating audio for '{dialogue.actor}': '{dialogue.line}' -> '{filePath}'");
 
             while (attempt < MAX_RETRIES)
             {
@@ -156,12 +158,12 @@ namespace ShowGenerator
                         headers = new Dictionary<string, string> { { "xi-api-key", apiKeys.elevenLabsApiKey } };
                     }
 
-                    Debug.Log($"Attempt {attempt}/{MAX_RETRIES} for actor '{dialogue.actor}'");
+                    Debug.Log($"Attempt {attempt}/{MAX_RETRIES} to generate audio for '{dialogue.actor}'...");
                     byte[] audioData = await ApiCaller.PostJsonForBytesAsync(endpointUrl, payload, headers);
                     if (audioData != null && audioData.Length > 0)
                     {
                         File.WriteAllBytes(filePath, audioData);
-                        Debug.Log($"Audio saved: {filePath}");
+                        Debug.Log($"<color=green>SUCCESS:</color> Audio for '{dialogue.actor}' saved to '{filePath}' ({audioData.Length} bytes)");
                         return;
                     }
                     else
@@ -171,13 +173,13 @@ namespace ShowGenerator
                 }
                 catch (Exception ex)
                 {
-                    Debug.LogWarning($"Exception on attempt {attempt}: {ex.Message}");
+                    Debug.LogWarning($"Attempt {attempt}/{MAX_RETRIES} for '{dialogue.actor}' failed: {ex.Message}");
                 }
 
                 if (attempt < MAX_RETRIES)
                 {
                     int delay = BASE_DELAY_MS * (int)Math.Pow(2, attempt - 1);
-                    Debug.Log($"Retrying in {delay / 1000.0f} seconds...");
+                    Debug.Log($"Retrying for '{dialogue.actor}' in {delay / 1000.0f} seconds...");
                     await Task.Delay(delay, cancellationToken);
                 }
             }
