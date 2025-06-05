@@ -10,6 +10,8 @@ Currently, episode announcements are manual across platforms, leading to inconsi
 - [ ] Auto-post to Discord via webhook after YouTube upload
 - [ ] Auto-post to Twitter with episode link and summary
 - [ ] Include episode thumbnail and key highlights
+- [ ] Support different messaging for each platform
+- [ ] Handle posting failures gracefully with retries
 
 ## Technical Requirements
 
@@ -99,7 +101,10 @@ Store platform settings in environment variables:
 
 ```bash
 DISCORD_WEBHOOK_URL=https://discord.com/api/webhooks/...
-
+TWITTER_API_KEY=your_api_key
+TWITTER_API_SECRET=your_api_secret
+TWITTER_ACCESS_TOKEN=your_access_token
+TWITTER_ACCESS_SECRET=your_access_secret
 ```
 
 ## Nice to Have
