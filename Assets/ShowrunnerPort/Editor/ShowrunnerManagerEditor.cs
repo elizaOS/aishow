@@ -66,40 +66,45 @@ public class ShowrunnerManagerEditor : Editor
 
     public override void OnInspectorGUI()
     {
-        DrawDefaultInspector(); // Draws ActiveShowConfig slot, apiKeysConfig, useWrapperEndpoints etc.
-                                // When ActiveShowConfig is expanded, Unity will draw its fields, including Pilot and Episodes.
         ShowrunnerManager mgr = (ShowrunnerManager)target;
-        
-        // No longer need the direct Repaint() call here for the timer, 
-        // as EditorApplication.update handles it via RepaintEditorIfBusy.
-        // if (isGeneratingEpisode || isGeneratingAudio) Repaint();  
+        serializedObject.Update();
 
-        // Display Claude specific settings if apiKeysConfig is assigned
-        if (mgr.apiKeysConfig != null)
+        // Core Components Section
+        showBasicInfo = EditorGUILayout.Foldout(showBasicInfo, "Core Components", true);
+        if (showBasicInfo)
         {
-            EditorGUILayout.Space();
-            EditorGUILayout.LabelField("Claude API Settings (from ApiKeysConfig)", EditorStyles.boldLabel);
-            
-            EditorGUI.BeginChangeCheck();
-            string newModelName = EditorGUILayout.TextField(new GUIContent("Claude Model Name", "e.g., claude-3-opus-20240229, claude-3-sonnet-20240229"), mgr.apiKeysConfig.claudeModelName);
-            int newMaxTokens = EditorGUILayout.IntField(new GUIContent("Claude Max Tokens", "Max tokens for the LLM response"), mgr.apiKeysConfig.claudeMaxTokens);
-            
-            if (EditorGUI.EndChangeCheck())
-            {
-                Undo.RecordObject(mgr.apiKeysConfig, "Change Claude API Settings");
-                mgr.apiKeysConfig.claudeModelName = newModelName;
-                mgr.apiKeysConfig.claudeMaxTokens = newMaxTokens;
-                EditorUtility.SetDirty(mgr.apiKeysConfig);
-            }
+            EditorGUI.indentLevel++;
+            EditorGUILayout.PropertyField(serializedObject.FindProperty("ActiveShowConfig"));
+            EditorGUILayout.PropertyField(serializedObject.FindProperty("generatorLLM"));
+            EditorGUILayout.PropertyField(serializedObject.FindProperty("loader"));
+            EditorGUILayout.PropertyField(serializedObject.FindProperty("speaker"));
+            EditorGUILayout.PropertyField(serializedObject.FindProperty("speakerElevenLabs"));
+            EditorGUI.indentLevel--;
         }
 
         EditorGUILayout.Space();
-        EditorGUILayout.LabelField("Showrunner Workflow & Config Management", EditorStyles.boldLabel);
+
+        // Workflow Settings Section
+        EditorGUILayout.LabelField("Workflow Settings", EditorStyles.boldLabel);
+        EditorGUI.indentLevel++;
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("autoGenerateAudioAfterEpisode"));
+        EditorGUI.indentLevel--;
+
+        EditorGUILayout.Space();
+
+        // API Configuration Section
+        EditorGUILayout.LabelField("API Configuration", EditorStyles.boldLabel);
+        EditorGUI.indentLevel++;
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("apiKeysConfig"));
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("useWrapperEndpoints"));
+        EditorGUI.indentLevel--;
 
         // Custom Prompt Affixes Section
         EditorGUILayout.Space();
         EditorGUILayout.LabelField("Custom Prompt Affixes", EditorStyles.boldLabel);
-        mgr.useCustomPromptAffixes = EditorGUILayout.Toggle(new GUIContent("Use Custom Prompt Affixes", "Enable to add custom prefix and suffix to the LLM prompt."), mgr.useCustomPromptAffixes);
+        mgr.useCustomPromptAffixes = EditorGUILayout.Toggle(
+            new GUIContent("Use Custom Prompt Affixes", "Enable to add custom prefix and suffix to the LLM prompt."),
+            mgr.useCustomPromptAffixes);
         if (mgr.useCustomPromptAffixes)
         {
             EditorGUI.indentLevel++;
@@ -110,6 +115,109 @@ public class ShowrunnerManagerEditor : Editor
             EditorGUI.indentLevel--;
         }
 
+        // X23.ai API Data Injection Section
+        EditorGUILayout.Space();
+        showX23ApiSettings = EditorGUILayout.Foldout(showX23ApiSettings, "X23.ai API Data Injection", true);
+        if (showX23ApiSettings)
+        {
+            EditorGUILayout.BeginVertical(EditorStyles.helpBox);
+            mgr.useX23ApiData = EditorGUILayout.Toggle(
+                new GUIContent("Use X23.ai Data", "Enable to fetch and inject data from x23.ai API into the LLM prompt."),
+                mgr.useX23ApiData);
+            if (mgr.useX23ApiData)
+            {
+                EditorGUI.indentLevel++;
+                mgr.x23ApiRequestType = (X23ApiRequestType)EditorGUILayout.EnumPopup(
+                    new GUIContent("X23 API Request Type", "Select the x23.ai endpoint to use."),
+                    mgr.x23ApiRequestType);
+
+                EditorGUILayout.LabelField("General Parameters", EditorStyles.boldLabel);
+                mgr.x23SearchQuery = EditorGUILayout.TextField(
+                    new GUIContent("Search Query", "For Keyword, RAG, Hybrid search."),
+                    mgr.x23SearchQuery);
+                mgr.x23Limit = EditorGUILayout.IntField(
+                    new GUIContent("Limit", "Max items to fetch."),
+                    mgr.x23Limit);
+                mgr.x23ProtocolsToFilter = EditorGUILayout.TextField(
+                    new GUIContent("Protocols (comma-sep)", "e.g., aave,optimism"),
+                    mgr.x23ProtocolsToFilter);
+                mgr.x23ItemTypesToFilter = EditorGUILayout.TextField(
+                    new GUIContent("Item Types (comma-sep)", "e.g., discussion,snapshot"),
+                    mgr.x23ItemTypesToFilter);
+
+                switch (mgr.x23ApiRequestType)
+                {
+                    case X23ApiRequestType.KeywordSearch:
+                        EditorGUILayout.LabelField("Keyword Search Specific", EditorStyles.boldLabel);
+                        mgr.x23ExactMatchForKeyword = EditorGUILayout.Toggle(
+                            new GUIContent("Exact Match", "Keyword search exact match."),
+                            mgr.x23ExactMatchForKeyword);
+                        mgr.x23SortByRelevanceForKeyword = EditorGUILayout.Toggle(
+                            new GUIContent("Sort by Relevance", "Keyword search sort by relevance."),
+                            mgr.x23SortByRelevanceForKeyword);
+                        break;
+                    case X23ApiRequestType.RagSearch:
+                    case X23ApiRequestType.HybridSearch:
+                        EditorGUILayout.LabelField("Similarity Search Specific", EditorStyles.boldLabel);
+                        mgr.x23SimilarityThreshold = EditorGUILayout.Slider(
+                            new GUIContent("Similarity Threshold", "For RAG/Hybrid search."),
+                            mgr.x23SimilarityThreshold, 0f, 1f);
+                        break;
+                    case X23ApiRequestType.RecentFeed:
+                    case X23ApiRequestType.TopScoredFeed:
+                        EditorGUILayout.LabelField("Feed Specific", EditorStyles.boldLabel);
+                        mgr.x23UnixTimestamp = EditorGUILayout.LongField(
+                            new GUIContent("Unix Timestamp", "0 for default/current."),
+                            mgr.x23UnixTimestamp);
+                        if (mgr.x23ApiRequestType == X23ApiRequestType.TopScoredFeed)
+                        {
+                            mgr.x23ScoreThresholdForTopScored = EditorGUILayout.DoubleField(
+                                new GUIContent("Score Threshold", "Min score for TopScoredFeed."),
+                                mgr.x23ScoreThresholdForTopScored);
+                        }
+                        break;
+                    case X23ApiRequestType.DigestFeed:
+                        EditorGUILayout.LabelField("Digest Feed Specific", EditorStyles.boldLabel);
+                        mgr.x23UnixTimestamp = EditorGUILayout.LongField(
+                            new GUIContent("Unix Timestamp", "0 for default/current."),
+                            mgr.x23UnixTimestamp);
+                        mgr.x23TimePeriodForDigest = EditorGUILayout.TextField(
+                            new GUIContent("Time Period", "'daily', 'weekly', or 'monthly'."),
+                            mgr.x23TimePeriodForDigest);
+                        break;
+                }
+                EditorGUI.indentLevel--;
+            }
+            EditorGUILayout.EndVertical();
+        }
+
+        // Claude API Settings Section
+        if (mgr.apiKeysConfig != null)
+        {
+            EditorGUILayout.Space();
+            EditorGUILayout.LabelField("Claude API Settings", EditorStyles.boldLabel);
+            EditorGUI.indentLevel++;
+            EditorGUI.BeginChangeCheck();
+            string newModelName = EditorGUILayout.TextField(
+                new GUIContent("Model Name", "e.g., claude-3-opus-20240229, claude-3-sonnet-20240229"),
+                mgr.apiKeysConfig.claudeModelName);
+            int newMaxTokens = EditorGUILayout.IntField(
+                new GUIContent("Max Tokens", "Max tokens for the LLM response"),
+                mgr.apiKeysConfig.claudeMaxTokens);
+            
+            if (EditorGUI.EndChangeCheck())
+            {
+                Undo.RecordObject(mgr.apiKeysConfig, "Change Claude API Settings");
+                mgr.apiKeysConfig.claudeModelName = newModelName;
+                mgr.apiKeysConfig.claudeMaxTokens = newMaxTokens;
+                EditorUtility.SetDirty(mgr.apiKeysConfig);
+            }
+            EditorGUI.indentLevel--;
+        }
+
+        // Show Config Management Section
+        EditorGUILayout.Space();
+        EditorGUILayout.LabelField("Show Config Management", EditorStyles.boldLabel);
         if (GUILayout.Button("Load Show Config from JSON"))
         {
             string path = EditorUtility.OpenFilePanel("Load Show Config", Application.dataPath, "json");
@@ -119,9 +227,8 @@ public class ShowrunnerManagerEditor : Editor
                 if (loadedConfig != null)
                 {
                     Undo.RecordObject(mgr, "Load Show Config");
-                    mgr.LoadShowConfig(loadedConfig); // This sets mgr.ActiveShowConfig
+                    mgr.LoadShowConfig(loadedConfig);
                     EditorUtility.SetDirty(mgr);
-                    Debug.Log("Show config loaded into ActiveShowConfig.");
                 }
             }
         }
@@ -143,8 +250,9 @@ public class ShowrunnerManagerEditor : Editor
             EditorGUILayout.HelpBox("Active Show Config is not assigned! Load or create one to see detailed editors and actions.", MessageType.Warning);
         }
 
+        // Showrunner Actions Section
         EditorGUILayout.Space();
-        EditorGUILayout.LabelField("Showrunner Actions (Operate on ActiveShowConfig)", EditorStyles.boldLabel);
+        EditorGUILayout.LabelField("Showrunner Actions", EditorStyles.boldLabel);
         
         bool activeConfigMissing = mgr.ActiveShowConfig == null;
         bool apiKeysMissing = mgr.apiKeysConfig == null;
@@ -159,19 +267,20 @@ public class ShowrunnerManagerEditor : Editor
         }
 
         bool baseCanDoActions = !activeConfigMissing && !apiKeysMissing;
-        GUI.enabled = baseCanDoActions && !isGeneratingEpisode; // Disable if busy
-        
-        GUI.enabled = baseCanDoActions && !isGeneratingEpisode; 
-        string generateEpisodeButtonText = isGeneratingEpisode ? $"Generating Episode... ({TimeSpan.FromSeconds(EditorApplication.timeSinceStartup - episodeGenerationStartTime):mm\\:ss})" : "Generate Episode (LLM) - Creates New Copy";
+        GUI.enabled = baseCanDoActions && !isGeneratingEpisode;
+
+        string generateEpisodeButtonText = isGeneratingEpisode ? 
+            $"Generating Episode... ({TimeSpan.FromSeconds(EditorApplication.timeSinceStartup - episodeGenerationStartTime):mm\\:ss})" : 
+            "Generate Episode (LLM) - Creates New Copy";
         if (GUILayout.Button(generateEpisodeButtonText))
         {
-            // Call the new async void method
             GenerateEpisodeAsync(mgr);
         }
-        GUI.enabled = true; 
-        
-        bool hasEpisodes = baseCanDoActions && mgr.ActiveShowConfig != null && (mgr.ActiveShowConfig.episodes?.Count > 0 || mgr.generatedEpisodesThisSession?.Count > 0);
-        bool canGenerateAudioButtonBeEnabled = baseCanDoActions && hasEpisodes && !isGeneratingAudio; // Disable if busy
+        GUI.enabled = true;
+
+        bool hasEpisodes = baseCanDoActions && mgr.ActiveShowConfig != null && 
+            (mgr.ActiveShowConfig.episodes?.Count > 0 || mgr.generatedEpisodesThisSession?.Count > 0);
+        bool canGenerateAudioButtonBeEnabled = baseCanDoActions && hasEpisodes && !isGeneratingAudio;
 
         GUI.enabled = canGenerateAudioButtonBeEnabled;
         string generateAudioButtonText = "Generate Audio from Loaded Config";
@@ -181,9 +290,9 @@ public class ShowrunnerManagerEditor : Editor
             generateAudioButtonText = $"Generating Audio... ({TimeSpan.FromSeconds(elapsedTime):mm\\:ss})";
         }
 
-        if (baseCanDoActions && !hasEpisodes && !isGeneratingAudio) // only show info if not busy and no episodes
+        if (baseCanDoActions && !hasEpisodes && !isGeneratingAudio)
         {
-             EditorGUILayout.HelpBox("Generate Audio button is disabled: No episodes available in ActiveShowConfig or generated this session. Load a config first.", MessageType.Info);
+            EditorGUILayout.HelpBox("Generate Audio button is disabled: No episodes available in ActiveShowConfig or generated this session. Load a config first.", MessageType.Info);
         }
 
         if (GUILayout.Button(generateAudioButtonText))
@@ -200,7 +309,7 @@ public class ShowrunnerManagerEditor : Editor
                     EditorApplication.delayCall += () => 
                     {
                         isGeneratingAudio = false;
-                        audioGenerationStartTime = EditorApplication.timeSinceStartup; // This is OK, runs on main thread
+                        audioGenerationStartTime = EditorApplication.timeSinceStartup;
                         audioCancelTokenSource = null;
                         if (success)
                         {
@@ -219,6 +328,7 @@ public class ShowrunnerManagerEditor : Editor
                 }
             });
         }
+
         GUI.enabled = isGeneratingAudio;
         if (isGeneratingAudio && GUILayout.Button("Stop Generating Audio"))
         {
@@ -228,7 +338,7 @@ public class ShowrunnerManagerEditor : Editor
             ShowNotification("Audio generation cancellation requested.");
             Repaint();
         }
-        GUI.enabled = true; // Reset GUI state
+        GUI.enabled = true;
 
         if (GUILayout.Button("Reset Audio Generation State (Debug)"))
         {
@@ -237,7 +347,7 @@ public class ShowrunnerManagerEditor : Editor
         }
 
         EditorGUILayout.Space();
-        GUI.enabled = baseCanDoActions && !isGeneratingEpisode && !isGeneratingAudio; // General disable for non-critical actions if busy
+        GUI.enabled = baseCanDoActions && !isGeneratingEpisode && !isGeneratingAudio;
         if (GUILayout.Button("Reapply Web App Default Voice Map (Global)"))
         {
             Undo.RecordObject(mgr, "Reapply Default Voice Map");
@@ -245,75 +355,22 @@ public class ShowrunnerManagerEditor : Editor
             EditorUtility.SetDirty(mgr);
             ShowNotification("Default voice map reapplied.");
         }
-        GUI.enabled = true;
 
-        // Ping LLM Endpoint Button
-        GUI.enabled = baseCanDoActions && !isGeneratingEpisode && !isGeneratingAudio; // Only enable if not busy and base conditions met
+        GUI.enabled = baseCanDoActions && !isGeneratingEpisode && !isGeneratingAudio;
         if (GUILayout.Button("Ping LLM Endpoint"))
         {
             PingLLMEndpointAsync(mgr);
         }
         GUI.enabled = true;
 
+        // Show Config Details Section
         EditorGUILayout.Space();
-        EditorGUILayout.LabelField("ActiveShowConfig Details", EditorStyles.boldLabel);
-
         DrawActiveShowConfigDetails(mgr);
 
-        // X23.ai API Data Injection Settings Section
-        EditorGUILayout.Space();
-        showX23ApiSettings = EditorGUILayout.Foldout(showX23ApiSettings, "X23.ai Data Injection Settings", true);
-        if (showX23ApiSettings)
+        serializedObject.ApplyModifiedProperties();
+        if (GUI.changed)
         {
-            EditorGUILayout.BeginVertical(EditorStyles.helpBox);
-            Undo.RecordObject(mgr, "Change X23.ai Settings");
-
-            mgr.useX23ApiData = EditorGUILayout.Toggle(new GUIContent("Use X23.ai Data", "Enable to fetch and inject data from x23.ai API into the LLM prompt."), mgr.useX23ApiData);
-            GUI.enabled = mgr.useX23ApiData; // Only enable sub-fields if useX23ApiData is true
-
-            mgr.x23ApiRequestType = (X23ApiRequestType)EditorGUILayout.EnumPopup(new GUIContent("X23 API Request Type", "Select the x23.ai endpoint to use."), mgr.x23ApiRequestType);
-
-            EditorGUILayout.LabelField("General Parameters", EditorStyles.boldLabel);
-            mgr.x23SearchQuery = EditorGUILayout.TextField(new GUIContent("Search Query", "For Keyword, RAG, Hybrid search."), mgr.x23SearchQuery);
-            mgr.x23Limit = EditorGUILayout.IntField(new GUIContent("Limit", "Max items to fetch."), mgr.x23Limit);
-            mgr.x23ProtocolsToFilter = EditorGUILayout.TextField(new GUIContent("Protocols (comma-sep)", "e.g., aave,optimism"), mgr.x23ProtocolsToFilter);
-            mgr.x23ItemTypesToFilter = EditorGUILayout.TextField(new GUIContent("Item Types (comma-sep)", "e.g., discussion,snapshot"), mgr.x23ItemTypesToFilter);
-
-            // Conditional fields based on selected API type
-            switch (mgr.x23ApiRequestType)
-            {
-                case X23ApiRequestType.KeywordSearch:
-                    EditorGUILayout.LabelField("Keyword Search Specific", EditorStyles.boldLabel);
-                    mgr.x23ExactMatchForKeyword = EditorGUILayout.Toggle(new GUIContent("Exact Match", "Keyword search exact match."), mgr.x23ExactMatchForKeyword);
-                    mgr.x23SortByRelevanceForKeyword = EditorGUILayout.Toggle(new GUIContent("Sort by Relevance", "Keyword search sort by relevance."), mgr.x23SortByRelevanceForKeyword);
-                    break;
-                case X23ApiRequestType.RagSearch:
-                case X23ApiRequestType.HybridSearch:
-                    EditorGUILayout.LabelField("Similarity Search Specific", EditorStyles.boldLabel);
-                    mgr.x23SimilarityThreshold = EditorGUILayout.Slider(new GUIContent("Similarity Threshold", "For RAG/Hybrid search."), mgr.x23SimilarityThreshold, 0f, 1f);
-                    break;
-                case X23ApiRequestType.RecentFeed:
-                case X23ApiRequestType.TopScoredFeed:
-                    EditorGUILayout.LabelField("Feed Specific", EditorStyles.boldLabel);
-                    mgr.x23UnixTimestamp = EditorGUILayout.LongField(new GUIContent("Unix Timestamp", "0 for default/current."), mgr.x23UnixTimestamp);
-                    if (mgr.x23ApiRequestType == X23ApiRequestType.TopScoredFeed)
-                    {
-                        mgr.x23ScoreThresholdForTopScored = EditorGUILayout.DoubleField(new GUIContent("Score Threshold", "Min score for TopScoredFeed."), mgr.x23ScoreThresholdForTopScored);
-                    }
-                    break;
-                case X23ApiRequestType.DigestFeed:
-                    EditorGUILayout.LabelField("Digest Feed Specific", EditorStyles.boldLabel);
-                    mgr.x23UnixTimestamp = EditorGUILayout.LongField(new GUIContent("Unix Timestamp", "0 for default/current."), mgr.x23UnixTimestamp);
-                    mgr.x23TimePeriodForDigest = EditorGUILayout.TextField(new GUIContent("Time Period", "'daily', 'weekly', or 'monthly'."), mgr.x23TimePeriodForDigest);
-                    break;
-            }
-            
-            GUI.enabled = true; // Re-enable GUI for subsequent sections
-            EditorGUILayout.EndVertical();
-            if (GUI.changed)
-            {
-                EditorUtility.SetDirty(mgr);
-            }
+            EditorUtility.SetDirty(mgr);
         }
     }
 

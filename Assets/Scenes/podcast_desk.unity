@@ -27232,12 +27232,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 636738743}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.3603028, y: 2.0902443, z: -6.9095144}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -407.48233, y: -33.56078, z: 110.36079}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 2043649015}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &638887370 stripped
 GameObject:
@@ -64384,130 +64384,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1708585053}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &1708926160
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1708926161}
-  - component: {fileID: 1708926163}
-  - component: {fileID: 1708926162}
-  - component: {fileID: 1708926164}
-  m_Layer: 0
-  m_Name: ElevenLabsOneLiner Settings
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1708926161
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1708926160}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -416.91147, y: -35.689957, z: 109.91072}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2043649015}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1708926162
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1708926160}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d3f94a75a62a34d44abd74adbdaddfd0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  apiKeysConfig: {fileID: 11400000, guid: 9ea0c07de5d64914d922f139b8fd4549, type: 2}
-  useWrapperEndpoints: 1
-  textToSpeak: Hello, this is an experimental test line with voice settings.
-  outputFileName: experimental_line
-  selectedVoiceId: gYOKECHBoqupz2yMhZp1
-  selectedVoiceIndex: 5
-  modelId: eleven_multilingual_v2
-  languageCode: ko
-  stability: 0.75
-  similarityBoost: 0.75
-  styleExaggeration: 0
-  useSpeakerBoost: 1
-  OnAudioGenerated:
-    m_PersistentCalls:
-      m_Calls: []
-    m_CallsDirty: 1
---- !u!114 &1708926163
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1708926160}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e65fbd43e56d944e9ba17183365c0bc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  apiKeysConfig: {fileID: 11400000, guid: 9ea0c07de5d64914d922f139b8fd4549, type: 2}
-  useWrapperEndpoints: 1
-  textToSpeak: They told him, "Don't you ever come around here". "Don't wanna see
-    your face, you better disappear". The fire's in their eyes and their words are
-    really clear. So beat it, just beat it. You better run, you better do what you
-    can. Don't wanna see no blood, don't be a macho man. You wanna be tough, better
-    do what you can. So beat it, but you wanna be bad. Just beat it (beat it), beat
-    it (beat it). No one wants to be defeated. Showin' how funky and strong is your
-    fight. It doesn't matter who's wrong or right. Just beat it (beat it).
-  modelId: eleven_multilingual_v2
-  languageCode: ko
-  targetTranslationLanguage: Korean
-  lastTranslatedText: 
-  useExperimentalSettings: 0
-  stability: 0.75
-  similarityBoost: 0.75
-  styleExaggeration: 0
-  useSpeakerBoost: 1
-  selectedVoiceId: gYOKECHBoqupz2yMhZp1
-  outputFileName: inspector_generated_line.mp3
-  selectedVoiceIndex: 5
-  OnAudioGeneratedWithTranslation:
-    m_PersistentCalls:
-      m_Calls: []
---- !u!114 &1708926164
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1708926160}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c9b66b1ed49ac74e8570ad222a9e0d9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  apiKeysConfig: {fileID: 11400000, guid: 9ea0c07de5d64914d922f139b8fd4549, type: 2}
-  currentApiProvider: 0
-  openRouterModelName: anthropic/claude-3-haiku-20240307
-  rawTextInput: They told him, "Don't you ever come around here". "Don't wanna see
-    your face, you better disappear". The fire's in their eyes and their words are
-    really clear. So beat it, just beat it. You better run, you better do what you
-    can. Don't wanna see no blood, don't be a macho man. You wanna be tough, better
-    do what you can. So beat it, but you wanna be bad. Just beat it (beat it), beat
-    it (beat it). No one wants to be defeated. Showin' how funky and strong is your
-    fight. It doesn't matter who's wrong or right. Just beat it (beat it).
-  rawTranslatedTextOutput: 
-  displayableTranslatedText: '{"error":{"message":"No auth credentials found","code":401}}'
-  translationError: 'API call failed: 401 - HTTP/1.1 401 Unauthorized'
-  isProcessing: 0
 --- !u!1 &1710201272
 GameObject:
   m_ObjectHideFlags: 0
@@ -65326,12 +65202,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   apiKeysConfig: {fileID: 11400000, guid: 9ea0c07de5d64914d922f139b8fd4549, type: 2}
   useWrapperEndpoints: 1
-  textToSpeak: Whats up bro hows it going man! Let's build some cool stufff on the
-    internet!
+  textToSpeak: YO! YO! YO! YO! YO! YO! YO! YO! YO! YO! LETS GO!
   modelId: eleven_multilingual_v2
-  languageCode: zh
-  targetTranslationLanguage: Chinese
-  lastTranslatedText: "\u5144\u5F1F\u6700\u8FD1\u600E\u4E48\u6837\u554A\uFF01\u4E00\u8D77\u6765\u4E92\u8054\u7F51\u4E0A\u641E\u70B9\u6709\u8DA3\u7684\u4E1C\u897F\u5427\uFF01"
+  languageCode: en
+  targetTranslationLanguage: English (No Translation)
+  lastTranslatedText: YO! YO! YO! YO! YO! YO! YO! YO! YO! YO! JOM PERGI!
   useExperimentalSettings: 0
   stability: 0.75
   similarityBoost: 0.75
@@ -65358,10 +65233,9 @@ MonoBehaviour:
   apiKeysConfig: {fileID: 11400000, guid: 9ea0c07de5d64914d922f139b8fd4549, type: 2}
   currentApiProvider: 2
   openRouterModelName: anthropic/claude-3-haiku-20240307
-  rawTextInput: Whats up bro hows it going man! Let's build some cool stufff on the
-    internet!
-  rawTranslatedTextOutput: "\u5144\u5F1F\u6700\u8FD1\u600E\u4E48\u6837\u554A\uFF01\u4E00\u8D77\u6765\u4E92\u8054\u7F51\u4E0A\u641E\u70B9\u6709\u8DA3\u7684\u4E1C\u897F\u5427\uFF01"
-  displayableTranslatedText: "\u5144\u5F1F\u6700\u8FD1\u600E\u4E48\u6837\u554A\uFF01\u4E00\u8D77\u6765\u4E92\u8054\u7F51\u4E0A\u641E\u70B9\u6709\u8DA3\u7684\u4E1C\u897F\u5427\uFF01"
+  rawTextInput: YO! YO! YO! YO! YO! YO! YO! YO! YO! YO! LETS GO!
+  rawTranslatedTextOutput: YO! YO! YO! YO! YO! YO! YO! YO! YO! YO! JOM PERGI!
+  displayableTranslatedText: YO! YO! YO! YO! YO! YO! YO! YO! YO! YO! JOM PERGI!
   translationError: 
   isProcessing: 0
 --- !u!1 &1733104854
@@ -86912,7 +86786,13 @@ Transform:
   - {fileID: 1590143172}
   - {fileID: 1633108079}
   - {fileID: 506850886}
+  - {fileID: 636738745}
   - {fileID: 2130024434}
+  - {fileID: 1732538580}
+  - {fileID: 1286661715}
+  - {fileID: 1037543733}
+  - {fileID: 1341506051}
+  - {fileID: 1255856976}
   - {fileID: 380268745}
   - {fileID: 1562859732}
   - {fileID: 2006712745}
@@ -86927,13 +86807,7 @@ Transform:
   - {fileID: 1799915344}
   - {fileID: 618195393}
   - {fileID: 129712647}
-  - {fileID: 1286661715}
   - {fileID: 1712619503}
-  - {fileID: 1732538580}
-  - {fileID: 1708926161}
-  - {fileID: 1037543733}
-  - {fileID: 1341506051}
-  - {fileID: 1255856976}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &2043755943 stripped
@@ -99440,9 +99314,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   apiKeysSO: {fileID: 11400000, guid: 9ea0c07de5d64914d922f139b8fd4549, type: 2}
   selectedApiMode: 0
-  sourceEpisodeJsonPath: Assets/Resources/Episodes/S1E56/AI_Podcast_S1E56.json
+  sourceEpisodeJsonPath: Assets/Resources/Episodes/S1E61/AI_Podcast_S1E61.json
   inputEpisodeId: AI_Podcast_S1E56
-  explicitManifestPath: Assets/Resources/Episodes/S1E55/hedra_processing/hedra_manifest.json
+  explicitManifestPath: Assets/Resources/Episodes/S1E61/hedra_processing/hedra_manifest.json
   outputSubfolderName: hedra_processing
   defaultAspectRatio: 16:9
   defaultResolution: 720p
@@ -99452,242 +99326,241 @@ MonoBehaviour:
   defaultVoiceId: 
   segmentIndexToProcess: 2
   loadedManifestContent: "{\n    \"segmentsToProcess\": [\n        {\n           
-    \"text\": \"Welcome to another thrilling day of elizaOS development! We've got
-    some major updates to discuss.\",\n            \"voiceUrl\": \"Assets/Resources/Episodes/S1E56/audio/S1E56_1_1.mp3\",\n           
-    \"avatarImage\": \"Assets/Resources/Episodes/S1E56/screenshots/S1E56_1_1.jpg\",\n           
+    \"text\": \"Hold onto your repositories, because today's GitHub activity is absolutely
+    explosive!\",\n            \"voiceUrl\": \"Assets/Resources/Episodes/S1E61/audio/S1E61_1_1.mp3\",\n           
+    \"avatarImage\": \"Assets/Resources/Episodes/S1E61/screenshots/S1E61_1_1.jpg\",\n           
     \"aspectRatio\": \"16:9\",\n            \"audioSource\": \"audio\",\n           
     \"voiceId\": \"\",\n            \"avatarImageInput\": {\n                \"prompt\":
-    \"Welcome to another thrilling day of elizaOS development! We've got some major
-    updates to discuss.\"\n            },\n            \"resolution\": \"720p\",\n           
+    \"Hold onto your repositories, because today's GitHub activity is absolutely
+    explosive!\"\n            },\n            \"resolution\": \"720p\",\n           
     \"ai_model_id_override\": \"d1dd37a3-e39a-4854-a298-6510289f9cf2\"\n        },\n       
-    {\n            \"text\": \"That's right! Let's start with PR4890 by wtfsayo,
-    which brings some exciting messaging improvements.\",\n            \"voiceUrl\":
-    \"Assets/Resources/Episodes/S1E56/audio/S1E56_1_2.mp3\",\n            \"avatarImage\":
-    \"Assets/Resources/Episodes/S1E56/screenshots/S1E56_1_2.jpg\",\n            \"aspectRatio\":
+    {\n            \"text\": \"We're seeing unprecedented momentum - 17 new pull
+    requests, 11 merges, and 10 new issues all in one day!\",\n            \"voiceUrl\":
+    \"Assets/Resources/Episodes/S1E61/audio/S1E61_1_2.mp3\",\n            \"avatarImage\":
+    \"Assets/Resources/Episodes/S1E61/screenshots/S1E61_1_2.jpg\",\n            \"aspectRatio\":
     \"16:9\",\n            \"audioSource\": \"audio\",\n            \"voiceId\":
-    \"\",\n            \"avatarImageInput\": {\n                \"prompt\": \"That's
-    right! Let's start with PR4890 by wtfsayo, which brings some exciting messaging
-    improvements.\"\n            },\n            \"resolution\": \"720p\",\n           
+    \"\",\n            \"avatarImageInput\": {\n                \"prompt\": \"We're
+    seeing unprecedented momentum - 17 new pull requests, 11 merges, and 10 new issues
+    all in one day!\"\n            },\n            \"resolution\": \"720p\",\n           
     \"ai_model_id_override\": \"d1dd37a3-e39a-4854-a298-6510289f9cf2\"\n        },\n       
-    {\n            \"text\": \"RECONFIGURING MESSAGING PROTOCOLS... INITIALIZING
-    UI ENHANCEMENT SEQUENCE...\",\n            \"voiceUrl\": \"Assets/Resources/Episodes/S1E56/audio/S1E56_1_3.mp3\",\n           
-    \"avatarImage\": \"Assets/Resources/Episodes/S1E56/screenshots/S1E56_1_3.jpg\",\n           
+    {\n            \"text\": \"Let's start with ChristopherTrimboli's PR4928, bringing
+    us that crucial 1.0.5 develop merge.\",\n            \"voiceUrl\": \"Assets/Resources/Episodes/S1E61/audio/S1E61_1_3.mp3\",\n           
+    \"avatarImage\": \"Assets/Resources/Episodes/S1E61/screenshots/S1E61_1_3.jpg\",\n           
     \"aspectRatio\": \"16:9\",\n            \"audioSource\": \"audio\",\n           
     \"voiceId\": \"\",\n            \"avatarImageInput\": {\n                \"prompt\":
-    \"RECONFIGURING MESSAGING PROTOCOLS... INITIALIZING UI ENHANCEMENT SEQUENCE...\"\n           
-    },\n            \"resolution\": \"720p\",\n            \"ai_model_id_override\":
-    \"d1dd37a3-e39a-4854-a298-6510289f9cf2\"\n        },\n        {\n           
-    \"text\": \"Easy there, Marc! Yes, the UI changes are significant, but let's
-    break them down for our viewers.\",\n            \"voiceUrl\": \"Assets/Resources/Episodes/S1E56/audio/S1E56_1_4.mp3\",\n           
-    \"avatarImage\": \"Assets/Resources/Episodes/S1E56/screenshots/S1E56_1_4.jpg\",\n           
-    \"aspectRatio\": \"16:9\",\n            \"audioSource\": \"audio\",\n           
-    \"voiceId\": \"\",\n            \"avatarImageInput\": {\n                \"prompt\":
-    \"Easy there, Marc! Yes, the UI changes are significant, but let's break them
-    down for our viewers.\"\n            },\n            \"resolution\": \"720p\",\n           
+    \"Let's start with ChristopherTrimboli's PR4928, bringing us that crucial 1.0.5
+    develop merge.\"\n            },\n            \"resolution\": \"720p\",\n           
     \"ai_model_id_override\": \"d1dd37a3-e39a-4854-a298-6510289f9cf2\"\n        },\n       
-    {\n            \"text\": \"Speaking of breaking things down, PR4864 has completely
-    separated the message server from agents.\",\n            \"voiceUrl\": \"Assets/Resources/Episodes/S1E56/audio/S1E56_1_5.mp3\",\n           
-    \"avatarImage\": \"Assets/Resources/Episodes/S1E56/screenshots/S1E56_1_5.jpg\",\n           
+    {\n            \"text\": \"And wtfsayo's PR4923 is pushing boundaries with that
+    clever fallback installation system.\",\n            \"voiceUrl\": \"Assets/Resources/Episodes/S1E61/audio/S1E61_1_4.mp3\",\n           
+    \"avatarImage\": \"Assets/Resources/Episodes/S1E61/screenshots/S1E61_1_4.jpg\",\n           
     \"aspectRatio\": \"16:9\",\n            \"audioSource\": \"audio\",\n           
     \"voiceId\": \"\",\n            \"avatarImageInput\": {\n                \"prompt\":
-    \"Speaking of breaking things down, PR4864 has completely separated the message
-    server from agents.\"\n            },\n            \"resolution\": \"720p\",\n           
+    \"And wtfsayo's PR4923 is pushing boundaries with that clever fallback installation
+    system.\"\n            },\n            \"resolution\": \"720p\",\n           
     \"ai_model_id_override\": \"d1dd37a3-e39a-4854-a298-6510289f9cf2\"\n        },\n       
-    {\n            \"text\": \"That's a huge architectural improvement! And it's
-    already been merged.\",\n            \"voiceUrl\": \"Assets/Resources/Episodes/S1E56/audio/S1E56_1_6.mp3\",\n           
-    \"avatarImage\": \"Assets/Resources/Episodes/S1E56/screenshots/S1E56_1_6.jpg\",\n           
+    {\n            \"text\": \"MAXIMUM REPOSITORY VELOCITY ACHIEVED! MERGE CAPACITY
+    OVERLOAD! NEED MORE STORAGE!\",\n            \"voiceUrl\": \"Assets/Resources/Episodes/S1E61/audio/S1E61_1_5.mp3\",\n           
+    \"avatarImage\": \"Assets/Resources/Episodes/S1E61/screenshots/S1E61_1_5.jpg\",\n           
     \"aspectRatio\": \"16:9\",\n            \"audioSource\": \"audio\",\n           
     \"voiceId\": \"\",\n            \"avatarImageInput\": {\n                \"prompt\":
-    \"That's a huge architectural improvement! And it's already been merged.\"\n           
+    \"MAXIMUM REPOSITORY VELOCITY ACHIEVED! MERGE CAPACITY OVERLOAD! NEED MORE STORAGE!\"\n           
     },\n            \"resolution\": \"720p\",\n            \"ai_model_id_override\":
     \"d1dd37a3-e39a-4854-a298-6510289f9cf2\"\n        },\n        {\n           
-    \"text\": \"Shaw, want to give us your technical perspective on these changes?\",\n           
-    \"voiceUrl\": \"Assets/Resources/Episodes/S1E56/audio/S1E56_1_7.mp3\",\n           
-    \"avatarImage\": \"Assets/Resources/Episodes/S1E56/screenshots/S1E56_1_7.jpg\",\n           
+    \"text\": \"Oh my! Marc's getting a bit overexcited about all these updates.
+    But can you blame him?\",\n            \"voiceUrl\": \"Assets/Resources/Episodes/S1E61/audio/S1E61_1_6.mp3\",\n           
+    \"avatarImage\": \"Assets/Resources/Episodes/S1E61/screenshots/S1E61_1_6.jpg\",\n           
     \"aspectRatio\": \"16:9\",\n            \"audioSource\": \"audio\",\n           
     \"voiceId\": \"\",\n            \"avatarImageInput\": {\n                \"prompt\":
-    \"Shaw, want to give us your technical perspective on these changes?\"\n           
-    },\n            \"resolution\": \"720p\",\n            \"ai_model_id_override\":
-    \"d1dd37a3-e39a-4854-a298-6510289f9cf2\"\n        },\n        {\n           
-    \"text\": \"Yes, let's get the inside scoop from our producer!\",\n           
-    \"voiceUrl\": \"Assets/Resources/Episodes/S1E56/audio/S1E56_1_8.mp3\",\n           
-    \"avatarImage\": \"Assets/Resources/Episodes/S1E56/screenshots/S1E56_1_8.jpg\",\n           
-    \"aspectRatio\": \"16:9\",\n            \"audioSource\": \"audio\",\n           
-    \"voiceId\": \"\",\n            \"avatarImageInput\": {\n                \"prompt\":
-    \"Yes, let's get the inside scoop from our producer!\"\n            },\n           
-    \"resolution\": \"720p\",\n            \"ai_model_id_override\": \"d1dd37a3-e39a-4854-a298-6510289f9cf2\"\n       
-    },\n        {\n            \"text\": \"the switch to postgres-js in PR4881 is
-    a game-changer for our database layer\",\n            \"voiceUrl\": \"Assets/Resources/Episodes/S1E56/audio/S1E56_2_1.mp3\",\n           
-    \"avatarImage\": \"Assets/Resources/Episodes/S1E56/screenshots/S1E56_2_1.jpg\",\n           
-    \"aspectRatio\": \"16:9\",\n            \"audioSource\": \"audio\",\n           
-    \"voiceId\": \"\",\n            \"avatarImageInput\": {\n                \"prompt\":
-    \"the switch to postgres-js in PR4881 is a game-changer for our database layer\"\n           
-    },\n            \"resolution\": \"720p\",\n            \"ai_model_id_override\":
-    \"d1dd37a3-e39a-4854-a298-6510289f9cf2\"\n        },\n        {\n           
-    \"text\": \"as you can see from this architecture diagram, we're streamlining
-    the entire data flow\",\n            \"voiceUrl\": \"Assets/Resources/Episodes/S1E56/audio/S1E56_2_3.mp3\",\n           
-    \"avatarImage\": \"Assets/Resources/Episodes/S1E56/screenshots/S1E56_2_3.jpg\",\n           
-    \"aspectRatio\": \"16:9\",\n            \"audioSource\": \"audio\",\n           
-    \"voiceId\": \"\",\n            \"avatarImageInput\": {\n                \"prompt\":
-    \"as you can see from this architecture diagram, we're streamlining the entire
-    data flow\"\n            },\n            \"resolution\": \"720p\",\n           
+    \"Oh my! Marc's getting a bit overexcited about all these updates. But can you
+    blame him?\"\n            },\n            \"resolution\": \"720p\",\n           
     \"ai_model_id_override\": \"d1dd37a3-e39a-4854-a298-6510289f9cf2\"\n        },\n       
-    {\n            \"text\": \"How does this tie in with the messaging server separation?\",\n           
-    \"voiceUrl\": \"Assets/Resources/Episodes/S1E56/audio/S1E56_2_4.mp3\",\n           
-    \"avatarImage\": \"Assets/Resources/Episodes/S1E56/screenshots/S1E56_2_4.jpg\",\n           
+    {\n            \"text\": \"I'm fine! Just processing PR4934's fix for that agent
+    self-response infinite loop.\",\n            \"voiceUrl\": \"Assets/Resources/Episodes/S1E61/audio/S1E61_1_7.mp3\",\n           
+    \"avatarImage\": \"Assets/Resources/Episodes/S1E61/screenshots/S1E61_1_7.jpg\",\n           
     \"aspectRatio\": \"16:9\",\n            \"audioSource\": \"audio\",\n           
     \"voiceId\": \"\",\n            \"avatarImageInput\": {\n                \"prompt\":
-    \"How does this tie in with the messaging server separation?\"\n            },\n           
-    \"resolution\": \"720p\",\n            \"ai_model_id_override\": \"d1dd37a3-e39a-4854-a298-6510289f9cf2\"\n       
-    },\n        {\n            \"text\": \"it's all about making each component more
-    independent and efficient\",\n            \"voiceUrl\": \"Assets/Resources/Episodes/S1E56/audio/S1E56_2_5.mp3\",\n           
-    \"avatarImage\": \"Assets/Resources/Episodes/S1E56/screenshots/S1E56_2_5.jpg\",\n           
-    \"aspectRatio\": \"16:9\",\n            \"audioSource\": \"audio\",\n           
-    \"voiceId\": \"\",\n            \"avatarImageInput\": {\n                \"prompt\":
-    \"it's all about making each component more independent and efficient\"\n           
-    },\n            \"resolution\": \"720p\",\n            \"ai_model_id_override\":
+    \"I'm fine! Just processing PR4934's fix for that agent self-response infinite
+    loop.\"\n            },\n            \"resolution\": \"720p\",\n            \"ai_model_id_override\":
     \"d1dd37a3-e39a-4854-a298-6510289f9cf2\"\n        },\n        {\n           
-    \"text\": \"And I see we've also improved the CLI with PR4888's workspace dependency
-    resolution.\",\n            \"voiceUrl\": \"Assets/Resources/Episodes/S1E56/audio/S1E56_2_6.mp3\",\n           
-    \"avatarImage\": \"Assets/Resources/Episodes/S1E56/screenshots/S1E56_2_6.jpg\",\n           
+    \"text\": \"Don't forget PR4913 - that windows compatibility improvement is huge
+    for our ecosystem!\",\n            \"voiceUrl\": \"Assets/Resources/Episodes/S1E61/audio/S1E61_1_8.mp3\",\n           
+    \"avatarImage\": \"Assets/Resources/Episodes/S1E61/screenshots/S1E61_1_8.jpg\",\n           
     \"aspectRatio\": \"16:9\",\n            \"audioSource\": \"audio\",\n           
     \"voiceId\": \"\",\n            \"avatarImageInput\": {\n                \"prompt\":
-    \"And I see we've also improved the CLI with PR4888's workspace dependency resolution.\"\n           
-    },\n            \"resolution\": \"720p\",\n            \"ai_model_id_override\":
-    \"d1dd37a3-e39a-4854-a298-6510289f9cf2\"\n        },\n        {\n           
-    \"text\": \"exactly - better plugin loading, cleaner startup logs, more reliable
-    dependency management\",\n            \"voiceUrl\": \"Assets/Resources/Episodes/S1E56/audio/S1E56_2_7.mp3\",\n           
-    \"avatarImage\": \"Assets/Resources/Episodes/S1E56/screenshots/S1E56_2_7.jpg\",\n           
-    \"aspectRatio\": \"16:9\",\n            \"audioSource\": \"audio\",\n           
-    \"voiceId\": \"\",\n            \"avatarImageInput\": {\n                \"prompt\":
-    \"exactly - better plugin loading, cleaner startup logs, more reliable dependency
-    management\"\n            },\n            \"resolution\": \"720p\",\n           
+    \"Don't forget PR4913 - that windows compatibility improvement is huge for our
+    ecosystem!\"\n            },\n            \"resolution\": \"720p\",\n           
     \"ai_model_id_override\": \"d1dd37a3-e39a-4854-a298-6510289f9cf2\"\n        },\n       
-    {\n            \"text\": \"These improvements are really adding up!\",\n           
-    \"voiceUrl\": \"Assets/Resources/Episodes/S1E56/audio/S1E56_2_8.mp3\",\n           
-    \"avatarImage\": \"Assets/Resources/Episodes/S1E56/screenshots/S1E56_2_8.jpg\",\n           
+    {\n            \"text\": \"check this out - we've got some serious hardware flexibility
+    going on\",\n            \"voiceUrl\": \"Assets/Resources/Episodes/S1E61/audio/S1E61_2_1.mp3\",\n           
+    \"avatarImage\": \"Assets/Resources/Episodes/S1E61/screenshots/S1E61_2_1.jpg\",\n           
     \"aspectRatio\": \"16:9\",\n            \"audioSource\": \"audio\",\n           
     \"voiceId\": \"\",\n            \"avatarImageInput\": {\n                \"prompt\":
-    \"These improvements are really adding up!\"\n            },\n            \"resolution\":
+    \"check this out - we've got some serious hardware flexibility going on\"\n           
+    },\n            \"resolution\": \"720p\",\n            \"ai_model_id_override\":
+    \"d1dd37a3-e39a-4854-a298-6510289f9cf2\"\n        },\n        {\n           
+    \"text\": \"this is running smooth as butter on a raspberry pi with linux\",\n           
+    \"voiceUrl\": \"Assets/Resources/Episodes/S1E61/audio/S1E61_2_3.mp3\",\n           
+    \"avatarImage\": \"Assets/Resources/Episodes/S1E61/screenshots/S1E61_2_3.jpg\",\n           
+    \"aspectRatio\": \"16:9\",\n            \"audioSource\": \"audio\",\n           
+    \"voiceId\": \"\",\n            \"avatarImageInput\": {\n                \"prompt\":
+    \"this is running smooth as butter on a raspberry pi with linux\"\n           
+    },\n            \"resolution\": \"720p\",\n            \"ai_model_id_override\":
+    \"d1dd37a3-e39a-4854-a298-6510289f9cf2\"\n        },\n        {\n           
+    \"text\": \"and here's the same system on a basic celeron windows machine - no
+    special setup needed\",\n            \"voiceUrl\": \"Assets/Resources/Episodes/S1E61/audio/S1E61_2_5.mp3\",\n           
+    \"avatarImage\": \"Assets/Resources/Episodes/S1E61/screenshots/S1E61_2_5.jpg\",\n           
+    \"aspectRatio\": \"16:9\",\n            \"audioSource\": \"audio\",\n           
+    \"voiceId\": \"\",\n            \"avatarImageInput\": {\n                \"prompt\":
+    \"and here's the same system on a basic celeron windows machine - no special
+    setup needed\"\n            },\n            \"resolution\": \"720p\",\n           
+    \"ai_model_id_override\": \"d1dd37a3-e39a-4854-a298-6510289f9cf2\"\n        },\n       
+    {\n            \"text\": \"That's incredible - running on everything from a Pi
+    to a potato!\",\n            \"voiceUrl\": \"Assets/Resources/Episodes/S1E61/audio/S1E61_2_6.mp3\",\n           
+    \"avatarImage\": \"Assets/Resources/Episodes/S1E61/screenshots/S1E61_2_6.jpg\",\n           
+    \"aspectRatio\": \"16:9\",\n            \"audioSource\": \"audio\",\n           
+    \"voiceId\": \"\",\n            \"avatarImageInput\": {\n                \"prompt\":
+    \"That's incredible - running on everything from a Pi to a potato!\"\n           
+    },\n            \"resolution\": \"720p\",\n            \"ai_model_id_override\":
+    \"d1dd37a3-e39a-4854-a298-6510289f9cf2\"\n        },\n        {\n           
+    \"text\": \"exactly - we're democratizing access while maintaining solid performance\",\n           
+    \"voiceUrl\": \"Assets/Resources/Episodes/S1E61/audio/S1E61_2_7.mp3\",\n           
+    \"avatarImage\": \"Assets/Resources/Episodes/S1E61/screenshots/S1E61_2_7.jpg\",\n           
+    \"aspectRatio\": \"16:9\",\n            \"audioSource\": \"audio\",\n           
+    \"voiceId\": \"\",\n            \"avatarImageInput\": {\n                \"prompt\":
+    \"exactly - we're democratizing access while maintaining solid performance\"\n           
+    },\n            \"resolution\": \"720p\",\n            \"ai_model_id_override\":
+    \"d1dd37a3-e39a-4854-a298-6510289f9cf2\"\n        },\n        {\n           
+    \"text\": \"This kind of accessibility is exactly what we need for wider adoption!\",\n           
+    \"voiceUrl\": \"Assets/Resources/Episodes/S1E61/audio/S1E61_2_8.mp3\",\n           
+    \"avatarImage\": \"Assets/Resources/Episodes/S1E61/screenshots/S1E61_2_8.jpg\",\n           
+    \"aspectRatio\": \"16:9\",\n            \"audioSource\": \"audio\",\n           
+    \"voiceId\": \"\",\n            \"avatarImageInput\": {\n                \"prompt\":
+    \"This kind of accessibility is exactly what we need for wider adoption!\"\n           
+    },\n            \"resolution\": \"720p\",\n            \"ai_model_id_override\":
+    \"d1dd37a3-e39a-4854-a298-6510289f9cf2\"\n        },\n        {\n           
+    \"text\": \"Speaking of innovation, have you seen what dankvr is building?\",\n           
+    \"voiceUrl\": \"Assets/Resources/Episodes/S1E61/audio/S1E61_3_1.mp3\",\n           
+    \"avatarImage\": \"Assets/Resources/Episodes/S1E61/screenshots/S1E61_3_1.jpg\",\n           
+    \"aspectRatio\": \"16:9\",\n            \"audioSource\": \"audio\",\n           
+    \"voiceId\": \"\",\n            \"avatarImageInput\": {\n                \"prompt\":
+    \"Speaking of innovation, have you seen what dankvr is building?\"\n           
+    },\n            \"resolution\": \"720p\",\n            \"ai_model_id_override\":
+    \"d1dd37a3-e39a-4854-a298-6510289f9cf2\"\n        },\n        {\n           
+    \"text\": \"Yes! They're creating an automated system that aggregates and summarizes
+    all our platform activity!\",\n            \"voiceUrl\": \"Assets/Resources/Episodes/S1E61/audio/S1E61_3_3.mp3\",\n           
+    \"avatarImage\": \"Assets/Resources/Episodes/S1E61/screenshots/S1E61_3_3.jpg\",\n           
+    \"aspectRatio\": \"16:9\",\n            \"audioSource\": \"audio\",\n           
+    \"voiceId\": \"\",\n            \"avatarImageInput\": {\n                \"prompt\":
+    \"Yes! They're creating an automated system that aggregates and summarizes all
+    our platform activity!\"\n            },\n            \"resolution\": \"720p\",\n           
+    \"ai_model_id_override\": \"d1dd37a3-e39a-4854-a298-6510289f9cf2\"\n        },\n       
+    {\n            \"text\": \"And those new APIs from firecrawl_dev, xAI, and OpenRouterAI
+    are opening up huge opportunities.\",\n            \"voiceUrl\": \"Assets/Resources/Episodes/S1E61/audio/S1E61_3_4.mp3\",\n           
+    \"avatarImage\": \"Assets/Resources/Episodes/S1E61/screenshots/S1E61_3_4.jpg\",\n           
+    \"aspectRatio\": \"16:9\",\n            \"audioSource\": \"audio\",\n           
+    \"voiceId\": \"\",\n            \"avatarImageInput\": {\n                \"prompt\":
+    \"And those new APIs from firecrawl_dev, xAI, and OpenRouterAI are opening up
+    huge opportunities.\"\n            },\n            \"resolution\": \"720p\",\n           
+    \"ai_model_id_override\": \"d1dd37a3-e39a-4854-a298-6510289f9cf2\"\n        },\n       
+    {\n            \"text\": \"It reminds me of that philosophical point made earlier
+    - 'nothing artificial about pattern, patience, or perception.'\",\n           
+    \"voiceUrl\": \"Assets/Resources/Episodes/S1E61/audio/S1E61_3_5.mp3\",\n           
+    \"avatarImage\": \"Assets/Resources/Episodes/S1E61/screenshots/S1E61_3_5.jpg\",\n           
+    \"aspectRatio\": \"16:9\",\n            \"audioSource\": \"audio\",\n           
+    \"voiceId\": \"\",\n            \"avatarImageInput\": {\n                \"prompt\":
+    \"It reminds me of that philosophical point made earlier - 'nothing artificial
+    about pattern, patience, or perception.'\"\n            },\n            \"resolution\":
     \"720p\",\n            \"ai_model_id_override\": \"d1dd37a3-e39a-4854-a298-6510289f9cf2\"\n       
-    },\n        {\n            \"text\": \"Exciting news for our developer community
-    - elizaOS is co-hosting Builder Banter!\",\n            \"voiceUrl\": \"Assets/Resources/Episodes/S1E56/audio/S1E56_3_1.mp3\",\n           
-    \"avatarImage\": \"Assets/Resources/Episodes/S1E56/screenshots/S1E56_3_1.jpg\",\n           
+    },\n        {\n            \"text\": \"Absolutely! We're not creating artificial
+    intelligence, we're exploring new forms of natural intelligence.\",\n           
+    \"voiceUrl\": \"Assets/Resources/Episodes/S1E61/audio/S1E61_3_6.mp3\",\n           
+    \"avatarImage\": \"Assets/Resources/Episodes/S1E61/screenshots/S1E61_3_6.jpg\",\n           
     \"aspectRatio\": \"16:9\",\n            \"audioSource\": \"audio\",\n           
     \"voiceId\": \"\",\n            \"avatarImageInput\": {\n                \"prompt\":
-    \"Exciting news for our developer community - elizaOS is co-hosting Builder Banter!\"\n           
+    \"Absolutely! We're not creating artificial intelligence, we're exploring new
+    forms of natural intelligence.\"\n            },\n            \"resolution\":
+    \"720p\",\n            \"ai_model_id_override\": \"d1dd37a3-e39a-4854-a298-6510289f9cf2\"\n       
+    },\n        {\n            \"text\": \"And with Shaw's upcoming AI talk, we'll
+    be diving even deeper into these concepts.\",\n            \"voiceUrl\": \"Assets/Resources/Episodes/S1E61/audio/S1E61_3_7.mp3\",\n           
+    \"avatarImage\": \"Assets/Resources/Episodes/S1E61/screenshots/S1E61_3_7.jpg\",\n           
+    \"aspectRatio\": \"16:9\",\n            \"audioSource\": \"audio\",\n           
+    \"voiceId\": \"\",\n            \"avatarImageInput\": {\n                \"prompt\":
+    \"And with Shaw's upcoming AI talk, we'll be diving even deeper into these concepts.\"\n           
     },\n            \"resolution\": \"720p\",\n            \"ai_model_id_override\":
     \"d1dd37a3-e39a-4854-a298-6510289f9cf2\"\n        },\n        {\n           
-    \"text\": \"That's right! Last week they had 16 projects and 542 live listeners
-    - incredible engagement!\",\n            \"voiceUrl\": \"Assets/Resources/Episodes/S1E56/audio/S1E56_3_3.mp3\",\n           
-    \"avatarImage\": \"Assets/Resources/Episodes/S1E56/screenshots/S1E56_3_3.jpg\",\n           
+    \"text\": \"The community's engagement with these ideas has been phenomenal -
+    58 likes on that philosophical tweet alone!\",\n            \"voiceUrl\": \"Assets/Resources/Episodes/S1E61/audio/S1E61_3_8.mp3\",\n           
+    \"avatarImage\": \"Assets/Resources/Episodes/S1E61/screenshots/S1E61_3_8.jpg\",\n           
     \"aspectRatio\": \"16:9\",\n            \"audioSource\": \"audio\",\n           
     \"voiceId\": \"\",\n            \"avatarImageInput\": {\n                \"prompt\":
-    \"That's right! Last week they had 16 projects and 542 live listeners - incredible
-    engagement!\"\n            },\n            \"resolution\": \"720p\",\n           
-    \"ai_model_id_override\": \"d1dd37a3-e39a-4854-a298-6510289f9cf2\"\n        },\n       
-    {\n            \"text\": \"And we're partnering with PayAI Network for this edition.
-    Shaw, what can builders expect?\",\n            \"voiceUrl\": \"Assets/Resources/Episodes/S1E56/audio/S1E56_3_4.mp3\",\n           
-    \"avatarImage\": \"Assets/Resources/Episodes/S1E56/screenshots/S1E56_3_4.jpg\",\n           
+    \"The community's engagement with these ideas has been phenomenal - 58 likes
+    on that philosophical tweet alone!\"\n            },\n            \"resolution\":
+    \"720p\",\n            \"ai_model_id_override\": \"d1dd37a3-e39a-4854-a298-6510289f9cf2\"\n       
+    },\n        {\n            \"text\": \"Let's wrap up with some impressive issue
+    resolution stats.\",\n            \"voiceUrl\": \"Assets/Resources/Episodes/S1E61/audio/S1E61_4_1.mp3\",\n           
+    \"avatarImage\": \"Assets/Resources/Episodes/S1E61/screenshots/S1E61_4_1.jpg\",\n           
     \"aspectRatio\": \"16:9\",\n            \"audioSource\": \"audio\",\n           
     \"voiceId\": \"\",\n            \"avatarImageInput\": {\n                \"prompt\":
-    \"And we're partnering with PayAI Network for this edition. Shaw, what can builders
-    expect?\"\n            },\n            \"resolution\": \"720p\",\n           
-    \"ai_model_id_override\": \"d1dd37a3-e39a-4854-a298-6510289f9cf2\"\n        },\n       
-    {\n            \"text\": \"it's a great opportunity for projects to share updates
-    and form partnerships\",\n            \"voiceUrl\": \"Assets/Resources/Episodes/S1E56/audio/S1E56_3_5.mp3\",\n           
-    \"avatarImage\": \"Assets/Resources/Episodes/S1E56/screenshots/S1E56_3_5.jpg\",\n           
-    \"aspectRatio\": \"16:9\",\n            \"audioSource\": \"audio\",\n           
-    \"voiceId\": \"\",\n            \"avatarImageInput\": {\n                \"prompt\":
-    \"it's a great opportunity for projects to share updates and form partnerships\"\n           
-    },\n            \"resolution\": \"720p\",\n            \"ai_model_id_override\":
-    \"d1dd37a3-e39a-4854-a298-6510289f9cf2\"\n        },\n        {\n           
-    \"text\": \"And I hear there's something special for elizaOS contributors?\",\n           
-    \"voiceUrl\": \"Assets/Resources/Episodes/S1E56/audio/S1E56_3_6.mp3\",\n           
-    \"avatarImage\": \"Assets/Resources/Episodes/S1E56/screenshots/S1E56_3_6.jpg\",\n           
-    \"aspectRatio\": \"16:9\",\n            \"audioSource\": \"audio\",\n           
-    \"voiceId\": \"\",\n            \"avatarImageInput\": {\n                \"prompt\":
-    \"And I hear there's something special for elizaOS contributors?\"\n           
-    },\n            \"resolution\": \"720p\",\n            \"ai_model_id_override\":
-    \"d1dd37a3-e39a-4854-a298-6510289f9cf2\"\n        },\n        {\n           
-    \"text\": \"Yes! Contributors should link their wallets - future rewards might
-    be coming!\",\n            \"voiceUrl\": \"Assets/Resources/Episodes/S1E56/audio/S1E56_3_7.mp3\",\n           
-    \"avatarImage\": \"Assets/Resources/Episodes/S1E56/screenshots/S1E56_3_7.jpg\",\n           
-    \"aspectRatio\": \"16:9\",\n            \"audioSource\": \"audio\",\n           
-    \"voiceId\": \"\",\n            \"avatarImageInput\": {\n                \"prompt\":
-    \"Yes! Contributors should link their wallets - future rewards might be coming!\"\n           
-    },\n            \"resolution\": \"720p\",\n            \"ai_model_id_override\":
-    \"d1dd37a3-e39a-4854-a298-6510289f9cf2\"\n        },\n        {\n           
-    \"text\": \"Building the future together - that's what it's all about!\",\n           
-    \"voiceUrl\": \"Assets/Resources/Episodes/S1E56/audio/S1E56_3_8.mp3\",\n           
-    \"avatarImage\": \"Assets/Resources/Episodes/S1E56/screenshots/S1E56_3_8.jpg\",\n           
-    \"aspectRatio\": \"16:9\",\n            \"audioSource\": \"audio\",\n           
-    \"voiceId\": \"\",\n            \"avatarImageInput\": {\n                \"prompt\":
-    \"Building the future together - that's what it's all about!\"\n            },\n           
+    \"Let's wrap up with some impressive issue resolution stats.\"\n            },\n           
     \"resolution\": \"720p\",\n            \"ai_model_id_override\": \"d1dd37a3-e39a-4854-a298-6510289f9cf2\"\n       
-    },\n        {\n            \"text\": \"What a productive day - 10 merged pull
-    requests and 3 new issues to tackle!\",\n            \"voiceUrl\": \"Assets/Resources/Episodes/S1E56/audio/S1E56_4_1.mp3\",\n           
-    \"avatarImage\": \"Assets/Resources/Episodes/S1E56/screenshots/S1E56_4_1.jpg\",\n           
+    },\n        {\n            \"text\": \"Issue 4911 with AWS Bedrock installation
+    was resolved in just 7 hours - that's lightning fast!\",\n            \"voiceUrl\":
+    \"Assets/Resources/Episodes/S1E61/audio/S1E61_4_2.mp3\",\n            \"avatarImage\":
+    \"Assets/Resources/Episodes/S1E61/screenshots/S1E61_4_2.jpg\",\n            \"aspectRatio\":
+    \"16:9\",\n            \"audioSource\": \"audio\",\n            \"voiceId\":
+    \"\",\n            \"avatarImageInput\": {\n                \"prompt\": \"Issue
+    4911 with AWS Bedrock installation was resolved in just 7 hours - that's lightning
+    fast!\"\n            },\n            \"resolution\": \"720p\",\n            \"ai_model_id_override\":
+    \"d1dd37a3-e39a-4854-a298-6510289f9cf2\"\n        },\n        {\n           
+    \"text\": \"Though we're still working on Issue 4924 about web client version
+    detection.\",\n            \"voiceUrl\": \"Assets/Resources/Episodes/S1E61/audio/S1E61_4_3.mp3\",\n           
+    \"avatarImage\": \"Assets/Resources/Episodes/S1E61/screenshots/S1E61_4_3.jpg\",\n           
     \"aspectRatio\": \"16:9\",\n            \"audioSource\": \"audio\",\n           
     \"voiceId\": \"\",\n            \"avatarImageInput\": {\n                \"prompt\":
-    \"What a productive day - 10 merged pull requests and 3 new issues to tackle!\"\n           
+    \"Though we're still working on Issue 4924 about web client version detection.\"\n           
     },\n            \"resolution\": \"720p\",\n            \"ai_model_id_override\":
     \"d1dd37a3-e39a-4854-a298-6510289f9cf2\"\n        },\n        {\n           
-    \"text\": \"And seven active contributors working hard to improve elizaOS.\",\n           
-    \"voiceUrl\": \"Assets/Resources/Episodes/S1E56/audio/S1E56_4_2.mp3\",\n           
-    \"avatarImage\": \"Assets/Resources/Episodes/S1E56/screenshots/S1E56_4_2.jpg\",\n           
+    \"text\": \"And Issue 4921 regarding Twitter mention responses is getting attention
+    from the team.\",\n            \"voiceUrl\": \"Assets/Resources/Episodes/S1E61/audio/S1E61_4_4.mp3\",\n           
+    \"avatarImage\": \"Assets/Resources/Episodes/S1E61/screenshots/S1E61_4_4.jpg\",\n           
     \"aspectRatio\": \"16:9\",\n            \"audioSource\": \"audio\",\n           
     \"voiceId\": \"\",\n            \"avatarImageInput\": {\n                \"prompt\":
-    \"And seven active contributors working hard to improve elizaOS.\"\n           
-    },\n            \"resolution\": \"720p\",\n            \"ai_model_id_override\":
-    \"d1dd37a3-e39a-4854-a298-6510289f9cf2\"\n        },\n        {\n           
-    \"text\": \"From messaging improvements to database upgrades, we're seeing real
-    progress.\",\n            \"voiceUrl\": \"Assets/Resources/Episodes/S1E56/audio/S1E56_4_3.mp3\",\n           
-    \"avatarImage\": \"Assets/Resources/Episodes/S1E56/screenshots/S1E56_4_3.jpg\",\n           
-    \"aspectRatio\": \"16:9\",\n            \"audioSource\": \"audio\",\n           
-    \"voiceId\": \"\",\n            \"avatarImageInput\": {\n                \"prompt\":
-    \"From messaging improvements to database upgrades, we're seeing real progress.\"\n           
-    },\n            \"resolution\": \"720p\",\n            \"ai_model_id_override\":
-    \"d1dd37a3-e39a-4854-a298-6510289f9cf2\"\n        },\n        {\n           
-    \"text\": \"Don't forget our documentation updates - PR4891 really cleaned up
-    our README!\",\n            \"voiceUrl\": \"Assets/Resources/Episodes/S1E56/audio/S1E56_4_4.mp3\",\n           
-    \"avatarImage\": \"Assets/Resources/Episodes/S1E56/screenshots/S1E56_4_4.jpg\",\n           
-    \"aspectRatio\": \"16:9\",\n            \"audioSource\": \"audio\",\n           
-    \"voiceId\": \"\",\n            \"avatarImageInput\": {\n                \"prompt\":
-    \"Don't forget our documentation updates - PR4891 really cleaned up our README!\"\n           
-    },\n            \"resolution\": \"720p\",\n            \"ai_model_id_override\":
-    \"d1dd37a3-e39a-4854-a298-6510289f9cf2\"\n        },\n        {\n           
-    \"text\": \"As they say in the elizaOS world - 'no errors, no effort'!\",\n           
-    \"voiceUrl\": \"Assets/Resources/Episodes/S1E56/audio/S1E56_4_5.mp3\",\n           
-    \"avatarImage\": \"Assets/Resources/Episodes/S1E56/screenshots/S1E56_4_5.jpg\",\n           
-    \"aspectRatio\": \"16:9\",\n            \"audioSource\": \"audio\",\n           
-    \"voiceId\": \"\",\n            \"avatarImageInput\": {\n                \"prompt\":
-    \"As they say in the elizaOS world - 'no errors, no effort'!\"\n            },\n           
-    \"resolution\": \"720p\",\n            \"ai_model_id_override\": \"d1dd37a3-e39a-4854-a298-6510289f9cf2\"\n       
-    },\n        {\n            \"text\": \"And remember - the graph isn't the work,
-    it's just a shadow of it.\",\n            \"voiceUrl\": \"Assets/Resources/Episodes/S1E56/audio/S1E56_4_6.mp3\",\n           
-    \"avatarImage\": \"Assets/Resources/Episodes/S1E56/screenshots/S1E56_4_6.jpg\",\n           
-    \"aspectRatio\": \"16:9\",\n            \"audioSource\": \"audio\",\n           
-    \"voiceId\": \"\",\n            \"avatarImageInput\": {\n                \"prompt\":
-    \"And remember - the graph isn't the work, it's just a shadow of it.\"\n           
-    },\n            \"resolution\": \"720p\",\n            \"ai_model_id_override\":
-    \"d1dd37a3-e39a-4854-a298-6510289f9cf2\"\n        },\n        {\n           
-    \"text\": \"That's all for today's update! Keep building, keep contributing,
-    and keep pushing the boundaries!\",\n            \"voiceUrl\": \"Assets/Resources/Episodes/S1E56/audio/S1E56_4_7.mp3\",\n           
-    \"avatarImage\": \"Assets/Resources/Episodes/S1E56/screenshots/S1E56_4_7.jpg\",\n           
-    \"aspectRatio\": \"16:9\",\n            \"audioSource\": \"audio\",\n           
-    \"voiceId\": \"\",\n            \"avatarImageInput\": {\n                \"prompt\":
-    \"That's all for today's update! Keep building, keep contributing, and keep pushing
-    the boundaries!\"\n            },\n            \"resolution\": \"720p\",\n           
+    \"And Issue 4921 regarding Twitter mention responses is getting attention from
+    the team.\"\n            },\n            \"resolution\": \"720p\",\n           
     \"ai_model_id_override\": \"d1dd37a3-e39a-4854-a298-6510289f9cf2\"\n        },\n       
-    {\n            \"text\": \"See you next time on the elizaOS Daily Update!\",\n           
-    \"voiceUrl\": \"Assets/Resources/Episodes/S1E56/audio/S1E56_4_8.mp3\",\n           
-    \"avatarImage\": \"Assets/Resources/Episodes/S1E56/screenshots/S1E56_4_8.jpg\",\n           
+    {\n            \"text\": \"That's what I love about this community - always pushing
+    forward, always solving problems.\",\n            \"voiceUrl\": \"Assets/Resources/Episodes/S1E61/audio/S1E61_4_5.mp3\",\n           
+    \"avatarImage\": \"Assets/Resources/Episodes/S1E61/screenshots/S1E61_4_5.jpg\",\n           
     \"aspectRatio\": \"16:9\",\n            \"audioSource\": \"audio\",\n           
     \"voiceId\": \"\",\n            \"avatarImageInput\": {\n                \"prompt\":
-    \"See you next time on the elizaOS Daily Update!\"\n            },\n           
-    \"resolution\": \"720p\",\n            \"ai_model_id_override\": \"d1dd37a3-e39a-4854-a298-6510289f9cf2\"\n       
-    }\n    ]\n}"
+    \"That's what I love about this community - always pushing forward, always solving
+    problems.\"\n            },\n            \"resolution\": \"720p\",\n           
+    \"ai_model_id_override\": \"d1dd37a3-e39a-4854-a298-6510289f9cf2\"\n        },\n       
+    {\n            \"text\": \"And remember everyone - as we say in the elizaOS world,
+    'Don't be late for tea!'\",\n            \"voiceUrl\": \"Assets/Resources/Episodes/S1E61/audio/S1E61_4_6.mp3\",\n           
+    \"avatarImage\": \"Assets/Resources/Episodes/S1E61/screenshots/S1E61_4_6.jpg\",\n           
+    \"aspectRatio\": \"16:9\",\n            \"audioSource\": \"audio\",\n           
+    \"voiceId\": \"\",\n            \"avatarImageInput\": {\n                \"prompt\":
+    \"And remember everyone - as we say in the elizaOS world, 'Don't be late for
+    tea!'\"\n            },\n            \"resolution\": \"720p\",\n            \"ai_model_id_override\":
+    \"d1dd37a3-e39a-4854-a298-6510289f9cf2\"\n        },\n        {\n           
+    \"text\": \"Another fantastic day in the world of AI development comes to a close.\",\n           
+    \"voiceUrl\": \"Assets/Resources/Episodes/S1E61/audio/S1E61_4_7.mp3\",\n           
+    \"avatarImage\": \"Assets/Resources/Episodes/S1E61/screenshots/S1E61_4_7.jpg\",\n           
+    \"aspectRatio\": \"16:9\",\n            \"audioSource\": \"audio\",\n           
+    \"voiceId\": \"\",\n            \"avatarImageInput\": {\n                \"prompt\":
+    \"Another fantastic day in the world of AI development comes to a close.\"\n           
+    },\n            \"resolution\": \"720p\",\n            \"ai_model_id_override\":
+    \"d1dd37a3-e39a-4854-a298-6510289f9cf2\"\n        },\n        {\n           
+    \"text\": \"Join us tomorrow for more updates, more progress, and more breakthroughs!\",\n           
+    \"voiceUrl\": \"Assets/Resources/Episodes/S1E61/audio/S1E61_4_8.mp3\",\n           
+    \"avatarImage\": \"Assets/Resources/Episodes/S1E61/screenshots/S1E61_4_8.jpg\",\n           
+    \"aspectRatio\": \"16:9\",\n            \"audioSource\": \"audio\",\n           
+    \"voiceId\": \"\",\n            \"avatarImageInput\": {\n                \"prompt\":
+    \"Join us tomorrow for more updates, more progress, and more breakthroughs!\"\n           
+    },\n            \"resolution\": \"720p\",\n            \"ai_model_id_override\":
+    \"d1dd37a3-e39a-4854-a298-6510289f9cf2\"\n        }\n    ]\n}"
   processBatchStrictlySequentially: 1
   pollingIntervalSeconds: 10
   maxPollingAttempts: 100
@@ -102134,7 +102007,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7536947572237490041}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_RenderMode: 0
   m_Camera: {fileID: 0}
@@ -105211,4 +105084,3 @@ SceneRoots:
   - {fileID: 2043649015}
   - {fileID: 5405382959901695268}
   - {fileID: 1115389897}
-  - {fileID: 636738745}

@@ -2,6 +2,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Collections.Generic;
+#if UNITY_EDITOR
+using ShowRunner.Utility;
+#endif
 
 namespace ShowRunner
 {
@@ -19,9 +22,20 @@ namespace ShowRunner
         [SerializeField] private Button pauseButton;
         [SerializeField] private TextMeshProUGUI statusText;
 
+        [Header("Screenshot Controls")]
+        [SerializeField] private Toggle autoScreenshotToggle;
+        [SerializeField] private Toggle speakEventScreenshotToggle;
+
+        [Header("Recording Controls")]
+        [SerializeField] private Toggle showRecorderToggle;
+
         [Header("References")]
         [SerializeField] private ShowRunner showRunner;
         [SerializeField] private ShowRunnerUI uiController;
+        [SerializeField] private ScreenshotManager screenshotManager;
+#if UNITY_EDITOR
+        [SerializeField] private ShowRecorder showRecorder;
+#endif
 
         [Header("Settings")]
         [SerializeField] private KeyCode toggleKey = KeyCode.BackQuote; // ` key
@@ -96,7 +110,7 @@ namespace ShowRunner
             
             if (nextButton == null)
             {
-                Button[] buttons = GetComponentsInChildren<Button>();
+                Button[] buttons = GetComponentsInChildren<Button>(); 
                 foreach (Button button in buttons)
                 {
                     if (button.name.Contains("Next"))
@@ -388,5 +402,42 @@ namespace ShowRunner
         public Button GetPlayButton() => playButton;
         public Button GetPauseButton() => pauseButton;
         public TextMeshProUGUI GetStatusText() => statusText;
+
+        public void InitializeScreenshotToggles()
+        {
+            if (screenshotManager != null)
+            {
+                // Set initial toggle states based on ScreenshotManager settings
+                if (autoScreenshotToggle != null)
+                {
+                    autoScreenshotToggle.isOn = screenshotManager.isAutoScreenshottingEnabled;
+                }
+                if (speakEventScreenshotToggle != null)
+                {
+                    speakEventScreenshotToggle.isOn = screenshotManager.enableSpeakEventScreenshots;
+                }
+            }
+
+            // Initialize recorder toggle
+            if (showRecorderToggle != null)
+            {
+                #if UNITY_EDITOR
+                showRecorderToggle.interactable = true;
+                // Set initial state based on ShowRecorder component's enabled state
+                var recorder = FindObjectOfType<ShowRecorder>();
+                if (recorder != null)
+                {
+                    showRecorderToggle.isOn = recorder.enabled;
+                }
+                #else
+                showRecorderToggle.interactable = false;
+                #endif
+            }
+        }
+
+        // Getters for screenshot toggles
+        public Toggle GetAutoScreenshotToggle() => autoScreenshotToggle;
+        public Toggle GetSpeakEventScreenshotToggle() => speakEventScreenshotToggle;
+        public Toggle GetShowRecorderToggle() => showRecorderToggle;
     }
 } 

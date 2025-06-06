@@ -2,6 +2,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Collections.Generic;
+#if UNITY_EDITOR
+using ShowRunner.Utility;
+#endif
 
 namespace ShowRunner
 {
@@ -87,11 +90,24 @@ namespace ShowRunner
             if (uiContainer.GetPauseButton() != null) 
                 uiContainer.GetPauseButton().onClick.AddListener(StopAutoPlay);
             
+            // Set up screenshot toggle listeners
+            if (uiContainer.GetAutoScreenshotToggle() != null)
+                uiContainer.GetAutoScreenshotToggle().onValueChanged.AddListener(OnAutoScreenshotToggleChanged);
+            if (uiContainer.GetSpeakEventScreenshotToggle() != null)
+                uiContainer.GetSpeakEventScreenshotToggle().onValueChanged.AddListener(OnSpeakEventScreenshotToggleChanged);
+
+            #if UNITY_EDITOR
+            // Set up recorder toggle listener (editor only)
+            if (uiContainer.GetShowRecorderToggle() != null)
+                uiContainer.GetShowRecorderToggle().onValueChanged.AddListener(OnShowRecorderToggleChanged);
+            #endif
+            
             // REMOVED: showRunner.LoadShowData(); - Loading is now dynamic
 
             // Initialize UI components
             // InitializeEpisodeDropdown(); // Called after a show file is loaded
             InitializeShowFileSelection(); // Start by selecting a show file
+            uiContainer.InitializeScreenshotToggles(); // Initialize screenshot toggle states
             UpdateStatusText("Please select a show file.");
             uiContainer.SetPlaybackControlsInteractable(false); // Ensure playback is disabled initially
         }
@@ -343,5 +359,43 @@ namespace ShowRunner
             uiContainer.UpdateStatusText(message);
             //Debug.Log($"Status text update requested: '{message}'");
         }
+
+        private void OnAutoScreenshotToggleChanged(bool isOn)
+        {
+            var screenshotManager = FindObjectOfType<ScreenshotManager>();
+            if (screenshotManager != null)
+            {
+                screenshotManager.ToggleAutoScreenshot(isOn);
+                UpdateStatusText($"Auto screenshots {(isOn ? "enabled" : "disabled")}");
+            }
+        }
+
+        private void OnSpeakEventScreenshotToggleChanged(bool isOn)
+        {
+            var screenshotManager = FindObjectOfType<ScreenshotManager>();
+            if (screenshotManager != null)
+            {
+                screenshotManager.ToggleSpeakEventScreenshotMode(isOn);
+                UpdateStatusText($"Speak event screenshots {(isOn ? "enabled" : "disabled")}");
+            }
+        }
+
+        #if UNITY_EDITOR
+        private void OnShowRecorderToggleChanged(bool isOn)
+        {
+            var showRecorder = FindObjectOfType<ShowRecorder>();
+            if (showRecorder != null)
+            {
+                showRecorder.enabled = isOn;
+                Debug.Log($"ShowRecorder component {(isOn ? "enabled" : "disabled")}"); // Add debug log
+                UpdateStatusText($"Show recorder {(isOn ? "enabled" : "disabled")}");
+            }
+            else
+            {
+                Debug.LogWarning("ShowRecorder component not found in the scene");
+                UpdateStatusText("Show recorder not found in scene");
+            }
+        }
+        #endif
     }
 } 
