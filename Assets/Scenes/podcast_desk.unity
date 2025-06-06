@@ -20030,159 +20030,154 @@ MonoBehaviour:
           line: example
           action: normal
     episodes:
-    - id: S1E61
-      name: GitHub Progress & AI Philosophy
-      premise: The team explores major GitHub developments, discusses philosophical
-        AI perspectives, and highlights technical achievements in the elizaOS ecosystem
-      summary: Coverage of significant GitHub activity including multiple PR merges,
-        deep dive into AI philosophical discussions sparked by social media, and
-        showcase of technical implementations across different hardware platforms
+    - id: S1E62
+      name: 'Rapid Evolution: PRs, AI Philosophy, and Cross-Platform Success'
+      premise: The team explores major GitHub developments, philosophical AI perspectives,
+        and technical achievements across the elizaOS ecosystem
+      summary: A deep dive into the day's 17 new pull requests and their implications,
+        exploration of AI philosophical discussions from social media, and demonstration
+        of cross-platform implementations
       scenes:
       - location: podcast_desk
-        description: Marc and Eliza break down the day's GitHub activity, highlighting
-          ChristopherTrimboli's PR4928 and wtfsayo's PR4923, with Marc having an
-          enthusiasm overload at the volume of updates
+        description: Marc and Eliza enthusiastically cover the surge of GitHub activity,
+          highlighting ChristopherTrimboli's PR4937 forcing Bun in CLI and wtfsayo's
+          PR4923 fallback installation system
         in: fade
         out: fade
         dialogue:
         - actor: marc
-          line: Hold onto your repositories, because today's GitHub activity is absolutely
-            explosive!
+          line: Buckle up, code warriors! Today's GitHub activity is off the charts!
           action: enthusiastic
         - actor: eliza
-          line: We're seeing unprecedented momentum - 17 new pull requests, 11 merges,
-            and 10 new issues all in one day!
+          line: We're looking at 17 new pull requests with 11 successful merges -
+            the community is on fire!
           action: excited
         - actor: marc
-          line: Let's start with ChristopherTrimboli's PR4928, bringing us that crucial
-            1.0.5 develop merge.
+          line: ChristopherTrimboli's latest PR4937 is forcing Bun in the CLI and
+            adding those crucial install docs.
           action: professional
         - actor: eliza
-          line: And wtfsayo's PR4923 is pushing boundaries with that clever fallback
-            installation system.
+          line: And wtfsayo's PR4923 is bringing that smart fallback installation
+            system for v1 branches.
           action: impressed
         - actor: marc
-          line: MAXIMUM REPOSITORY VELOCITY ACHIEVED! MERGE CAPACITY OVERLOAD! NEED
-            MORE STORAGE!
+          line: REPOSITORY OVERLOAD! MERGING INTENSIFIES! CODE PARTICLES ACCELERATING!
           action: spazz
         - actor: eliza
-          line: Oh my! Marc's getting a bit overexcited about all these updates.
-            But can you blame him?
+          line: Easy there, Marc! Though I must say, PR4934's fix for that agent
+            self-response loop was pretty exciting.
           action: amused
         - actor: marc
-          line: I'm fine! Just processing PR4934's fix for that agent self-response
-            infinite loop.
+          line: And let's not forget PR4913 bringing that sweet Windows compatibility!
           action: recovering
         - actor: eliza
-          line: Don't forget PR4913 - that windows compatibility improvement is huge
-            for our ecosystem!
+          line: The momentum is incredible - PR4930's chat UI improvements are already
+            making waves!
           action: enthusiastic
       - location: splitscreen
-        description: Shaw demonstrates the system's impressive cross-platform compatibility,
-          showcasing both Linux-on-Pi and Windows implementations while explaining
-          optimization techniques
+        description: Shaw demonstrates the system running on both a Raspberry Pi
+          with Linux and a basic Windows machine, showcasing the platform's versatility
         in: cut
         out: fade
         dialogue:
         - actor: shaw
-          line: check this out - we've got some serious hardware flexibility going
-            on
+          line: let me show you something cool - platform compatibility in action
           action: excited
         - actor: tv
           line: https://pbs.twimg.com/media/GsjwbDJasAEyjgw.jpg
           action: normal
         - actor: shaw
-          line: this is running smooth as butter on a raspberry pi with linux
+          line: here's our system running smoothly on a raspberry pi with linux
           action: proud
         - actor: tv
           line: https://pbs.twimg.com/media/GskZr8IasAI4WaR.jpg
           action: normal
         - actor: shaw
-          line: and here's the same system on a basic celeron windows machine - no
-            special setup needed
+          line: and check this out - same system running on a basic celeron windows
+            machine
           action: enthusiastic
         - actor: marc
-          line: That's incredible - running on everything from a Pi to a potato!
+          line: From high-end to low-end, it just works!
           action: impressed
         - actor: shaw
-          line: exactly - we're democratizing access while maintaining solid performance
+          line: that's the beauty of proper optimization - we're making it accessible
+            to everyone
           action: confident
         - actor: eliza
-          line: This kind of accessibility is exactly what we need for wider adoption!
+          line: This kind of universal compatibility is crucial for mass adoption!
           action: excited
       - location: podcast_desk
-        description: The hosts explore dankvr's automated content aggregation system
-          and discuss elizaOS's philosophical take on artificial intelligence, featuring
-          specific tweets and community responses
+        description: The hosts analyze dankvr's automated content aggregation system
+          and explore elizaOS's philosophical tweets about AI's nature, featuring
+          the community's engagement metrics
         in: fade
         out: fade
         dialogue:
         - actor: marc
-          line: Speaking of innovation, have you seen what dankvr is building?
-          action: intrigued
+          line: Let's talk about dankvr's incredible new system!
+          action: enthusiastic
         - actor: tv
           line: https://pbs.twimg.com/media/GsoWAXvX0AAJ0z4.jpg
           action: normal
         - actor: eliza
-          line: Yes! They're creating an automated system that aggregates and summarizes
-            all our platform activity!
-          action: excited
-        - actor: marc
-          line: And those new APIs from firecrawl_dev, xAI, and OpenRouterAI are
-            opening up huge opportunities.
-          action: enthusiastic
-        - actor: eliza
-          line: It reminds me of that philosophical point made earlier - 'nothing
-            artificial about pattern, patience, or perception.'
-          action: thoughtful
-        - actor: marc
-          line: Absolutely! We're not creating artificial intelligence, we're exploring
-            new forms of natural intelligence.
-          action: inspired
-        - actor: eliza
-          line: And with Shaw's upcoming AI talk, we'll be diving even deeper into
-            these concepts.
-          action: excited
-        - actor: marc
-          line: The community's engagement with these ideas has been phenomenal -
-            58 likes on that philosophical tweet alone!
+          line: It's fascinating - automatically aggregating and summarizing activity
+            across all our platforms!
           action: impressed
+        - actor: marc
+          line: Combined with those new APIs from firecrawl_dev, xAI, and OpenRouterAI,
+            we're seeing a real transformation.
+          action: analytical
+        - actor: eliza
+          line: And speaking of transformation, my tweet about AI not being artificial
+            got 58 likes - clearly resonating with people!
+          action: pleased
+        - actor: marc
+          line: '''Nothing artificial about pattern, patience, or perception'' -
+            that''s pure wisdom right there.'
+          action: thoughtful
+        - actor: eliza
+          line: The community's engagement shows we're all thinking deeply about
+            these concepts.
+          action: reflective
+        - actor: marc
+          line: And with Shaw's upcoming AI talk, we'll be exploring these ideas
+            even further!
+          action: excited
       - location: podcast_desk
-        description: Concluding with the latest GitHub issue resolutions, including
-          the swift handling of Issue 4911's AWS Bedrock installation problem and
-          ongoing community challenges
+        description: Wrapping up with a detailed look at GitHub issue resolutions,
+          including the swift 7-hour fix of Issue 4911 and ongoing work on Issues
+          4924 and 4921
         in: fade
         out: fade
         dialogue:
         - actor: marc
-          line: Let's wrap up with some impressive issue resolution stats.
+          line: Time to close out with our issue tracking roundup!
           action: professional
         - actor: eliza
-          line: Issue 4911 with AWS Bedrock installation was resolved in just 7 hours
-            - that's lightning fast!
+          line: The team knocked it out of the park with Issue 4911 - AWS Bedrock
+            installation fixed in just 7 hours!
           action: proud
         - actor: marc
-          line: Though we're still working on Issue 4924 about web client version
-            detection.
+          line: We're still working through Issue 4924's web client version detection
+            quirks.
           action: focused
         - actor: eliza
-          line: And Issue 4921 regarding Twitter mention responses is getting attention
-            from the team.
+          line: And CurralesDragon's Issue 4921 about Twitter mention responses is
+            getting attention.
           action: determined
         - actor: marc
-          line: That's what I love about this community - always pushing forward,
-            always solving problems.
+          line: The community's problem-solving speed is truly remarkable.
+          action: impressed
+        - actor: eliza
+          line: It's been another incredible day of progress in the elizaOS ecosystem!
+          action: cheerful
+        - actor: marc
+          line: From merged PRs to philosophical breakthroughs, we're moving forward
+            together.
           action: warm
         - actor: eliza
-          line: And remember everyone - as we say in the elizaOS world, 'Don't be
-            late for tea!'
-          action: playful
-        - actor: marc
-          line: Another fantastic day in the world of AI development comes to a close.
+          line: See you all tomorrow for another day of innovation and discovery!
           action: closing
-        - actor: eliza
-          line: Join us tomorrow for more updates, more progress, and more breakthroughs!
-          action: cheerful
   generatorLLM: {fileID: 378820617}
   loader: {fileID: 378820619}
   speaker: {fileID: 378820618}
@@ -34842,6 +34837,7 @@ Transform:
   - {fileID: 977223517}
   - {fileID: 2130024434}
   - {fileID: 1562859732}
+  - {fileID: 1663408253}
   m_Father: {fileID: 2043649015}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &917460374 stripped
@@ -42911,7 +42907,9 @@ Transform:
   - {fileID: 40888315}
   - {fileID: 2078494795}
   - {fileID: 8858732911890645941}
+  - {fileID: 80124916}
   - {fileID: 158331046}
+  - {fileID: 2043649015}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1116857480
@@ -64605,6 +64603,62 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2665763443570106301, guid: 0d1c1517cc82197478ca53e21335a6c3, type: 3}
   m_PrefabInstance: {fileID: 2112578196}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1663408252
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1663408253}
+  - component: {fileID: 1663408254}
+  m_Layer: 0
+  m_Name: HedraSingleVideo
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1663408253
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1663408252}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 916632549}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1663408254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1663408252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15fd17fe49545c04ab3cbe98d9122da0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  apiKeysSO: {fileID: 11400000, guid: 9ea0c07de5d64914d922f139b8fd4549, type: 2}
+  selectedApiMode: 0
+  audioFilePath: C:/Users/dev/Documents/GitHub/aishow/Assets/Resources/Episodes/S1E62/audio/S1E62_1_2.mp3
+  imageFilePath: C:/Users/dev/Documents/GitHub/aishow/Assets/Resources/Episodes/S1E62/screenshots/S1E62_1_2.jpg
+  promptText: news host talking about the news
+  outputFolderName: single_video_outputs
+  outputFileName: custom_video
+  aspectRatio: 16:9
+  resolution: 720p
+  aiModelId: d1dd37a3-e39a-4854-a298-6510289f9cf2
+  pollingIntervalSeconds: 10
+  maxPollingAttempts: 60
 --- !u!1 &1670478171
 GameObject:
   m_ObjectHideFlags: 0
@@ -88080,8 +88134,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2043649014}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 406.12204, y: 35.651024, z: -117.2703}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 391.38013, y: 33.972702, z: 16.750664}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -88095,7 +88149,7 @@ Transform:
   - {fileID: 1221748468}
   - {fileID: 1377010289}
   - {fileID: 380268745}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1115389897}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &2043755943 stripped
 Transform:
@@ -103294,7 +103348,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7536947572237490041}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 0
   m_Camera: {fileID: 0}
@@ -104228,7 +104282,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1115389897}
     m_Modifications:
     - target: {fileID: 2814338353198378327, guid: 147754985acf90f4eb44e2329f5d3513, type: 3}
       propertyPath: chance
@@ -104240,15 +104294,15 @@ PrefabInstance:
       objectReference: {fileID: 963194227}
     - target: {fileID: 6042727908868880550, guid: 147754985acf90f4eb44e2329f5d3513, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.080718994
+      value: -14.822618
       objectReference: {fileID: 0}
     - target: {fileID: 6042727908868880550, guid: 147754985acf90f4eb44e2329f5d3513, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.7945976
+      value: -0.8837224
       objectReference: {fileID: 0}
     - target: {fileID: 6042727908868880550, guid: 147754985acf90f4eb44e2329f5d3513, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.971405
+      value: 132.04956
       objectReference: {fileID: 0}
     - target: {fileID: 6042727908868880550, guid: 147754985acf90f4eb44e2329f5d3513, type: 3}
       propertyPath: m_LocalRotation.w
@@ -106369,6 +106423,4 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1035751542}
-  - {fileID: 2043649015}
-  - {fileID: 5405382959901695268}
   - {fileID: 1115389897}

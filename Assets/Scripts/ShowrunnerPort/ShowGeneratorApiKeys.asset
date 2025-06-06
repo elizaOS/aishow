@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ee825097bb93f44aa9708a535345318, type: 3}
+  m_Name: ShowGeneratorApiKeys
+  m_EditorClassIdentifier: 
+  anthropicApiKey: 99
+  openRouterApiKey: 99
+  elevenLabsApiKey: 99
+  hedraApiKey: sk_hedra-VVvM1Ydw39ZZLx919lg5Y-n6AxA3JLIrhQ89bKfiPmUCQq8pyDYtghYOvmvnDX17
+  hedraApiKeyNewApi: sk_hedra_tKPeP9DNMqnrEF8a__fXcMvnuzg7ZTGmJTcV0stKDjMe-U9pTNXbUrRdrUqsNBc-
+  hedraBaseUrl: https://mercury.dev.dream-ai.com/api
+  hedraBaseUrlNewApi: https://api.hedra.com/web-app/
+  x23ApiKey: 0a84e882a2110687f204a547b913a6bac7f20690614043eb4b013743e3ff2fb3
+  claudeWrapperUrl: https://smsithlord.com/ai16z_show_runner/episode_generation_endpoint.php
+  elevenLabsWrapperUrl: https://sly-quiver-observation.glitch.me/api/elevenlabs/speak
+  claudeModelName: claude-3-5-sonnet-20241022
+  claudeMaxTokens: 8192
